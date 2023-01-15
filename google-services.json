@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "77400348289",
+    "project_id": "imtenan-app",
+    "storage_bucket": "imtenan-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77400348289:android:2052361f86a3d18d865f80",
+        "android_client_info": {
+          "package_name": "com.Linktsp.Lapoire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77400348289-3gq4hf1fvhq5oa2ampastt6ugkvjl3ae.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Linktsp.Lapoire",
+            "certificate_hash": "daef0053bf3c1a491b8ddc71400baa7ca9d6ada0"
+          }
+        },
+        {
+          "client_id": "77400348289-9abqlicc13c358rdnntpq4l7970j36k4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Linktsp.Lapoire",
+            "certificate_hash": "64f394bb8fcdc5382554c92afed3234416e5a260"
+          }
+        },
+        {
+          "client_id": "77400348289-g4g0go2utia4aha9k21lrnlml71ico02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhvSBpDKBIC2HxjbQZ08ioMmADHENqi5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77400348289-g4g0go2utia4aha9k21lrnlml71ico02.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "77400348289-8s284jc938b23j40g3tote77opb0f51d.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Linktsp.Lapoire"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

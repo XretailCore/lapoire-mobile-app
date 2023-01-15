@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>77400348289-8s284jc938b23j40g3tote77opb0f51d.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.77400348289-8s284jc938b23j40g3tote77opb0f51d</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>77400348289-1f2mr6fglhu73k0pm0aidf2ebo3mu9ru.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAl1S0LK8Ynuj2moa0nWAPose9Y6U2znR4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>77400348289</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Linktsp.Lapoire</string>
+	<key>PROJECT_ID</key>
+	<string>imtenan-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>imtenan-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:77400348289:ios:0c78528f836ba1a0865f80</string>
+</dict>
+</plist>

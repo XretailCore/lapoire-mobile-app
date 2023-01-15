@@ -1,0 +1,1 @@
+enum Stores { nearstStores, allStores }
