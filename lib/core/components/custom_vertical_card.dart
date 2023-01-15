@@ -280,7 +280,7 @@ class VerticalProductCard extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 10),
                             decoration: BoxDecoration(
                               color: isPreOrder
-                                  ? const Color.fromRGBO(199, 209, 66, 1)
+                                  ? const Color.fromRGBO(199, 209, 66, 2)
                                   : isAvailable
                                       ? CustomThemes.appTheme.primaryColor
                                       : Colors.grey.withOpacity(.4),
