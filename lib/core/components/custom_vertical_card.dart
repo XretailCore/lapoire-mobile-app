@@ -298,6 +298,19 @@ class VerticalProductCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: CustomThemes.appTheme.primaryColor,
+                        ),
+                        borderRadius:
+                        const BorderRadius.all(Radius.circular(20))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Icon(Icons.remove_red_eye_outlined,
+                          size: 22, color: CustomThemes.appTheme.primaryColor),
+                    ),
+                  ),
                   isBogo && isCart
                       ? Image.asset(
                           "assets/images/gift.png",
@@ -356,19 +369,6 @@ class VerticalProductCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: CustomThemes.appTheme.primaryColor,
-                        ),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Icon(Icons.remove_red_eye_outlined,
-                          size: 22, color: CustomThemes.appTheme.primaryColor),
-                    ),
-                  ),
                   Container(
                     decoration: BoxDecoration(
                         border: Border.all(
