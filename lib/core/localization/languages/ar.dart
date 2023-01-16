@@ -81,6 +81,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.verify.name: "تحقق",
       Translate.didntReceiveOtpCode.name: "اعادة ارسال كود التفعيل بعد",
       Translate.resend.name: "إعادة إرسال",
+      Translate.allProducts.name: "جميع المنتجات",
       Translate.required.name: "مطلوب",
       Translate.invalidEmail.name: "الإيميل خطأ",
       Translate.invalidMobile.name: "رقم الهاتف خطأ",

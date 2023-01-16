@@ -358,6 +358,19 @@ class VerticalProductCard extends StatelessWidget {
                         color: CustomThemes.appTheme.primaryColor,
                       ),
                       borderRadius:
+                      const BorderRadius.all(Radius.circular(20))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Icon(Icons.remove_red_eye_outlined,
+                        size: 22, color: CustomThemes.appTheme.primaryColor),
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: CustomThemes.appTheme.primaryColor,
+                      ),
+                      borderRadius:
                           const BorderRadius.all(Radius.circular(20))),
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),

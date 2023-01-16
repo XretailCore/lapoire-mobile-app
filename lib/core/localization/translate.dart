@@ -78,6 +78,7 @@ enum Translate {
   verify,
   didntReceiveOtpCode,
   resend,
+  allProducts,
   required,
   invalidEmail,
   invalidMobile,

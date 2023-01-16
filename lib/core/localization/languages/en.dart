@@ -80,6 +80,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.verify.name: "Verify",
       Translate.didntReceiveOtpCode.name: "Didn't Receive OTP Code",
       Translate.resend.name: "Resend",
+      Translate.allProducts.name: "All Products",
       Translate.required.name: "Required",
       Translate.invalidEmail.name: "Invalid Email",
       Translate.invalidMobile.name: "Invalid Mobile",

@@ -28,6 +28,7 @@ class HomeScreen extends GetView<HomeController> {
                     const HomeCategoriesWidget(),
                     const SizedBox(height: 10),
                     HomeListingWidget(
+                      onAllProductsPressed: (){},
                       key: UniqueKey(),
                       items: controller.bestSellers.items ?? [],
                       title: Translate.bestSeller.tr,
@@ -40,6 +41,8 @@ class HomeScreen extends GetView<HomeController> {
                     ),
                     HomeAdsWidget(items: controller.firstAd.items),
                     HomeListingWidget(
+                      onAllProductsPressed: (){},
+                      isYellow: true,
                       key: UniqueKey(),
                       items: controller.newArrivals.items ?? [],
                       title: Translate.newArrivals.tr,
@@ -53,6 +56,7 @@ class HomeScreen extends GetView<HomeController> {
                     const SizedBox(height: 10),
                     HomeAdsWidget(items: controller.secondAd.items),
                     HomeListingWidget(
+                      onAllProductsPressed: (){},
                       key: UniqueKey(),
                       items: controller.offers.items ?? [],
                       title: Translate.offers.tr,

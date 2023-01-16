@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:extended_image/extended_image.dart';
 import '../../../core/components/custom_slider.dart';
+import '../../../core/utils/theme.dart';
 import '../controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,7 +59,7 @@ class HomeAd extends GetView<HomeController> {
                       (int index, CarouselPageChangedReason reason) =>
                           controller.onSliderPageChange(index),
                   pageIndex: controller.sliderPageIndex.value,
-                  indicatorColor: Colors.white,
+                  indicatorColor: CustomThemes.appTheme.primaryColor,
                 ),
               ),
             ),

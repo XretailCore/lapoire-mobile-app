@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:imtnan/core/utils/theme.dart';
 
 class CustomSlider extends StatelessWidget {
   final List<Widget> sliderImages;
@@ -67,13 +68,13 @@ class CustomSlider extends StatelessWidget {
                                   vertical: 8.0, horizontal: 4.0),
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  border: Border.all(color: Colors.white),
+                                  border: Border.all(color: CustomThemes.appTheme.primaryColor),
                                   color: (Theme.of(context).brightness ==
                                               Brightness.dark
                                           ? indicatorColor ?? Colors.white
                                           : indicatorColor ?? Colors.black)
                                       .withOpacity(
-                                          pageIndex == entry.key ? 0.9 : 0.4)),
+                                          pageIndex == entry.key ? 0.9 : 0.0)),
                             ))
                         .toList(),
                   ),
