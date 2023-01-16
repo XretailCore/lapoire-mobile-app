@@ -16,68 +16,67 @@ class HomeScreen extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: [
-          //const HomeAppBarWidget(),
-          Expanded(
-            child: controller.obx(
-              (data) => SingleChildScrollView(
-                child: Column(
-                  children: [
-                    HomeAd(items: controller.homeTopBanner.items ?? []),
-                    const SizedBox(height: 15),
-                    const HomeCategoriesWidget(),
-                    const SizedBox(height: 10),
-                    HomeListingWidget(
-                      onAllProductsPressed: (){},
-                      key: UniqueKey(),
-                      items: controller.bestSellers.items ?? [],
-                      title: Translate.bestSeller.tr,
-                      onViewAll: () => controller.goToListingWithId(
-                        filterModel:
-                            controller.bestSellers.items?.first.filterModel ??
-                                FilterModel(),
-                        name: controller.bestSellers.items?.first.name ?? "",
-                      ),
+      children: [
+        //const HomeAppBarWidget(),
+        Expanded(
+          child: controller.obx(
+            (data) => SingleChildScrollView(
+              child: Column(
+                children: [
+                  HomeAd(items: controller.homeTopBanner.items ?? []),
+                  const SizedBox(height: 15),
+                  const HomeCategoriesWidget(),
+                  const SizedBox(height: 10),
+                  HomeListingWidget(
+                    onAllProductsPressed: () {},
+                    key: UniqueKey(),
+                    items: controller.bestSellers.items ?? [],
+                    title: Translate.bestSeller.tr,
+                    onViewAll: () => controller.goToListingWithId(
+                      filterModel:
+                          controller.bestSellers.items?.first.filterModel ??
+                              FilterModel(),
+                      name: controller.bestSellers.items?.first.name ?? "",
                     ),
-                    HomeAdsWidget(items: controller.firstAd.items),
-                    HomeListingWidget(
-                      onAllProductsPressed: (){},
-                      isYellow: true,
-                      key: UniqueKey(),
-                      items: controller.newArrivals.items ?? [],
-                      title: Translate.newArrivals.tr,
-                      onViewAll: () => controller.goToListingWithId(
-                        filterModel:
-                            controller.newArrivals.items?.first.filterModel ??
-                                FilterModel(),
-                        name: controller.newArrivals.items?.first.name ?? "",
-                      ),
+                  ),
+                  HomeAdsWidget(items: controller.firstAd.items),
+                  HomeListingWidget(
+                    onAllProductsPressed: () {},
+                    isYellow: true,
+                    key: UniqueKey(),
+                    items: controller.newArrivals.items ?? [],
+                    title: Translate.newArrivals.tr,
+                    onViewAll: () => controller.goToListingWithId(
+                      filterModel:
+                          controller.newArrivals.items?.first.filterModel ??
+                              FilterModel(),
+                      name: controller.newArrivals.items?.first.name ?? "",
                     ),
-                    const SizedBox(height: 10),
-                    HomeAdsWidget(items: controller.secondAd.items),
-                    HomeListingWidget(
-                      onAllProductsPressed: (){},
-                      key: UniqueKey(),
-                      items: controller.offers.items ?? [],
-                      title: Translate.offers.tr,
-                      onViewAll: () => controller.goToListingWithId(
-                        filterModel:
-                            controller.offers.items?.first.filterModel ??
-                                FilterModel(),
-                        name: controller.offers.items?.first.name ?? "",
-                      ),
+                  ),
+                  const SizedBox(height: 10),
+                  HomeAdsWidget(items: controller.secondAd.items),
+                  HomeListingWidget(
+                    onAllProductsPressed: () {},
+                    key: UniqueKey(),
+                    items: controller.offers.items ?? [],
+                    title: Translate.offers.tr,
+                    onViewAll: () => controller.goToListingWithId(
+                      filterModel: controller.offers.items?.first.filterModel ??
+                          FilterModel(),
+                      name: controller.offers.items?.first.name ?? "",
                     ),
-                  ],
-                ),
-              ),
-              onLoading: const HomeShimmerLoader(),
-              onError: (e) => CustomErrorWidget(
-                errorText: e,
-                onReload: controller.init,
+                  ),
+                ],
               ),
             ),
+            onLoading: const HomeShimmerLoader(),
+            onError: (e) => CustomErrorWidget(
+              errorText: e,
+              onReload: controller.init,
+            ),
           ),
-        ],
+        ),
+      ],
     );
   }
 }

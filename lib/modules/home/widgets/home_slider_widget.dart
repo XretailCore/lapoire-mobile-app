@@ -52,7 +52,7 @@ class HomeAd extends GetView<HomeController> {
                     borderRadius: BorderRadius.all(Radius.circular(0))),
                 child: CustomSlider(
                   sliderImages: sliderImages,
-                  ratio: 1 / .42,
+                  ratio: 1 / .75,
                   controller: controller.carouselController,
                   showIndicator: true,
                   onPageChanged:
