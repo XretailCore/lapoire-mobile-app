@@ -10,6 +10,7 @@ class CustomSlider extends StatelessWidget {
   final Color? indicatorColor;
   final Function(int value, CarouselPageChangedReason reason)? onPageChanged;
   final double ratio;
+
   const CustomSlider({
     Key? key,
     required this.sliderImages,
@@ -61,21 +62,25 @@ class CustomSlider extends StatelessWidget {
                     children: sliderImages
                         .asMap()
                         .entries
-                        .map((entry) => Container(
-                              width: 12.0,
-                              height: 12.0,
-                              margin: const EdgeInsets.symmetric(
-                                  vertical: 8.0, horizontal: 4.0),
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(color: CustomThemes.appTheme.primaryColor),
-                                  color: (Theme.of(context).brightness ==
-                                              Brightness.dark
-                                          ? indicatorColor ?? Colors.white
-                                          : indicatorColor ?? Colors.black)
-                                      .withOpacity(
-                                          pageIndex == entry.key ? 0.9 : 0.0)),
-                            ))
+                        .map(
+                          (entry) => Container(
+                            width: 12.0,
+                            height: 12.0,
+                            margin: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 4.0),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  color: CustomThemes.appTheme.primaryColor),
+                              color: (Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? indicatorColor ?? Colors.white
+                                      : indicatorColor ?? Colors.black)
+                                  .withOpacity(
+                                      pageIndex == entry.key ? 0.9 : 0.0),
+                            ),
+                          ),
+                        )
                         .toList(),
                   ),
                 ),
