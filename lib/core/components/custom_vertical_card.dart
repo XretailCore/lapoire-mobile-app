@@ -293,92 +293,97 @@ class VerticalProductCard extends StatelessWidget {
                           ),
                         ),
                       ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                isBogo && isCart
-                    ? Image.asset(
-                        "assets/images/gift.png",
-                        color: CustomThemes.appTheme.primaryColor,
-                      )
-                    : Offstage(
-                        offstage: false,
-                        // offstage: !(onDelete != null || hasBogo),
-                        child: Visibility(
-                          visible: onDelete != null,
-                          child: InkWell(
-                            onTap: onDelete,
-                            child: Container(
-                              padding: const EdgeInsets.all(3),
-                              decoration: BoxDecoration(
-                                  color: CustomThemes.appTheme.primaryColor,
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: const Icon(
-                                Icons.clear,
-                                size: 20,
-                                color: Colors.white,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  isBogo && isCart
+                      ? Image.asset(
+                          "assets/images/gift.png",
+                          color: CustomThemes.appTheme.primaryColor,
+                        )
+                      : Offstage(
+                          offstage: false,
+                          // offstage: !(onDelete != null || hasBogo),
+                          child: Visibility(
+                            visible: onDelete != null,
+                            child: InkWell(
+                              onTap: onDelete,
+                              child: Container(
+                                padding: const EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                    color: CustomThemes.appTheme.primaryColor,
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: const Icon(
+                                  Icons.clear,
+                                  size: 20,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
-                          ),
-                          replacement: Offstage(
-                            offstage: !showFavorite!,
-                            child: Obx(
-                              () => Container(
-                                padding: const EdgeInsets.all(2.0),
-                                decoration: BoxDecoration(
+                            replacement: Offstage(
+                              offstage: !showFavorite!,
+                              child: Obx(
+                                () => Container(
+                                  padding: const EdgeInsets.all(5.0),
+                                  decoration: BoxDecoration(
                                     border: Border.all(
                                       color: CustomThemes.appTheme.primaryColor,
                                     ),
                                     borderRadius: const BorderRadius.all(
-                                        Radius.circular(50))),
-                                child: FavoriateButtonWidget(
-                                  key: UniqueKey(),
-                                  iconSize: 25,
-                                  defaultValue: Get.find<WishlistController>()
-                                      .isFavorite(productId),
-                                  onFavoraite: (v) {
-                                    var listingItem = ListingItem(
-                                      id: productId,
-                                      finalPrice: price,
-                                    );
-                                    final wishlistController =
-                                        Get.find<WishlistController>();
-                                    wishlistController.onChangeFavorite(
-                                        context, v, listingItem);
-                                  },
+                                      Radius.circular(50),
+                                    ),
+                                  ),
+                                  child: FavoriateButtonWidget(
+                                    key: UniqueKey(),
+                                    iconSize: 22,
+                                    defaultValue: Get.find<WishlistController>()
+                                        .isFavorite(productId),
+                                    onFavoraite: (v) {
+                                      var listingItem = ListingItem(
+                                        id: productId,
+                                        finalPrice: price,
+                                      );
+                                      final wishlistController =
+                                          Get.find<WishlistController>();
+                                      wishlistController.onChangeFavorite(
+                                          context, v, listingItem);
+                                    },
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                        color: CustomThemes.appTheme.primaryColor,
-                      ),
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(20))),
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Icon(Icons.remove_red_eye_outlined,
-                        size: 22, color: CustomThemes.appTheme.primaryColor),
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: CustomThemes.appTheme.primaryColor,
+                        ),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Icon(Icons.remove_red_eye_outlined,
+                          size: 22, color: CustomThemes.appTheme.primaryColor),
+                    ),
                   ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                        color: CustomThemes.appTheme.primaryColor,
-                      ),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(20))),
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Icon(Icons.shopping_cart,
-                        size: 22, color: CustomThemes.appTheme.primaryColor),
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: CustomThemes.appTheme.primaryColor,
+                        ),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Icon(Icons.shopping_cart,
+                          size: 22, color: CustomThemes.appTheme.primaryColor),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             )
           ],
         ),

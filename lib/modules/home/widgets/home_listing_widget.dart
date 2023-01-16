@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:linktsp_api/data/page_block/models/new_page_block_model.dart';
 
@@ -44,61 +45,28 @@ class HomeListingWidget extends GetView<HomeController> {
               ),
             ),
             const SizedBox(height: 10),
-            Container(
-              margin: const EdgeInsetsDirectional.only(start: 15, bottom: 5),
-              child: AspectRatio(
+            CarouselSlider(
+              items: getItems(items, context),
+              options: CarouselOptions(
+                enlargeCenterPage: true,
+                //onPageChanged: onPageChanged,
+                viewportFraction: 0.5,
+                initialPage: 0,
                 aspectRatio: 1 / .68,
-                child: ListView.separated(
-                  itemCount: items!.length,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsetsDirectional.only(end: 10),
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(width: 10),
-                  itemBuilder: (contextt, index) {
-                    final item = items![index];
-                    return SizedBox(
-                      width: .45.sw,
-                      child: ProductCardWidget(
-                        productId: item.id!,
-                        elevation: 2,
-                        promoText: item.product?.promoText ?? '',
-                        isPreOrder: item.product?.preOrder ?? false,
-                        imageHeight: .32.sw,
-                        productName: item.name ?? "",
-                        image: item.imageUrl ?? "",
-                        oldPrice: item.product?.price ?? 0.0,
-                        price: item.product?.finalPrice ?? 0,
-                        isBogo: !(item.product?.bogoPromoText == null),
-                        hasOffer: !(item.product?.productDiscountList == null ||
-                            item.product!.productDiscountList!.isEmpty),
-                        offerPercentage: item.product?.productDiscountList ==
-                                    null ||
-                                item.product!.productDiscountList!.isEmpty
-                            ? ""
-                            : item.product!.productDiscountList?.first.value ??
-                                "",
-                        isAvailable: !(item.product?.isOutOfStock ?? false),
-                        bogoText: item.product?.bogoPromoText ?? '',
-                        showFavorite: true,
-                        onAddToCart: () => controller.onTapAddToCard(
-                          context: context,
-                          skuId: item.id!,
-                          price: item.product?.finalPrice ?? 0,
-                          quantity: 1,
-                          isHome: true,
-                          isPreOrder: item.product?.preOrder ?? false,
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                enableInfiniteScroll: items!.length <= 1 ? false : true,
+                reverse: false,
+                autoPlay: false,
+                autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                autoPlayCurve: Curves.easeOutSine,
+                // pauseAutoPlayOnTouch: Duration(seconds: 10),
               ),
+              //carouselController: controller,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 elevation: 0.0,
-                backgroundColor: isYellow ? AppColors.highlighter : Colors.white,
+                backgroundColor:
+                    isYellow ? AppColors.highlighter : Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                   side: const BorderSide(
@@ -120,5 +88,43 @@ class HomeListingWidget extends GetView<HomeController> {
         ),
       ),
     );
+  }
+
+  List<Widget> getItems(List<ItemItem>? items, BuildContext context) {
+    List<Widget> itemsAsWidgets = [];
+    for (var item in items!) {
+      itemsAsWidgets.add(
+        ProductCardWidget(
+          productId: item.id!,
+          elevation: 2,
+          promoText: item.product?.promoText ?? '',
+          isPreOrder: item.product?.preOrder ?? false,
+          imageHeight: .32.sw,
+          productName: item.name ?? "",
+          image: item.imageUrl ?? "",
+          oldPrice: item.product?.price ?? 0.0,
+          price: item.product?.finalPrice ?? 0,
+          isBogo: !(item.product?.bogoPromoText == null),
+          hasOffer: !(item.product?.productDiscountList == null ||
+              item.product!.productDiscountList!.isEmpty),
+          offerPercentage: item.product?.productDiscountList == null ||
+                  item.product!.productDiscountList!.isEmpty
+              ? ""
+              : item.product!.productDiscountList?.first.value ?? "",
+          isAvailable: !(item.product?.isOutOfStock ?? false),
+          bogoText: item.product?.bogoPromoText ?? '',
+          showFavorite: true,
+          onAddToCart: () => controller.onTapAddToCard(
+            context: context,
+            skuId: item.id!,
+            price: item.product?.finalPrice ?? 0,
+            quantity: 1,
+            isHome: true,
+            isPreOrder: item.product?.preOrder ?? false,
+          ),
+        ),
+      );
+    }
+    return itemsAsWidgets;
   }
 }

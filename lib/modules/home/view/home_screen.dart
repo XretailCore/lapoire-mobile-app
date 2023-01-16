@@ -28,7 +28,12 @@ class HomeScreen extends GetView<HomeController> {
                   const HomeCategoriesWidget(),
                   const SizedBox(height: 10),
                   HomeListingWidget(
-                    onAllProductsPressed: () {},
+                    onAllProductsPressed: () => controller.goToListingWithId(
+                      filterModel:
+                      controller.bestSellers.items?.first.filterModel ??
+                          FilterModel(),
+                      name: controller.bestSellers.items?.first.name ?? "",
+                    ),
                     key: UniqueKey(),
                     items: controller.bestSellers.items ?? [],
                     title: Translate.bestSeller.tr,
