@@ -50,7 +50,7 @@ class InnerProductScreen extends GetView<InnerProductController> {
                   topRight: Radius.circular(18.0),
                 ),
                 body: Container(
-                  height: MediaQuery.of(context).size.height*0.6,
+                  height: MediaQuery.of(context).size.height * 0.6,
                   color: AppColors.highlighter,
                   padding: const EdgeInsets.all(8),
                   child: Column(
@@ -60,7 +60,15 @@ class InnerProductScreen extends GetView<InnerProductController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const CustomBackButton(),
+                          CustomBackButton(
+                            onTap: () {
+                              if (!controller.comeFromRelated) {
+                                Get.back();
+                              } else {
+                                controller.navigateRelated(context);
+                              }
+                            },
+                          ),
                           Column(
                             children: [
                               Obx(
