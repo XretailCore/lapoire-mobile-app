@@ -30,7 +30,7 @@ class HomeListingWidget extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
       color: isYellow ? AppColors.highlighter : Colors.white,
       child: Offstage(
         offstage: items == null || items!.isEmpty,
@@ -62,6 +62,7 @@ class HomeListingWidget extends GetView<HomeController> {
               ),
               //carouselController: controller,
             ),
+            const SizedBox(height: 16),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 elevation: 0.0,
@@ -96,7 +97,7 @@ class HomeListingWidget extends GetView<HomeController> {
       itemsAsWidgets.add(
         ProductCardWidget(
           productId: item.id!,
-          elevation: 2,
+          elevation: 0,
           promoText: item.product?.promoText ?? '',
           isPreOrder: item.product?.preOrder ?? false,
           imageHeight: .32.sw,

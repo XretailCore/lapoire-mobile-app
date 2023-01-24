@@ -163,7 +163,7 @@ class FilterController extends GetxController with StateMixin<FilterDataModel> {
 
   void applyFilter({required BuildContext context, bool closeSideMenu = true}) {
     if (!_isFilterApplied(isSideMenu: closeSideMenu)) {
-      if (closeSideMenu) Get.back();
+      //if (closeSideMenu) Get.back();
       ScaffoldMessenger.of(context).showSnackBar(
         HelperFunctions.customSnackBar(
           message: Translate.pleaseChooseFilterCriteria.tr,
@@ -172,7 +172,7 @@ class FilterController extends GetxController with StateMixin<FilterDataModel> {
         ),
       );
     } else {
-      if (closeSideMenu) Get.back();
+      //if (closeSideMenu) Get.back();
       allSelectedCategories.clear();
       allSelectedCategories.addAll(selectedCategories);
       allSelectedCategories.addAll(selectedsubCategoriesIds);

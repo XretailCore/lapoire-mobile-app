@@ -1,5 +1,7 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:linktsp_api/linktsp_api.dart';
 
 import '../../../core/components/custom_text.dart';
@@ -20,42 +22,46 @@ class SelectSizeWidget extends GetView<InnerProductController> {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
     return Wrap(
       children: selectdProduct?.sizes.map((e) {
+            var child = Container(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
+              decoration: BoxDecoration(
+                color: _isSelected(e) ? AppColors.redColor : AppColors.redColor,
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: CustomText(
+                e?.name ?? '',
+                style: TextStyle(
+                  fontSize: 9,
+                  color: _isSelected(e) ? Colors.white : null,
+                  fontWeight: FontWeight.bold,
+                  decoration: _isSelected(e) &&
+                          !controller.isAvaliable() &&
+                          (selectdProduct?.sizes.length ?? 0) > 1
+                      ? TextDecoration.lineThrough
+                      : null,
+                  decorationColor: Colors.red,
+                  decorationThickness: 2,
+                ),
+              ),
+            );
             return InkWell(
               onTap: () {
                 if (e?.id != null) {
                   innerProductController.onSizeChange(sizeId: e!.id!);
                 }
               },
-              child: Container(
-                margin: const EdgeInsets.all(4),
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: _isSelected(e) ? primaryColor : Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: _isSelected(e) ? primaryColor : Colors.grey,
-                    width: 2,
-                  ),
-                ),
-                child: CustomText(
-                  e?.name ?? '',
-                  style: TextStyle(
-                    fontSize: 9,
-                    color: _isSelected(e) ? Colors.white : null,
-                    fontWeight: FontWeight.bold,
-                    decoration: _isSelected(e) &&
-                            !controller.isAvaliable() &&
-                            (selectdProduct?.sizes.length ?? 0) > 1
-                        ? TextDecoration.lineThrough
-                        : null,
-                    decorationColor: Colors.red,
-                    decorationThickness: 2,
-                  ),
-                ),
-              ),
+              child: _isSelected(e)
+                  ? child
+                  : DottedBorder(
+                      padding: EdgeInsets.zero,
+                      radius: const Radius.circular(18),
+                      color: AppColors.redColor,
+                      borderType: BorderType.RRect,
+                      child: child,
+                    ),
             );
           }).toList() ??
           <Widget>[],

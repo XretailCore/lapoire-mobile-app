@@ -67,7 +67,7 @@ class ListingGridWidget extends GetView<ListItemsController> {
                     return ProductCardWidget(
                       key: UniqueKey(),
                       productId: product.id!,
-                      elevation: 2,
+                      elevation: 0,
                       promoText: product.promoText ?? '',
                       isPreOrder: product.preOrder ?? false,
                       image: product.imageUrl ?? "",

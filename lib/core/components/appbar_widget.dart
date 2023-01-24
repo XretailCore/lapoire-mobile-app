@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-
 import '../../modules/inner/controllers/inner_product_controller.dart';
-import '../utils/app_colors.dart';
 import '../utils/routes.dart';
+import 'custom_back_button.dart';
 import 'custom_text.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -41,10 +39,11 @@ class InnerAppBar extends StatelessWidget implements PreferredSizeWidget {
     Key? key,
     this.backgroundColor = Colors.white,
     this.title = '',
-    this.elevation = 1,
+    this.elevation = 1, this.actions,
   }) : super(key: key);
   final Color backgroundColor;
   final String title;
+  final List<Widget>? actions;
   final double elevation;
   @override
   Widget build(BuildContext context) {
@@ -52,6 +51,7 @@ class InnerAppBar extends StatelessWidget implements PreferredSizeWidget {
     final InnerProductController innerController =
         Get.find<InnerProductController>();
     return AppBar(
+      actions: actions,
       backgroundColor: backgroundColor,
       foregroundColor: primaryColor,
       elevation: elevation,
@@ -74,16 +74,7 @@ class InnerAppBar extends StatelessWidget implements PreferredSizeWidget {
               innerController.navigateRelated(context);
             }
           },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset("assets/images/back.png"),
-              CustomText(
-                "back".tr,
-                style: const TextStyle(fontSize: 10,color: AppColors.redColor),
-              )
-            ],
-          ),
+          child: const CustomBackButton(),
         ),
       ),
       centerTitle: true,

@@ -58,7 +58,7 @@ class PanelWidget extends GetView<InnerProductController> {
                   child: controller.isPreBooking
                       ? CustomText(Translate.prebooking.tr)
                       : controller.isShowBuyNow()
-                          ? const Icon(Icons.add_shopping_cart_sharp, size: 18)
+                          ? CustomText(Translate.addToBasket.tr)
                           : controller.isAvaliable()
                               ? CustomText(Translate.addToBasket.tr)
                               : CustomText(Translate.outOfStock.tr)),

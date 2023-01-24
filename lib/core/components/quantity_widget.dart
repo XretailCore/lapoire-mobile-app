@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
 
 import 'custom_text.dart';
 
@@ -41,7 +42,7 @@ class _QuantityButtonState extends State<QuantityButton> {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
+    var primaryColor = AppColors.redColor;
     return SizedBox(
       height: widget.height,
       child: Row(
@@ -56,15 +57,20 @@ class _QuantityButtonState extends State<QuantityButton> {
               onPressed: (isSaving || quantity <= widget.initialQuantity)
                   ? null
                   : () => changeQuantity(quantity - 1),
-              icon: const Icon(
+              icon:  Icon(
                 Icons.remove,
+                color: primaryColor,
               ),
             ),
           ),
           const SizedBox(width: 8),
-          CustomText(
-            quantity == 0 ? "1" : quantity.toString(),
-            textAlign: TextAlign.center,
+          SizedBox(
+            width: 20,
+            child: CustomText(
+              quantity == 0 ? "1" : quantity.toString(),
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: AppColors.redColor),
+            ),
           ),
           const SizedBox(width: 8),
           SizedBox(

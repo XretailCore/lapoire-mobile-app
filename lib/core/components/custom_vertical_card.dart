@@ -248,51 +248,51 @@ class VerticalProductCard extends StatelessWidget {
                 ],
               ),
             ),
-            isBogo && isCart
-                ? Container()
-                : isCart == true
-                    ? Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: Row(
-                          children: [
-                            CartCounterWidget(
-                              count: count,
-                              onIncrement: onIncrement,
-                              onDecrement: onDecrement,
-                            ),
-                            const Spacer(),
-                          ],
-                        ),
-                      )
-                    : InkWell(
-                        onTap: isAvailable ? onAddToCart : null,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          decoration: BoxDecoration(
-                            color: isPreOrder
-                                ? const Color.fromRGBO(199, 209, 66, 1)
-                                : isAvailable
-                                    ? CustomThemes.appTheme.primaryColor
-                                    : Colors.grey.withOpacity(.4),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CustomText(
-                                !isAvailable
-                                    ? Translate.outOfNStock.tr
-                                    : isPreOrder
-                                        ? Translate.prebooking.tr
-                                        : Translate.addToBasket.tr,
-                                style: TextStyle(
-                                  color:
-                                      isAvailable ? Colors.white : Colors.red,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+            // isBogo && isCart
+            //     ? Container()
+            //     : isCart == true
+            //         ? Padding(
+            //             padding: const EdgeInsets.symmetric(vertical: 5),
+            //             child: Row(
+            //               children: [
+            //                 CartCounterWidget(
+            //                   count: count,
+            //                   onIncrement: onIncrement,
+            //                   onDecrement: onDecrement,
+            //                 ),
+            //                 const Spacer(),
+            //               ],
+            //             ),
+            //           )
+            //         : InkWell(
+            //             onTap: isAvailable ? onAddToCart : null,
+            //             child: Container(
+            //               padding: const EdgeInsets.symmetric(vertical: 10),
+            //               decoration: BoxDecoration(
+            //                 color: isPreOrder
+            //                     ? const Color.fromRGBO(199, 209, 66, 1)
+            //                     : isAvailable
+            //                         ? CustomThemes.appTheme.primaryColor
+            //                         : Colors.grey.withOpacity(.4),
+            //               ),
+            //               child: Row(
+            //                 mainAxisAlignment: MainAxisAlignment.center,
+            //                 children: [
+            //                   CustomText(
+            //                     !isAvailable
+            //                         ? Translate.outOfNStock.tr
+            //                         : isPreOrder
+            //                             ? Translate.prebooking.tr
+            //                             : Translate.addToBasket.tr,
+            //                     style: TextStyle(
+            //                       color:
+            //                           isAvailable ? Colors.white : Colors.red,
+            //                     ),
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(

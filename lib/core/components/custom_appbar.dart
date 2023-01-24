@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +8,7 @@ import '../localization/translate.dart';
 import '../utils/app_colors.dart';
 import '../utils/routes.dart';
 import '../utils/theme.dart';
+import 'custom_back_button.dart';
 import 'custom_text.dart';
 import 'custom_text_field.dart';
 
@@ -111,9 +111,11 @@ class CustomAppBar extends GetView<CartController>
   final String title;
   final bool showCart;
   final bool showSearch;
-  const CustomAppBar({
+  final bool showBackButton;
+  const CustomAppBar( {
     Key? key,
     this.title = "",
+    this.showBackButton=false,
     this.showCart = true,
     this.showSearch = false,
   }) : super(key: key);
@@ -125,21 +127,25 @@ class CustomAppBar extends GetView<CartController>
         iconTheme: IconThemeData(color: CustomThemes.appTheme.primaryColor),
         backgroundColor: AppColors.highlighter,
         elevation: 1,
-        title: CustomText(
-          title,
-          style: TextStyle(
-            color: CustomThemes.appTheme.primaryColor,
-            fontWeight: FontWeight.w400,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 15.0),
+          child: CustomText(
+            title,
+            style: TextStyle(
+              color: CustomThemes.appTheme.primaryColor,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
         centerTitle: true,
+        leading: showBackButton?const CustomBackButton():const SizedBox(),
         actions: [
           InkWell(
             onTap: () {
               Get.toNamed(Routes.search);
             },
             child: const Padding(
-              padding: EdgeInsets.all(15.0),
+              padding: EdgeInsets.only(top: 20.0,right: 16.0),
               child: Icon(
                 Icons.search,
                 size: 25,

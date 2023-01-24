@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:imtnan/core/utils/theme.dart';
 
 class FavoriateButtonWidget extends StatefulWidget {
   const FavoriateButtonWidget({
     Key? key,
     required this.defaultValue,
     required this.onFavoraite,
-    this.iconSize = 18.0,
+    this.iconSize = 18.0, this.isInner=false,
   }) : super(key: key);
   final bool defaultValue;
+  final bool isInner;
   final double iconSize;
   final void Function(bool isFavoriate) onFavoraite;
 
@@ -25,7 +27,7 @@ class _FavoriateButtonWidgetState extends State<FavoriateButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final Color primaryColor = Theme.of(context).primaryColor;
+     Color primaryColor = widget.isInner?Colors.white:CustomThemes.appTheme.primaryColor;
     return InkWell(
       onTap: () {
         final changeFavoriateValue = !isFavoraite;

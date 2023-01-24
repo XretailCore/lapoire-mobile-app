@@ -1,5 +1,6 @@
 import 'package:imtnan/core/components/imtnan_loading_widget.dart';
 
+import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/theme.dart';
 import '../widgets/listing_grid_widget.dart';
 import '../../../core/components/custom_appbar.dart';
@@ -21,26 +22,26 @@ class ListItemsScreen extends GetView<ListItemsController> {
     return Scaffold(
       key: scaffoldKey,
       endDrawerEnableOpenDragGesture: false,
-      endDrawer: const FilterScreen(),
-      floatingActionButton: controller.filterModel.listType != null
-          ? FloatingActionButton(
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10.0),
-                ),
-              ),
-              child: const Icon(
-                Icons.filter_alt,
-                size: 30,
-              ),
-              backgroundColor: CustomThemes.appTheme.primaryColor,
-              onPressed: () {
-                controller.goToFilter(scaffoldKey: scaffoldKey);
-              },
-            )
-          : Container(),
+      // endDrawer: const FilterScreen(),
+      // floatingActionButton: controller.filterModel.listType != null
+      //     ? FloatingActionButton(
+      //         shape: const RoundedRectangleBorder(
+      //           borderRadius: BorderRadius.all(
+      //             Radius.circular(10.0),
+      //           ),
+      //         ),
+      //         child: const Icon(
+      //           Icons.filter_alt,
+      //           size: 30,
+      //         ),
+      //         backgroundColor: CustomThemes.appTheme.primaryColor,
+      //         onPressed: () {
+      //           controller.goToFilter(scaffoldKey: scaffoldKey);
+      //         },
+      //       )
+      //     : Container(),
       appBar:
-          CustomAppBar(title: controller.categoryName ?? "", showSearch: true),
+          CustomAppBar(title: controller.categoryName ?? "", showSearch: true,showBackButton: true),
       body: Center(
         child: Column(
           children: [
@@ -49,6 +50,23 @@ class ListItemsScreen extends GetView<ListItemsController> {
                 color: Colors.white,
                 child: Column(
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.grid_view_sharp,size: 22,color: CustomThemes.appTheme.primaryColor),
+                              const SizedBox(width: 8.0),
+                              Icon(Icons.list,size: 30,color: CustomThemes.appTheme.primaryColor),
+                            ],
+                          ),
+                          const FilterScreen(),
+                        ],
+                      ),
+                    ),
+                    Divider(thickness: 1.0,color: AppColors.redColor),
                     Expanded(
                       child: controller.obx(
                         (data) => Column(

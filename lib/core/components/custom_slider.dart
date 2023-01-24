@@ -1,15 +1,18 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:imtnan/core/utils/theme.dart';
-
 import '../localization/translate.dart';
 
-class CustomSlider extends StatelessWidget {
+class CustomSlider extends StatefulWidget {
   final List<Widget> sliderImages;
   final CarouselController? controller;
   final bool showIndicator;
   final int pageIndex;
+  final bool isInner;
+  final bool showTitleAndButton;
+  final double? viewportFraction;
   final Color? indicatorColor;
   final Function(int value, CarouselPageChangedReason reason)? onPageChanged;
   final double ratio;
@@ -22,31 +25,39 @@ class CustomSlider extends StatelessWidget {
     this.pageIndex = 0,
     this.indicatorColor,
     this.onPageChanged,
-    this.ratio = 5 / 2,
+    this.ratio = 0.8,
+    this.showTitleAndButton = true,
+    this.isInner = false, this.viewportFraction,
   }) : super(key: key);
 
+  @override
+  State<CustomSlider> createState() => _CustomSliderState();
+}
+
+class _CustomSliderState extends State<CustomSlider> {
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         CarouselSlider(
           ///List of widget to show image
-          items: sliderImages,
+          items: widget.sliderImages,
           options: CarouselOptions(
             enlargeCenterPage: false,
-            onPageChanged: onPageChanged,
-            viewportFraction: 2.0,
+            onPageChanged: widget.onPageChanged,
+            viewportFraction: widget.viewportFraction??2.0,
             initialPage: 0,
-            aspectRatio: ratio,
-            enableInfiniteScroll: sliderImages.length == 1 ? false : true,
+            aspectRatio: widget.ratio,
+            enableInfiniteScroll:
+                widget.sliderImages.length == 1 ? false : true,
             reverse: false,
-            autoPlay: sliderImages.length == 1 ? false : true,
+            autoPlay: widget.sliderImages.length == 1 ? false : true,
             autoPlayInterval: const Duration(seconds: 4),
             autoPlayAnimationDuration: const Duration(milliseconds: 800),
             autoPlayCurve: Curves.easeOutSine,
             // pauseAutoPlayOnTouch: Duration(seconds: 10),
           ),
-          carouselController: controller,
+          carouselController: widget.controller,
         ),
         Positioned(
           bottom: 0,
@@ -54,51 +65,63 @@ class CustomSlider extends StatelessWidget {
           left: 0,
           child: Column(
             children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  elevation: 0.0,
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-                onPressed: () {},
-                child: Text(
-                  Translate.orderNow.tr,
-                  style: TextStyle(
-                      fontSize: 12.sm,
-                      color: CustomThemes.appTheme.primaryColor),
-                ),
-              ),
+              widget.showTitleAndButton
+                  ? ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0.0,
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        Translate.orderNow.tr,
+                        style: TextStyle(
+                            fontSize: 12.sm,
+                            color: CustomThemes.appTheme.primaryColor),
+                      ),
+                    )
+                  : const SizedBox(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Offstage(
-                    offstage: !showIndicator || sliderImages.length == 1,
+                    offstage: !widget.showIndicator ||
+                        widget.sliderImages.length == 1,
                     child: Container(
                       margin: const EdgeInsets.only(top: 10),
                       alignment: Alignment.center,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: sliderImages
+                        children: widget.sliderImages
                             .asMap()
                             .entries
                             .map(
-                              (entry) => Container(
-                                width: 12.0,
-                                height: 12.0,
-                                margin: const EdgeInsets.fromLTRB(
-                                    4.0,0.0,4.0,4.0),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                      color: CustomThemes.appTheme.primaryColor),
-                                  color: (Theme.of(context).brightness ==
-                                              Brightness.dark
-                                          ? indicatorColor ?? Colors.white
-                                          : indicatorColor ?? Colors.black)
-                                      .withOpacity(
-                                          pageIndex == entry.key ? 0.9 : 0.0),
+                              (entry) => SizedBox(
+                                child: Container(
+                                  width: 12.0,
+                                  height: 12.0,
+                                  margin: const EdgeInsets.fromLTRB(
+                                      4.0, 0.0, 4.0, 4.0),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                        color: widget.isInner
+                                            ? AppColors.redColor
+                                            : CustomThemes
+                                                .appTheme.primaryColor),
+                                    color: (Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? widget.indicatorColor ??
+                                                Colors.white
+                                            : widget.indicatorColor ??
+                                                Colors.black)
+                                        .withOpacity(
+                                            widget.pageIndex == entry.key
+                                                ? 0.9
+                                                : 0.0),
+                                  ),
                                 ),
                               ),
                             )

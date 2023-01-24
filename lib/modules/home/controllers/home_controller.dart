@@ -15,6 +15,7 @@ import '../../dashboard/controller/dashboard_controller.dart';
 class HomeController extends GetxController with StateMixin {
   final CarouselController carouselController = CarouselController();
   final refreshController = RefreshController(initialRefresh: false);
+  final CarouselController scrollController = CarouselController();
 
   NewPageBlockModel? homeModel;
   final sliderPageIndex = 0.obs;
