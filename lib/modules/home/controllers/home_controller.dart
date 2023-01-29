@@ -16,6 +16,7 @@ class HomeController extends GetxController with StateMixin {
   final CarouselController carouselController = CarouselController();
   final refreshController = RefreshController(initialRefresh: false);
   final CarouselController scrollController = CarouselController();
+  final CarouselController categoriesScrollController = CarouselController();
 
   NewPageBlockModel? homeModel;
   final sliderPageIndex = 0.obs;

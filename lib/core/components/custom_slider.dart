@@ -13,6 +13,7 @@ class CustomSlider extends StatefulWidget {
   final bool isInner;
   final bool showTitleAndButton;
   final double? viewportFraction;
+  final bool? autoPlay;
   final Color? indicatorColor;
   final Function(int value, CarouselPageChangedReason reason)? onPageChanged;
   final double ratio;
@@ -27,7 +28,9 @@ class CustomSlider extends StatefulWidget {
     this.onPageChanged,
     this.ratio = 0.8,
     this.showTitleAndButton = true,
-    this.isInner = false, this.viewportFraction,
+    this.isInner = false,
+    this.viewportFraction,
+    this.autoPlay,
   }) : super(key: key);
 
   @override
@@ -45,13 +48,17 @@ class _CustomSliderState extends State<CustomSlider> {
           options: CarouselOptions(
             enlargeCenterPage: false,
             onPageChanged: widget.onPageChanged,
-            viewportFraction: widget.viewportFraction??2.0,
+            viewportFraction: widget.viewportFraction ?? 2.0,
             initialPage: 0,
             aspectRatio: widget.ratio,
             enableInfiniteScroll:
                 widget.sliderImages.length == 1 ? false : true,
             reverse: false,
-            autoPlay: widget.sliderImages.length == 1 ? false : true,
+            autoPlay: widget.autoPlay != null
+                ? widget.autoPlay!
+                : widget.sliderImages.length == 1
+                    ? false
+                    : true,
             autoPlayInterval: const Duration(seconds: 4),
             autoPlayAnimationDuration: const Duration(milliseconds: 800),
             autoPlayCurve: Curves.easeOutSine,
