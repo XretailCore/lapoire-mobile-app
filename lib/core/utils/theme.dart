@@ -12,7 +12,7 @@ class CustomThemes {
           primaryColor: const Color(0xff00754D),
           highlightColor: const Color(0xffFCF4CB),
           canvasColor: Colors.white,
-          fontFamily: 'Dalton Maag',
+          fontFamily: 'Gilroy',
           textSelectionTheme: const TextSelectionThemeData(
             cursorColor: Color.fromRGBO(24, 128, 61, 1), //thereby
           ),

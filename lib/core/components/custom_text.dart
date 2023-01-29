@@ -16,6 +16,7 @@ class CustomText extends StatelessWidget {
   final TextStyle? style;
   final String? data;
   final bool softWrap;
+
   // ignore: use_key_in_widget_constructors
   const CustomText(
     this.data, {
@@ -41,10 +42,12 @@ class CustomText extends StatelessWidget {
       maxLines: maxLines,
       softWrap: softWrap,
       style: style?.copyWith(
-              fontSize: style?.fontSize?.sm, height: style?.height) ??
+              fontSize: style?.fontSize?.sm,
+              height: style?.height,
+              fontWeight: fontWeight ?? FontWeight.w700) ??
           TextStyle(
             color: color,
-            fontWeight: fontWeight,
+            fontWeight: fontWeight ?? FontWeight.w700,
             decoration: decoration,
             decorationColor: decorationColor,
           ),

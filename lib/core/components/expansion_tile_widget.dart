@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/app_colors.dart';
 import 'custom_text.dart';
 
 class ExpansionTileWidget extends StatelessWidget {
@@ -6,6 +7,7 @@ class ExpansionTileWidget extends StatelessWidget {
   final List<Widget> children;
   final bool initiallyExpanded;
   final void Function(bool)? onExpansionChanged;
+
   const ExpansionTileWidget({
     Key? key,
     required this.title,
@@ -13,17 +15,16 @@ class ExpansionTileWidget extends StatelessWidget {
     this.initiallyExpanded = false,
     this.onExpansionChanged,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
-    const grey = Color.fromRGBO(96, 96, 96, 1);
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-        side: const BorderSide(color: Colors.grey),
+        borderRadius: BorderRadius.circular(20),
+        side: const BorderSide(color: AppColors.redColor),
       ),
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       child: ExpansionTile(
         key: UniqueKey(),
         onExpansionChanged: onExpansionChanged,
@@ -34,12 +35,15 @@ class ExpansionTileWidget extends StatelessWidget {
         collapsedBackgroundColor: Colors.white,
         title: CustomText(
           title,
-          style: const TextStyle(fontSize: 12, color: grey),
+          style: const TextStyle(
+            fontSize: 12,
+            color: AppColors.redColor,
+          ),
         ),
-        collapsedIconColor: grey,
+        collapsedIconColor: AppColors.redColor,
         textColor: primaryColor,
-        collapsedTextColor: grey,
-        iconColor: primaryColor,
+        collapsedTextColor: AppColors.redColor,
+        iconColor: AppColors.redColor,
         children: children,
       ),
     );

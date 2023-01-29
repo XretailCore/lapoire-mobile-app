@@ -31,8 +31,9 @@ class BodyWidget extends StatefulWidget {
   final SizeModel? selectedSize;
   final ColorModel? selectedColor;
   final InnerProductController innerProductController;
-  final  ScrollController scrollController;
+  final ScrollController scrollController;
   final List<String?> imagesUrl;
+
   @override
   State<BodyWidget> createState() => _BodyWidgetState();
 }
@@ -165,13 +166,15 @@ class _BodyWidgetState extends State<BodyWidget> {
             children: [
               CustomText(
                 widget.selectdProduct?.title ?? '',
-                style:  TextStyle(
+                style: TextStyle(
                   color: CustomThemes.appTheme.primaryColor,
                   fontSize: 20,
+                  fontWeight: FontWeight.w700,
                 ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
+              const SizedBox(height: 16.0),
               Row(
                 children: [
                   if ((widget.selectdProduct?.isEnableAddReview ?? false))
@@ -187,8 +190,8 @@ class _BodyWidgetState extends State<BodyWidget> {
                           onRatingUpdate: (double value) {
                             // this widget used for Show only (no update)
                           },
-                          glowColor: AppColors.ratingColor,
-                          unratedColor: AppColors.ratingColor,
+                          glowColor: primaryColor,
+                          unratedColor: primaryColor,
                           itemBuilder: (BuildContext context, int index) {
                             return (widget.selectdProduct?.averageRating ?? 0) >
                                     index
@@ -202,7 +205,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                                   );
                           },
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: 16),
                         GestureDetector(
                           onTap: () => widget.innerProductController
                               .onTapAddReview(
@@ -210,28 +213,22 @@ class _BodyWidgetState extends State<BodyWidget> {
                                       .skuCode,
                                   context),
                           child: Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               border: Border(
-                                bottom:
-                                    BorderSide(width: 1, color: primaryColor),
+                                bottom: BorderSide(
+                                  width: 1,
+                                  color: AppColors.redColor,
+                                ),
                               ),
                             ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.add,
-                                  size: 11,
-                                  color: primaryColor,
-                                ),
-                                const SizedBox(width: 4),
-                                CustomText(
-                                  Translate.addReview.tr,
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(
-                                      fontSize: 11, color: primaryColor),
-                                )
-                              ],
+                            child: CustomText(
+                              Translate.addReview.tr,
+                              textAlign: TextAlign.start,
+                              style: const TextStyle(
+                                fontSize: 11,
+                                color: AppColors.redColor,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
@@ -286,11 +283,13 @@ class _BodyWidgetState extends State<BodyWidget> {
                     children: [
                       CustomText(
                         '${widget.selectdProduct?.selectedProductSku.finalPrice} ${Translate.egp.tr}',
-                        style: const TextStyle(fontSize: 20, color: AppColors.redColor),
+                        style: const TextStyle(
+                            fontSize: 20, color: AppColors.redColor),
                       ),
                       const SizedBox(width: 15),
                       Offstage(
-                        offstage: widget.innerProductController.isNotHaveDiscount(),
+                        offstage:
+                            widget.innerProductController.isNotHaveDiscount(),
                         child: CustomText(
                           '${widget.selectdProduct?.selectedProductSku.defaultPrice} ${Translate.egp.tr}',
                           style: const TextStyle(
@@ -318,9 +317,10 @@ class _BodyWidgetState extends State<BodyWidget> {
                         // ),
                         QuantityButton(
                           key: UniqueKey(),
-                          initialQuantity: widget.innerProductController.quantity,
-                          maxQuantity: widget
-                              .selectdProduct?.selectedProductSku.maxQuantity ??
+                          initialQuantity:
+                              widget.innerProductController.quantity,
+                          maxQuantity: widget.selectdProduct?.selectedProductSku
+                                  .maxQuantity ??
                               0,
                           height: 40,
                           onQuantityChange: (v) {
@@ -370,19 +370,6 @@ class _BodyWidgetState extends State<BodyWidget> {
                         : null,
                 selectdProduct: widget.selectdProduct,
                 innerProductController: widget.innerProductController,
-              ),
-              const SizedBox(height: 8),
-              CustomText(
-                Translate.deliveredWithinMinMaxBusinessDays.trParams(
-                  params: {
-                    'Min':
-                        (widget.selectdProduct?.minDeliveryPeriod).toString(),
-                    'Max':
-                        (widget.selectdProduct?.maxDeliveryPeriod).toString(),
-                    'PeriodName': (widget.selectdProduct?.periodName).toString()
-                  },
-                ),
-                style: const TextStyle(fontSize: 11, color: Colors.grey),
               ),
               const SizedBox(height: 20),
             ],
@@ -529,8 +516,8 @@ class _BodyWidgetState extends State<BodyWidget> {
             ],
           ),
         ),
-         SizedBox(height: Platform.isAndroid ? 50 : 80),
-       ],
+        SizedBox(height: Platform.isAndroid ? 50 : 80),
+      ],
     );
   }
 }

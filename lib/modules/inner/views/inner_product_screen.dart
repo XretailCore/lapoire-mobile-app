@@ -36,7 +36,7 @@ class InnerProductScreen extends GetView<InnerProductController> {
                 controller: panelController,
                 footer: Container(
                     color: Colors.transparent,
-                    height: 50.0,
+                    height: 60.0,
                     width: MediaQuery.of(context).size.width,
                     child: Container(
                         color: Colors.white,

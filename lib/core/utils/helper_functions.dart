@@ -37,7 +37,7 @@ class HelperFunctions {
               maxLines: 3,
               style: TextStyle(
                   color: textColor,
-                  fontFamily: 'Dalton Maag',
+                  fontFamily: 'Gilroy',
                   overflow: TextOverflow.ellipsis),
             ),
           ),

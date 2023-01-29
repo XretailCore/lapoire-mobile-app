@@ -24,20 +24,16 @@ class ListOfReviewsWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset(
-                  'assets/images/user_review_icon.png',
-                  height: 35,
-                  width: 35,
-                ),
+              child: Image.asset(
+                'assets/images/user_review_icon.png',
+                height: 35,
+                width: 35,
               ),
             ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 5),
                   Row(
                     children: [
                       Expanded(
@@ -62,7 +58,6 @@ class ListOfReviewsWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 5),
                   RatingBar.builder(
                     glow: false,
                     initialRating: review.rating,

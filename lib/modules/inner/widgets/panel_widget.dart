@@ -20,95 +20,110 @@ class PanelWidget extends GetView<InnerProductController> {
     final primaryColor = Theme.of(context).primaryColor;
     final f = DateFormat('yyyy-MM-dd hh:mm');
     return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 10,
-      ),
       padding: const EdgeInsets.all(4),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: Column(
         children: [
-          if (!(!controller.isAvaliable() && controller.isPreBooking))
-            Expanded(
-              child: TextButton(
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                if (!(!controller.isAvaliable() && controller.isPreBooking))
+                  Expanded(
+                    child: TextButton(
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                            ),
+                          ),
+                          backgroundColor: MaterialStateProperty.all(
+                            controller.isAvaliable() || controller.isPreBooking
+                                ? primaryColor
+                                : Colors.grey,
+                          ),
+
+                          foregroundColor: MaterialStateProperty.all(
+                            Colors.white,
+                          ),
+                        ),
+                        onPressed: controller.isAvaliable() || controller.isPreBooking
+                            ? () async => controller.onTapAddToCard(
+                                  context: context,
+                                  price: controller
+                                      .selectedProduct.selectedProductSku.finalPrice,
+                                  quantity: controller.quantity,
+                                  skuId: selectdProduct!.selectedProductSku.id!,
+                                )
+                            : null,
+                        child: controller.isPreBooking
+                            ? CustomText(Translate.prebooking.tr)
+                            : controller.isShowBuyNow()
+                                ? CustomText(Translate.addToBasket.tr)
+                                : controller.isAvaliable()
+                                    ? CustomText(Translate.addToBasket.tr)
+                                    : CustomText(Translate.outOfStock.tr)),
+                  ),
+                const SizedBox(width: 4),
+                if (controller.isPreBooking)
+                  Expanded(
+                    flex: 4,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Center(
+                        child: CustomText(
+                          '${Translate.thisItemWillBeAvailableAt.tr}  ${selectdProduct?.availabilityDate != null ? f.format(selectdProduct!.availabilityDate!) : selectdProduct?.availabilityDate}',
+                          style: const TextStyle(fontSize: 11),
+                          softWrap: true,
+                          maxLines: 2,
+                        ),
                       ),
                     ),
-                    backgroundColor: MaterialStateProperty.all(
-                      controller.isAvaliable() || controller.isPreBooking
-                          ? primaryColor
-                          : Colors.grey,
-                    ),
-
-                    foregroundColor: MaterialStateProperty.all(
-                      Colors.white,
-                    ),
                   ),
-                  onPressed: controller.isAvaliable() || controller.isPreBooking
-                      ? () async => controller.onTapAddToCard(
-                            context: context,
-                            price: controller
-                                .selectedProduct.selectedProductSku.finalPrice,
-                            quantity: controller.quantity,
-                            skuId: selectdProduct!.selectedProductSku.id!,
-                          )
-                      : null,
-                  child: controller.isPreBooking
-                      ? CustomText(Translate.prebooking.tr)
-                      : controller.isShowBuyNow()
-                          ? CustomText(Translate.addToBasket.tr)
-                          : controller.isAvaliable()
-                              ? CustomText(Translate.addToBasket.tr)
-                              : CustomText(Translate.outOfStock.tr)),
-            ),
-          const SizedBox(width: 4),
-          if (controller.isPreBooking)
-            Expanded(
-              flex: 4,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Center(
-                  child: CustomText(
-                    '${Translate.thisItemWillBeAvailableAt.tr}  ${selectdProduct?.availabilityDate != null ? f.format(selectdProduct!.availabilityDate!) : selectdProduct?.availabilityDate}',
-                    style: const TextStyle(fontSize: 11),
-                    softWrap: true,
-                    maxLines: 2,
-                  ),
-                ),
-              ),
-            ),
-          if (!controller.isPreBooking && controller.isShowBuyNow())
-            Expanded(
-              child: TextButton(
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
+                if (!controller.isPreBooking && controller.isShowBuyNow())
+                  Expanded(
+                    child: TextButton(
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                          ),
+                        ),
+                        backgroundColor: MaterialStateProperty.all(
+                          controller.isShowBuyNow() &&
+                                  !controller.isPreBooking &&
+                                  controller.isAvaliable()
+                              ? AppColors.redColor
+                              : Colors.grey,
+                        ),
+                        foregroundColor: MaterialStateProperty.all(
+                          Colors.white,
+                        ),
+                      ),
+                      onPressed: controller.isShowBuyNow() &&
+                              !controller.isPreBooking &&
+                              controller.isAvaliable()
+                          ? () => controller.onTapBuyNow(context,
+                              skuid: selectdProduct?.selectedProductSku.id,
+                              qty: controller.quantity)
+                          : null,
+                      child: CustomText(Translate.buyNow.tr),
                     ),
                   ),
-                  backgroundColor: MaterialStateProperty.all(
-                    controller.isShowBuyNow() &&
-                            !controller.isPreBooking &&
-                            controller.isAvaliable()
-                        ? AppColors.redColor
-                        : Colors.grey,
-                  ),
-                  foregroundColor: MaterialStateProperty.all(
-                    Colors.white,
-                  ),
-                ),
-                onPressed: controller.isShowBuyNow() &&
-                        !controller.isPreBooking &&
-                        controller.isAvaliable()
-                    ? () => controller.onTapBuyNow(context,
-                        skuid: selectdProduct?.selectedProductSku.id,
-                        qty: controller.quantity)
-                    : null,
-                child: CustomText(Translate.buyNow.tr),
-              ),
+              ],
             ),
+          ),
+          CustomText(
+            Translate.deliveredWithinMinMaxBusinessDays.trParams(
+              params: {
+                'Min':
+                (selectdProduct?.minDeliveryPeriod).toString(),
+                'Max':
+                (selectdProduct?.maxDeliveryPeriod).toString(),
+                'PeriodName': (selectdProduct?.periodName).toString()
+              },
+            ),
+            style: const TextStyle(fontSize: 11, color: Colors.grey),
+          ),
         ],
       ),
     );
