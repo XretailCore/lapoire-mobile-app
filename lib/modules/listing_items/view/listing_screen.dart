@@ -1,11 +1,12 @@
 import 'package:imtnan/core/components/imtnan_loading_widget.dart';
+import 'package:imtnan/modules/listing_items/view/filter_screen.dart';
 
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/theme.dart';
 import '../widgets/listing_grid_widget.dart';
 import '../../../core/components/custom_appbar.dart';
 import '../widgets/listing_filter_options_widget.dart';
-import 'filter_screen.dart';
+import 'sort_by_screen.dart';
 import '../../../core/components/custom_empty_widget.dart';
 import '../../../core/components/custom_error_widget.dart';
 import '../../../core/localization/translate.dart';
@@ -22,24 +23,24 @@ class ListItemsScreen extends GetView<ListItemsController> {
     return Scaffold(
       key: scaffoldKey,
       endDrawerEnableOpenDragGesture: false,
-      // endDrawer: const FilterScreen(),
-      // floatingActionButton: controller.filterModel.listType != null
-      //     ? FloatingActionButton(
-      //         shape: const RoundedRectangleBorder(
-      //           borderRadius: BorderRadius.all(
-      //             Radius.circular(10.0),
-      //           ),
-      //         ),
-      //         child: const Icon(
-      //           Icons.filter_alt,
-      //           size: 30,
-      //         ),
-      //         backgroundColor: CustomThemes.appTheme.primaryColor,
-      //         onPressed: () {
-      //           controller.goToFilter(scaffoldKey: scaffoldKey);
-      //         },
-      //       )
-      //     : Container(),
+      endDrawer: const FilterScreen(),
+      floatingActionButton: controller.filterModel.listType != null
+          ? FloatingActionButton(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10.0),
+                ),
+              ),
+              child: const Icon(
+                Icons.filter_alt,
+                size: 30,
+              ),
+              backgroundColor: CustomThemes.appTheme.primaryColor,
+              onPressed: () {
+                controller.goToFilter(scaffoldKey: scaffoldKey);
+              },
+            )
+          : Container(),
       appBar:
           CustomAppBar(title: controller.categoryName ?? "", showSearch: true,showBackButton: true),
       body: Center(
@@ -62,7 +63,7 @@ class ListItemsScreen extends GetView<ListItemsController> {
                               Icon(Icons.list,size: 30,color: CustomThemes.appTheme.primaryColor),
                             ],
                           ),
-                          const FilterScreen(),
+                          const SortByScreen(),
                         ],
                       ),
                     ),

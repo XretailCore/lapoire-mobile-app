@@ -266,7 +266,7 @@ Map<String, String> getEnglishTranslation() => {
           'Verification Code Has Been Sent To',
       Translate.quantity.name: 'Quantity',
       Translate.featuresAndBenefits.name: 'Features And Benefits',
-      Translate.ingredientsAndHowToUse.name: 'Ingredients And How To Use',
+      Translate.ingredients.name: 'Ingredients',
       Translate.turnOnGps.name: 'Turn On Gps',
       Translate.yourWishlistIsEmpty.name: 'Your Wishlist Is Empty',
       Translate.availabilityInStock.name: 'Availability: @quantity In Stock',

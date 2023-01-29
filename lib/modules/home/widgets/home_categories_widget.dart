@@ -26,13 +26,15 @@ class HomeCategoriesWidget extends GetView<HomeController> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 16),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomText(
                     Translate.enjoyCategories.tr,
                     style: const TextStyle(
                       color: AppColors.redColor,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 32,
+                        fontFamily: "Bayshore"
                     ),
                   ),
                   // const Spacer(),

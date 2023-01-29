@@ -122,7 +122,7 @@ class PanelWidget extends GetView<InnerProductController> {
                 'PeriodName': (selectdProduct?.periodName).toString()
               },
             ),
-            style: const TextStyle(fontSize: 11, color: Colors.grey),
+            style: TextStyle(fontSize: 11, color: primaryColor),
           ),
         ],
       ),

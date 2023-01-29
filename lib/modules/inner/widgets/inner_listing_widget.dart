@@ -29,13 +29,15 @@ class InnerListingWidget extends GetView<InnerProductController> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomText(
                   title,
                   style: TextStyle(
                     color: CustomThemes.appTheme.primaryColor,
                     fontWeight: FontWeight.w400,
-                    fontSize: 16,
+                    fontSize: 28,
+                    fontFamily: "Bayshore"
                   ),
                 ),
               ],

@@ -40,8 +40,9 @@ class HomeListingWidget extends GetView<HomeController> {
               title,
               style: TextStyle(
                 color: CustomThemes.appTheme.primaryColor,
-                fontWeight: FontWeight.w400,
-                fontSize: 24.sm,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 32,
+                  fontFamily: "Bayshore"
               ),
             ),
             const SizedBox(height: 10),

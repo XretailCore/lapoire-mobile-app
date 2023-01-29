@@ -44,7 +44,7 @@ class CustomText extends StatelessWidget {
       style: style?.copyWith(
               fontSize: style?.fontSize?.sm,
               height: style?.height,
-              fontWeight: fontWeight ?? FontWeight.w700) ??
+              fontWeight: style?.fontWeight ?? FontWeight.w700) ??
           TextStyle(
             color: color,
             fontWeight: fontWeight ?? FontWeight.w700,

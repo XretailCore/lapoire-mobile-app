@@ -35,12 +35,14 @@ class InnerProductScreen extends GetView<InnerProductController> {
               body: SlidingUpPanel(
                 controller: panelController,
                 footer: Container(
-                    color: Colors.transparent,
-                    height: 60.0,
-                    width: MediaQuery.of(context).size.width,
-                    child: Container(
-                        color: Colors.white,
-                        child: PanelWidget(selectdProduct: product))),
+                  color: Colors.transparent,
+                  height: 60.0,
+                  width: MediaQuery.of(context).size.width,
+                  child: Container(
+                    color: Colors.white,
+                    child: PanelWidget(selectdProduct: product),
+                  ),
+                ),
                 minHeight: MediaQuery.of(context).size.height * 0.4,
                 maxHeight: MediaQuery.of(context).size.height * 0.8,
                 padding: const EdgeInsets.all(0),
@@ -125,31 +127,33 @@ class InnerProductScreen extends GetView<InnerProductController> {
                           ),
                         ],
                       ),
-                      CustomSlider(
-                        pageIndex: controller.pageIndex.value,
-                        onPageChanged: (index, reason) {
-                          controller.updateIndex(index);
-                        },
-                        isInner: true,
-                        showTitleAndButton: false,
-                        indicatorColor: AppColors.redColor,
-                        ratio: 1.15,
-                        showIndicator: true,
-                        sliderImages: [
-                          //for (var image in product!.selectedProductSku.images)
-                          Image.network(
-                              product!.selectedProductSku.images.first?.url ??
-                                  ""),
-                          Image.network(
-                              product.selectedProductSku.images.first?.url ??
-                                  ""),
-                          Image.network(
-                              product.selectedProductSku.images.first?.url ??
-                                  ""),
-                          Image.network(
-                              product.selectedProductSku.images.first?.url ??
-                                  ""),
-                        ],
+                      Obx(
+                        () => CustomSlider(
+                          pageIndex: controller.pageIndex.value,
+                          onPageChanged: (index, reason) {
+                            controller.updateIndex(index);
+                          },
+                          isInner: true,
+                          showTitleAndButton: false,
+                          indicatorColor: AppColors.redColor,
+                          ratio: 1.15,
+                          showIndicator: true,
+                          sliderImages: [
+                            //for (var image in product!.selectedProductSku.images)
+                            Image.network(
+                                product!.selectedProductSku.images.first?.url ??
+                                    ""),
+                            Image.network(
+                                product.selectedProductSku.images.first?.url ??
+                                    ""),
+                            Image.network(
+                                product.selectedProductSku.images.first?.url ??
+                                    ""),
+                            Image.network(
+                                product.selectedProductSku.images.first?.url ??
+                                    ""),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -169,12 +173,12 @@ class InnerProductScreen extends GetView<InnerProductController> {
                           scrollController: scrollController,
                           innerProductController: controller,
                           selectdProduct: product,
-                          selectedSize: product.sizes.firstWhere((element) =>
+                          selectedSize: product?.sizes.firstWhere((element) =>
                               element?.id == product.selectedProductSku.sizeId),
-                          selectedColor: product.colors.firstWhere((element) =>
+                          selectedColor: product?.colors.firstWhere((element) =>
                               element?.id ==
                               product.selectedProductSku.colorId),
-                          imagesUrl: product.selectedProductSku.images
+                          imagesUrl: product!.selectedProductSku.images
                               .map((image) => image?.url)
                               .toList(),
                         ),

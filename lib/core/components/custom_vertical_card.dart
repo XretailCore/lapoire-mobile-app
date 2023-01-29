@@ -156,7 +156,6 @@ class VerticalProductCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: CustomThemes.appTheme.primaryColor,
-                            fontWeight: FontWeight.w500,
                             fontSize: 15,
                           ),
                         ),

@@ -257,7 +257,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.cancelOrder.name: 'الغاء الطلب',
       Translate.quantity.name: 'الكمية',
       Translate.featuresAndBenefits.name: 'الميزات والفوائد',
-      Translate.ingredientsAndHowToUse.name: 'المكونات وكيفية استخدامها',
+      Translate.ingredients.name: 'المكونات',
       Translate.turnOnGps.name: 'قم بتشغيل نظام تحديد المواقع',
       Translate.yourWishlistIsEmpty.name: 'لا يوجد بيانات',
       Translate.availabilityInStock.name: 'المتاح: @quantity في المخزن',

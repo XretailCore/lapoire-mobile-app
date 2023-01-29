@@ -238,7 +238,7 @@ enum Translate {
   orderDate,
   quantity,
   featuresAndBenefits,
-  ingredientsAndHowToUse,
+  ingredients,
   turnOnGps,
   availabilityInStock,
   relatedItems,

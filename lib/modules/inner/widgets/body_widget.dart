@@ -277,6 +277,36 @@ class _BodyWidgetState extends State<BodyWidget> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  DottedBorder(
+                    color: AppColors.redColor,
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    radius: const Radius.circular(8.0),
+                    borderType: BorderType.RRect,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // CustomText(
+                        //   Translate.quantity.tr.toUpperCase(),
+                        //   style: const TextStyle(
+                        //       fontSize: 12, color: Color.fromRGBO(96, 96, 96, 1)),
+                        // ),
+                        QuantityButton(
+                          key: UniqueKey(),
+                          initialQuantity:
+                          widget.innerProductController.quantity,
+                          maxQuantity: widget.selectdProduct?.selectedProductSku
+                              .maxQuantity ??
+                              0,
+                          height: 40,
+                          onQuantityChange: (v) {
+                            widget.innerProductController.quantity = v;
+                            return null;
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                   Row(
                     children: [
                       CustomText(
@@ -298,36 +328,6 @@ class _BodyWidgetState extends State<BodyWidget> {
                         ),
                       ),
                     ],
-                  ),
-                  DottedBorder(
-                    color: AppColors.redColor,
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    radius: const Radius.circular(8.0),
-                    borderType: BorderType.RRect,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        // CustomText(
-                        //   Translate.quantity.tr.toUpperCase(),
-                        //   style: const TextStyle(
-                        //       fontSize: 12, color: Color.fromRGBO(96, 96, 96, 1)),
-                        // ),
-                        QuantityButton(
-                          key: UniqueKey(),
-                          initialQuantity:
-                              widget.innerProductController.quantity,
-                          maxQuantity: widget.selectdProduct?.selectedProductSku
-                                  .maxQuantity ??
-                              0,
-                          height: 40,
-                          onQuantityChange: (v) {
-                            widget.innerProductController.quantity = v;
-                            return null;
-                          },
-                        ),
-                      ],
-                    ),
                   ),
                 ],
               ),
@@ -369,7 +369,6 @@ class _BodyWidgetState extends State<BodyWidget> {
                 selectdProduct: widget.selectdProduct,
                 innerProductController: widget.innerProductController,
               ),
-              const SizedBox(height: 20),
             ],
           ),
         ),
@@ -379,28 +378,32 @@ class _BodyWidgetState extends State<BodyWidget> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              ExpansionTileWidget(
-                key: Key(ExpansionTileStatus.featuresAndBenefits.name),
-                initiallyExpanded:
-                    widget.innerProductController.expansionTileStatus ==
-                        ExpansionTileStatus.featuresAndBenefits,
-                onExpansionChanged: (isExpanded) {
-                  if (!isExpanded) {
-                    widget.innerProductController.expansionTileStatus = null;
-                    return;
-                  }
-                  widget.innerProductController.expansionTileStatus =
-                      ExpansionTileStatus.featuresAndBenefits;
-                },
-                title: Translate.featuresAndBenefits.tr,
-                children: [
-                  CustomText(
-                    widget.selectdProduct?.description ?? '',
-                    style: const TextStyle(fontSize: 12),
-                    softWrap: true,
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: CustomText(
+                  Translate.ingredients.tr.toUpperCase(),
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: AppColors.redColor,
+                    fontWeight: FontWeight.w500,
                   ),
-                ],
+                  softWrap: true,
+                ),
               ),
+              const SizedBox(height: 8.0),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: CustomText(
+                  widget.selectdProduct?.description ?? '',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                    color: primaryColor,
+                  ),
+                  softWrap: true,
+                ),
+              ),
+              const SizedBox(height: 8.0),
               ExpansionTileWidget(
                 key: Key(ExpansionTileStatus.ingredientsAndHowToUse.name),
                 initiallyExpanded:
@@ -414,7 +417,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                   widget.innerProductController.expansionTileStatus =
                       ExpansionTileStatus.ingredientsAndHowToUse;
                 },
-                title: Translate.ingredientsAndHowToUse.tr,
+                title: Translate.featuresAndBenefits.tr,
                 children: widget.selectdProduct?.features
                         .map(
                           (e) => Padding(
@@ -478,8 +481,9 @@ class _BodyWidgetState extends State<BodyWidget> {
                           .onTapAllReviews(widget.selectdProduct),
                       child: CustomText(
                         Translate.allReviews.tr,
-                        style: const TextStyle(
+                        style: TextStyle(
                           decoration: TextDecoration.underline,
+                          color: primaryColor,
                         ),
                       ),
                     ),

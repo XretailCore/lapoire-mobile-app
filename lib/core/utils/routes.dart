@@ -24,7 +24,7 @@ import '../../modules/dashboard/view/dashboard_screen.dart';
 import '../../modules/home/view/home_screen.dart';
 import '../../modules/inner/views/inner_product_screen.dart';
 import '../../modules/intro/views/intro_screen.dart';
-import '../../modules/listing_items/view/filter_screen.dart';
+import '../../modules/listing_items/view/sort_by_screen.dart';
 import '../../modules/listing_items/view/listing_screen.dart';
 import '../../modules/map/views/map_screen.dart';
 import '../../modules/my_account/views/my_account_screen.dart';
@@ -54,7 +54,7 @@ class Routes {
       verifyOtpForgetPasswordScreen = '/verifyOtpForgetPasswordScreen',
       changePasswordScreen = '/changePasswordScreen',
       listingItems = '/listingItems',
-      filter = '/filterScreen',
+      sortBy = '/sortByScreen',
       content = '/contentScreen',
       forgetPasswordScreen = '/forgetPasswordScreen',
       profile = '/profile',
@@ -102,7 +102,7 @@ class Routes {
       GetPage(name: cart, page: () => const CartScreen()),
       GetPage(name: verifyOtpScreen, page: () => const VerifyOtpScreen()),
       GetPage(name: listingItems, page: () => ListItemsScreen()),
-      GetPage(name: filter, page: () => const FilterScreen()),
+      GetPage(name: sortBy, page: () => const SortByScreen()),
       GetPage(name: content, page: () => const ContentScreen()),
       GetPage(name: myorders, page: () => const MyOrdersScreen()),
       GetPage(name: profile, page: () => const ProfileScreen()),
