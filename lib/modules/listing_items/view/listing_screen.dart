@@ -1,3 +1,4 @@
+import 'package:imtnan/core/components/custom_text.dart';
 import 'package:imtnan/core/components/imtnan_loading_widget.dart';
 import 'package:imtnan/modules/listing_items/view/filter_screen.dart';
 
@@ -18,31 +19,17 @@ class ListItemsScreen extends GetView<ListItemsController> {
   ListItemsScreen({Key? key}) : super(key: key);
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
       endDrawerEnableOpenDragGesture: false,
       endDrawer: const FilterScreen(),
-      floatingActionButton: controller.filterModel.listType != null
-          ? FloatingActionButton(
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10.0),
-                ),
-              ),
-              child: const Icon(
-                Icons.filter_alt,
-                size: 30,
-              ),
-              backgroundColor: CustomThemes.appTheme.primaryColor,
-              onPressed: () {
-                controller.goToFilter(scaffoldKey: scaffoldKey);
-              },
-            )
-          : Container(),
-      appBar:
-          CustomAppBar(title: controller.categoryName ?? "", showSearch: true,showBackButton: true),
+      appBar: CustomAppBar(
+          title: controller.categoryName ?? "",
+          showSearch: true,
+          showBackButton: true),
       body: Center(
         child: Column(
           children: [
@@ -58,16 +45,56 @@ class ListItemsScreen extends GetView<ListItemsController> {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.grid_view_sharp,size: 22,color: CustomThemes.appTheme.primaryColor),
+                              Icon(Icons.grid_view_sharp,
+                                  size: 22,
+                                  color: CustomThemes.appTheme.primaryColor),
                               const SizedBox(width: 8.0),
-                              Icon(Icons.list,size: 30,color: CustomThemes.appTheme.primaryColor),
+                              Icon(Icons.list,
+                                  size: 30,
+                                  color: CustomThemes.appTheme.primaryColor),
                             ],
                           ),
                           const SortByScreen(),
+                          controller.filterModel.listType != null
+                              ? InkWell(
+                                  onTap: () {
+                                    controller.goToFilter(
+                                        scaffoldKey: scaffoldKey);
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 2.0, horizontal: 16.0),
+                                    decoration: BoxDecoration(
+                                      color: CustomThemes.appTheme.primaryColor,
+                                      border: Border.all(
+                                          color: CustomThemes
+                                              .appTheme.primaryColor),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        CustomText(
+                                          Translate.filter.tr,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 4.0),
+                                        const Icon(Icons.arrow_drop_down_sharp,
+                                            color: Colors.white)
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox.shrink(),
                         ],
                       ),
                     ),
-                    Divider(thickness: 1.0,color: AppColors.redColor),
+                    const Divider(thickness: 1.0, color: AppColors.redColor),
                     Expanded(
                       child: controller.obx(
                         (data) => Column(
