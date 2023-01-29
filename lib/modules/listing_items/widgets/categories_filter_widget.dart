@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
 
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
@@ -16,16 +17,7 @@ class CategoriesWidgetFilter extends GetView<FilterController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: CustomText(
-              Translate.categories.tr,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
+          TitleWithDivider(title: Translate.category.tr),
           const SizedBox(height: 10),
           Obx(
             () => Column(
@@ -45,9 +37,7 @@ class CategoriesWidgetFilter extends GetView<FilterController> {
                             Theme(
                               data: ThemeData(
                                 primarySwatch: Colors.blue,
-                                unselectedWidgetColor: isSelectedCategory
-                                    ? CustomThemes.appTheme.primaryColor
-                                    : Colors.black,
+                                unselectedWidgetColor:  CustomThemes.appTheme.primaryColor,
                               ),
                               child: Checkbox(
                                 value: isSelectedCategory,
@@ -58,19 +48,19 @@ class CategoriesWidgetFilter extends GetView<FilterController> {
                             ),
                             CustomText(
                               category.title ?? "",
+                              style: TextStyle(
+                                  color: CustomThemes.appTheme.primaryColor),
                             )
                           ],
                         ),
                       ),
-                      SubCategoriesWidgetFilter(
-                        category: category,
-                      ),
+                      SubCategoriesWidgetFilter(category: category),
                     ],
                   );
                 },
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -79,6 +69,7 @@ class CategoriesWidgetFilter extends GetView<FilterController> {
 
 class SubCategoriesWidgetFilter extends GetView<FilterController> {
   final CategoriesFilterModel? category;
+
   const SubCategoriesWidgetFilter({Key? key, this.category}) : super(key: key);
 
   @override
@@ -86,7 +77,7 @@ class SubCategoriesWidgetFilter extends GetView<FilterController> {
     return Padding(
       padding: const EdgeInsetsDirectional.only(start: 33),
       child: ListView.separated(
-        padding: EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
         itemCount: category!.children?.length ?? 0,
         separatorBuilder: (context, indexx) => const SizedBox(height: 5),
         shrinkWrap: true,
@@ -125,6 +116,35 @@ class SubCategoriesWidgetFilter extends GetView<FilterController> {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class TitleWithDivider extends StatelessWidget {
+  final String title;
+
+  const TitleWithDivider({Key? key, required this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomText(
+            title,
+            textAlign: TextAlign.start,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: AppColors.redColor,
+            ),
+          ),
+          const SizedBox(height: 8.0),
+          const Divider(color: AppColors.redColor, thickness: 1)
+        ],
       ),
     );
   }

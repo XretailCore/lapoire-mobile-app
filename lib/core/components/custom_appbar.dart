@@ -18,6 +18,7 @@ class CustomTitledAppBar extends StatelessWidget
   final bool showCart;
   final Function()? onCartTap;
   final List<Widget> actionsWidget;
+
   const CustomTitledAppBar({
     Key? key,
     this.title = "",
@@ -25,8 +26,10 @@ class CustomTitledAppBar extends StatelessWidget
     this.onCartTap,
     this.actionsWidget = const [],
   }) : super(key: key);
+
   @override
   Size get preferredSize => const Size.fromHeight(52);
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -63,14 +66,17 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool showCart;
   final Function()? onCartTap;
+
   const HomeAppBar({
     Key? key,
     this.title = "",
     this.showCart = false,
     this.onCartTap,
   }) : super(key: key);
+
   @override
   Size get preferredSize => const Size.fromHeight(52);
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -85,8 +91,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      leading: Image.asset(
-        'assets/images/main_logo.png'),
+      leading: Image.asset('assets/images/main_logo.png'),
       actions: [
         Offstage(
           offstage: !showCart,
@@ -112,47 +117,47 @@ class CustomAppBar extends GetView<CartController>
   final bool showCart;
   final bool showSearch;
   final bool showBackButton;
-  const CustomAppBar( {
+
+  const CustomAppBar({
     Key? key,
     this.title = "",
-    this.showBackButton=false,
+    this.showBackButton = false,
     this.showCart = true,
     this.showSearch = false,
   }) : super(key: key);
+
   @override
   Size get preferredSize => const Size.fromHeight(70);
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        iconTheme: IconThemeData(color: CustomThemes.appTheme.primaryColor),
-        backgroundColor: AppColors.highlighter,
-        elevation: 1,
-        title: Padding(
-          padding: const EdgeInsets.only(top: 15.0),
-          child: CustomText(
-            title,
-            style: TextStyle(
-              color: CustomThemes.appTheme.primaryColor,
-              fontWeight: FontWeight.w400,
+      iconTheme: IconThemeData(color: CustomThemes.appTheme.primaryColor),
+      backgroundColor: AppColors.highlighter,
+      elevation: 1,
+      title: Padding(
+        padding: const EdgeInsets.only(top: 15.0),
+        child: CustomText(
+          title,
+          style: TextStyle(color: CustomThemes.appTheme.primaryColor),
+        ),
+      ),
+      centerTitle: true,
+      leading: showBackButton ? const CustomBackButton() : const SizedBox(),
+      actions: [
+        InkWell(
+          onTap: () {
+            Get.toNamed(Routes.search);
+          },
+          child: const Padding(
+            padding: EdgeInsets.only(top: 20.0, right: 16.0),
+            child: Icon(
+              Icons.search,
+              size: 25,
             ),
           ),
         ),
-        centerTitle: true,
-        leading: showBackButton?const CustomBackButton():const SizedBox(),
-        actions: [
-          InkWell(
-            onTap: () {
-              Get.toNamed(Routes.search);
-            },
-            child: const Padding(
-              padding: EdgeInsets.only(top: 20.0,right: 16.0),
-              child: Icon(
-                Icons.search,
-                size: 25,
-              ),
-            ),
-          ),
-        ],
+      ],
     );
   }
 }
@@ -160,6 +165,7 @@ class CustomAppBar extends GetView<CartController>
 class SearchAppBar extends GetView<SearchController>
     implements PreferredSizeWidget {
   final Function()? onSearchTap;
+
   const SearchAppBar({Key? key, this.onSearchTap}) : super(key: key);
 
   @override
@@ -195,8 +201,10 @@ class SearchAppBar extends GetView<SearchController>
 class DashboardCustomAppBar extends GetView<CartController>
     implements PreferredSizeWidget {
   const DashboardCustomAppBar({Key? key}) : super(key: key);
+
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+
   @override
   Widget build(BuildContext context) {
     return AppBar(

@@ -5,6 +5,7 @@ import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/theme.dart';
 import '../controllers/filter_controller.dart';
+import 'categories_filter_widget.dart';
 
 class SizesWidgetFilter extends GetView<FilterController> {
   const SizesWidgetFilter({Key? key}) : super(key: key);
@@ -17,17 +18,7 @@ class SizesWidgetFilter extends GetView<FilterController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: CustomText(
-                  Translate.size.tr,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
+              TitleWithDivider(title: Translate.size.tr),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Wrap(
@@ -47,8 +38,9 @@ class SizesWidgetFilter extends GetView<FilterController> {
                               color: controller.sizesIds.contains(size.id)
                                   ? CustomThemes.appTheme.primaryColor
                                   : Colors.transparent,
+                              borderRadius: BorderRadius.circular(20.0),
                               border: Border.all(
-                                color: Colors.grey.withOpacity(.6),
+                                color: CustomThemes.appTheme.primaryColor.withOpacity(.6),
                               ),
                             ),
                             child: CustomText(
@@ -57,7 +49,7 @@ class SizesWidgetFilter extends GetView<FilterController> {
                                 fontSize: 12,
                                 color: controller.sizesIds.contains(size.id)
                                     ? Colors.white
-                                    : Colors.black,
+                                    : CustomThemes.appTheme.primaryColor,
                               ),
                               textAlign: TextAlign.center,
                             ),

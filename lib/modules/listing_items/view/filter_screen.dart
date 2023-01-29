@@ -1,7 +1,9 @@
+import 'package:dotted_border/dotted_border.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
+
 import '../../../core/components/custom_error_widget.dart';
 import '../../../core/components/custom_text.dart';
 import '../widgets/sort_widget.dart';
-
 import '../../../core/components/custom_button.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/theme.dart';
@@ -17,35 +19,38 @@ class FilterScreen extends GetView<FilterController> {
 
   @override
   Widget build(BuildContext context) {
+    final primary=CustomThemes.appTheme.primaryColor;
     return SizedBox(
       width: MediaQuery.of(context).size.width * .9,
       child: controller.obx(
             (data) => Container(
-          color: Colors.white,
-          padding: const EdgeInsets.only(top: 30),
+          color: AppColors.highlighter,
+          padding: const EdgeInsets.only(top: 50,right: 8.0,left: 8.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // const FilterTabsWidget(),
-              Container(
-                margin: const EdgeInsets.all(10),
-                padding: const EdgeInsets.only(bottom: 10),
-                decoration: const BoxDecoration(
-                  border: Border(bottom: BorderSide(color: Colors.grey)),
-                ),
-                child: Row(
-                  children: [
-                    CustomText(
-                      Translate.filter.tr,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CustomText(
+                    Translate.filter.name.tr,
+                    style: TextStyle(
+                      fontSize: 28,
+                      color: primary,
+                      fontWeight: FontWeight.w600,
                     ),
-                    const Spacer(),
-                    InkWell(
+                  ),
+                  const Spacer(),
+                  DottedBorder(
+                    borderType: BorderType.Circle,
+                    color: primary,
+                    child: InkWell(
                       onTap: () => controller.closeFilter(),
-                      child: const Icon(Icons.clear),
+                      child: Icon(Icons.clear,color: primary),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -56,31 +61,26 @@ class FilterScreen extends GetView<FilterController> {
                       SizedBox(height: 15),
                       PriceWidgetFilter(),
                       SizedBox(height: 15),
-                      SortWidget(),
-                      SizedBox(height: 10),
                     ],
                   ),
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.all(15),
-                child: Row(
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24.0),
+                child: Column(
                   children: [
-                    Expanded(
-                      child: CustomBorderButton(
-                        color: CustomThemes.appTheme.primaryColor,
-                        title: Translate.apply.name.tr,
-                        onTap: () => controller.applyFilter(context: context),
-                      ),
+                    CustomBorderButton(
+                      color: AppColors.redColor,
+                      title: Translate.apply.name.tr,
+                      radius: 20,
+                      onTap: () => controller.applyFilter(context: context),
                     ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: CustomBorderButton(
-                        color: Colors.white,
-                        title: Translate.clear.name.tr,
-                        textColor: CustomThemes.appTheme.primaryColor,
-                        onTap: controller.clearFilter,
-                      ),
+                    const SizedBox(height: 24),
+                    CustomBorderButton(
+                      radius: 20,
+                      color: CustomThemes.appTheme.primaryColor,
+                      title: Translate.clearAll.name.tr,
+                      onTap: controller.clearFilter,
                     ),
                   ],
                 ),

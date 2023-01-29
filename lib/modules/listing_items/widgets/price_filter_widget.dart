@@ -5,6 +5,7 @@ import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/theme.dart';
 import '../controllers/filter_controller.dart';
+import 'categories_filter_widget.dart';
 
 class PriceWidgetFilter extends GetView<FilterController> {
   const PriceWidgetFilter({Key? key}) : super(key: key);
@@ -16,16 +17,7 @@ class PriceWidgetFilter extends GetView<FilterController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: CustomText(
-                Translate.price.tr,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
+            TitleWithDivider(title: Translate.price.tr),
             RangeSlider(
               divisions: 100,
               values: RangeValues(

@@ -7,6 +7,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.wishlist.name: "المفضلة",
       Translate.shopNow.name: "تسوق الان",
       Translate.categories.name: "الأقسام",
+      Translate.category.name: "القسم",
       Translate.enjoyCategories.name: "استمتع بفئاتنا اللذيذة",
       Translate.profile.name: "حسابي",
       Translate.myCart.name: "سلة التسوق",
@@ -165,6 +166,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.enterCouponCode.name: 'أدخل كود الخصم',
       Translate.apply.name: 'تطبيق',
       Translate.clear.name: 'مسح',
+      Translate.clearAll.name: 'مسح الكل',
       Translate.shippingInformation.name: 'معلومات الشحن',
       Translate.yourOrderWillBeDeliveredWithinMinMaxBusinessDays.name:
           'سيتم توصيل طلبك في غضون @Min-@Max أيام عمل كحد أقصى',

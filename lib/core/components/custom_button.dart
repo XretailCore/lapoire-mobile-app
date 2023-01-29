@@ -88,11 +88,9 @@ class CustomBorderButton extends StatelessWidget {
       onTap: enabled ?? true ? onTap : null,
       child: Container(
         alignment: Alignment.center,
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           color: color,
-          border: Border.all(
-              color: borderColor ?? CustomThemes.appTheme.primaryColor),
           borderRadius: BorderRadius.circular(radius),
         ),
         child: CustomText(

@@ -7,6 +7,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.wishlist.name: "Wish List",
       Translate.shopNow.name: "Shop Now",
       Translate.categories.name: "Categories",
+      Translate.category.name: "Category",
       Translate.enjoyCategories.name: "Enjoy our delicious categories",
       Translate.profile.name: "Profile",
       Translate.myCart.name: "My Cart",
@@ -166,6 +167,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.enterCouponCode.name: 'Enter Coupon Code',
       Translate.apply.name: 'Apply',
       Translate.clear.name: 'Clear',
+      Translate.clearAll.name: 'Clear All',
       Translate.shippingInformation.name: 'Shipping Information',
       Translate.yourOrderWillBeDeliveredWithinMinMaxBusinessDays.name:
           'Your Order Will Be Delivered Within @Min-@Max Business Days',
