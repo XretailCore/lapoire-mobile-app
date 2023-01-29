@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:imtnan/core/utils/theme.dart';
 
 class CustomText extends StatelessWidget {
   final String? title;
@@ -42,11 +43,12 @@ class CustomText extends StatelessWidget {
       maxLines: maxLines,
       softWrap: softWrap,
       style: style?.copyWith(
+              color: style?.color ?? CustomThemes.appTheme.primaryColor,
               fontSize: style?.fontSize?.sm,
               height: style?.height,
               fontWeight: style?.fontWeight ?? FontWeight.w700) ??
           TextStyle(
-            color: color,
+            color: color??CustomThemes.appTheme.primaryColor,
             fontWeight: fontWeight ?? FontWeight.w700,
             decoration: decoration,
             decorationColor: decorationColor,

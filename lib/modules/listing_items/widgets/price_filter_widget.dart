@@ -18,40 +18,15 @@ class PriceWidgetFilter extends GetView<FilterController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TitleWithDivider(title: Translate.price.tr),
-            RangeSlider(
-              divisions: 100,
-              values: RangeValues(
-                  controller.minPrice.value, controller.maxPrice.value),
-              min: controller.filterParameters.priceRange!.minPrice!,
-              max: controller.filterParameters.priceRange!.maxPrice!,
-              activeColor: CustomThemes.appTheme.primaryColor,
-              inactiveColor: Colors.grey,
-              labels: RangeLabels(
-                controller.minPrice.value.round().toString(),
-                controller.maxPrice.value.round().toString(),
-              ),
-              onChanged: (values) => controller.changePriceRange(values),
-            ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomText(
-                    "${controller.minPrice.value.toStringAsFixed(0)} ${Translate.egp.name.tr}",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: CustomThemes.appTheme.colorScheme.secondary,
-                    ),
-                  ),
-                  const Spacer(),
-                  CustomText(
-                    "${controller.maxPrice.value.toStringAsFixed(0)} ${Translate.egp.name.tr}",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: CustomThemes.appTheme.colorScheme.secondary,
-                    ),
-                  ),
+                  CustomText(Translate.from.tr),
+                  PriceFiled(controller: controller.minPriceController.value,onChanged: (min){},),
+                  CustomText(Translate.to.tr),
+                  PriceFiled(controller: controller.maxPriceController.value,onChanged: (max){},),
                 ],
               ),
             ),
@@ -61,3 +36,48 @@ class PriceWidgetFilter extends GetView<FilterController> {
     );
   }
 }
+
+
+class PriceFiled extends StatelessWidget {
+  final TextEditingController? controller;
+  final void Function(String)? onChanged;
+  const PriceFiled({Key? key, this.controller, this.onChanged}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100.0,
+      height: 40.0,
+      decoration: BoxDecoration(
+        border: Border.all(color: CustomThemes.appTheme.primaryColor),
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+             Expanded(
+              child:  Padding(
+                padding: const EdgeInsets.only(bottom: 7.0),
+                child: TextField(
+                  onChanged: onChanged,
+                  controller: controller,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: CustomThemes.appTheme.primaryColor),
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                  ),
+                ),
+              ),
+            ),
+            CustomText(Translate.egp.tr),
+          ],
+        ),
+      ),
+    );
+  }
+}
+

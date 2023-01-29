@@ -292,6 +292,9 @@ Map<String, String> getEnglishTranslation() => {
       Translate.noReviewsYet.name: "No Reviews Yet",
       Translate.prebookingPolicy.name: "Pre-Booking Policy",
       Translate.agree.name: "Agree",
+      Translate.validRange.name: "Price range must be valid",
+      Translate.from.name: "From",
+      Translate.to.name: "To",
       Translate.iAgree.name: "I Agree",
       Translate.pleaseCompleteYourAccountFirst.name:
           'Please Complete Your Account First',

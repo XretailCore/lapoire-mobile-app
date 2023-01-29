@@ -11,10 +11,10 @@ import '../models/categories_model.dart';
 import 'listing_controller.dart';
 
 class FilterController extends GetxController with StateMixin<FilterDataModel> {
-  final minPrice = 0.0.obs;
-  final maxPrice = 0.0.obs;
   final pageIndex = 1.obs;
   final categories = <CategoriesFilterModel>[].obs;
+  Rx<TextEditingController> minPriceController=TextEditingController(text: "00").obs;
+  Rx<TextEditingController> maxPriceController=TextEditingController(text: "00").obs;
   final subCategories = <CategoriesFilterModel>[].obs;
   final selectedCategories = <int>[].obs,
       selectedsubCategoriesIds = <int>[].obs,
@@ -57,8 +57,8 @@ class FilterController extends GetxController with StateMixin<FilterDataModel> {
           zoneId: _prefs.getCurrentZone?.id,
         ),
       );
-      minPrice.value = filterParameters.priceRange!.minPrice!;
-      maxPrice.value = filterParameters.priceRange!.maxPrice!;
+      minPriceController.value.text=filterParameters.priceRange!.minPrice!.toInt().toString();
+      maxPriceController.value.text=filterParameters.priceRange!.maxPrice!.toInt().toString();
       _getSubCategories();
       sizes.value = filterParameters.sizes ?? <BreadCrumb>[];
       change(filterParameters, status: RxStatus.success());
@@ -128,17 +128,12 @@ class FilterController extends GetxController with StateMixin<FilterDataModel> {
     }
   }
 
-  void changePriceRange(RangeValues values) {
-    minPrice.value = values.start;
-    maxPrice.value = values.end;
-  }
-
   bool _isFilterApplied({bool isSideMenu = true}) {
     if ((selectedsubCategoriesIds.isEmpty && isSideMenu) &&
         sizesIds.isEmpty &&
         selectedCategories.isEmpty &&
-        minPrice.value == filterParameters.priceRange!.minPrice! &&
-        maxPrice.value == filterParameters.priceRange!.maxPrice! &&
+        int.parse(minPriceController.value.text) == filterParameters.priceRange!.minPrice!.toInt() &&
+        int.parse(maxPriceController.value.text) == filterParameters.priceRange!.maxPrice!.toInt() &&
         sortProp.value == "") {
       return false;
     } else {
@@ -154,8 +149,8 @@ class FilterController extends GetxController with StateMixin<FilterDataModel> {
     selectedSorts.clear();
 
     sortProp.value = "";
-    minPrice.value = filterParameters.priceRange?.minPrice ?? 0.0;
-    maxPrice.value = filterParameters.priceRange?.maxPrice ?? 0.0;
+    minPriceController.value.text = filterParameters.priceRange?.minPrice!.toInt().toString() ?? 0.toString();
+    maxPriceController.value.text = filterParameters.priceRange?.maxPrice!.toInt().toString() ?? 0.toString();
     final listingController = Get.find<ListItemsController>();
     listingController.onRefresh(showLoader: true);
     Get.back();
@@ -183,8 +178,8 @@ class FilterController extends GetxController with StateMixin<FilterDataModel> {
 
   @override
   void onClose() {
-    minPrice.close();
-    maxPrice.close();
+    minPriceController.close();
+    maxPriceController.close();
     pageIndex.close();
     categories.close();
     subCategories.close();

@@ -1,9 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
-
 import '../../../core/components/custom_error_widget.dart';
 import '../../../core/components/custom_text.dart';
-import '../widgets/sort_widget.dart';
 import '../../../core/components/custom_button.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/theme.dart';
@@ -19,13 +17,13 @@ class FilterScreen extends GetView<FilterController> {
 
   @override
   Widget build(BuildContext context) {
-    final primary=CustomThemes.appTheme.primaryColor;
+    final primary = CustomThemes.appTheme.primaryColor;
     return SizedBox(
       width: MediaQuery.of(context).size.width * .9,
       child: controller.obx(
-            (data) => Container(
+        (data) => Container(
           color: AppColors.highlighter,
-          padding: const EdgeInsets.only(top: 50,right: 8.0,left: 8.0),
+          padding: const EdgeInsets.only(top: 50, right: 8.0, left: 8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -46,7 +44,7 @@ class FilterScreen extends GetView<FilterController> {
                     color: primary,
                     child: InkWell(
                       onTap: () => controller.closeFilter(),
-                      child: Icon(Icons.clear,color: primary),
+                      child: Icon(Icons.clear, color: primary),
                     ),
                   ),
                 ],
@@ -73,7 +71,18 @@ class FilterScreen extends GetView<FilterController> {
                       color: AppColors.redColor,
                       title: Translate.apply.name.tr,
                       radius: 20,
-                      onTap: () => controller.applyFilter(context: context),
+                      onTap: () {
+                        FocusScope.of(context).unfocus();
+                        if (int.parse(
+                                controller.minPriceController.value.text) >
+                            int.parse(
+                                controller.maxPriceController.value.text)) {
+                          showSnackBarAsBottomSheet(context);
+                        } else {
+                          controller.applyFilter(context: context);
+                          Get.back();
+                        }
+                      },
                     ),
                     const SizedBox(height: 24),
                     CustomBorderButton(
@@ -94,4 +103,30 @@ class FilterScreen extends GetView<FilterController> {
       ),
     );
   }
+}
+
+void showSnackBarAsBottomSheet(BuildContext context) {
+  showModalBottomSheet<void>(
+    context: context,
+    barrierColor: Colors.transparent,
+    builder: (BuildContext context) {
+      Future.delayed(const Duration(seconds: 5), () {
+        try {
+          Navigator.pop(context);
+        } on Exception {}
+      });
+      return Container(
+        color: Colors.grey.shade800,
+        padding: const EdgeInsets.all(12),
+        child: Wrap(
+          children: [
+            CustomText(
+              Translate.validRange.tr,
+              style: const TextStyle(color: Colors.white),
+            )
+          ],
+        ),
+      );
+    },
+  );
 }

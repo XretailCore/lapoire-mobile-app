@@ -69,16 +69,12 @@ class ListItemsController extends GetxController
           keyword: searchController.text.trim().isEmpty
               ? null
               : searchController.text.trim(),
-          minPrice: filterController.minPrice.value == 0
+          minPrice: int.parse(filterController.minPriceController.value.text) == 0
               ? null
-              : int.parse(filterController.minPrice.value
-                  .toStringAsFixed(0)
-                  .toString()),
-          maxPrice: filterController.maxPrice.value == 0
+              : int.parse(filterController.minPriceController.value.text),
+          maxPrice: int.tryParse(filterController.maxPriceController.value.text) == 0
               ? null
-              : int.tryParse(filterController.maxPrice.value
-                  .toStringAsFixed(0)
-                  .toString()),
+              : int.tryParse(filterController.maxPriceController.value.text),
           categoryIDs: filterController.allSelectedCategories,
           sortProp: filterController.sortProp.value == ""
               ? null
