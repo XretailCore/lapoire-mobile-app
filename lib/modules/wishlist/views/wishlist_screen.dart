@@ -75,7 +75,7 @@ class WishlistScreen extends GetView<WishlistController> {
               : CustomEmptyWidget(
                   emptyBtnAction: () => controller.loginAction(),
                   emptyLabel: Translate.youAreNotLoggedInYet.tr,
-                  buttonLabel: Translate.signIn.tr,
+                  buttonLabel: Translate.login.tr,
                 ),
         ),
         onError: (error) => CustomErrorWidget(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imtnan/core/utils/theme.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
   const TextFormFieldWidget({
@@ -16,7 +17,7 @@ class TextFormFieldWidget extends StatelessWidget {
     this.maxLines = 1,
     this.backgroundColor,
     this.focusedBorder,
-    this.contentPadding = const EdgeInsets.symmetric(horizontal: 8),
+    this.contentPadding = const EdgeInsets.symmetric(horizontal: 16),
     this.autovalidateMode,
     this.hintStyle,
     this.enabledBorder,
@@ -34,9 +35,10 @@ class TextFormFieldWidget extends StatelessWidget {
   final EdgeInsetsGeometry contentPadding;
   final AutovalidateMode? autovalidateMode;
   final TextStyle? hintStyle;
+
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
+    final primaryColor = CustomThemes.appTheme.primaryColor;
     return TextFormField(
       autovalidateMode: autovalidateMode,
       controller: textEditingController,
@@ -58,25 +60,26 @@ class TextFormFieldWidget extends StatelessWidget {
         suffixIcon: suffixIcon,
         contentPadding: contentPadding,
         hintText: hint,
-        hintStyle: hintStyle ?? TextStyle(color: primaryColor),
+        hintStyle: hintStyle ??
+            TextStyle(color: primaryColor, fontWeight: FontWeight.w400),
         hoverColor: primaryColor,
         focusColor: primaryColor,
         enabledBorder: enabledBorder ??
             OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: primaryColor),
             ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(color: Colors.red),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(color: Colors.red),
         ),
         focusedBorder: focusedBorder ??
             OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: primaryColor),
             ),
       ),

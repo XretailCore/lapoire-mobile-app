@@ -1,11 +1,7 @@
-import '../widgets/header_sign_widget.dart';
+import 'package:imtnan/core/components/custom_appbar.dart';
 import '../widgets/signup_widget.dart';
-
 import '../../../core/localization/translate.dart';
-import '../../../core/components/appbar_widget.dart';
-
 import 'package:flutter/material.dart';
-
 import '../widgets/signin_widget.dart';
 
 class SignWidget extends StatefulWidget {
@@ -21,22 +17,14 @@ class _SignWidgetState extends State<SignWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBarWidget(
+      appBar: CustomAppBar(
+        showBackButton: true,
         title:
-            initialLabelIndex == 0 ? Translate.signIn.tr : Translate.signUp.tr,
+            initialLabelIndex == 0 ? Translate.login.tr : Translate.signUp.tr,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          HeaderSignWidget(
-            labels: [Translate.signIn.tr, Translate.signUp.tr],
-            initialLabelIndex: initialLabelIndex,
-            onToggle: (v) {
-              setState(() {
-                initialLabelIndex = v ?? 0;
-              });
-            },
-          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),

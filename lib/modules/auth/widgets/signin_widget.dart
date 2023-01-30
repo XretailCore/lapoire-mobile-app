@@ -1,10 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
+import '../../../core/components/custom_button.dart';
 import '../../../core/components/custom_text.dart';
-import '../../../core/components/text_button_widget.dart';
 import '../../../core/components/text_form_field_widget.dart';
 import '../../../core/localization/translate.dart';
 import '../controllers/signin_controller.dart';
@@ -16,6 +16,7 @@ class SignInWidget extends GetView<SigninController> {
     required this.onTapGoToSignUp,
   }) : super(key: key);
   final VoidCallback onTapGoToSignUp;
+
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
@@ -24,25 +25,39 @@ class SignInWidget extends GetView<SigninController> {
       child: ListView(
         children: [
           const SizedBox(height: 30),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CustomText(
+                Translate.welcomeBack.tr,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16.0,
+                ),
+              ),
+              const SizedBox(height: 4.0),
+              CustomText(
+                Translate.signInToAccess.tr,
+                style: const TextStyle(
+                  color: AppColors.redColor,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14.0,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 30),
           TextFormFieldWidget(
             textEditingController: controller.emailTEC,
             hint: Translate.emailAddressOrPhoneNumber.tr,
             textInputType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: primaryColor),
-            ),
           ),
           const SizedBox(height: 15),
           PasswordTextFormFieldWidget(
             textEditingController: controller.passwordTEC,
             hint: Translate.password.tr,
             textInputAction: TextInputAction.done,
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: primaryColor),
-            ),
           ),
           const SizedBox(height: 10),
           Row(
@@ -54,17 +69,22 @@ class SignInWidget extends GetView<SigninController> {
                 onTap: controller.onForgetPassword,
                 child: CustomText(
                   Translate.forgetPassword.tr,
-                  style: TextStyle(color: primaryColor, fontSize: 11),
+                  style: const TextStyle(
+                      color: AppColors.redColor,
+                      fontSize: 11,
+                      decoration: TextDecoration.underline,
+                      fontWeight: FontWeight.w400),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 20),
           Center(
-            child: TextButtonWidget(
-              minimumSize: const Size(200, 30),
-              text: Translate.signIn.tr,
-              onPressed: () => controller.onTapSignIn(context),
+            child: CustomBorderButton(
+              radius: 20,
+              color: AppColors.redColor,
+              title: Translate.login.tr,
+              onTap: () => controller.onTapSignIn(context),
             ),
           ),
           const SizedBox(height: 20),
@@ -76,15 +96,11 @@ class SignInWidget extends GetView<SigninController> {
                   thickness: 1,
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  border: Border.all(color: primaryColor),
-                ),
-                padding: const EdgeInsets.all(8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: CustomText(
                   Translate.or.tr,
-                  style: TextStyle(color: primaryColor, fontSize: 12),
+                  style: TextStyle(color: primaryColor, fontSize: 12,fontWeight: FontWeight.w400),
                 ),
               ),
               Expanded(
@@ -161,11 +177,8 @@ class SignInWidget extends GetView<SigninController> {
                     style: TextStyle(color: primaryColor, fontSize: 14),
                     children: [
                       TextSpan(
-                        text: Translate.signUp.tr.toUpperCase(),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
+                        text: Translate.register.tr,
+                        style: const TextStyle(fontSize: 14,decoration: TextDecoration.underline,color: AppColors.redColor),
                       ),
                     ],
                   ),
