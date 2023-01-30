@@ -17,9 +17,11 @@ class SignupController extends GetxController {
       lastNameTEC = TextEditingController(text: ''),
       emailTEC = TextEditingController(text: ''),
       mobileTEC = TextEditingController(text: ''),
+      confirmPasswordTEC = TextEditingController(text: ''),
       passwordTEC = TextEditingController(text: '');
-  DateTime? selectedDate;
+  Rx<DateTime?> selectedDate = DateTime.now().obs;
   bool _isAcceptedPrivacy = false;
+
   bool get _isNotAcceptedPrivacy => !_isAcceptedPrivacy;
 
   ///1 male 2 female
@@ -51,6 +53,9 @@ class SignupController extends GetxController {
             firstName: firstNameTEC.text.trim(),
             lastName: lastNameTEC.text.trim(),
             email: emailTEC.text,
+            day: selectedDate.value?.day,
+            month: selectedDate.value?.month,
+            year: selectedDate.value?.year,
             mobile: mobileTEC.text,
           );
 
@@ -68,6 +73,9 @@ class SignupController extends GetxController {
               firstName: registerModelV3.firstName,
               id: registerModelV3.id!,
               isActive: isVerifiedAccount,
+              day: registerModelV3.day,
+              month: registerModelV3.month,
+              year: registerModelV3.year,
               lastName: registerModelV3.lastName,
               mobile: registerModelV3.mobile,
             );
