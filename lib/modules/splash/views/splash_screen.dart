@@ -70,11 +70,10 @@ class SplashWidget extends StatelessWidget {
     return Stack(
       alignment: AlignmentDirectional.bottomCenter,
       children: [
-        SizedBox(
+        Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          child: Image.asset("assets/images/splash_bg_image.png",
-              fit: BoxFit.fill),
+          color: Colors.white,
         ),
         Center(
           child: Image.asset(

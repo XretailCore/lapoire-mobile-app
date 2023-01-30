@@ -14,7 +14,6 @@ class MyAccountScreen extends GetView<MyAccountController> {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const HeaderAccountWidget(),
           const SizedBox(height: 20),
           Expanded(
             child: Padding(
