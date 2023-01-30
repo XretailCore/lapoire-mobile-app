@@ -23,87 +23,79 @@ class HomeCategoriesWidget extends GetView<HomeController> {
         height: 100.0,
         child: Column(
           children: [
+            const SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomText(
                     Translate.enjoyCategories.tr,
                     style: const TextStyle(
-                      color: AppColors.redColor,
+                        color: AppColors.redColor,
                         fontWeight: FontWeight.w400,
                         fontSize: 32,
-                        fontFamily: "Bayshore"
-                    ),
+                        fontFamily: "Bayshore"),
                   ),
-                  // const Spacer(),
-                  // InkWell(
-                  //   onTap: () => controller.goToCategories(),
-                  //   child: RotatedBox(
-                  //     quarterTurns: (language == Languages.en.name) ? 0 : 2,
-                  //     child: SvgPicture.asset(
-                  //       'assets/images/right_arrow_home.svg',
-                  //       width: 20,
-                  //       height: 20,
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
-            const SizedBox(height: 5),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                InkWell(
-                  onTap: () {
-                    controller.categoriesScrollController.previousPage();
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: CustomThemes.appTheme.primaryColor,
-                        shape: BoxShape.circle),
-                    child: const Icon(
-                      FontAwesomeIcons.caretLeft,
-                      color: Colors.white,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      controller.categoriesScrollController.previousPage();
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: CustomThemes.appTheme.primaryColor,
+                          shape: BoxShape.circle),
+                      child: const Icon(
+                        FontAwesomeIcons.caretLeft,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: CustomSlider(
-                    showTitleAndButton: false,
-                    showIndicator: false,
-                    autoPlay: false,
-                    viewportFraction:0.4,
-                    ratio: 0.4,
-                    controller: controller.categoriesScrollController,
-                    sliderImages: [
-                      for (var item in controller.categories.items!)
-                        CategoryWidget(
-                          category: item,
-                          index: controller.categories.items!.indexOf(item),
-                        )
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 8),
-                InkWell(
-                  onTap: () {
-                    controller.categoriesScrollController.nextPage();
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: CustomThemes.appTheme.primaryColor,
-                        shape: BoxShape.circle),
-                    child: const Icon(
-                      FontAwesomeIcons.caretRight,
-                      color: Colors.white,
+                  const SizedBox(width: 5),
+                  Expanded(
+                    child: CustomSlider(
+                      showTitleAndButton: false,
+                      showIndicator: false,
+                      autoPlay: false,
+                      viewportFraction: 0.4,
+                      height: 30,
+                      controller: controller.categoriesScrollController,
+                      sliderImages: [
+                        for (var item in controller.categories.items!)
+                          Center(
+                            child: CategoryWidget(
+                              category: item,
+                              index: controller.categories.items!.indexOf(item),
+                            ),
+                          )
+                      ],
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(width: 5),
+                  InkWell(
+                    onTap: () {
+                      controller.categoriesScrollController.nextPage();
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: CustomThemes.appTheme.primaryColor,
+                          shape: BoxShape.circle),
+                      child: const Icon(
+                        FontAwesomeIcons.caretRight,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -125,51 +117,24 @@ class CategoryWidget extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      highlightColor: Colors.transparent,
       onTap: () => controller.goToListingWithId(
         filterModel: category?.filterModel ?? FilterModel(),
         name: category?.name ?? "",
       ),
-      child: CustomText(
-        category?.name ?? "",
-        textAlign: TextAlign.start,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-            color: CustomThemes.appTheme.primaryColor,
-            fontWeight: FontWeight.bold,
-            fontSize: 12.0),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: CustomText(
+          category?.name ?? "",
+          textAlign: TextAlign.start,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+              color: CustomThemes.appTheme.primaryColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 12.0),
+        ),
       ),
-      // Stack(
-      //   children: [
-      //     Container(
-      //       color: index > 4
-      //           ? CustomThemes.appTheme.primaryColor.withOpacity(.5)
-      //           : controller.categoriesColors[index],
-      //       child: Column(
-      //         mainAxisAlignment: MainAxisAlignment.center,
-      //         crossAxisAlignment: CrossAxisAlignment.center,
-      //         children: [
-      //           // Container(
-      //           //   padding:
-      //           //       const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
-      //           //   child: Image.network(
-      //           //     category?.imageUrl ?? "",
-      //           //     width: 50,
-      //           //     height: 50,
-      //           //   ),
-      //           // ),
-      //           Row(
-      //             children: [
-      //               Expanded(
-      //                 child:
-      //               ),
-      //             ],
-      //           )
-      //         ],
-      //       ).animate().fade(duration: 300.ms),
-      //     )
-      //   ],
-      // ),
     );
   }
 }
