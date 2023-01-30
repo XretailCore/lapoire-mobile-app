@@ -33,6 +33,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         onlineWidget: PageView(
           controller: dashboardController.navigationBarController,
           allowImplicitScrolling: false,
+          physics: const NeverScrollableScrollPhysics(),
           onPageChanged: (index) {
             setState(() {
               pageIndex = index;

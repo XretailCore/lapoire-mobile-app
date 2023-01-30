@@ -24,10 +24,13 @@ class CustomBottomNavigationBar extends StatefulWidget {
       _CustomBottomNavigationBarState();
 }
 
-class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
+    with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     Color bottomColor = CustomThemes.appTheme.disabledColor;
+    AnimationController? hideAnimationController;
+
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -42,7 +45,11 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             backgroundColor: Colors.transparent,
             itemCount: 5,
             activeIndex: widget.pageIndex,
+            splashRadius: 0,
             elevation: 0,
+            hideAnimationCurve: Curves.easeInBack,
+            hideAnimationController: hideAnimationController,
+            splashSpeedInMilliseconds: 0,
             gapWidth: 0,
             height: 60.0,
             tabBuilder: (int index, bool isActive) {
