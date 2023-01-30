@@ -141,7 +141,7 @@ class FilterController extends GetxController with StateMixin<FilterDataModel> {
     }
   }
 
-  void clearFilter() {
+  void clearFilter({bool getBack=true}) {
     selectedsubCategoriesIds.clear();
     allSelectedCategories.clear();
     selectedCategories.clear();
@@ -151,9 +151,12 @@ class FilterController extends GetxController with StateMixin<FilterDataModel> {
     sortProp.value = "";
     minPriceController.value.text = filterParameters.priceRange?.minPrice!.toInt().toString() ?? 0.toString();
     maxPriceController.value.text = filterParameters.priceRange?.maxPrice!.toInt().toString() ?? 0.toString();
-    final listingController = Get.find<ListItemsController>();
-    listingController.onRefresh(showLoader: true);
-    Get.back();
+    if(getBack)
+      {
+        final listingController = Get.find<ListItemsController>();
+        listingController.onRefresh(showLoader: true);
+        Get.back();
+      }
   }
 
   void applyFilter({required BuildContext context, bool closeSideMenu = true}) {
