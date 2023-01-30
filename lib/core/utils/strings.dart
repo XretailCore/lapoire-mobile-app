@@ -11,7 +11,7 @@ const String currency = 'EGP',
 // Live Domain
 const String liveDomain = "https://mobile.imtenan.com";
 // Test Domain
-const String testDomain = "http://52.232.77.11:2012";
+const String testDomain = "http://193.42.121.138:5002";
 
 const String domain = (kDebugMode || kProfileMode) ? testDomain : liveDomain;
 
