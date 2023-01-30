@@ -158,6 +158,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.paymentsMethod.name: 'طريق الدفع',
       Translate.yourItems.name: 'عناصرك',
       Translate.confirm.name: 'تأكيد',
+      Translate.confirmPasswordMessage.name: 'تأكيد كلمة المرور غير متطابق',
       Translate.selectCollectingStore.name: 'حدد متجر التحصيل',
       Translate.nearestStores.name: 'أقرب المتاجر',
       Translate.allStores.name: 'جميع المتاجر',

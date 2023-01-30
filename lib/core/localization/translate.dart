@@ -149,6 +149,7 @@ enum Translate {
   paymentsMethod,
   yourItems,
   confirm,
+  confirmPasswordMessage,
   selectCollectingStore,
   nearestStores,
   allStores,

@@ -67,6 +67,12 @@ class Signupwidget extends GetView<SignupController> {
               textEditingController: controller.confirmPasswordTEC,
               hint: '${Translate.confirmYourPassword.tr} *',
               textInputAction: TextInputAction.done,
+              validator: (value){
+                if(value!=controller.passwordTEC.value.text)
+                  {
+                    return Translate.confirmPasswordMessage.tr;
+                  }
+              },
             ),
             const SizedBox(height: 15),
             InkWell(

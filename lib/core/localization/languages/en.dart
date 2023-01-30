@@ -159,6 +159,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.paymentsMethod.name: 'Payments Method',
       Translate.yourItems.name: 'Your Items',
       Translate.confirm.name: 'Confirm',
+      Translate.confirmPasswordMessage.name: "The password confirmation doesn't match",
       Translate.selectCollectingStore.name: 'Select Collecting Store',
       Translate.nearestStores.name: 'Nearest Stores',
       Translate.allStores.name: 'All Stores',
