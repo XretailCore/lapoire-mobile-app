@@ -23,7 +23,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       Get.find<DashboardController>();
 
   final CartController cartController = Get.find<CartController>();
-  int pageIndex = 0;
+  int pageIndex = 2;
 
   @override
   Widget build(BuildContext context) {
