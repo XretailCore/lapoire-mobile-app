@@ -55,7 +55,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.newPassword.name: "New Password",
       Translate.confirmYourPassword.name: "Confirm Your Password",
       Translate.forgetPassword.name: "Forget Password ?",
-      Translate.forgetPasswordText.name: "Forget Password",
+      Translate.enterYourPhone.name: "Enter your phone",
       Translate.enterTheMobileNumberAssociatedWithYourAccount.name:
           "Enter Your Mobile Number, Then Press Send, And We Will Send You The Verification Code",
       Translate.mobile.name: "Mobile",

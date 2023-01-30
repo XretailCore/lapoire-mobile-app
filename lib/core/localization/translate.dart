@@ -55,7 +55,7 @@ enum Translate {
   newPassword,
   confirmYourPassword,
   forgetPassword,
-  forgetPasswordText,
+  enterYourPhone,
   enterTheMobileNumberAssociatedWithYourAccount,
   mobile,
   send,

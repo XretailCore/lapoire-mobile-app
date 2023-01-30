@@ -77,7 +77,7 @@ class SplashWidget extends StatelessWidget {
         ),
         Center(
           child: Image.asset(
-            'assets/images/main_logo.png',
+            'assets/images/splash.png',
             width: 150,
           ),
         ),

@@ -56,7 +56,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.newPassword.name: "كلمة السر الجديدة",
       Translate.confirmYourPassword.name: "تأكيد كلمة السر",
       Translate.forgetPassword.name: "نسيت كلمة السر ؟",
-      Translate.forgetPasswordText.name: "نسيت كلمة السر",
+      Translate.enterYourPhone.name: "ادخل رقم الهاتف",
       Translate.enterTheMobileNumberAssociatedWithYourAccount.name:
           "أدخل رقم الهاتف المحمول المرتبط بحسابك ، ثم انقر فوق إرسال. سوف نرسل لك رمز التحقق",
       Translate.mobile.name: "رقم الهاتف",
