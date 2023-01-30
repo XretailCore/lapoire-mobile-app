@@ -50,7 +50,7 @@ class IntroScreen extends GetView<IntroController> {
                     onTap: () {
                       Get.toNamed(Routes.sign);
                     },
-                    title: Translate.signIn.tr,
+                    title: Translate.login.tr,
                   ),
                 ),
                 const SizedBox(width: 20),

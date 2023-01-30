@@ -88,7 +88,7 @@ class MyAccountScreen extends GetView<MyAccountController> {
                               )
                             : MenuItemWidget(
                                 icon: "assets/images/signout.svg",
-                                title: Translate.signIn.tr,
+                                title: Translate.login.tr,
                                 onTap: controller.goToSign,
                               ),
                       ),

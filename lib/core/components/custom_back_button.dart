@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../localization/translate.dart';
@@ -16,7 +17,8 @@ class CustomBackButton extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset("assets/images/back.png"),
+          const SizedBox(height: 24.0),
+          SvgPicture.asset("assets/images/back.svg"),
           CustomText(
             Translate.back.tr,
             style: const TextStyle(fontSize: 10,color: AppColors.redColor),

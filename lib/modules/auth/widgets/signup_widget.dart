@@ -112,7 +112,7 @@ class Signupwidget extends GetView<SignupController> {
                     style: TextStyle(color: primaryColor, fontSize: 14),
                     children: [
                       TextSpan(
-                        text: Translate.signIn.tr.toUpperCase(),
+                        text: Translate.login.tr.toUpperCase(),
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
