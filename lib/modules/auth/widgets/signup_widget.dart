@@ -1,6 +1,7 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:imtnan/core/components/custom_text.dart';
 import 'package:imtnan/core/utils/helper_functions.dart';
+import 'package:imtnan/modules/auth/widgets/social_media_widget.dart';
 
 import '../../../core/components/custom_button.dart';
 import '../../../core/localization/translate.dart';
@@ -131,6 +132,8 @@ class Signupwidget extends GetView<SignupController> {
                   ),
                 ),
             ),
+            const SizedBox(height: 20),
+            const SocialMediaWidget(),
             const SizedBox(height: 10),
             PrivacyCheckBoxWidget(
               onChanged: controller.onChangePrivacy,
