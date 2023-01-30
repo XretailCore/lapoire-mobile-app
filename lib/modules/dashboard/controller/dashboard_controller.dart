@@ -15,7 +15,7 @@ class DashboardController extends GetxController with StateMixin<SettingModel> {
   late SettingModel settingData;
   double? versionNumber;
   List<Version>? versions;
-  final navigationBarController = PageController(initialPage: 0);
+  final navigationBarController = PageController(initialPage: 2);
 
   @override
   void onReady() {

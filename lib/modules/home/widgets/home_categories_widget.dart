@@ -53,9 +53,13 @@ class HomeCategoriesWidget extends GetView<HomeController> {
                       decoration: BoxDecoration(
                           color: CustomThemes.appTheme.primaryColor,
                           shape: BoxShape.circle),
-                      child: const Icon(
-                        FontAwesomeIcons.caretLeft,
-                        color: Colors.white,
+                      child: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: Icon(
+                          FontAwesomeIcons.caretLeft,
+                          color: Colors.white,
+                          size: 15,
+                        ),
                       ),
                     ),
                   ),
@@ -88,9 +92,13 @@ class HomeCategoriesWidget extends GetView<HomeController> {
                       decoration: BoxDecoration(
                           color: CustomThemes.appTheme.primaryColor,
                           shape: BoxShape.circle),
-                      child: const Icon(
-                        FontAwesomeIcons.caretRight,
-                        color: Colors.white,
+                      child: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: Icon(
+                          FontAwesomeIcons.caretRight,
+                          color: Colors.white,
+                          size: 15,
+                        ),
                       ),
                     ),
                   ),
