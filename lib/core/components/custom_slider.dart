@@ -17,21 +17,23 @@ class CustomSlider extends StatefulWidget {
   final Color? indicatorColor;
   final Function(int value, CarouselPageChangedReason reason)? onPageChanged;
   final double ratio;
+  final double? height;
 
-  const CustomSlider({
-    Key? key,
-    required this.sliderImages,
-    this.controller,
-    this.showIndicator = false,
-    this.pageIndex = 0,
-    this.indicatorColor,
-    this.onPageChanged,
-    this.ratio = 0.8,
-    this.showTitleAndButton = true,
-    this.isInner = false,
-    this.viewportFraction,
-    this.autoPlay,
-  }) : super(key: key);
+  const CustomSlider(
+      {Key? key,
+      required this.sliderImages,
+      this.controller,
+      this.showIndicator = false,
+      this.pageIndex = 0,
+      this.indicatorColor,
+      this.onPageChanged,
+      this.ratio = 0.8,
+      this.showTitleAndButton = true,
+      this.isInner = false,
+      this.viewportFraction,
+      this.autoPlay,
+      this.height})
+      : super(key: key);
 
   @override
   State<CustomSlider> createState() => _CustomSliderState();
@@ -46,24 +48,25 @@ class _CustomSliderState extends State<CustomSlider> {
           ///List of widget to show image
           items: widget.sliderImages,
           options: CarouselOptions(
-            enlargeCenterPage: false,
-            onPageChanged: widget.onPageChanged,
-            viewportFraction: widget.viewportFraction ?? 2.0,
-            initialPage: 0,
-            aspectRatio: widget.ratio,
-            enableInfiniteScroll:
-                widget.sliderImages.length == 1 ? false : true,
-            reverse: false,
-            autoPlay: widget.autoPlay != null
-                ? widget.autoPlay!
-                : widget.sliderImages.length == 1
-                    ? false
-                    : true,
-            autoPlayInterval: const Duration(seconds: 4),
-            autoPlayAnimationDuration: const Duration(milliseconds: 800),
-            autoPlayCurve: Curves.easeOutSine,
-            // pauseAutoPlayOnTouch: Duration(seconds: 10),
-          ),
+              enlargeCenterPage: false,
+              onPageChanged: widget.onPageChanged,
+              viewportFraction: widget.viewportFraction ?? 2.0,
+              initialPage: 0,
+              aspectRatio: widget.ratio,
+              enableInfiniteScroll:
+                  widget.sliderImages.length == 1 ? false : true,
+              reverse: false,
+              autoPlay: widget.autoPlay != null
+                  ? widget.autoPlay!
+                  : widget.sliderImages.length == 1
+                      ? false
+                      : true,
+              autoPlayInterval: const Duration(seconds: 4),
+              autoPlayAnimationDuration: const Duration(milliseconds: 800),
+              autoPlayCurve: Curves.easeOutSine,
+              height: widget.height
+              // pauseAutoPlayOnTouch: Duration(seconds: 10),
+              ),
           carouselController: widget.controller,
         ),
         Positioned(
