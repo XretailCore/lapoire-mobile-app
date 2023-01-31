@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imtnan/core/utils/theme.dart';
 
 import '../../../core/components/text_form_field_widget.dart';
 
@@ -42,7 +43,7 @@ class _PasswordTextFormFieldWidgetState
         },
         icon: Icon(
           isObscureText ? Icons.visibility : Icons.visibility_off,
-          color: Colors.grey,
+          color:CustomThemes.appTheme.primaryColor,
         ),
       ),
       validator: widget.validator,

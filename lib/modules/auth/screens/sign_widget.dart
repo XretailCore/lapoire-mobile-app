@@ -20,7 +20,7 @@ class _SignWidgetState extends State<SignWidget> {
       appBar: CustomAppBar(
         showBackButton: true,
         title:
-            initialLabelIndex == 0 ? Translate.login.tr : Translate.signUp.tr,
+            initialLabelIndex == 0 ? Translate.login.tr : Translate.createAccount.tr,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

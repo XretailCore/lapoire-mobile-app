@@ -31,7 +31,8 @@ class PanelWidget extends GetView<InnerProductController> {
                   Expanded(
                     child: TextButton(
                         style: ButtonStyle(
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
                             ),
@@ -41,27 +42,41 @@ class PanelWidget extends GetView<InnerProductController> {
                                 ? primaryColor
                                 : Colors.grey,
                           ),
-
                           foregroundColor: MaterialStateProperty.all(
                             Colors.white,
                           ),
                         ),
-                        onPressed: controller.isAvaliable() || controller.isPreBooking
+                        onPressed: controller.isAvaliable() ||
+                                controller.isPreBooking
                             ? () async => controller.onTapAddToCard(
                                   context: context,
-                                  price: controller
-                                      .selectedProduct.selectedProductSku.finalPrice,
+                                  price: controller.selectedProduct
+                                      .selectedProductSku.finalPrice,
                                   quantity: controller.quantity,
                                   skuId: selectdProduct!.selectedProductSku.id!,
                                 )
                             : null,
                         child: controller.isPreBooking
-                            ? CustomText(Translate.prebooking.tr)
+                            ? CustomText(
+                                Translate.prebooking.tr,
+                                style: const TextStyle(color: Colors.white),
+                              )
                             : controller.isShowBuyNow()
-                                ? CustomText(Translate.addToBasket.tr)
+                                ? CustomText(
+                                    Translate.addToBasket.tr,
+                                    style: const TextStyle(color: Colors.white),
+                                  )
                                 : controller.isAvaliable()
-                                    ? CustomText(Translate.addToBasket.tr)
-                                    : CustomText(Translate.outOfStock.tr)),
+                                    ? CustomText(
+                                        Translate.addToBasket.tr,
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      )
+                                    : CustomText(
+                                        Translate.outOfStock.tr,
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      )),
                   ),
                 const SizedBox(width: 4),
                 if (controller.isPreBooking)
@@ -83,7 +98,8 @@ class PanelWidget extends GetView<InnerProductController> {
                   Expanded(
                     child: TextButton(
                       style: ButtonStyle(
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(18.0),
                           ),
@@ -106,23 +122,14 @@ class PanelWidget extends GetView<InnerProductController> {
                               skuid: selectdProduct?.selectedProductSku.id,
                               qty: controller.quantity)
                           : null,
-                      child: CustomText(Translate.buyNow.tr),
+                      child: CustomText(
+                        Translate.buyNow.tr,
+                        style: const TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
               ],
             ),
-          ),
-          CustomText(
-            Translate.deliveredWithinMinMaxBusinessDays.trParams(
-              params: {
-                'Min':
-                (selectdProduct?.minDeliveryPeriod).toString(),
-                'Max':
-                (selectdProduct?.maxDeliveryPeriod).toString(),
-                'PeriodName': (selectdProduct?.periodName).toString()
-              },
-            ),
-            style: TextStyle(fontSize: 11, color: primaryColor),
           ),
         ],
       ),

@@ -27,28 +27,27 @@ class FilterScreen extends GetView<FilterController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomText(
-                    Translate.filter.name.tr,
-                    style: TextStyle(
-                      fontSize: 28,
-                      color: primary,
-                      fontWeight: FontWeight.w600,
-                    ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: DottedBorder(
+                  borderType: BorderType.Circle,
+                  color: primary,
+                  child: InkWell(
+                    onTap: () => controller.closeFilter(),
+                    child: Icon(Icons.clear, color: primary),
                   ),
-                  const Spacer(),
-                  DottedBorder(
-                    borderType: BorderType.Circle,
-                    color: primary,
-                    child: InkWell(
-                      onTap: () => controller.closeFilter(),
-                      child: Icon(Icons.clear, color: primary),
-                    ),
-                  ),
-                ],
+                ),
               ),
+              CustomText(
+                Translate.filter.name.tr,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 28,
+                  color: primary,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 24),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -74,9 +73,20 @@ class FilterScreen extends GetView<FilterController> {
                       onTap: () {
                         FocusScope.of(context).unfocus();
                         if (int.parse(
-                                controller.minPriceController.value.text) >
-                            int.parse(
-                                controller.maxPriceController.value.text)) {
+                                    controller.minPriceController.value.text) >
+                                int.parse(
+                                    controller.maxPriceController.value.text) ||
+                            (int.parse(controller
+                                        .minPriceController.value.text) <
+                                    controller
+                                        .filterParameters.priceRange!.minPrice!
+                                        .toInt() ||
+                                int.parse(controller
+                                        .maxPriceController.value.text) >
+                                    controller
+                                        .filterParameters.priceRange!.maxPrice!
+                                        .toInt())) {
+                          controller.clearFilter(getBack: false);
                           showSnackBarAsBottomSheet(context);
                         } else {
                           controller.applyFilter(context: context);

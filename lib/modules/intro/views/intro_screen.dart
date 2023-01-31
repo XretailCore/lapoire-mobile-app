@@ -59,7 +59,7 @@ class IntroScreen extends GetView<IntroController> {
                     onTap: () {
                       Get.toNamed(Routes.sign);
                     },
-                    title: Translate.signUp.tr,
+                    title: Translate.createAccount.tr,
                     color: CustomThemes.appTheme.colorScheme.secondary,
                   ),
                 )
