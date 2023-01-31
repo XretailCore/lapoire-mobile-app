@@ -294,9 +294,9 @@ class _BodyWidgetState extends State<BodyWidget> {
                         QuantityButton(
                           key: UniqueKey(),
                           initialQuantity:
-                          widget.innerProductController.quantity,
+                              widget.innerProductController.quantity,
                           maxQuantity: widget.selectdProduct?.selectedProductSku
-                              .maxQuantity ??
+                                  .maxQuantity ??
                               0,
                           height: 40,
                           onQuantityChange: (v) {
@@ -403,7 +403,27 @@ class _BodyWidgetState extends State<BodyWidget> {
                   softWrap: true,
                 ),
               ),
-              const SizedBox(height: 8.0),
+              const SizedBox(height: 16.0),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: CustomText(
+                  Translate.deliveredWithinMinMaxBusinessDays.trParams(
+                    params: {
+                      'Min':
+                          (widget.selectdProduct?.minDeliveryPeriod).toString(),
+                      'Max':
+                          (widget.selectdProduct?.maxDeliveryPeriod).toString(),
+                      'PeriodName': (widget.selectdProduct?.periodName).toString()
+                    },
+                  ),
+                  style: const TextStyle(
+                    fontSize: 11,
+                    color: AppColors.redColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16.0),
               ExpansionTileWidget(
                 key: Key(ExpansionTileStatus.ingredientsAndHowToUse.name),
                 initiallyExpanded:
