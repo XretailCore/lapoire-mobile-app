@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linktsp_api/data/page_block/models/new_page_block_model.dart'
     hide Color;
-import 'package:linktsp_api/linktsp_api.dart';
+import 'package:linktsp_api/linktsp_api.dart' hide ItemItem;
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../core/utils/custom_shared_prefrenece.dart';
@@ -17,7 +17,9 @@ class HomeController extends GetxController with StateMixin {
   final refreshController = RefreshController(initialRefresh: false);
   final CarouselController scrollController = CarouselController();
   final CarouselController categoriesScrollController = CarouselController();
+  ItemItem productItem = ItemItem();
 
+  final RxBool? hideButtons = false.obs;
   NewPageBlockModel? homeModel;
   final sliderPageIndex = 0.obs;
   var homeTopBanner = DataItem(),
@@ -112,13 +114,13 @@ class HomeController extends GetxController with StateMixin {
     Get.toNamed(Routes.cart);
   }
 
-  Future<void> onTapAddToCard(
-      {required BuildContext context,
-      required int skuId,
-      required int quantity,
-      required double price,
-      required bool isPreOrder,
-      bool isHome = false}) async {
+  Future<void> onTapAddToCard({
+    required BuildContext context,
+    required int skuId,
+    required int quantity,
+    required double price,
+    required bool isPreOrder,
+  }) async {
     final cartController = Get.find<CartController>();
     await cartController.onTapAddToCard(
         isPreOrder: isPreOrder,

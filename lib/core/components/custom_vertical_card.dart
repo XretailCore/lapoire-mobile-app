@@ -1,11 +1,14 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:linktsp_api/linktsp_api.dart';
 import '../../modules/inner/widgets/favoriate_button_widget.dart';
 import '../../modules/wishlist/controllers/wishlist_controller.dart';
 import '../localization/translate.dart';
 import '../utils/app_colors.dart';
+import '../utils/routes.dart';
+import '../utils/strings.dart';
 import '../utils/theme.dart';
 import 'custom_counter.dart';
 import 'custom_text.dart';
@@ -36,6 +39,7 @@ class VerticalProductCard extends StatelessWidget {
   final Function()? onDecrement;
   final String itemSize;
   final bool isPreOrder;
+  final bool hideButtonsRow;
 
   const VerticalProductCard({
     Key? key,
@@ -46,6 +50,7 @@ class VerticalProductCard extends StatelessWidget {
     this.brandName = "",
     this.productName = "",
     this.price,
+    this.hideButtonsRow = false,
     this.oldPrice,
     this.hasOffer = false,
     this.showFavorite = false,
@@ -137,7 +142,7 @@ class VerticalProductCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CustomText(
                           promoText,
@@ -153,6 +158,8 @@ class VerticalProductCard extends StatelessWidget {
                         CustomText(
                           productName!,
                           maxLines: 2,
+                          softWrap: true,
+                          textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: CustomThemes.appTheme.primaryColor,
@@ -182,21 +189,16 @@ class VerticalProductCard extends StatelessWidget {
                                   const Spacer(),
                                   Offstage(
                                     offstage: !(hasOffer ?? false),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.only(
-                                          end: 10),
-                                      child: CustomText(
-                                        "$oldPrice ${Translate.egp.name.tr}",
-                                        maxLines: 1,
-                                        style: const TextStyle(
-                                          fontSize: 11,
-                                          color: Colors.grey,
-                                          decorationColor: Colors.red,
-                                          decoration:
-                                              TextDecoration.lineThrough,
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
+                                    child: CustomText(
+                                      "$oldPrice ${Translate.egp.name.tr}",
+                                      maxLines: 1,
+                                      style: const TextStyle(
+                                        fontSize: 11,
+                                        color: Colors.grey,
+                                        decorationColor: Colors.red,
+                                        decoration: TextDecoration.lineThrough,
                                       ),
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                 ],
@@ -292,97 +294,135 @@ class VerticalProductCard extends StatelessWidget {
             //               ),
             //             ),
             //           ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: CustomThemes.appTheme.primaryColor,
+
+            Visibility(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    InkWell(
+                      highlightColor: AppColors.highlighter,
+                      customBorder: const CircleBorder(),
+                      onTap: () {
+                        Get.toNamed(
+                          Routes.innerScreen,
+                          arguments: {
+                            Arguments.skuId: productId,
+                          },
+                        );
+                      },
+                      child: Container(
+                        height: 35,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              width: 1,
+                              color: CustomThemes.appTheme.primaryColor),
+                          color: Colors.transparent,
+                          shape: BoxShape.circle,
                         ),
-                        borderRadius:
-                        const BorderRadius.all(Radius.circular(20))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Icon(Icons.remove_red_eye_outlined,
-                          size: 22, color: CustomThemes.appTheme.primaryColor),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: FaIcon(FontAwesomeIcons.eye,
+                                size: 15,
+                                color: CustomThemes.appTheme.primaryColor),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                  isBogo && isCart
-                      ? Image.asset(
-                          "assets/images/gift.png",
-                          color: CustomThemes.appTheme.primaryColor,
-                        )
-                      : Offstage(
-                          offstage: false,
-                          // offstage: !(onDelete != null || hasBogo),
-                          child: Visibility(
-                            visible: onDelete != null,
-                            child: InkWell(
-                              onTap: onDelete,
-                              child: Container(
-                                padding: const EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                    color: CustomThemes.appTheme.primaryColor,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: const Icon(
-                                  Icons.clear,
-                                  size: 20,
-                                  color: Colors.white,
+                    isBogo && isCart
+                        ? Image.asset(
+                            "assets/images/gift.png",
+                            color: CustomThemes.appTheme.primaryColor,
+                          )
+                        : Offstage(
+                            offstage: false,
+                            // offstage: !(onDelete != null || hasBogo),
+                            child: Visibility(
+                              visible: onDelete != null,
+                              child: InkWell(
+                                onTap: onDelete,
+                                child: Container(
+                                  padding: const EdgeInsets.all(7),
+                                  decoration: BoxDecoration(
+                                      color: CustomThemes.appTheme.primaryColor,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: const Icon(
+                                    Icons.clear,
+                                    size: 20,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                            ),
-                            replacement: Offstage(
-                              offstage: !showFavorite!,
-                              child: Obx(
-                                () => Container(
-                                  padding: const EdgeInsets.all(5.0),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: CustomThemes.appTheme.primaryColor,
+                              replacement: Offstage(
+                                offstage: !showFavorite!,
+                                child: Obx(
+                                  () => Container(
+                                    height: 35,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 1,
+                                          color: CustomThemes
+                                              .appTheme.primaryColor),
+                                      color: Colors.transparent,
+                                      shape: BoxShape.circle,
                                     ),
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(50),
+                                    child: Center(
+                                      child: FavoriateButtonWidget(
+                                        key: UniqueKey(),
+                                        iconSize: 15,
+                                        defaultValue:
+                                            Get.find<WishlistController>()
+                                                .isFavorite(productId),
+                                        onFavoraite: (v) {
+                                          var listingItem = ListingItem(
+                                            id: productId,
+                                            finalPrice: price,
+                                          );
+                                          final wishlistController =
+                                              Get.find<WishlistController>();
+                                          wishlistController.onChangeFavorite(
+                                              context, v, listingItem);
+                                        },
+                                      ),
                                     ),
-                                  ),
-                                  child: FavoriateButtonWidget(
-                                    key: UniqueKey(),
-                                    iconSize: 22,
-                                    defaultValue: Get.find<WishlistController>()
-                                        .isFavorite(productId),
-                                    onFavoraite: (v) {
-                                      var listingItem = ListingItem(
-                                        id: productId,
-                                        finalPrice: price,
-                                      );
-                                      final wishlistController =
-                                          Get.find<WishlistController>();
-                                      wishlistController.onChangeFavorite(
-                                          context, v, listingItem);
-                                    },
                                   ),
                                 ),
                               ),
                             ),
                           ),
+                    InkWell(
+                      highlightColor: AppColors.highlighter,
+                      customBorder: const CircleBorder(),
+                      onTap: isAvailable ? onAddToCart : null,
+                      child: Container(
+                        height: 35,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              width: 1,
+                              color: isAvailable
+                                  ? CustomThemes.appTheme.primaryColor
+                                  : Colors.grey),
+                          color: Colors.transparent,
+                          shape: BoxShape.circle,
                         ),
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: CustomThemes.appTheme.primaryColor,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: FaIcon(FontAwesomeIcons.cartShopping,
+                                size: 15,
+                                color: isAvailable
+                                    ? CustomThemes.appTheme.primaryColor
+                                    : Colors.grey),
+                          ),
                         ),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Icon(Icons.shopping_cart,
-                          size: 22, color: CustomThemes.appTheme.primaryColor),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              visible: !hideButtonsRow,
             )
           ],
         ),
@@ -393,9 +433,34 @@ class VerticalProductCard extends StatelessWidget {
               children: [
                 Offstage(
                   offstage: !hasOffer!,
-                  child: OfferBannerWidget(offerText: offerPercentage),
+                  child: OfferBannerWidget(
+                    offerText: offerPercentage,
+                    textColor: Colors.white,
+                    backgroundColor: AppColors.redColor,
+                  ),
                 ),
               ],
+            ),
+          ),
+        ),
+        Visibility(
+          visible: promoText.isNotEmpty,
+          child: Positioned(
+            right: 5,
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+              child: Row(
+                children: [
+                  Offstage(
+                    offstage: !hasOffer!,
+                    child: OfferBannerWidget(
+                      offerText: promoText,
+                      textColor: Colors.white,
+                      backgroundColor: CustomThemes.appTheme.primaryColor,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

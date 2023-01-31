@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:imtnan/core/components/prouct_buttons_widget.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:linktsp_api/data/page_block/models/new_page_block_model.dart';
 
@@ -39,18 +40,52 @@ class HomeListingWidget extends GetView<HomeController> {
             CustomText(
               title,
               style: TextStyle(
-                color: CustomThemes.appTheme.primaryColor,
+                  color: CustomThemes.appTheme.primaryColor,
                   fontWeight: FontWeight.w400,
                   fontSize: 32,
-                  fontFamily: "Bayshore"
-              ),
+                  fontFamily: "Bayshore"),
             ),
             const SizedBox(height: 10),
-            CarouselSlider(
-              items: getItems(items, context),
+            CarouselSlider.builder(
+              itemBuilder:
+                  (BuildContext context, int itemIndex, int pageViewIndex) {
+                var item = items![itemIndex];
+                return ProductCardWidget(
+                  productId: item.id!,
+                  elevation: 0,
+                  promoText: item.product?.promoText ?? '',
+                  isPreOrder: item.product?.preOrder ?? false,
+                  imageHeight: .32.sw,
+                  productName: item.name ?? "",
+                  hideButtonsRow: false,
+                  image: item.imageUrl ?? "",
+                  oldPrice: item.product?.price ?? 0.0,
+                  price: item.product?.finalPrice ?? 0,
+                  isBogo: !(item.product?.bogoPromoText == null),
+                  hasOffer: !(item.product?.productDiscountList == null ||
+                      item.product!.productDiscountList!.isEmpty),
+                  offerPercentage: item.product?.productDiscountList == null ||
+                          item.product!.productDiscountList!.isEmpty
+                      ? ""
+                      : item.product!.productDiscountList?.first.value ?? "",
+                  isAvailable: !(item.product?.isOutOfStock ?? false),
+                  bogoText: item.product?.bogoPromoText ?? '',
+                  showFavorite: true,
+                  onAddToCart: () => controller.onTapAddToCard(
+                    context: context,
+                    skuId: item.id!,
+                    price: item.product?.finalPrice ?? 0,
+                    quantity: 1,
+                    isPreOrder: item.product?.preOrder ?? false,
+                  ),
+                );
+              },
+              itemCount: items?.length,
               options: CarouselOptions(
                 enlargeCenterPage: true,
-                //onPageChanged: onPageChanged,
+                onPageChanged: (index, reason) {
+                  controller.productItem = items![index];
+                },
                 viewportFraction: 0.5,
                 initialPage: 0,
                 aspectRatio: 1 / .68,
@@ -61,9 +96,8 @@ class HomeListingWidget extends GetView<HomeController> {
                 autoPlayCurve: Curves.easeOutSine,
                 // pauseAutoPlayOnTouch: Duration(seconds: 10),
               ),
-              //carouselController: controller,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 elevation: 0.0,
@@ -90,43 +124,5 @@ class HomeListingWidget extends GetView<HomeController> {
         ),
       ),
     );
-  }
-
-  List<Widget> getItems(List<ItemItem>? items, BuildContext context) {
-    List<Widget> itemsAsWidgets = [];
-    for (var item in items!) {
-      itemsAsWidgets.add(
-        ProductCardWidget(
-          productId: item.id!,
-          elevation: 0,
-          promoText: item.product?.promoText ?? '',
-          isPreOrder: item.product?.preOrder ?? false,
-          imageHeight: .32.sw,
-          productName: item.name ?? "",
-          image: item.imageUrl ?? "",
-          oldPrice: item.product?.price ?? 0.0,
-          price: item.product?.finalPrice ?? 0,
-          isBogo: !(item.product?.bogoPromoText == null),
-          hasOffer: !(item.product?.productDiscountList == null ||
-              item.product!.productDiscountList!.isEmpty),
-          offerPercentage: item.product?.productDiscountList == null ||
-                  item.product!.productDiscountList!.isEmpty
-              ? ""
-              : item.product!.productDiscountList?.first.value ?? "",
-          isAvailable: !(item.product?.isOutOfStock ?? false),
-          bogoText: item.product?.bogoPromoText ?? '',
-          showFavorite: true,
-          onAddToCart: () => controller.onTapAddToCard(
-            context: context,
-            skuId: item.id!,
-            price: item.product?.finalPrice ?? 0,
-            quantity: 1,
-            isHome: true,
-            isPreOrder: item.product?.preOrder ?? false,
-          ),
-        ),
-      );
-    }
-    return itemsAsWidgets;
   }
 }

@@ -9,6 +9,7 @@ import 'package:linktsp_api/data/list/models/list_model.dart';
 import '../../modules/wishlist/controllers/wishlist_controller.dart';
 import '../localization/translate.dart';
 import '../shimmer_loader/images_shimmer.dart';
+import '../utils/app_colors.dart';
 import '../utils/theme.dart';
 import 'custom_counter.dart';
 import 'custom_text.dart';
@@ -152,6 +153,8 @@ class HorizontalProductCard extends StatelessWidget {
                         offstage: !hasOffer!,
                         child: OfferBannerWidget(
                           offerText: offerPercentage,
+                          textColor: Colors.white,
+                          backgroundColor: AppColors.redColor,
                         ),
                       ),
                     ),
