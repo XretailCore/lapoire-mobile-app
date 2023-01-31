@@ -125,7 +125,7 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
       if (cartSummaryResult.value.items == null ||
           cartSummaryResult.value.items!.isEmpty) {
         setCartCount(cartSummaryResult.value.items ?? []);
-        total.value= num.parse(cartSummaryResult.value.summary?.last.value ??"0.0");
+        total.value= int.parse(cartSummaryResult.value.summary?.last.value ??"0.0").toDouble();
         change(cartSummaryResult.value, status: RxStatus.empty());
       } else {
         cartItemsIds.clear();

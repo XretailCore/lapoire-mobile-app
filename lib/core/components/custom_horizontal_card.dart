@@ -6,7 +6,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:linktsp_api/data/list/models/list_model.dart';
-import '../../modules/inner/widgets/favoriate_button_widget.dart';
 import '../../modules/wishlist/controllers/wishlist_controller.dart';
 import '../localization/translate.dart';
 import '../shimmer_loader/images_shimmer.dart';
@@ -43,6 +42,7 @@ class HorizontalProductCard extends StatelessWidget {
   final String bogoText;
   final String promoText;
   final bool showDashedLine;
+
   const HorizontalProductCard({
     Key? key,
     required this.productId,
@@ -70,7 +70,8 @@ class HorizontalProductCard extends StatelessWidget {
     this.isAvailable = true,
     this.maxCount,
     this.bogoText = '',
-    this.promoText = '', this.showDashedLine=true,
+    this.promoText = '',
+    this.showDashedLine = true,
   }) : super(key: key);
 
   @override
@@ -81,8 +82,9 @@ class HorizontalProductCard extends StatelessWidget {
         Stack(
           children: [
             Row(
-              crossAxisAlignment:
-                  !isCart! ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+              crossAxisAlignment: !isCart!
+                  ? CrossAxisAlignment.center
+                  : CrossAxisAlignment.start,
               children: [
                 Stack(
                   clipBehavior: Clip.none,
@@ -92,7 +94,7 @@ class HorizontalProductCard extends StatelessWidget {
                       width: imageWidth,
                       child: image == null || image == ""
                           ? Image.asset(
-                        'assets/images/main_logo.png',
+                              'assets/images/main_logo.png',
                               width: 70,
                             )
                           : CachedNetworkImage(
@@ -144,31 +146,6 @@ class HorizontalProductCard extends StatelessWidget {
                       ),
                     ),
                     PositionedDirectional(
-                      end: 10,
-                      top: 10,
-                      child: Offstage(
-                        offstage: !showFavorite!,
-                        child: Obx(
-                          () => FavoriateButtonWidget(
-                            key: UniqueKey(),
-                            iconSize: 25,
-                            defaultValue: Get.find<WishlistController>()
-                                .isFavorite(productId),
-                            onFavoraite: (v) {
-                              var listingItem = ListingItem(
-                                id: productId,
-                                finalPrice: price,
-                              );
-                              final wishlistController =
-                                  Get.find<WishlistController>();
-                              wishlistController.onChangeFavorite(
-                                  context, v, listingItem);
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                    PositionedDirectional(
                       start: 10,
                       top: 10,
                       child: Offstage(
@@ -211,19 +188,59 @@ class HorizontalProductCard extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Offstage(
-                            offstage: !(onDelete != null || isBogo),
-                            child: Visibility(
-                              visible: onDelete != null,
-                              child: DottedBorder(
-                                borderType: BorderType.Circle,
-                                color: AppColors.redColor,
-                                child: InkWell(
-                                  onTap: onDelete,
-                                  child: const Icon(Icons.clear, color: AppColors.redColor),
+                          Column(
+                            children: [
+                              Offstage(
+                                offstage: !(onDelete != null ||
+                                    isBogo ||
+                                    showFavorite!),
+                                child: DottedBorder(
+                                  borderType: BorderType.Circle,
+                                  color: AppColors.redColor,
+                                  child: InkWell(
+                                    onTap: () {
+                                      if (onDelete != null) {
+                                        onDelete;
+                                      } else {
+                                        var listingItem = ListingItem(
+                                          id: productId,
+                                          finalPrice: price,
+                                        );
+                                        final wishlistController =
+                                            Get.find<WishlistController>();
+                                        wishlistController.onChangeFavorite(
+                                            context, false, listingItem);
+                                      }
+                                    },
+                                    child: const Icon(Icons.clear,
+                                        color: AppColors.redColor),
+                                  ),
                                 ),
                               ),
-                            ),
+                              const SizedBox(height: 8.0),
+                              Offstage(
+                                offstage: !showFavorite!,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: CustomThemes.appTheme.primaryColor,
+                                    border: Border.all(
+                                      color: CustomThemes.appTheme.primaryColor,
+                                    ),
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(20),
+                                    ),
+                                  ),
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(5.0),
+                                    child: Icon(
+                                      Icons.shopping_cart,
+                                      size: 22,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -316,12 +333,13 @@ class HorizontalProductCard extends StatelessWidget {
                                     decrement: count == null || count == 1
                                         ? () {}
                                         : ondecrement!,
-                                    maxCount: price == 0 ? count ?? 1 : maxCount,
+                                    maxCount:
+                                        price == 0 ? count ?? 1 : maxCount,
                                   ),
                                 ],
                               ),
                       ),
-                      isCart!? const SizedBox(height: 8.0):const SizedBox(),
+                      isCart! ? const SizedBox(height: 8.0) : const SizedBox(),
                     ],
                   ),
                 )),
@@ -340,7 +358,11 @@ class HorizontalProductCard extends StatelessWidget {
             ),
           ],
         ),
-        if(showDashedLine)const DottedLine(dashColor: AppColors.redColor,)
+        const SizedBox(height: 8.0),
+        if (showDashedLine)
+          const DottedLine(
+            dashColor: AppColors.redColor,
+          )
       ],
     );
   }
