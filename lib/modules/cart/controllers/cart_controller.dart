@@ -20,6 +20,7 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
   RxInt cartCounter = 0.obs;
   final List<int> cartItemsIds = <int>[];
   final facebookAppEvents = FacebookAppEvents();
+  Rx<num> total =0.0.obs;
 
   final Rx<CartSummaryModel> cartSummaryResult = CartSummaryModel().obs;
   final UserSharedPrefrenceController _userSharedPrefrenceController =
@@ -124,6 +125,7 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
       if (cartSummaryResult.value.items == null ||
           cartSummaryResult.value.items!.isEmpty) {
         setCartCount(cartSummaryResult.value.items ?? []);
+        total.value= num.parse(cartSummaryResult.value.summary?.last.value ??"0.0");
         change(cartSummaryResult.value, status: RxStatus.empty());
       } else {
         cartItemsIds.clear();
@@ -148,6 +150,9 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
       List<CartItemModel> guestCartItems = await LinkTspApi.instance.cart
           .guestCartUpdate(cartSkuModel: guestCart);
       if (guestCartItems.isNotEmpty) {
+        for(var item in guestCartItems) {
+          total.value += item.finalPrice! * item.qty!;
+        }
         setCartCount(guestCartItems.cast<CartItemModel>());
         change(CartSummaryModel(items: guestCartItems.cast<CartItemModel>()),
             status: RxStatus.success());

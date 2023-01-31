@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dotted_border/dotted_border.dart';
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:linktsp_api/data/list/models/list_model.dart';
 import '../../modules/inner/widgets/favoriate_button_widget.dart';
 import '../../modules/wishlist/controllers/wishlist_controller.dart';
@@ -39,6 +42,7 @@ class HorizontalProductCard extends StatelessWidget {
   final int? maxCount;
   final String bogoText;
   final String promoText;
+  final bool showDashedLine;
   const HorizontalProductCard({
     Key? key,
     required this.productId,
@@ -66,293 +70,278 @@ class HorizontalProductCard extends StatelessWidget {
     this.isAvailable = true,
     this.maxCount,
     this.bogoText = '',
-    this.promoText = '',
+    this.promoText = '', this.showDashedLine=true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 0),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: CustomThemes.appTheme.primaryColor,
-        ),
-      ),
-      child: Stack(
-        children: [
-          Row(
-            crossAxisAlignment:
-                !isCart! ? CrossAxisAlignment.center : CrossAxisAlignment.start,
-            children: [
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  SizedBox(
-                    height: imageHeight,
-                    width: imageWidth,
-                    child: image == null || image == ""
-                        ? Image.asset(
-                      'assets/images/main_logo.png',
-                            width: 70,
-                          )
-                        : CachedNetworkImage(
-                            imageUrl: image!,
-                            height: 20,
-                            imageBuilder: (_, imagwe) => Container(
-                              height: imageHeight,
-                              width: imageWidth,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  // fit: BoxFit.fitHeight,
-                                  image: NetworkImage(image as String),
+    return Column(
+      children: [
+        Stack(
+          children: [
+            Row(
+              crossAxisAlignment:
+                  !isCart! ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+              children: [
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    SizedBox(
+                      height: imageHeight,
+                      width: imageWidth,
+                      child: image == null || image == ""
+                          ? Image.asset(
+                        'assets/images/main_logo.png',
+                              width: 70,
+                            )
+                          : CachedNetworkImage(
+                              imageUrl: image!,
+                              height: 20,
+                              imageBuilder: (_, imagwe) => Container(
+                                height: imageHeight,
+                                width: imageWidth,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    // fit: BoxFit.fitHeight,
+                                    image: NetworkImage(image as String),
+                                  ),
                                 ),
                               ),
-                            ),
-                            errorWidget: (_, __, ___) => const Center(
-                              child: Icon(Icons.error_outline),
-                            ),
-                            placeholder: (context, String image) =>
-                                ImagesShimmerLoader(
-                                    height: imageHeight, width: imageWidth),
-                          ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    left: 0,
-                    child: Offstage(
-                      offstage: !(isBogo && bogoText.isNotEmpty),
-                      child: Container(
-                        padding: const EdgeInsets.all(2),
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: 0),
-                        decoration: const BoxDecoration(
-                          color: Color.fromRGBO(219, 183, 6, 1),
-                        ),
-                        child: CustomText(
-                          bogoText,
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-                  ),
-                  PositionedDirectional(
-                    end: 10,
-                    top: 10,
-                    child: Offstage(
-                      offstage: !showFavorite!,
-                      child: Obx(
-                        () => FavoriateButtonWidget(
-                          key: UniqueKey(),
-                          iconSize: 25,
-                          defaultValue: Get.find<WishlistController>()
-                              .isFavorite(productId),
-                          onFavoraite: (v) {
-                            var listingItem = ListingItem(
-                              id: productId,
-                              finalPrice: price,
-                            );
-                            final wishlistController =
-                                Get.find<WishlistController>();
-                            wishlistController.onChangeFavorite(
-                                context, v, listingItem);
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                  PositionedDirectional(
-                    start: 10,
-                    top: 10,
-                    child: Offstage(
-                      offstage: !hasOffer!,
-                      child: OfferBannerWidget(
-                        offerText: offerPercentage,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Expanded(
-                  child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Offstage(
-                          offstage: !(onDelete != null || isBogo),
-                          child: Visibility(
-                            visible: onDelete != null,
-                            child: InkWell(
-                              onTap: onDelete,
-                              child: const Icon(
-                                Icons.remove_circle,
-                                size: 20,
+                              errorWidget: (_, __, ___) => const Center(
+                                child: Icon(Icons.error_outline),
                               ),
+                              placeholder: (context, String image) =>
+                                  ImagesShimmerLoader(
+                                      height: imageHeight, width: imageWidth),
                             ),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      left: 0,
+                      child: Offstage(
+                        offstage: !(isBogo && bogoText.isNotEmpty),
+                        child: Container(
+                          padding: const EdgeInsets.all(2),
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 0),
+                          decoration: const BoxDecoration(
+                            color: Color.fromRGBO(219, 183, 6, 1),
+                          ),
+                          child: CustomText(
+                            bogoText,
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 0),
-                    CustomText(
-                      promoText,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: Color.fromRGBO(237, 151, 32, 1),
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
                       ),
                     ),
-                    SizedBox(height: promoText.isEmpty ? 0 : 5),
-                    CustomText(
-                      productName!,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: Color.fromRGBO(128, 128, 128, 1),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15,
+                    PositionedDirectional(
+                      end: 10,
+                      top: 10,
+                      child: Offstage(
+                        offstage: !showFavorite!,
+                        child: Obx(
+                          () => FavoriateButtonWidget(
+                            key: UniqueKey(),
+                            iconSize: 25,
+                            defaultValue: Get.find<WishlistController>()
+                                .isFavorite(productId),
+                            onFavoraite: (v) {
+                              var listingItem = ListingItem(
+                                id: productId,
+                                finalPrice: price,
+                              );
+                              final wishlistController =
+                                  Get.find<WishlistController>();
+                              wishlistController.onChangeFavorite(
+                                  context, v, listingItem);
+                            },
+                          ),
+                        ),
                       ),
                     ),
-                    SizedBox(height: size.isEmpty ? 0 : 5),
-                    if (size.isNotEmpty)
+                    PositionedDirectional(
+                      start: 10,
+                      top: 10,
+                      child: Offstage(
+                        offstage: !hasOffer!,
+                        child: OfferBannerWidget(
+                          offerText: offerPercentage,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                    child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 0),
                       CustomText(
-                        size,
+                        promoText,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
-                          color: Colors.grey,
+                          color: Color.fromRGBO(237, 151, 32, 1),
+                          fontWeight: FontWeight.bold,
                           fontSize: 12,
-                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                    SizedBox(height: size.isEmpty ? 0 : 5),
-                    price == 0
-                        ? CustomText(
-                            Translate.freeGift.tr,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                              color: CustomThemes.appTheme.primaryColor,
+                      SizedBox(height: promoText.isEmpty ? 0 : 5),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: CustomText(
+                              productName!,
+                              maxLines: 2,
+                              softWrap: true,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                          )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: CustomText(
-                                  "$price ${Translate.egp.name.tr}",
-                                  style: TextStyle(
-                                    fontSize: !isCart! ? 14 : 13,
-                                    fontWeight: FontWeight.bold,
-                                    color: CustomThemes.appTheme.primaryColor,
-                                  ),
+                          ),
+                          Offstage(
+                            offstage: !(onDelete != null || isBogo),
+                            child: Visibility(
+                              visible: onDelete != null,
+                              child: DottedBorder(
+                                borderType: BorderType.Circle,
+                                color: AppColors.redColor,
+                                child: InkWell(
+                                  onTap: onDelete,
+                                  child: const Icon(Icons.clear, color: AppColors.redColor),
                                 ),
                               ),
-                              // const SizedBox(width: 20),
-                              Expanded(
-                                child: Offstage(
-                                  offstage: !(hasOffer ?? false),
+                            ),
+                          ),
+                        ],
+                      ),
+                      if (size.isNotEmpty)
+                        CustomText(
+                          size,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            color: AppColors.redColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      SizedBox(height: size.isEmpty ? 0 : 5),
+                      price == 0
+                          ? CustomText(
+                              Translate.freeGift.tr,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13,
+                                color: CustomThemes.appTheme.primaryColor,
+                              ),
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
                                   child: CustomText(
-                                    "$oldPrice ${Translate.egp.name.tr}",
-                                    maxLines: 1,
+                                    "$price ${Translate.egp.name.tr}",
                                     style: TextStyle(
                                       fontSize: !isCart! ? 14 : 13,
-                                      color: Colors.grey,
-                                      decorationColor: Colors.red,
-                                      overflow: TextOverflow.ellipsis,
-                                      decoration: TextDecoration.lineThrough,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.redColor,
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                    SizedBox(height: (rate != null) ? 10 : 0),
-                    if (rate != null)
-                      RatingBar.builder(
-                        allowHalfRating: true,
-                        initialRating: rate ?? 0,
-                        ignoreGestures: true,
-                        itemSize: 18,
-                        onRatingUpdate: (double value) {},
-                        glowColor: primaryColor,
-                        unratedColor: primaryColor,
-                        itemBuilder: (BuildContext context, int index) {
-                          return (rate ?? 0) > index
-                              ? Icon(
-                                  Icons.star,
-                                  color: primaryColor,
-                                )
-                              : Icon(
-                                  Icons.star_border_outlined,
-                                  color: primaryColor,
-                                );
-                        },
-                      ),
-                    if (count != null)
-                      CustomText(
-                        "${Translate.quantity.tr}: $count",
-                        maxLines: 1,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          overflow: TextOverflow.ellipsis,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    SizedBox(height: count == null ? 0 : 5),
-                    SizedBox(height: (isCart == true) ? 10 : 0),
-                    Offstage(
-                      offstage: !isCart!,
-                      child: onIncrement == null
-                          ? Container()
-                          : Row(
-                              children: [
-                                CounterWidget(
-                                  count: count ?? 1,
-                                  increment: onIncrement!,
-                                  decrement: count == null || count == 1
-                                      ? () {}
-                                      : ondecrement!,
-                                  maxCount: price == 0 ? count ?? 1 : maxCount,
+                                // const SizedBox(width: 20),
+                                Expanded(
+                                  child: Offstage(
+                                    offstage: !(hasOffer ?? false),
+                                    child: CustomText(
+                                      "$oldPrice ${Translate.egp.name.tr}",
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                        fontSize: !isCart! ? 14 : 13,
+                                        color: Colors.grey,
+                                        decorationColor: Colors.red,
+                                        overflow: TextOverflow.ellipsis,
+                                        decoration: TextDecoration.lineThrough,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
-                    )
-                  ],
+                      SizedBox(height: (rate != null) ? 10 : 0),
+                      if (rate != null)
+                        RatingBar.builder(
+                          allowHalfRating: true,
+                          initialRating: rate ?? 0,
+                          ignoreGestures: true,
+                          itemSize: 18,
+                          onRatingUpdate: (double value) {},
+                          glowColor: primaryColor,
+                          unratedColor: primaryColor,
+                          itemBuilder: (BuildContext context, int index) {
+                            return (rate ?? 0) > index
+                                ? Icon(
+                                    Icons.star,
+                                    color: primaryColor,
+                                  )
+                                : Icon(
+                                    Icons.star_border_outlined,
+                                    color: primaryColor,
+                                  );
+                          },
+                        ),
+                      SizedBox(height: count == null ? 0 : 5),
+                      SizedBox(height: (isCart == true) ? 10 : 0),
+                      Offstage(
+                        offstage: !isCart!,
+                        child: onIncrement == null
+                            ? Container()
+                            : Row(
+                                children: [
+                                  CounterWidget(
+                                    count: count ?? 1,
+                                    increment: onIncrement!,
+                                    decrement: count == null || count == 1
+                                        ? () {}
+                                        : ondecrement!,
+                                    maxCount: price == 0 ? count ?? 1 : maxCount,
+                                  ),
+                                ],
+                              ),
+                      ),
+                      isCart!? const SizedBox(height: 8.0):const SizedBox(),
+                    ],
+                  ),
+                )),
+              ],
+            ),
+            PositionedDirectional(
+              end: 10,
+              top: 10,
+              child: Offstage(
+                offstage: !(price == 0.0),
+                child: Image.asset(
+                  "assets/images/gift.png",
+                  color: CustomThemes.appTheme.primaryColor,
                 ),
-              )),
-            ],
-          ),
-          PositionedDirectional(
-            end: 10,
-            top: 10,
-            child: Offstage(
-              offstage: !(price == 0.0),
-              child: Image.asset(
-                "assets/images/gift.png",
-                color: CustomThemes.appTheme.primaryColor,
               ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
+        if(showDashedLine)const DottedLine(dashColor: AppColors.redColor,)
+      ],
     );
   }
 }

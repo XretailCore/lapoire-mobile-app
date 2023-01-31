@@ -2,6 +2,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:imtnan/core/localization/translate.dart';
 import 'package:imtnan/core/utils/theme.dart';
 import 'custom_text.dart';
 
@@ -110,10 +111,10 @@ class BottomAppBarItemsData {
   ];
 
   static final labelList = <String>[
-    "menu".tr,
-    "wishlist".tr,
-    "home".tr,
-    "cart".tr,
-    "account".tr,
+    Translate.menu.tr,
+    Translate.wishlist.tr,
+    Translate.home.tr,
+    Translate.myCart.tr,
+    Translate.account.tr,
   ];
 }

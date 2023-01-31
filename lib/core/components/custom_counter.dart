@@ -1,11 +1,13 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import '../utils/theme.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
 import 'custom_text.dart';
 
 class CounterPart extends StatelessWidget {
   final bool disable;
   final Function()? onTap;
   final IconData icon;
+
   // ignore: use_key_in_widget_constructors
   const CounterPart(this.disable, this.onTap, this.icon);
 
@@ -13,18 +15,9 @@ class CounterPart extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: disable || onTap == null ? () {} : onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-        decoration: BoxDecoration(
-          color: disable || onTap == null
-              ? Colors.grey.withOpacity(.6)
-              : CustomThemes.appTheme.primaryColor,
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: Icon(icon,
-            size: 15,
-            color: disable || onTap == null ? Colors.black : Colors.white),
-      ),
+      child: Icon(icon,
+          size: 15,
+          color: disable || onTap == null ? Colors.black : AppColors.redColor),
     );
   }
 }
@@ -34,6 +27,7 @@ class CounterWidget extends StatelessWidget {
   final int? maxCount;
   final Function()? increment;
   final Function()? decrement;
+
   // ignore: use_key_in_widget_constructors
   const CounterWidget(
       {this.count = 1,
@@ -44,19 +38,25 @@ class CounterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StatefulBuilder(
-        builder: (context, setState) => Row(children: [
-              CounterPart((count == 1), decrement, Icons.remove),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
-                child: CustomText(
-                  count.toString(),
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 12),
-                ),
+      builder: (context, setState) => DottedBorder(
+        radius: const Radius.circular(20.0),
+        borderType: BorderType.RRect,
+        color: AppColors.redColor,
+        child: Row(
+          children: [
+            CounterPart((count == 1), decrement, Icons.remove),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
+              child: CustomText(
+                count.toString(),
+                style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 12,color: AppColors.redColor),
               ),
-              CounterPart((maxCount != null && count == maxCount), increment,
-                  Icons.add),
-            ]));
+            ),
+            CounterPart(
+                (maxCount != null && count == maxCount), increment, Icons.add),
+          ],
+        ),
+      ),
+    );
   }
 }

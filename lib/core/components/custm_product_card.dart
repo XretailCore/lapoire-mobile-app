@@ -21,6 +21,7 @@ class ProductCardWidget extends StatelessWidget {
   final double? oldPrice;
   final bool? hasOffer;
   final bool? showFavorite;
+  final bool showDashedLine;
   final bool? isCart;
   final String? size;
   final String? color;
@@ -71,7 +72,7 @@ class ProductCardWidget extends StatelessWidget {
     this.bogoText = '',
     this.promoText = '',
     this.onAddFeedBack,
-    this.isPreOrder = false,
+    this.isPreOrder = false, this.showDashedLine=false,
   }) : super(key: key);
 
   @override
@@ -126,6 +127,7 @@ class ProductCardWidget extends StatelessWidget {
             onDecrement: onDecrement,
           ),
           replacement: HorizontalProductCard(
+            showDashedLine: showDashedLine,
             productId: productId,
             productName: productName,
             promoText: promoText,
