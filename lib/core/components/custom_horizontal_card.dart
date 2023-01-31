@@ -181,11 +181,70 @@ class HorizontalProductCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
-                            child: CustomText(
-                              productName!,
-                              maxLines: 2,
-                              softWrap: true,
-                              overflow: TextOverflow.ellipsis,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText(
+                                  productName!,
+                                  maxLines: 2,
+                                  softWrap: true,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                if (size.isNotEmpty)
+                                  CustomText(
+                                    size,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      color: AppColors.redColor,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                SizedBox(height: size.isEmpty ? 0 : 5),
+                                price == 0
+                                    ? CustomText(
+                                  Translate.freeGift.tr,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13,
+                                    color: CustomThemes.appTheme.primaryColor,
+                                  ),
+                                )
+                                    : Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: CustomText(
+                                        "$price ${Translate.egp.name.tr}",
+                                        style: TextStyle(
+                                          fontSize: !isCart! ? 14 : 13,
+                                          fontWeight: FontWeight.w500,
+                                          color: AppColors.redColor,
+                                        ),
+                                      ),
+                                    ),
+                                    // const SizedBox(width: 20),
+                                    Expanded(
+                                      child: Offstage(
+                                        offstage: !(hasOffer ?? false),
+                                        child: CustomText(
+                                          "$oldPrice ${Translate.egp.name.tr}",
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                            fontSize: !isCart! ? 14 : 13,
+                                            color: Colors.grey,
+                                            decorationColor: Colors.red,
+                                            overflow: TextOverflow.ellipsis,
+                                            decoration: TextDecoration.lineThrough,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: (rate != null) ? 10 : 0),
+                              ],
                             ),
                           ),
                           Column(
@@ -244,60 +303,6 @@ class HorizontalProductCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      if (size.isNotEmpty)
-                        CustomText(
-                          size,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            color: AppColors.redColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      SizedBox(height: size.isEmpty ? 0 : 5),
-                      price == 0
-                          ? CustomText(
-                              Translate.freeGift.tr,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 13,
-                                color: CustomThemes.appTheme.primaryColor,
-                              ),
-                            )
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: CustomText(
-                                    "$price ${Translate.egp.name.tr}",
-                                    style: TextStyle(
-                                      fontSize: !isCart! ? 14 : 13,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.redColor,
-                                    ),
-                                  ),
-                                ),
-                                // const SizedBox(width: 20),
-                                Expanded(
-                                  child: Offstage(
-                                    offstage: !(hasOffer ?? false),
-                                    child: CustomText(
-                                      "$oldPrice ${Translate.egp.name.tr}",
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                        fontSize: !isCart! ? 14 : 13,
-                                        color: Colors.grey,
-                                        decorationColor: Colors.red,
-                                        overflow: TextOverflow.ellipsis,
-                                        decoration: TextDecoration.lineThrough,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                      SizedBox(height: (rate != null) ? 10 : 0),
                       if (rate != null)
                         RatingBar.builder(
                           allowHalfRating: true,
