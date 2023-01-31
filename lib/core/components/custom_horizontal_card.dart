@@ -7,6 +7,7 @@ import '../../modules/inner/widgets/favoriate_button_widget.dart';
 import '../../modules/wishlist/controllers/wishlist_controller.dart';
 import '../localization/translate.dart';
 import '../shimmer_loader/images_shimmer.dart';
+import '../utils/app_colors.dart';
 import '../utils/theme.dart';
 import 'custom_counter.dart';
 import 'custom_text.dart';
@@ -93,7 +94,7 @@ class HorizontalProductCard extends StatelessWidget {
                     width: imageWidth,
                     child: image == null || image == ""
                         ? Image.asset(
-                      'assets/images/main_logo.png',
+                            'assets/images/main_logo.png',
                             width: 70,
                           )
                         : CachedNetworkImage(
@@ -176,6 +177,8 @@ class HorizontalProductCard extends StatelessWidget {
                       offstage: !hasOffer!,
                       child: OfferBannerWidget(
                         offerText: offerPercentage,
+                        textColor: Colors.white,
+                        backgroundColor: AppColors.redColor,
                       ),
                     ),
                   ),

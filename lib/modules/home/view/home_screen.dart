@@ -93,11 +93,7 @@ class HomeScreen extends GetView<HomeController> {
                             title: Translate.bestSeller.tr,
                           ),
                           const SizedBox(height: 16),
-                          // CustomPaint(
-                          //   size: Size(50, (50 * 1).toDouble()),
-                          //   painter: RPSCustomPainter(
-                          //       CustomThemes.appTheme.primaryColor),
-                          // ),
+
                           CachedNetworkImage(
                             imageUrl:
                                 controller.firstAd.items?[0].imageUrl ?? "",

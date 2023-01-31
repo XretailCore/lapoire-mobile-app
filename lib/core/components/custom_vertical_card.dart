@@ -142,7 +142,7 @@ class VerticalProductCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CustomText(
                           promoText,
@@ -158,6 +158,8 @@ class VerticalProductCard extends StatelessWidget {
                         CustomText(
                           productName!,
                           maxLines: 2,
+                          softWrap: true,
+                          textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: CustomThemes.appTheme.primaryColor,
@@ -187,21 +189,16 @@ class VerticalProductCard extends StatelessWidget {
                                   const Spacer(),
                                   Offstage(
                                     offstage: !(hasOffer ?? false),
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.only(
-                                          end: 10),
-                                      child: CustomText(
-                                        "$oldPrice ${Translate.egp.name.tr}",
-                                        maxLines: 1,
-                                        style: const TextStyle(
-                                          fontSize: 11,
-                                          color: Colors.grey,
-                                          decorationColor: Colors.red,
-                                          decoration:
-                                              TextDecoration.lineThrough,
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
+                                    child: CustomText(
+                                      "$oldPrice ${Translate.egp.name.tr}",
+                                      maxLines: 1,
+                                      style: const TextStyle(
+                                        fontSize: 11,
+                                        color: Colors.grey,
+                                        decorationColor: Colors.red,
+                                        decoration: TextDecoration.lineThrough,
                                       ),
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                 ],
@@ -297,6 +294,7 @@ class VerticalProductCard extends StatelessWidget {
             //               ),
             //             ),
             //           ),
+
             Visibility(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -403,7 +401,9 @@ class VerticalProductCard extends StatelessWidget {
                         decoration: BoxDecoration(
                           border: Border.all(
                               width: 1,
-                              color: CustomThemes.appTheme.primaryColor),
+                              color: isAvailable
+                                  ? CustomThemes.appTheme.primaryColor
+                                  : Colors.grey),
                           color: Colors.transparent,
                           shape: BoxShape.circle,
                         ),
@@ -412,7 +412,9 @@ class VerticalProductCard extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: FaIcon(FontAwesomeIcons.cartShopping,
                                 size: 15,
-                                color: CustomThemes.appTheme.primaryColor),
+                                color: isAvailable
+                                    ? CustomThemes.appTheme.primaryColor
+                                    : Colors.grey),
                           ),
                         ),
                       ),
@@ -431,9 +433,34 @@ class VerticalProductCard extends StatelessWidget {
               children: [
                 Offstage(
                   offstage: !hasOffer!,
-                  child: OfferBannerWidget(offerText: offerPercentage),
+                  child: OfferBannerWidget(
+                    offerText: offerPercentage,
+                    textColor: Colors.white,
+                    backgroundColor: AppColors.redColor,
+                  ),
                 ),
               ],
+            ),
+          ),
+        ),
+        Visibility(
+          visible: promoText.isNotEmpty,
+          child: Positioned(
+            right: 5,
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+              child: Row(
+                children: [
+                  Offstage(
+                    offstage: !hasOffer!,
+                    child: OfferBannerWidget(
+                      offerText: promoText,
+                      textColor: Colors.white,
+                      backgroundColor: CustomThemes.appTheme.primaryColor,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
