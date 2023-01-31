@@ -39,15 +39,48 @@ class HomeListingWidget extends GetView<HomeController> {
             CustomText(
               title,
               style: TextStyle(
-                color: CustomThemes.appTheme.primaryColor,
+                  color: CustomThemes.appTheme.primaryColor,
                   fontWeight: FontWeight.w400,
                   fontSize: 32,
-                  fontFamily: "Bayshore"
-              ),
+                  fontFamily: "Bayshore"),
             ),
             const SizedBox(height: 10),
-            CarouselSlider(
-              items: getItems(items, context),
+            CarouselSlider.builder(
+              itemBuilder:
+                  (BuildContext context, int itemIndex, int pageViewIndex) {
+                final item = items![itemIndex];
+
+                return ProductCardWidget(
+                  productId: item.id!,
+                  elevation: 0,
+                  promoText: item.product?.promoText ?? '',
+                  isPreOrder: item.product?.preOrder ?? false,
+                  imageHeight: .32.sw,
+                  productName: item.name ?? "",
+                  hideButtonsRow: true,
+                  image: item.imageUrl ?? "",
+                  oldPrice: item.product?.price ?? 0.0,
+                  price: item.product?.finalPrice ?? 0,
+                  isBogo: !(item.product?.bogoPromoText == null),
+                  hasOffer: !(item.product?.productDiscountList == null ||
+                      item.product!.productDiscountList!.isEmpty),
+                  offerPercentage: item.product?.productDiscountList == null ||
+                          item.product!.productDiscountList!.isEmpty
+                      ? ""
+                      : item.product!.productDiscountList?.first.value ?? "",
+                  isAvailable: !(item.product?.isOutOfStock ?? false),
+                  bogoText: item.product?.bogoPromoText ?? '',
+                  showFavorite: true,
+                  onAddToCart: () => controller.onTapAddToCard(
+                    context: context,
+                    skuId: item.id!,
+                    price: item.product?.finalPrice ?? 0,
+                    quantity: 1,
+                    isPreOrder: item.product?.preOrder ?? false,
+                  ),
+                );
+              },
+              itemCount: items?.length,
               options: CarouselOptions(
                 enlargeCenterPage: true,
                 //onPageChanged: onPageChanged,
@@ -61,7 +94,6 @@ class HomeListingWidget extends GetView<HomeController> {
                 autoPlayCurve: Curves.easeOutSine,
                 // pauseAutoPlayOnTouch: Duration(seconds: 10),
               ),
-              //carouselController: controller,
             ),
             const SizedBox(height: 16),
             ElevatedButton(
@@ -121,7 +153,6 @@ class HomeListingWidget extends GetView<HomeController> {
             skuId: item.id!,
             price: item.product?.finalPrice ?? 0,
             quantity: 1,
-            isHome: true,
             isPreOrder: item.product?.preOrder ?? false,
           ),
         ),

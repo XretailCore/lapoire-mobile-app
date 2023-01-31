@@ -2,8 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/modules/home/widgets/home_ads_widget.dart';
-import 'package:linktsp_api/data/page_block/models/new_page_block_model.dart';
+import 'package:linktsp_api/data/page_block/models/new_page_block_model.dart'
+    as model;
 import '../../../core/components/custom_error_widget.dart';
+import '../../../core/components/star_widget.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/shimmer_loader/home_shimmer.dart';
 import '../../../core/shimmer_loader/images_shimmer.dart';
@@ -84,24 +86,18 @@ class HomeScreen extends GetView<HomeController> {
                           HomeListingWidget(
                             onAllProductsPressed: () =>
                                 controller.goToListingWithId(
-                              filterModel: controller
-                                      .bestSellers.items?.first.filterModel ??
-                                  FilterModel(),
-                              name: controller.bestSellers.items?.first.name ??
-                                  "",
-                            ),
+                                    filterModel: model.FilterModel(listType: 5),
+                                    name: Translate.bestSeller.tr),
                             key: UniqueKey(),
                             items: controller.bestSellers.items ?? [],
                             title: Translate.bestSeller.tr,
-                            onViewAll: () => controller.goToListingWithId(
-                              filterModel: controller
-                                      .bestSellers.items?.first.filterModel ??
-                                  FilterModel(),
-                              name: controller.bestSellers.items?.first.name ??
-                                  "",
-                            ),
                           ),
                           const SizedBox(height: 16),
+                          // CustomPaint(
+                          //   size: Size(50, (50 * 1).toDouble()),
+                          //   painter: RPSCustomPainter(
+                          //       CustomThemes.appTheme.primaryColor),
+                          // ),
                           CachedNetworkImage(
                             imageUrl:
                                 controller.firstAd.items?[0].imageUrl ?? "",
@@ -127,33 +123,26 @@ class HomeScreen extends GetView<HomeController> {
                           HomeAdsWidget(items: controller.firstAd.items),
                           const SizedBox(height: 16),
                           HomeListingWidget(
-                            onAllProductsPressed: () {},
+                            onAllProductsPressed: () =>
+                                controller.goToListingWithId(
+                                    filterModel: model.FilterModel(listType: 4),
+                                    name: Translate.newArrivals.tr),
                             isYellow: true,
                             key: UniqueKey(),
                             items: controller.newArrivals.items ?? [],
                             title: Translate.newArrivals.tr,
-                            onViewAll: () => controller.goToListingWithId(
-                              filterModel: controller
-                                      .newArrivals.items?.first.filterModel ??
-                                  FilterModel(),
-                              name: controller.newArrivals.items?.first.name ??
-                                  "",
-                            ),
                           ),
                           const SizedBox(height: 10),
                           HomeAdsWidget(items: controller.secondAd.items),
                           const SizedBox(height: 16),
                           HomeListingWidget(
-                            onAllProductsPressed: () {},
+                            onAllProductsPressed: () =>
+                                controller.goToListingWithId(
+                                    filterModel: model.FilterModel(listType: 6),
+                                    name: Translate.offers.tr),
                             key: UniqueKey(),
                             items: controller.offers.items ?? [],
                             title: Translate.offers.tr,
-                            onViewAll: () => controller.goToListingWithId(
-                              filterModel:
-                                  controller.offers.items?.first.filterModel ??
-                                      FilterModel(),
-                              name: controller.offers.items?.first.name ?? "",
-                            ),
                           ),
                         ],
                       ),

@@ -112,13 +112,13 @@ class HomeController extends GetxController with StateMixin {
     Get.toNamed(Routes.cart);
   }
 
-  Future<void> onTapAddToCard(
-      {required BuildContext context,
-      required int skuId,
-      required int quantity,
-      required double price,
-      required bool isPreOrder,
-      bool isHome = false}) async {
+  Future<void> onTapAddToCard({
+    required BuildContext context,
+    required int skuId,
+    required int quantity,
+    required double price,
+    required bool isPreOrder,
+  }) async {
     final cartController = Get.find<CartController>();
     await cartController.onTapAddToCard(
         isPreOrder: isPreOrder,

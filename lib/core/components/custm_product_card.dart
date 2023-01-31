@@ -39,6 +39,8 @@ class ProductCardWidget extends StatelessWidget {
   final String promoText;
   final Function()? onAddFeedBack;
   final bool isPreOrder;
+  final bool hideButtonsRow;
+
   const ProductCardWidget({
     Key? key,
     this.onCardTap,
@@ -71,6 +73,7 @@ class ProductCardWidget extends StatelessWidget {
     this.bogoText = '',
     this.promoText = '',
     this.onAddFeedBack,
+    this.hideButtonsRow = false,
     this.isPreOrder = false,
   }) : super(key: key);
 
@@ -104,6 +107,7 @@ class ProductCardWidget extends StatelessWidget {
             productId: productId,
             productImage: image,
             promoText: promoText,
+            hideButtonsRow: hideButtonsRow,
             isPreOrder: isPreOrder,
             itemSize: size ?? '',
             isCart: isCart ?? false,

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:imtnan/core/utils/theme.dart';
+
+import '../../../core/utils/app_colors.dart';
 
 class FavoriateButtonWidget extends StatefulWidget {
   const FavoriateButtonWidget({
     Key? key,
     required this.defaultValue,
     required this.onFavoraite,
-    this.iconSize = 18.0, this.isInner=false,
+    this.iconSize = 18.0,
+    this.isInner = false,
   }) : super(key: key);
   final bool defaultValue;
   final bool isInner;
@@ -27,16 +31,22 @@ class _FavoriateButtonWidgetState extends State<FavoriateButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-     Color primaryColor = widget.isInner?Colors.white:CustomThemes.appTheme.primaryColor;
+    Color primaryColor =
+        widget.isInner ? Colors.white : CustomThemes.appTheme.primaryColor;
     return InkWell(
+      highlightColor: AppColors.highlighter,
+      customBorder: const CircleBorder(),
       onTap: () {
         final changeFavoriateValue = !isFavoraite;
         widget.onFavoraite(changeFavoriateValue);
       },
-      child: Icon(
-        isFavoraite ? Icons.favorite : Icons.favorite_border,
-        size: widget.iconSize,
-        color: primaryColor,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: FaIcon(
+          isFavoraite ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart,
+          size: widget.iconSize,
+          color: primaryColor,
+        ),
       ),
     );
   }
