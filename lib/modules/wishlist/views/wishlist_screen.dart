@@ -10,78 +10,71 @@ import '../controllers/wishlist_controller.dart';
 
 class WishlistScreen extends GetView<WishlistController> {
   const WishlistScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return  controller.obx(
-        ((data) {
-          final wishList = data ?? [];
-          return GridView.builder(
-            key: UniqueKey(),
-            padding: const EdgeInsets.all(10),
-            shrinkWrap: true,
-            itemCount: wishList.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1 / 1.4,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-            ),
-            itemBuilder: (context, index) {
-              final oneOfWishlist = wishList.elementAt(index);
-              return ProductCardWidget(
-                productId: oneOfWishlist.id!,
-                isPreOrder: oneOfWishlist.preOrder ?? false,
-                imageHeight: .32.sw,
-                promoText: oneOfWishlist.promoText ?? '',
-                elevation: 2,
-                hasOffer: (oneOfWishlist.productDiscountList ?? []).isNotEmpty,
-                offerPercentage:
-                    (oneOfWishlist.productDiscountList ?? []).isEmpty
-                        ? ""
-                        : oneOfWishlist.productDiscountList?.first.value ?? "",
-                productName: oneOfWishlist.title!,
-                image: oneOfWishlist.imageUrl!,
-                brandName: oneOfWishlist.brandName!,
-                oldPrice: oneOfWishlist.price!,
-                price: oneOfWishlist.finalPrice!,
-                size: oneOfWishlist.size!,
-                color: oneOfWishlist.color!,
-                isAvailable: !oneOfWishlist.isOutOfStock!,
-                isBogo: (oneOfWishlist.bogoPromoText != null &&
-                    oneOfWishlist.bogoPromoText != ""),
-                bogoText: oneOfWishlist.bogoPromoText ?? '',
-                showFavorite: true,
-                onAddToCart: () {
-                  int orderId = oneOfWishlist.id!;
-                  controller.moveToCart(orderId);
-                  wishList.removeAt(index);
-                },
-                onDelete: () {
-                  int productId = oneOfWishlist.id!;
-                  controller.deleteItemFromWishList(context, productId);
-                },
-              );
-            },
-          );
-        }),
-        onLoading: const HorizontalCardShimmerLoader(),
-        onEmpty: Obx(
-          () => controller.isUser
-              ? CustomEmptyWidget(
-                  emptyLabel: Translate.yourWishlistIsEmpty.tr,
-                  buttonLabel: Translate.continueShopping.tr,
-                  emptyBtnAction: controller.startShoppingAction,
-                )
-              : CustomEmptyWidget(
-                  emptyBtnAction: () => controller.loginAction(),
-                  emptyLabel: Translate.youAreNotLoggedInYet.tr,
-                  buttonLabel: Translate.login.tr,
-                ),
-        ),
-        onError: (error) => CustomErrorWidget(
-          errorText: error ?? "",
-          onReload: controller.setWishList,
-        ),
+    return controller.obx(
+      ((data) {
+        final wishList = data ?? [];
+        return ListView.builder(
+          key: UniqueKey(),
+          padding: const EdgeInsets.all(10),
+          shrinkWrap: true,
+          itemCount: wishList.length,
+          itemBuilder: (context, index) {
+            final oneOfWishlist = wishList.elementAt(index);
+            return ProductCardWidget(
+              showDashedLine: index != wishList.length - 1,
+              productId: oneOfWishlist.id!,
+              isPreOrder: oneOfWishlist.preOrder ?? false,
+              imageHeight: .32.sw,
+              imageWidth: .22.sw,
+              isHorizontal: true,
+              promoText: oneOfWishlist.promoText ?? '',
+              elevation: 2,
+              hasOffer: (oneOfWishlist.productDiscountList ?? []).isNotEmpty,
+              offerPercentage: (oneOfWishlist.productDiscountList ?? []).isEmpty
+                  ? ""
+                  : oneOfWishlist.productDiscountList?.first.value ?? "",
+              productName: oneOfWishlist.title!,
+              image: oneOfWishlist.imageUrl!,
+              brandName: oneOfWishlist.brandName!,
+              oldPrice: oneOfWishlist.price!,
+              price: oneOfWishlist.finalPrice!,
+              size: oneOfWishlist.size!,
+              color: oneOfWishlist.color!,
+              isAvailable: !oneOfWishlist.isOutOfStock!,
+              isBogo: (oneOfWishlist.bogoPromoText != null &&
+                  oneOfWishlist.bogoPromoText != ""),
+              bogoText: oneOfWishlist.bogoPromoText ?? '',
+              showFavorite: true,
+              onAddToCart: () {
+                int orderId = oneOfWishlist.id!;
+                controller.moveToCart(orderId);
+                wishList.removeAt(index);
+              },
+            );
+          },
+        );
+      }),
+      onLoading: const HorizontalCardShimmerLoader(),
+      onEmpty: Obx(
+        () => controller.isUser
+            ? CustomEmptyWidget(
+                emptyLabel: Translate.yourWishlistIsEmpty.tr,
+                buttonLabel: Translate.continueShopping.tr,
+                emptyBtnAction: controller.startShoppingAction,
+              )
+            : CustomEmptyWidget(
+                emptyBtnAction: () => controller.loginAction(),
+                emptyLabel: Translate.youAreNotLoggedInYet.tr,
+                buttonLabel: Translate.login.tr,
+              ),
+      ),
+      onError: (error) => CustomErrorWidget(
+        errorText: error ?? "",
+        onReload: controller.setWishList,
+      ),
     );
   }
 }

@@ -199,7 +199,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.feedbackSuccessMsg.name: 'Feedback Added Successfuly',
       Translate.orderNotFound.name: 'Order Not Found',
       Translate.neew.name: 'New',
-      Translate.items.name: 'Items(s)',
+      Translate.items.name: 'Item(s)',
       Translate.emptyAddressses.name: 'Your address book is empty',
       Translate.emptyAddresssesMessage.name:
           'Your Address Book Is empty, Please Add New Address',

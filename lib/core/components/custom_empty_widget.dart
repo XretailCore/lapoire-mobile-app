@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:imtnan/core/components/custom_button.dart';
 import '../localization/translate.dart';
 import '../utils/theme.dart';
 import 'custom_text.dart';
-import 'text_button_widget.dart';
 
 class CustomEmptyWidget extends StatelessWidget {
   final String? emptyLabel;
@@ -32,10 +32,14 @@ class CustomEmptyWidget extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             if (emptyBtnAction != null)
-              TextButtonWidget(
-                padding: const EdgeInsets.all(10),
-                onPressed: emptyBtnAction ?? () {},
-                text: buttonLabel ?? Translate.continueShopping.tr,
+              SizedBox(
+                width: MediaQuery.of(context).size.width/2,
+                child: CustomBorderButton(
+                    radius: 20,
+                    color: CustomThemes.appTheme.primaryColor,
+                    title: buttonLabel ?? Translate.continueShopping.tr,
+                    onTap: emptyBtnAction ?? () {},
+                ),
               ),
           ],
         ),
