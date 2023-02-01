@@ -22,7 +22,7 @@ class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
       (checkoutSummary) => Container(
         margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-          color: color ?? Colors.white,
+          color: color ?? Colors.brown,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -37,11 +37,11 @@ class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
                         ?.mapIndexed(
                           (summary, index) =>
                               RowCheckOutSummaryInformationWidget(
-                            title: summary.title ?? '',
+                            title: summary.title ?? 'sssss',
                             isLastIndex:
                                 checkoutSummary.summary?.length == index + 1,
                             value:
-                                '${(summary.additionalInfo ?? '').isNotEmpty ? '(${summary.additionalInfo}) ' : ''} ${summary.value} ${summary.currencySymbol ?? ''}',
+                                '${(summary.additionalInfo ?? 'sss').isNotEmpty ? '(${summary.additionalInfo}) ' : 'ssss'} ${summary.value} ${summary.currencySymbol ?? 'ssss'}',
                           ),
                         )
                         .toList() ??
