@@ -69,6 +69,7 @@ class OrdersInfoWidget extends StatelessWidget {
           child: CustomText(
             '$title $subTitle',
             style: TextStyle(
+              fontWeight: FontWeight.w400,
               color: CustomThemes.appTheme.primaryColor,
               fontSize: 14,
             ),

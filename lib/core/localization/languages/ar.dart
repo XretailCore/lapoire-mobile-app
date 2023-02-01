@@ -145,6 +145,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.yourOrderHasBeenPlaced.name: 'لقد تم وضع طلبك',
       Translate.orderCode.name: 'كود الطلب',
       Translate.trackYourOrder.name: 'تابع طلبك',
+      Translate.trackOrder.name: 'تابع الطلب',
       Translate.creditCard.name: 'بطاقة إئتمان',
       Translate.addresses.name: 'العناوين',
       Translate.newAddress.name: 'إضافة عنوان جديد',

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../core/components/custom_text.dart';
+import 'package:imtnan/core/components/custom_button.dart';
 import '../../../core/localization/translate.dart';
-import '../../../core/utils/theme.dart';
+import '../../../core/utils/app_colors.dart';
 
 class ButtonsRowWidget extends StatelessWidget {
   final VoidCallback? orderDetailsAction;
@@ -20,49 +19,21 @@ class ButtonsRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Expanded(
-          child: InkWell(
-            onTap: orderDetailsAction,
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 7),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                border: Border.all(color: CustomThemes.appTheme.primaryColor),
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: CustomText(
-                Translate.details.name.tr,
-                style: TextStyle(
-                  color: CustomThemes.appTheme.primaryColor,
-                ),
-              ),
-            ),
-          ),
+        CustomBorderButton(
+          onTap: orderDetailsAction,
+          radius: 20,
+          color: AppColors.redColor,
+          title: Translate.details.name.tr,
         ),
-        const SizedBox(width: 5),
-        Expanded(
-          child: InkWell(
-            onTap: trackOrderAction,
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 7),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                border: Border.all(color: CustomThemes.appTheme.primaryColor),
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: CustomText(
-                Translate.track.name.tr,
-                style: TextStyle(
-                  color: CustomThemes.appTheme.primaryColor,
-                ),
-              ),
-            ),
-          ),
+        const SizedBox(height: 8),
+        CustomBorderButton(
+          onTap: trackOrderAction,
+          radius: 20,
+          color: AppColors.redColor,
+          title: Translate.track.name.tr,
         ),
       ],
     );

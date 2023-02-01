@@ -63,6 +63,7 @@ class CustomBorderButton extends StatelessWidget {
   final bool? enabled;
   final IconData? icon;
   final double iconSize;
+  final EdgeInsets? padding;
   final double radius;
   final bool isFixed;
   final Color? borderColor;
@@ -79,7 +80,7 @@ class CustomBorderButton extends StatelessWidget {
     this.iconSize = 24,
     this.radius = 5,
     this.isFixed = true,
-    this.borderColor,
+    this.borderColor, this.padding=const EdgeInsets.all(16.0),
   }) : super(key: key);
 
   @override
@@ -88,9 +89,10 @@ class CustomBorderButton extends StatelessWidget {
       onTap: enabled ?? true ? onTap : null,
       child: Container(
         alignment: Alignment.center,
-        padding: const EdgeInsets.all(16.0),
+        padding: padding,
         decoration: BoxDecoration(
           color: color,
+          border: Border.all(color: borderColor??Colors.transparent),
           borderRadius: BorderRadius.circular(radius),
         ),
         child: CustomText(

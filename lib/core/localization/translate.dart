@@ -138,6 +138,7 @@ enum Translate {
   yourOrderHasBeenPlaced,
   orderCode,
   trackYourOrder,
+  trackOrder,
   creditCard,
   addresses,
   newAddress,

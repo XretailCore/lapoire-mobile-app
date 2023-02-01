@@ -146,6 +146,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.yourOrderHasBeenPlaced.name: 'Your Order Has Been Placed',
       Translate.orderCode.name: 'Order Code',
       Translate.trackYourOrder.name: 'Track Your Order',
+      Translate.trackOrder.name: 'Track Order',
       Translate.creditCard.name: 'Credit Card',
       Translate.addresses.name: 'Addresses',
       Translate.newAddress.name: 'New Address',

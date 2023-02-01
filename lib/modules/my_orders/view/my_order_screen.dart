@@ -1,7 +1,8 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../core/components/appbar_widget.dart';
+import 'package:imtnan/core/components/custom_appbar.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
 import '../../../core/components/custom_empty_widget.dart';
 import '../../../core/components/custom_error_widget.dart';
 import '../../../core/components/imtnan_loading_widget.dart';
@@ -15,25 +16,27 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(title: Translate.myOrders.name.tr),
+      appBar: CustomAppBar(title: Translate.myOrders.name.tr,showBackButton: true),
       body: controller.obx(
         (data) {
           final orders = data ?? [];
-          return GridView.builder(
+          return ListView.builder(
             padding: const EdgeInsets.all(15),
             itemCount: orders.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              childAspectRatio: 2.1 / 1,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-            ),
             itemBuilder: (context, index) {
               final order = orders.elementAt(index);
-              return OrderDataWidget(
-                order: order,
-                orderDetailsAction: () => controller.orderDetailsAction(order),
-                trackOrderAction: () => controller.trackOrderAction(order),
+              return Column(
+                children: [
+                  OrderDataWidget(
+                    order: order,
+                    orderDetailsAction: () => controller.orderDetailsAction(order),
+                    trackOrderAction: () => controller.trackOrderAction(order),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16.0),
+                    child: DottedLine(dashColor: AppColors.redColor),
+                  )
+                ],
               );
             },
           );
