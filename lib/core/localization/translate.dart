@@ -246,6 +246,7 @@ enum Translate {
   ingredients,
   turnOnGps,
   availabilityInStock,
+  inStock,
   relatedItems,
   recentItems,
   chooseOneOfThesePaymentMethods,

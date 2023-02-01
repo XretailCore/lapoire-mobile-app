@@ -9,7 +9,6 @@ import 'package:linktsp_api/data/list/models/list_model.dart';
 import '../../modules/wishlist/controllers/wishlist_controller.dart';
 import '../localization/translate.dart';
 import '../shimmer_loader/images_shimmer.dart';
-import '../utils/app_colors.dart';
 import '../utils/theme.dart';
 import 'custom_counter.dart';
 import 'custom_text.dart';
@@ -246,6 +245,8 @@ class HorizontalProductCard extends StatelessWidget {
                                     ),
                                   ],
                                 ),
+                                const SizedBox(height:8),
+                                isAvailable? CustomText(Translate.inStock.tr):CustomText(Translate.outOfStock.tr),
                                 SizedBox(height: (rate != null) ? 10 : 0),
                               ],
                             ),
@@ -279,7 +280,7 @@ class HorizontalProductCard extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 8.0),
+                              const SizedBox(height: 16.0),
                               Offstage(
                                 offstage: !showFavorite!,
                                 child: Container(

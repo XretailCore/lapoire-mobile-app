@@ -267,6 +267,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.turnOnGps.name: 'قم بتشغيل نظام تحديد المواقع',
       Translate.yourWishlistIsEmpty.name: 'لا يوجد بيانات',
       Translate.availabilityInStock.name: 'المتاح: @quantity في المخزن',
+      Translate.inStock.name: 'متاح في المخزن',
       Translate.relatedItems.name: 'منتجات ذات صلة',
       Translate.recentItems.name: 'الاحدث',
       Translate.chooseOneOfThesePaymentMethods.name: 'اختر إحدى طرق الدفع',

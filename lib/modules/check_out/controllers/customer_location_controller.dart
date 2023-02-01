@@ -37,10 +37,10 @@ class CustomerLocationController extends GetxController
       if (isUser) {
         final customerId = _userSharedPrefrenceController.getUserId;
 // TODO : uncomment below comment when change imtenan to multi store
-// final addresses = await LinkTspApi.instance.address
-//             .getShipmentAddresses(customId: customerId!);
-        final addresses = await LinkTspApi.instance.address
-            .getAddressBook(customId: customerId!);
+final addresses = await LinkTspApi.instance.address
+            .getShipmentAddresses(customId: customerId!);
+//         final addresses = await LinkTspApi.instance.address
+//             .getAddressBook(customId: customerId!);
         _setDefaultLocation(addresses: addresses);
         _isAddressEmpty.value = addresses.isEmpty;
         change(addresses, status: RxStatus.success());

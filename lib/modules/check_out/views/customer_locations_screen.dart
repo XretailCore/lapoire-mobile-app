@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../core/components/appbar_widget.dart';
+import 'package:imtnan/core/components/custom_appbar.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/routes.dart';
@@ -22,7 +21,7 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
-      appBar: AppBarWidget(title: Translate.checkout.tr),
+      appBar: CustomAppBar(title: Translate.checkout.tr,showBackButton: true),
       body: Column(
         children: [
           const SizedBox(height: 10),

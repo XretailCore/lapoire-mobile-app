@@ -276,6 +276,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.turnOnGps.name: 'Turn On Gps',
       Translate.yourWishlistIsEmpty.name: 'Your Wishlist Is Empty',
       Translate.availabilityInStock.name: 'Availability: @quantity In Stock',
+      Translate.inStock.name: 'In Stock',
       Translate.relatedItems.name: 'Related Products',
       Translate.recentItems.name: 'Recent Products',
       Translate.chooseOneOfThesePaymentMethods.name:
