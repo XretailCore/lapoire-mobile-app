@@ -17,22 +17,22 @@ class CustomText extends StatelessWidget {
   final TextStyle? style;
   final String? data;
   final bool softWrap;
+  final bool? forceStrutHeight;
 
   // ignore: use_key_in_widget_constructors
-  const CustomText(
-    this.data, {
-    @Deprecated('use data property instead') this.title,
-    @Deprecated('use style property instead') this.color,
-    @Deprecated('use style property instead') this.fontSize,
-    this.textAlign,
-    @Deprecated('use style property instead') this.fontWeight,
-    this.overflow,
-    this.maxLines,
-    @Deprecated('use style property instead') this.decoration,
-    @Deprecated('use style property instead') this.decorationColor,
-    this.style,
-    this.softWrap = false,
-  });
+  const CustomText(this.data,
+      {@Deprecated('use data property instead') this.title,
+      @Deprecated('use style property instead') this.color,
+      @Deprecated('use style property instead') this.fontSize,
+      this.textAlign,
+      @Deprecated('use style property instead') this.fontWeight,
+      this.overflow,
+      this.maxLines,
+      @Deprecated('use style property instead') this.decoration,
+      @Deprecated('use style property instead') this.decorationColor,
+      this.style,
+      this.softWrap = false,
+      this.forceStrutHeight = true});
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +45,17 @@ class CustomText extends StatelessWidget {
       style: style?.copyWith(
               color: style?.color ?? CustomThemes.appTheme.primaryColor,
               fontSize: style?.fontSize?.sm,
-              height: style?.height,
+              height: style?.height ?? 1,
               fontWeight: style?.fontWeight ?? FontWeight.w700) ??
           TextStyle(
-            color: color??CustomThemes.appTheme.primaryColor,
+            color: color ?? CustomThemes.appTheme.primaryColor,
             fontWeight: fontWeight ?? FontWeight.w700,
             decoration: decoration,
             decorationColor: decorationColor,
           ),
-      strutStyle: const StrutStyle(
+      strutStyle: StrutStyle(
         forceStrutHeight:
-            true, // apply the same height for both arabic and english
+            forceStrutHeight, // apply the same height for both arabic and english
       ),
     );
   }
