@@ -1,10 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
+import 'package:imtnan/core/utils/theme.dart';
 import 'package:linktsp_api/linktsp_api.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
 import '../controllers/payment_controller.dart';
+import 'checkout_title_divider_widget.dart';
 
 class ChoicePaymentMethodWidget extends StatefulWidget {
   const ChoicePaymentMethodWidget(
@@ -12,6 +16,7 @@ class ChoicePaymentMethodWidget extends StatefulWidget {
       : super(key: key);
   final int? groupValue;
   final List<PaymentOptionsModel> payments;
+
   @override
   State<ChoicePaymentMethodWidget> createState() =>
       _ChoicePaymentMethodWidgetState();
@@ -20,6 +25,7 @@ class ChoicePaymentMethodWidget extends StatefulWidget {
 class _ChoicePaymentMethodWidgetState extends State<ChoicePaymentMethodWidget> {
   late int? groupValue;
   final PaymentController paymentController = Get.find<PaymentController>();
+
   @override
   void initState() {
     super.initState();
@@ -28,86 +34,71 @@ class _ChoicePaymentMethodWidgetState extends State<ChoicePaymentMethodWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-    return Container(
-      padding: const EdgeInsets.all(8),
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: primaryColor),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CustomText(
-            '${Translate.chooseOneOfThesePaymentMethods.tr} :',
-            style: const TextStyle(
-              fontSize: 13,
-              color: Color.fromRGBO(108, 108, 108, 1),
-            ),
-          ),
-          Theme(
-            data: ThemeData.light().copyWith(
-              unselectedWidgetColor: Colors.black,
-            ),
-            child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: widget.payments.length,
-              itemBuilder: (BuildContext context, int index) {
-                final payment = widget.payments.elementAt(index);
-                return Container(
-                  // height: 45,
-                  margin: const EdgeInsetsDirectional.only(start: 20, end: 20),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: index == widget.payments.length - 1
-                            ? Colors.transparent
-                            : const Color.fromRGBO(134, 134, 134, .3),
-                      ),
-                    ),
-                  ),
-                  child: RadioListTile<int>(
+    final primaryColor = CustomThemes.appTheme.primaryColor;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        CheckOutTitleDividerWidget(title: Translate.paymentsMethod.tr),
+        Theme(
+          data: ThemeData.light().copyWith(unselectedWidgetColor: primaryColor),
+          child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: widget.payments.length,
+            itemBuilder: (BuildContext context, int index) {
+              final payment = widget.payments.elementAt(index);
+              return Column(
+                children: [
+                  RadioListTile<int>(
+                    controlAffinity: ListTileControlAffinity.trailing,
                     value: index,
                     contentPadding: const EdgeInsets.all(0),
                     groupValue: groupValue,
                     activeColor: primaryColor,
-                    title: Row(
-                      children: [
-                        CachedNetworkImage(
-                          width: 40,
-                          height: 20,
-                          imageUrl: payment.image ?? '',
-                          errorWidget: (context, url, error) => const Center(
-                            child: Icon(Icons.error_outline),
+                    title: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24.0, vertical: 8.0),
+                      child: Row(
+                        children: [
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomText(
+                                payment.title ?? '',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w400),
+                              ),
+                              Offstage(
+                                offstage: payment.additionalFees == null,
+                                child: CustomText(
+                                  '${Translate.additionalFees.tr}: ${payment.additionalFees?.toString() ?? ''}',
+                                  style: const TextStyle(
+                                      fontSize: 8, fontWeight: FontWeight.w400),
+                                ),
+                              ),
+                            ],
                           ),
-                          progressIndicatorBuilder: (_, __, ___) {
-                            return Center(
-                              child: CircularProgressIndicator(
-                                valueColor:
-                                    AlwaysStoppedAnimation<Color>(primaryColor),
-                              ),
-                            );
-                          },
-                        ),
-                        const SizedBox(width: 15),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomText(payment.title ?? ''),
-                            Offstage(
-                              offstage: payment.additionalFees == null,
-                              child: CustomText(
-                                '${Translate.additionalFees.tr}: ${payment.additionalFees?.toString() ?? ''}',
-                                style: const TextStyle(fontSize: 8),
-                              ),
+                          const Spacer(),
+                          CachedNetworkImage(
+                            width: 40,
+                            height: 20,
+                            imageUrl: payment.image ?? '',
+                            errorWidget: (context, url, error) => const Center(
+                              child: Icon(Icons.error_outline),
                             ),
-                          ],
-                        ),
-                      ],
+                            progressIndicatorBuilder: (_, __, ___) {
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      primaryColor),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                     onChanged: (int? value) {
                       setState(() {
@@ -117,12 +108,18 @@ class _ChoicePaymentMethodWidgetState extends State<ChoicePaymentMethodWidget> {
                       });
                     },
                   ),
-                );
-              },
-            ),
+                  index != widget.payments.length - 1
+                      ? const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          child: DottedLine(dashColor: AppColors.redColor),
+                        )
+                      : const SizedBox(),
+                ],
+              );
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -52,7 +52,7 @@ class TextFormFieldWidget extends StatelessWidget {
       style: TextStyle(
         color: primaryColor,
         fontSize: 14,
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w700,
       ),
       decoration: InputDecoration(
         fillColor: backgroundColor,

@@ -58,9 +58,10 @@ class AddressMapBottomWidget extends GetView<SelectLocationFromMapController> {
             ],
           ),
           const SizedBox(height: 30),
-          CustomButton(
+          CustomBorderButton(
             title: Translate.deliverHere.name.tr,
             color: CustomThemes.appTheme.primaryColor,
+            radius: 20,
             onTap: onTap,
           )
         ],

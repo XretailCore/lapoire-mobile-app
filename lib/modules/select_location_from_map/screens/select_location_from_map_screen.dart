@@ -14,7 +14,7 @@ class SelectLocationFromMapScreen
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomTitledAppBar(title: Translate.selectLocation.name.tr),
+      appBar: CustomAppBar(title: Translate.selectLocation.name.tr,showBackButton: true,showAction: false),
       body: Column(
         children: [
           Expanded(

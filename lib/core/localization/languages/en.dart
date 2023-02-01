@@ -102,9 +102,9 @@ Map<String, String> getEnglishTranslation() => {
       Translate.addressDetails.name: "Address Details",
       Translate.addressName.name: "Address Name ( Home - Work - Etc,....)",
       Translate.streetName.name: "Street Name",
-      Translate.buildingNumber.name: "Building Number",
-      Translate.floorNumber.name: "floor Number",
-      Translate.apartmentNumber.name: "Apartment Number",
+      Translate.buildingNumber.name: "Building No",
+      Translate.floorNumber.name: "floor No",
+      Translate.apartmentNumber.name: "Apartment No",
       Translate.postalCode.name: "Postal Code",
       Translate.selectItemType.name: "Select Item Type",
       Translate.setAsDefault.name: "Set As Default",
@@ -206,7 +206,8 @@ Map<String, String> getEnglishTranslation() => {
       Translate.deleteAddressSuccessMsg.name:
           'Address has been deleted successfuly',
       Translate.addNewAddress.name: 'Add New Address',
-      Translate.defaultAddress.name: 'this is your default address',
+      Translate.defaultAddress.name: 'This is my default address',
+      Translate.selectAsDefaultAddress.name: 'Select as default address',
       Translate.deleteAddressConfirm.name:
           'Are you want to delete this Address?',
       Translate.no.name: 'No',

@@ -49,7 +49,7 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
       try {
         final cartValidate = await LinkTspApi.instance.multiStore.cartValidate(
             customerID: _userSharedPrefrenceController.getUserId!,
-            addressId: Locations.locationId ?? 0);
+            addressId: Locations.locationId ?? 3);
         if (cartValidate.alertMessage != null) {
           for (var i = 0; i < cartValidate.storeCartItems!.length; i++) {
             if (cartValidate.storeCartItems?[i].status != 1) {
@@ -63,7 +63,7 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
           final CustomerSummaryController _customerSummaryController =
               Get.find<CustomerSummaryController>();
           _customerSummaryController.getSummaryData();
-          Get.toNamed(Routes.customerLocationsScreen);
+          Get.toNamed(Routes.paymentScreen);
         }
       } on ExceptionApi catch (e) {
         HelperFunctions.showSnackBar(
@@ -133,7 +133,7 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
 
         }
         else{
-          total.value= int.parse(cartSummaryResult.value.summary?.last.value ??"0");
+          total.value= int.parse(cartSummaryResult.value.summary?.last.value ??"0").toDouble();
         }
         cartItemsIds.clear();
         for (var i = 0; i < cartSummaryResult.value.items!.length; i++) {

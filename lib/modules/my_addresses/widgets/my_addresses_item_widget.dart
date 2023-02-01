@@ -1,16 +1,18 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:linktsp_api/core/models/address_model.dart';
-
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
+import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/theme.dart';
 
 class AddressBookItemWidget extends StatelessWidget {
   final AddressModel? address;
   final VoidCallback? editAddressAction;
   final VoidCallback? deleteAddressAction;
+
   const AddressBookItemWidget({
     this.address,
     Key? key,
@@ -20,18 +22,16 @@ class AddressBookItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final primary = CustomThemes.appTheme.primaryColor;
     return Card(
       color: Colors.white,
-      elevation: 3,
+      elevation: 0,
       margin: const EdgeInsets.all(0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0.0),
       ),
       child: Container(
         padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          border: Border.all(color: CustomThemes.appTheme.primaryColor),
-        ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -63,17 +63,19 @@ class AddressBookItemWidget extends StatelessWidget {
                   CustomText(
                     address?.address ?? '',
                     style: TextStyle(
-                      color: CustomThemes.appTheme.colorScheme.secondary,
+                      color: primary,
+                      fontWeight: FontWeight.w700,
                       fontSize: 13,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
+                  const SizedBox(height: 8.0),
                   CustomText(
                     "${address?.firstName} ${address?.lastName}",
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
+                    style: TextStyle(
+                      color: primary,
+                      fontWeight: FontWeight.w400,
                       fontSize: 13,
                     ),
                     maxLines: 1,
@@ -81,8 +83,9 @@ class AddressBookItemWidget extends StatelessWidget {
                   ),
                   CustomText(
                     address?.city?.name ?? '',
-                    style: const TextStyle(
-                      color: Colors.grey,
+                    style: TextStyle(
+                      color: primary,
+                      fontWeight: FontWeight.w400,
                       fontSize: 13,
                     ),
                     maxLines: 1,
@@ -90,25 +93,43 @@ class AddressBookItemWidget extends StatelessWidget {
                   ),
                   CustomText(
                     address?.mobile ?? '',
-                    style: const TextStyle(
-                      color: Colors.grey,
+                    style: TextStyle(
+                      color: primary,
+                      fontWeight: FontWeight.w400,
                       fontSize: 13,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Visibility(
-                    visible: address?.isDefault ?? false,
-                    child: CustomText(
-                      Translate.defaultAddress.name.tr,
-                      style: TextStyle(
-                          color: CustomThemes.appTheme.primaryColor,
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                  const SizedBox(height: 8.0),
+                  Row(
+                    children: [
+                      address?.isDefault ?? false
+                          ? const FaIcon(FontAwesomeIcons.house,
+                              color: AppColors.redColor, size: 16.0)
+                          : const SizedBox(),
+                      address?.isDefault ?? false
+                          ? const SizedBox(width: 16.0)
+                          : const SizedBox(),
+                      InkWell(
+                        onTap: address?.isDefault ?? false ? null : () {
+
+                        },
+                        child: CustomText(
+                          address?.isDefault ?? false
+                              ? Translate.defaultAddress.name.tr
+                              : Translate.selectAsDefaultAddress.tr,
+                          style: const TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: AppColors.redColor,
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 0),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -150,10 +171,10 @@ class ButtonsRowWidget extends StatelessWidget {
         children: [
           InkWell(
             onTap: editAddressAction,
-            child: FaIcon(
-              FontAwesomeIcons.penToSquare,
-              size: 18,
-              color: CustomThemes.appTheme.primaryColor,
+            child: const FaIcon(
+              FontAwesomeIcons.solidPenToSquare,
+              size: 22,
+              color: AppColors.redColor,
             ),
           ),
           const SizedBox(height: 10),
@@ -218,12 +239,18 @@ class ButtonsRowWidget extends StatelessWidget {
                       barrierDismissible: true,
                     );
                   },
-            child: FaIcon(
-              FontAwesomeIcons.trash,
-              size: 18,
+            child: DottedBorder(
+              borderType: BorderType.Circle,
               color: isDefaultAddress == true || orderCount > 0
                   ? Colors.grey
-                  : CustomThemes.appTheme.primaryColor,
+                  : AppColors.redColor,
+              child: Icon(
+                Icons.clear,
+                size: 22,
+                color: isDefaultAddress == true || orderCount > 0
+                    ? Colors.grey
+                    : AppColors.redColor,
+              ),
             ),
           ),
         ],

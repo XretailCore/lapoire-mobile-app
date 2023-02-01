@@ -53,19 +53,19 @@ class DistrictWidget extends GetView<AddressDetailsController> {
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: primaryColor),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: primaryColor),
             ),
             errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(20),
               borderSide: const BorderSide(color: Colors.red),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(20),
               borderSide: const BorderSide(color: Colors.red),
             ),
           ),

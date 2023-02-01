@@ -204,6 +204,7 @@ Map<String, String> getArabicTranslation() => {
           'لم يتم العثور على عناوين من فضلك اضف عنوان جديد',
       Translate.addNewAddress.name: 'اضافة عنوان جديد',
       Translate.defaultAddress.name: 'العنوان الافتراضي',
+      Translate.selectAsDefaultAddress.name: 'حدد كعنوان افتراضي',
       Translate.deleteAddressConfirm.name: 'هل انت متاكد من مسح العنوان ؟',
       Translate.no.name: 'لا',
       Translate.yes.name: 'نعم',

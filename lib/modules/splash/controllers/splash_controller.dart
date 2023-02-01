@@ -58,7 +58,7 @@ class SplashController extends GetxController with StateMixin {
 
       var currentZone = _prefs.getCurrentZone;
       currentZone = const CityModel(
-        id: 3,
+        id: 7,
       );
       _prefs.setCurrentZone = currentZone;
       final LanguageController languageController =

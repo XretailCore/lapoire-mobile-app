@@ -190,6 +190,7 @@ enum Translate {
   emptyAddresssesMessage,
   addNewAddress,
   defaultAddress,
+  selectAsDefaultAddress,
   deleteAddress,
   deleteAddressConfirm,
   no,

@@ -117,11 +117,13 @@ class CustomAppBar extends GetView<CartController>
   final bool showCart;
   final bool showSearch;
   final bool showBackButton;
+  final bool showAction;
 
   const CustomAppBar({
     Key? key,
     this.title = "",
     this.showBackButton = false,
+    this.showAction=true,
     this.showCart = true,
     this.showSearch = false,
   }) : super(key: key);
@@ -144,7 +146,7 @@ class CustomAppBar extends GetView<CartController>
       ),
       centerTitle: true,
       leading: showBackButton ? const CustomBackButton() : const SizedBox(),
-      actions: [
+      actions: showAction?[
         InkWell(
           onTap: () {
             Get.toNamed(Routes.search);
@@ -157,7 +159,7 @@ class CustomAppBar extends GetView<CartController>
             ),
           ),
         ),
-      ],
+      ]:[],
     );
   }
 }

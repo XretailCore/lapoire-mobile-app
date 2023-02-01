@@ -15,7 +15,7 @@ class AddressDetailsScreen extends GetView<AddressDetailsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomTitledAppBar(title: Translate.addressDetails.tr),
+      appBar: CustomAppBar(title: Translate.addressBook.tr,showBackButton: true),
       body: controller.obx(
         (zones) => GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
