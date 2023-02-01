@@ -32,7 +32,7 @@ class OfferBannerWidget extends StatelessWidget {
             offerText,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w900,
               fontSize: 10,
               color: textColor,
             ),

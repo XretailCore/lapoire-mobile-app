@@ -316,7 +316,7 @@ class VerticalProductCard extends StatelessWidget {
                         height: 35,
                         decoration: BoxDecoration(
                           border: Border.all(
-                              width: 1,
+                              width: 1.5,
                               color: CustomThemes.appTheme.primaryColor),
                           color: Colors.transparent,
                           shape: BoxShape.circle,
@@ -362,7 +362,7 @@ class VerticalProductCard extends StatelessWidget {
                                     height: 35,
                                     decoration: BoxDecoration(
                                       border: Border.all(
-                                          width: 1,
+                                          width: 1.5,
                                           color: CustomThemes
                                               .appTheme.primaryColor),
                                       color: Colors.transparent,
@@ -400,7 +400,7 @@ class VerticalProductCard extends StatelessWidget {
                         height: 35,
                         decoration: BoxDecoration(
                           border: Border.all(
-                              width: 1,
+                              width: 1.5,
                               color: isAvailable
                                   ? CustomThemes.appTheme.primaryColor
                                   : Colors.grey),
