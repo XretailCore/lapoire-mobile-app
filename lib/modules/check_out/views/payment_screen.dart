@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:imtnan/core/components/custom_appbar.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
-import '../../../core/components/appbar_widget.dart';
 import '../controllers/customer_summary_controller.dart';
 import '../controllers/payment_controller.dart';
 import '../widgets/checkout_summary_widget.dart';
 import '../widgets/choice_payment_method_widget.dart';
-import '../widgets/custom_stepper_widget.dart';
 import '../widgets/discount_method_widget.dart';
 
 class PaymentScreen extends GetView<PaymentController> {
@@ -20,15 +18,13 @@ class PaymentScreen extends GetView<PaymentController> {
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBarWidget(title: Translate.checkout.tr),
+      appBar: CustomAppBar(title: Translate.checkout.tr,showBackButton: true),
       body: Form(
         key: controller.formKey,
         child: Column(
           children: [
             const SizedBox(height: 8),
-            const CustomStepperWidget(
-              currentIndex: 1,
-            ),
+
             const SizedBox(height: 8),
             Expanded(
               child: ListView(
