@@ -28,25 +28,37 @@ class HomeAd extends GetView<HomeController> {
               child: Stack(
                 children: [
                   InkWell(
+                    highlightColor: Colors.transparent,
                     onTap: () => controller.goToListingWithId(
                       filterModel: items[index].filterModel ?? FilterModel(),
                       name: items[index].name ?? "",
                     ),
-                    child: ExtendedImage.network(
-                      items[index].imageUrl ?? "",
+                    //Todo : change static image below
+                    child: ExtendedImage.asset(
+                      "assets/images/home_b1.png",
                       //cacheHeight: 800,
                       enableMemoryCache: false,
+                      width: double.infinity,
                       fit: BoxFit.cover,
                       filterQuality: FilterQuality.high,
                       clearMemoryCacheWhenDispose: true,
                       enableLoadState: false,
                     ),
                   ),
-                  Center(
-                    child: CustomText(
-                      items[index].description,
-                      style: const TextStyle(
-                        color: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 150),
+                    child: Align(
+                      alignment:
+                          AlignmentDirectional.bottomCenter, // <-- SEE HERE
+                      child: CustomText(
+                        items[index].description,
+                        softWrap: true,
+                        forceStrutHeight: false,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontFamily: "Bayshore",
+                            fontSize: 36),
                       ),
                     ),
                   ),
@@ -61,7 +73,7 @@ class HomeAd extends GetView<HomeController> {
           Expanded(
             child: Obx(
               () => SizedBox(
-                height: 0.7.sh,
+                height: 0.71.sh,
                 child: Card(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
@@ -69,6 +81,7 @@ class HomeAd extends GetView<HomeController> {
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(0))),
                   child: CustomSlider(
+                    viewportFraction: 1,
                     sliderImages: sliderImages,
                     controller: controller.carouselController,
                     showIndicator: true,
