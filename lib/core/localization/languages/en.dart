@@ -83,6 +83,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.donotHaveAccount.name: "you don't have an account!",
       Translate.termsOfService.name: "Terms Of Service",
       Translate.verifyYourPhoneNumber.name: "Verify Your Phone Number",
+      Translate.verifyOTP.name: "VerifyOTP",
       Translate.enterYourOTPCodeHere.name: "Enter Your OTP Code Here",
       Translate.verify.name: "Verify",
       Translate.didntReceiveOtpCode.name: "Didn't Receive OTP Code",

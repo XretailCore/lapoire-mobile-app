@@ -84,6 +84,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.donotHaveAccount.name: "ليس لديك حساب ؟",
       Translate.termsOfService.name: "شروط الخدمة",
       Translate.verifyYourPhoneNumber.name: "اكد على رقم هاتفك",
+      Translate.verifyOTP.name: "اكد على كود التفعيل",
       Translate.enterYourOTPCodeHere.name: "أدخل كود التفعيل المرسل لك هنا",
       Translate.verify.name: "تحقق",
       Translate.didntReceiveOtpCode.name: "اعادة ارسال كود التفعيل بعد",

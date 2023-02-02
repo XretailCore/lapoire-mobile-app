@@ -80,6 +80,7 @@ enum Translate {
   donotHaveAccount,
   termsOfService,
   verifyYourPhoneNumber,
+  verifyOTP,
   enterYourOTPCodeHere,
   verify,
   didntReceiveOtpCode,
