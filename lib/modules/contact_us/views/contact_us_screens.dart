@@ -1,10 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:imtnan/core/components/custom_appbar.dart';
 import 'package:imtnan/core/utils/theme.dart';
-
-import '../../../core/components/appbar_widget.dart';
-
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
 import '../controllers/contact_us_controller.dart';
@@ -21,10 +18,10 @@ class ContactUsScreen extends GetView<ContactUsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBarWidget(
+        appBar: CustomAppBar(
           title: Translate.contactUs.tr,
-          backgroundColor: Colors.grey[50]!,
-          elevation: 1,
+          showBackButton: true,
+          showAction: false,
         ),
         body: controller.obx((contactInfo) {
           final phone =

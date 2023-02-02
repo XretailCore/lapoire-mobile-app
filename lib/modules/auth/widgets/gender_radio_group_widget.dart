@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imtnan/core/utils/theme.dart';
 
 import '../../../core/components/custom_text.dart';
 
@@ -53,7 +54,7 @@ class _GenderRadioGroupWidgetState extends State<GenderRadioGroupWidget> {
               ),
               CustomText(
                 child,
-                style: TextStyle(color: Colors.grey[600]),
+                style: TextStyle(color: CustomThemes.appTheme.primaryColor,fontWeight: FontWeight.w400),
               ),
             ],
           );

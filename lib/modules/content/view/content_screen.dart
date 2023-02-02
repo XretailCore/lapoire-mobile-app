@@ -14,8 +14,10 @@ class ContentScreen extends GetView<ContentPagesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomTitledAppBar(
+      appBar: CustomAppBar(
         title: controller.contentPageTitle ?? "",
+        showBackButton: true,
+        showAction: false,
       ),
       body: controller.obx(
         (data) => SingleChildScrollView(

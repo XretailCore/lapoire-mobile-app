@@ -1,4 +1,5 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
 
 import '../../../core/components/custom_appbar.dart';
 import '../../../core/components/custom_button.dart';
@@ -20,7 +21,11 @@ class StoresScreen extends GetView<StoresController> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: CustomTitledAppBar(title: Translate.stores.tr),
+      appBar: CustomAppBar(
+        title: Translate.stores.tr,
+        showBackButton: true,
+        showAction: false,
+      ),
       body: Theme(
         data: ThemeData(
             unselectedWidgetColor: CustomThemes.appTheme.colorScheme.secondary),
@@ -40,6 +45,7 @@ class StoresScreen extends GetView<StoresController> {
                 ),
               ),
               Container(
+                color: AppColors.highlighter,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                 child: Column(
@@ -51,8 +57,8 @@ class StoresScreen extends GetView<StoresController> {
                           child: CustomText(
                             Translate.findYourNearestBranch.tr,
                             style: const TextStyle(
-                                color: Color(0xff4D4D4D),
-                                fontWeight: FontWeight.bold,
+                                color: Color(0xff666666),
+                                fontWeight: FontWeight.w400,
                                 fontSize: 14),
                           ),
                         ),
@@ -65,9 +71,9 @@ class StoresScreen extends GetView<StoresController> {
                             letterSpacing: 0,
                           ),
                         ),
-                        CustomButton(
-                          color: CustomThemes.appTheme.primaryColor,
-                          textColor: Colors.white,
+                        CustomBorderButton(
+                          color: AppColors.redColor,
+                          radius: 20,
                           title: Translate.searchByCurrentLocation.tr,
                           onTap: controller.selectedDistance != null
                               ? () => controller.searchByLocationAction(
