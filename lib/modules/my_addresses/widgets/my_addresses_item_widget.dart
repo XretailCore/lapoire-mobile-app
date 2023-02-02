@@ -35,25 +35,6 @@ class AddressBookItemWidget extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              alignment: AlignmentDirectional.topStart,
-              margin: const EdgeInsets.only(top: 3),
-              padding: const EdgeInsets.all(2),
-              decoration: BoxDecoration(
-                border: Border.all(
-                    color: CustomThemes.appTheme.primaryColor, width: 1.5),
-                shape: BoxShape.circle,
-              ),
-              child: Container(
-                padding: const EdgeInsets.all(3),
-                decoration: BoxDecoration(
-                  color: address?.isDefault ?? false
-                      ? CustomThemes.appTheme.primaryColor
-                      : Colors.transparent,
-                  shape: BoxShape.circle,
-                ),
-              ),
-            ),
             const SizedBox(width: 15),
             Expanded(
               child: Column(
@@ -112,9 +93,7 @@ class AddressBookItemWidget extends StatelessWidget {
                           ? const SizedBox(width: 16.0)
                           : const SizedBox(),
                       InkWell(
-                        onTap: address?.isDefault ?? false ? null : () {
-
-                        },
+                        onTap: address?.isDefault ?? false ? null : editAddressAction,
                         child: CustomText(
                           address?.isDefault ?? false
                               ? Translate.defaultAddress.name.tr
