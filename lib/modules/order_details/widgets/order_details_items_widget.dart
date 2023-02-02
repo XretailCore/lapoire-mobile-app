@@ -20,7 +20,7 @@ class OrderDetailsItemsWidget extends GetView<OrderDetailsController> {
       itemBuilder: (context, index) {
         final item = orderDetailsModel.orderItems!.elementAt(index);
         return ProductCardWidget(
-          elevation: 2,
+          elevation: 0,
           isHorizontal: true,
           productId: item.skuId!,
           promoText: item.promoText ?? '',

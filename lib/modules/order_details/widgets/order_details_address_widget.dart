@@ -1,3 +1,4 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:linktsp_api/linktsp_api.dart';
 
 import '../../../core/localization/translate.dart';
@@ -44,6 +45,7 @@ class CardAddressBookWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final primary=CustomThemes.appTheme.primaryColor;
     return Card(
       color: Colors.white,
       elevation: 2,
@@ -51,60 +53,72 @@ class CardAddressBookWidget extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
-          color: CustomThemes.appTheme.primaryColor,
+          color: Colors.white,
           border: Border.all(color: CustomThemes.appTheme.primaryColor),
+          borderRadius: BorderRadius.circular(20.0),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomText(
-              Translate.shippingInformation.tr,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 13,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+            FaIcon(FontAwesomeIcons.locationDot,color: primary,size: 16.0),
+            const SizedBox(width: 16.0),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomText(
+                  Translate.shippingInformation.tr,
+                  style:  TextStyle(
+                    color: primary,
+                    fontSize: 13,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 8),
+                CustomText(
+                  address ?? '',
+                  style:  TextStyle(
+                    color: primary,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                CustomText(
+                  "$firstName $lastName",
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style:  TextStyle(
+                    fontSize: 9,
+                    color: primary,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                CustomText(
+                  cityName ?? '',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 9,
+                    color: primary,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                CustomText(
+                  mobileNumer ?? '',
+                  style: TextStyle(
+                    color: primary,
+                    fontSize: 9,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
-            const SizedBox(height: 8),
-            CustomText(
-              address ?? '',
-              style: const TextStyle(
-                color: Color.fromRGBO(209, 209, 209, 1),
-                fontSize: 10,
-              ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            CustomText(
-              "$firstName $lastName",
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 9,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            CustomText(
-              cityName ?? '',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 9,
-                color: Colors.white,
-              ),
-            ),
-            CustomText(
-              mobileNumer ?? '',
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 9,
-              ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
+
           ],
         ),
       ),

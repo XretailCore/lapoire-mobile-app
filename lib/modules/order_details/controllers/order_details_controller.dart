@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/utils/helper_functions.dart';
+import '../../../core/utils/routes.dart';
 import 'cancel_order_controller.dart';
 import 'feedback_order_controller.dart';
 import 'package:linktsp_api/linktsp_api.dart';
@@ -67,5 +68,11 @@ class OrderDetailsController extends GetxController
       await Get.delete<FeedbackOrderController>();
     }
     await openFeedbackOrderSheet(context, orderDetailsModel: orderDetailsModel);
+  }
+  void trackOrder(OrderModel orderModel) {
+    Get.toNamed(Routes.trackOrder, arguments: {
+      Arguments.orderNo: orderModel.orderNo,
+      Arguments.orderId: orderModel.id
+    });
   }
 }
