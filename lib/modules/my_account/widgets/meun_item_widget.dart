@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../core/components/custom_text.dart';
 
 class MenuItemWidget extends StatelessWidget {
-  final String icon;
+  final IconData icon;
   final String? title;
   final VoidCallback? onTap;
   const MenuItemWidget({
@@ -17,37 +16,43 @@ class MenuItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        height: 40,
-        color: Colors.transparent,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: 30,
-              child: SvgPicture.asset(
-                icon,
-                width: 20,
-                height: 20,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+            border: Border.all(color: primaryColor),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 30,
+                child: FaIcon(
+                  icon,
+                  size: 20,
+                  color: primaryColor,
+                ),
               ),
-            ),
-            const SizedBox(width: 10),
-            CustomText(
-              title ?? '',
-              textAlign: TextAlign.center,
-              style: TextStyle(
+              const SizedBox(width: 10),
+              CustomText(
+                title ?? '',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: primaryColor,
+                  fontSize: 14,
+                ),
+              ),
+              const Spacer(),
+              Icon(
+                Icons.chevron_right,
                 color: primaryColor,
-                fontSize: 14,
               ),
-            ),
-            const Spacer(),
-            Icon(
-              Icons.chevron_right,
-              color: primaryColor,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

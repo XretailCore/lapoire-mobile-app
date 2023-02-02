@@ -11,6 +11,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.category.name: "القسم",
       Translate.enjoyCategories.name: "استمتع بفئاتنا اللذيذة",
       Translate.profile.name: "حسابي",
+      Translate.hello.name: "مرحبا",
       Translate.myCart.name: "سلة التسوق",
       Translate.myOrders.name: "الطلبات",
       Translate.myAddresses.name: "العناوين",

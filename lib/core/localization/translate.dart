@@ -11,6 +11,7 @@ enum Translate {
   category,
   enjoyCategories,
   profile,
+  hello,
   myCart,
   myOrders,
   myAddresses,
