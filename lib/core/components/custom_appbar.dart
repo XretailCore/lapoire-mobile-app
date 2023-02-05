@@ -118,13 +118,17 @@ class CustomAppBar extends GetView<CartController>
   final bool showSearch;
   final bool showBackButton;
   final bool showAction;
+  final bool showBottom;
+  final Widget? bottom;
 
   const CustomAppBar({
     Key? key,
     this.title = "",
+    this.bottom,
     this.showBackButton = false,
-    this.showAction=true,
+    this.showAction = true,
     this.showCart = true,
+    this.showBottom = false,
     this.showSearch = false,
   }) : super(key: key);
 
@@ -134,6 +138,9 @@ class CustomAppBar extends GetView<CartController>
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      bottom: PreferredSize(
+          child:  bottom ?? const SizedBox(),
+          preferredSize: preferredSize),
       iconTheme: IconThemeData(color: CustomThemes.appTheme.primaryColor),
       backgroundColor: AppColors.highlighter,
       elevation: 1,
@@ -146,20 +153,22 @@ class CustomAppBar extends GetView<CartController>
       ),
       centerTitle: true,
       leading: showBackButton ? const CustomBackButton() : const SizedBox(),
-      actions: showAction?[
-        InkWell(
-          onTap: () {
-            Get.toNamed(Routes.search);
-          },
-          child: const Padding(
-            padding: EdgeInsets.only(top: 20.0, right: 16.0),
-            child: Icon(
-              Icons.search,
-              size: 25,
-            ),
-          ),
-        ),
-      ]:[],
+      actions: showAction
+          ? [
+              InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.search);
+                },
+                child: const Padding(
+                  padding: EdgeInsets.only(top: 20.0, right: 16.0),
+                  child: Icon(
+                    Icons.search,
+                    size: 25,
+                  ),
+                ),
+              ),
+            ]
+          : [],
     );
   }
 }

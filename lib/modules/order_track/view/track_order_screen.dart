@@ -1,7 +1,7 @@
 import 'package:dotted_line/dotted_line.dart';
+import 'package:imtnan/core/components/custom_appbar.dart';
 import '../../../core/components/imtnan_loading_widget.dart';
 import '../../../core/utils/theme.dart';
-import '../../../core/components/appbar_widget.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/components/custom_text.dart';
 import '../controllers/track_order_controller.dart';
@@ -13,12 +13,17 @@ import 'package:linktsp_api/linktsp_api.dart';
 
 class TrackOrderScreen extends GetView<TrackOrderController> {
   const TrackOrderScreen({Key? key}) : super(key: key);
+
   @override
   build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      appBar: AppBarWidget(title: Translate.trackYourOrder.tr),
+      appBar: CustomAppBar(
+        title: Translate.trackYourOrder.tr,
+        showBackButton: true,
+        showAction: false,
+      ),
       body: controller.obx(
         (data) => Container(
           color: Colors.white,
@@ -64,6 +69,7 @@ class TrackOrderItemWidget extends StatelessWidget {
 
   final TrackOrderItemModel? model;
   final bool? lastItem;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

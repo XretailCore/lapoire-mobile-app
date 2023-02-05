@@ -1,10 +1,11 @@
+import 'package:imtnan/core/components/custom_appbar.dart';
+import '../../../core/components/custom_button.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
+import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/theme.dart';
 import '../controllers/verify_otp_forget_password_controller.dart';
-import '../../../core/components/appbar_widget.dart';
-import '../widgets/header_verify_otp_widget.dart';
 import '../widgets/otp_widget.dart';
-import '../../../core/components/text_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,12 +17,24 @@ class VerifyOtpForgetPasswordScreen
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const AppBarWidget(),
+      appBar: CustomAppBar(
+          title: Translate.verifyOTP.tr,
+          showAction: false,
+          showBackButton: true),
       body: Form(
         key: controller.formKey,
         child: ListView(
           children: [
-            const HeaderVerifyOtp(),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: CustomText(
+                Translate.enterYourOTPCodeHere.tr,
+                style: TextStyle(
+                  color: CustomThemes.appTheme.primaryColor,
+                ),
+              ),
+            ),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -31,12 +44,17 @@ class VerifyOtpForgetPasswordScreen
                 ),
               ],
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 50),
             Align(
-              child: TextButtonWidget(
-                padding: const EdgeInsets.symmetric(horizontal: 80),
-                text: Translate.submit.tr,
-                onPressed: () async => await controller.onTapVerify(context),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: CustomBorderButton(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  title: Translate.submit.tr,
+                  color: AppColors.redColor,
+                  onTap: () async => await controller.onTapVerify(context),
+                ),
               ),
             ),
             const SizedBox(height: 10),
@@ -68,8 +86,8 @@ class VerifyOtpForgetPasswordScreen
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
                               color: controller.isCounterEqualZero
-                                  ? Colors.black
-                                  : Colors.grey,
+                                  ? CustomThemes.appTheme.primaryColor
+                                  : Colors.black,
                               decoration: TextDecoration.underline,
                               decorationThickness: 1.5,
                             ),

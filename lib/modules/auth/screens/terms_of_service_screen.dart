@@ -16,8 +16,10 @@ class TermsOfSerivceScreen extends GetView<TermsOfServiceController> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: CustomTitledAppBar(
+      appBar: CustomAppBar(
         title: Translate.termsOfService.tr,
+        showBackButton: true,
+        showAction: false,
       ),
       body: controller.obx(
         (contentPageModel) => SingleChildScrollView(

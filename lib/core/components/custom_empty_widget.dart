@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imtnan/core/components/custom_button.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
 import '../localization/translate.dart';
 import '../utils/theme.dart';
 import 'custom_text.dart';
@@ -36,7 +37,7 @@ class CustomEmptyWidget extends StatelessWidget {
                 width: MediaQuery.of(context).size.width/2,
                 child: CustomBorderButton(
                     radius: 20,
-                    color: CustomThemes.appTheme.primaryColor,
+                    color: AppColors.redColor,
                     title: buttonLabel ?? Translate.continueShopping.tr,
                     onTap: emptyBtnAction ?? () {},
                 ),

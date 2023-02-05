@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/core/components/custom_bottom_navigation_bar.dart';
+import 'package:imtnan/core/components/custom_text.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
 import '../../../core/components/custom_appbar.dart';
 import '../../../core/components/no_internet_widget.dart';
+import '../../../core/localization/translate.dart';
+import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../cart/controllers/cart_controller.dart';
 import '../../cart/view/cart_screen.dart';
 import '../../categories/view/categories_screen.dart';
@@ -23,6 +27,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
       Get.find<DashboardController>();
 
   final CartController cartController = Get.find<CartController>();
+  final UserSharedPrefrenceController userSharedPrefrenceController =
+      Get.find<UserSharedPrefrenceController>();
   int pageIndex = 2;
 
   @override
@@ -72,8 +78,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
         : Scaffold(
             resizeToAvoidBottomInset: false,
             extendBody: true,
-            appBar:
-                CustomAppBar(title: BottomAppBarItemsData.labelList[pageIndex]),
+            appBar: CustomAppBar(
+              bottom: pageIndex==4?CustomText(
+                userSharedPrefrenceController.getUserEmail,
+                style: const TextStyle(
+                  color: AppColors.redColor,
+                ),
+              ):const SizedBox(),
+              title: pageIndex == 4
+                  ? "${Translate.hello.tr} ${userSharedPrefrenceController.getUserFirstName}"
+                  : BottomAppBarItemsData.labelList[pageIndex],
+              showAction: pageIndex == 4 ? false : true,
+            ),
             bottomNavigationBar: CustomBottomNavigationBar(
               onImageTapped: () {
                 pageIndex = 2;

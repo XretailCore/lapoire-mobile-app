@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../core/components/appbar_widget.dart';
-import '../../../core/components/text_button_widget.dart';
+import 'package:imtnan/core/components/custom_appbar.dart';
+import 'package:imtnan/core/components/custom_button.dart';
 import '../../../core/localization/translate.dart';
+import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/validator.dart';
 import '../controllers/new_password_controller.dart';
 import '../widgets/password_text_form_field_widget.dart';
@@ -15,9 +15,10 @@ class NewPasswordScreen extends GetView<NewPasswordController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[50],
-      appBar: AppBarWidget(
+      appBar: CustomAppBar(
         title: Translate.newPassword.tr,
-        backgroundColor: Colors.grey[50]!,
+        showBackButton: true,
+        showAction: false,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -46,10 +47,12 @@ class NewPasswordScreen extends GetView<NewPasswordController> {
               ),
               const SizedBox(height: 10),
               Align(
-                child: TextButtonWidget(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                  text: Translate.submit.tr,
-                  onPressed: () async => controller.onTapChange(context),
+                child: CustomBorderButton(
+                  padding: const EdgeInsets.all(12),
+                  radius: 20,
+                  title: Translate.submit.tr,
+                  color: AppColors.redColor,
+                  onTap: () async => controller.onTapChange(context),
                 ),
               ),
             ],

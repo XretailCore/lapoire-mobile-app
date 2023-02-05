@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../core/components/appbar_widget.dart';
-import '../../../core/components/text_button_widget.dart';
+import 'package:imtnan/core/components/custom_appbar.dart';
+import 'package:imtnan/core/components/custom_button.dart';
 import '../../../core/components/text_form_field_widget.dart';
 import '../../../core/localization/translate.dart';
+import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/validator.dart';
 import '../controller/subscribe_controller.dart';
 
@@ -15,9 +15,10 @@ class SubscribeScreen extends GetView<SubscribeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBarWidget(
+      appBar: CustomAppBar(
         title: Translate.subscribeToOurNewsletter.tr,
-        elevation: 1,
+        showBackButton: true,
+        showAction: false,
       ),
       body: Form(
         key: controller.formKey,
@@ -35,10 +36,11 @@ class SubscribeScreen extends GetView<SubscribeController> {
               ),
               const SizedBox(height: 50),
               Center(
-                child: TextButtonWidget(
-                  minimumSize: const Size(220, 40),
-                  text: Translate.subscribe.tr,
-                  onPressed: () async =>
+                child: CustomBorderButton(
+                  color: AppColors.redColor,
+                  title: Translate.subscribe.tr,
+                  radius: 20,
+                  onTap: () async =>
                       await controller.onTapSubscribe(context),
                 ),
               )
