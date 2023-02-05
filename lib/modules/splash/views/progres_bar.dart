@@ -141,7 +141,7 @@ class _ProgressBarCustomState extends State<ProgressBarCustom> {
   }
 
   void _updateProgress() {
-    const oneSec = Duration(seconds: 1);
+    const oneSec = Duration(milliseconds: 500);
     Timer.periodic(oneSec, (Timer t) {
       if (mounted) {
         setState(() {

@@ -54,7 +54,7 @@ class SplashController extends GetxController with StateMixin {
   Future<void> getTokenApi({bool isRetry = false}) async {
     if (isRetry) change(null, status: RxStatus.loading());
     try {
-      await const Duration(seconds: 3).delay();
+      await const Duration(seconds: 2).delay();
 
       final _prefs = Get.find<UserSharedPrefrenceController>();
 
