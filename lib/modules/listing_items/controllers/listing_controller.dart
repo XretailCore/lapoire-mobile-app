@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linktsp_api/data/list/models/new_list_model.dart' as new_model;
@@ -19,6 +20,7 @@ class ListItemsController extends GetxController
     with StateMixin<NewListingDataModel> {
   final refreshController = RefreshController(initialRefresh: false);
   final searchController = TextEditingController(text: '');
+  final CarouselController categoriesScrollController = CarouselController();
   String? categoryName;
   final products = <new_model.ListingItem>[];
   var pageIndex = 1;

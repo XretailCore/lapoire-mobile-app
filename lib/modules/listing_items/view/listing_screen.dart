@@ -3,8 +3,10 @@ import 'package:imtnan/core/components/custom_text.dart';
 import 'package:imtnan/core/components/imtnan_loading_widget.dart';
 import 'package:imtnan/modules/listing_items/view/filter_screen.dart';
 import 'package:imtnan/modules/listing_items/widgets/sort_widget.dart';
+import '../../../core/components/custom_slider.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/theme.dart';
+import '../../home/widgets/home_categories_widget.dart';
 import '../widgets/listing_grid_widget.dart';
 import '../../../core/components/custom_appbar.dart';
 import '../widgets/listing_filter_options_widget.dart';
@@ -30,6 +32,71 @@ class ListItemsScreen extends GetView<ListItemsController> {
       body: Center(
         child: Column(
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      controller.categoriesScrollController.previousPage();
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: CustomThemes.appTheme.primaryColor,
+                          shape: BoxShape.circle),
+                      child: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: Icon(
+                          FontAwesomeIcons.caretLeft,
+                          color: Colors.white,
+                          size: 15,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  Expanded(
+                    child: CustomSlider(
+                      showTitleAndButton: false,
+                      showIndicator: false,
+                      autoPlay: false,
+                      viewportFraction: 0.4,
+                      height: 30,
+                      controller: controller.categoriesScrollController,
+                      sliderImages: [
+                        for (var item in controller.categories.items!)
+                          Center(
+                            child: CategoryWidget(
+                              category: item,
+                              index: controller.categories.items!.indexOf(item),
+                            ),
+                          )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  InkWell(
+                    onTap: () {
+                      controller.categoriesScrollController.nextPage();
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: CustomThemes.appTheme.primaryColor,
+                          shape: BoxShape.circle),
+                      child: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: Icon(
+                          FontAwesomeIcons.caretRight,
+                          color: Colors.white,
+                          size: 15,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Expanded(
               child: Container(
                 color: Colors.white,
