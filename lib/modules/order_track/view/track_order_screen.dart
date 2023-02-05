@@ -1,6 +1,7 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:imtnan/core/components/custom_appbar.dart';
 import '../../../core/components/imtnan_loading_widget.dart';
+import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/theme.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/components/custom_text.dart';
@@ -107,13 +108,13 @@ class TrackOrderItemWidget extends StatelessWidget {
         ),
         Visibility(
           visible: (lastItem ?? false) ? false : true,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 8.0),
+          child: const Padding(
+            padding:  EdgeInsets.only(top: 8.0),
             child: DottedLine(
               dashLength: 5,
               dashGapLength: 2,
               lineThickness: 1,
-              dashColor: CustomThemes.appTheme.primaryColor,
+              dashColor: AppColors.redColor,
               direction: Axis.vertical,
               lineLength: 75,
             ),

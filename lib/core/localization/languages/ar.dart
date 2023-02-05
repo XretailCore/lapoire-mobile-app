@@ -187,6 +187,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.sortBy.name: 'الترتيب',
       Translate.orderDetails.name: 'تفاصيل الطلب',
       Translate.addFeedback.name: 'اضافة تقييم',
+      Translate.feedback.name: 'التقييم',
       Translate.cancel.name: 'الغاء',
       Translate.cancelOrderNumberMessage.name: 'الغاء طلب رقم',
       Translate.reason.name: 'السبب',

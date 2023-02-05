@@ -176,6 +176,7 @@ enum Translate {
   sortBy,
   orderDetails,
   addFeedback,
+  feedback,
   cancel,
   cancelOrder,
   cancelOrderNumberMessage,

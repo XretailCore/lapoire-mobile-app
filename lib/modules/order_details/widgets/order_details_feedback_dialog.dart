@@ -59,7 +59,7 @@ class FeedBackWidget extends GetView<FeedbackOrderController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomText(
-                    Translate.addFeedback.name.tr,
+                    Translate.feedback.name.tr,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
@@ -69,15 +69,7 @@ class FeedBackWidget extends GetView<FeedbackOrderController> {
                 ],
               ),
               Divider(thickness: 1.5,color: CustomThemes.appTheme.primaryColor,),
-              const SizedBox(height: 20),
-              CustomText(
-                "${Translate.reason.name.tr} :",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: CustomThemes.appTheme.primaryColor,
-                ),
-              ),
-              const SizedBox(height: 5),
+              const SizedBox(height: 25),
               Obx(
                 () => Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5),

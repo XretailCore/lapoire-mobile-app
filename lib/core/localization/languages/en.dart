@@ -189,6 +189,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.sortBy.name: 'Sort By',
       Translate.orderDetails.name: 'Order Details',
       Translate.addFeedback.name: 'Add Feedback',
+      Translate.feedback.name: 'Feedback',
       Translate.cancel.name: 'Cancel',
       Translate.cancelOrderNumberMessage.name:
           'You are cancelling order number',
