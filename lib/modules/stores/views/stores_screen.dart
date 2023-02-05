@@ -1,4 +1,5 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
 
 import '../../../core/components/custom_appbar.dart';
@@ -84,15 +85,17 @@ class StoresScreen extends GetView<StoresController> {
                         )
                       ],
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 16),
+                    Divider(color: CustomThemes.appTheme.primaryColor,thickness: 1.5),
+                    const SizedBox(height: 16),
                     Column(
                       children: [
                         Align(
                           alignment: AlignmentDirectional.topStart,
                           child: CustomText(
                             Translate.searchByCity.tr,
-                            style: const TextStyle(
-                                color: Color(0xff4D4D4D),
+                            style: TextStyle(
+                                color: CustomThemes.appTheme.primaryColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14),
                           ),
@@ -100,44 +103,57 @@ class StoresScreen extends GetView<StoresController> {
                         const SizedBox(height: 5),
                         SizedBox(
                           width: double.infinity,
-                          child: Card(
-                            color: Colors.black12,
-                            elevation: 0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: AppColors.highlighter,
+                             border: Border.all(color:CustomThemes.appTheme.primaryColor),
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
                             child: Padding(
                               padding:
                                   const EdgeInsets.fromLTRB(10.0, 0, 10, 0),
-                              child: Obx(() => DropdownButtonHideUnderline(
-                                    child: DropdownButton<CityModel?>(
-                                        style: TextStyle(
-                                            color: CustomThemes
-                                                .appTheme.colorScheme.secondary,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
-                                            letterSpacing: 0),
-                                        onChanged: (city) {
-                                          controller.selectedCity = city;
-                                        },
-                                        value: controller.selectedCity,
-                                        items: [
-                                          for (var data in controller.allCities)
-                                            DropdownMenuItem<CityModel?>(
-                                              child: SizedBox(
-                                                width: 200,
-                                                child: CustomText(
-                                                  data.name ?? '',
-                                                ),
-                                              ),
-                                              value: data,
-                                            )
-                                        ]),
-                                  )),
+                              child: Obx(
+                                () => DropdownButtonHideUnderline(
+                                  child: DropdownButton<CityModel?>(
+                                    borderRadius: BorderRadius.circular(20),
+                                    icon: FaIcon(FontAwesomeIcons.angleDown,
+                                        size: 16.0,
+                                        color:
+                                            CustomThemes.appTheme.primaryColor),
+                                    style: TextStyle(
+                                        color: CustomThemes
+                                            .appTheme.colorScheme.secondary,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.normal,
+                                        letterSpacing: 0),
+                                    dropdownColor: AppColors.highlighter,
+                                    onChanged: (city) {
+                                      controller.selectedCity = city;
+                                    },
+                                    value: controller.selectedCity,
+                                    items: [
+                                      for (var data in controller.allCities)
+                                        DropdownMenuItem<CityModel?>(
+                                          child: SizedBox(
+                                            width: 200,
+                                            child: CustomText(
+                                              data.name ?? '',
+                                            ),
+                                          ),
+                                          value: data,
+                                        )
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
                         const SizedBox(height: 30),
-                        CustomButton(
-                          color: CustomThemes.appTheme.primaryColor,
+                        CustomBorderButton(
+                          color: AppColors.redColor,
                           textColor: Colors.white,
+                          radius: 20,
                           title: Translate.searchByCity.tr,
                           onTap: () async => controller.searchByCityAction(
                               context, controller.selectedCity),
