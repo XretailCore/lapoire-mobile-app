@@ -1,8 +1,12 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:imtnan/core/localization/translate.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:imtnan/core/utils/theme.dart';
+import 'package:imtnan/modules/cart/controllers/cart_controller.dart';
 import 'custom_text.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
@@ -92,19 +96,47 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
 }
 
 class BottomAppBarItemsData {
-  static const iconsList = <Widget>[
-    Icon(Icons.restaurant_menu, size: 22, color: Colors.white),
-    Icon(Icons.favorite, size: 22, color: Colors.white),
-    Icon(Icons.home, size: 22, color: Colors.white),
-    Icon(Icons.shopping_cart, size: 22, color: Colors.white),
-    Icon(Icons.people_rounded, size: 22, color: Colors.white)
+  static CartController controller = Get.find<CartController>();
+
+  static List<Widget> iconsList = <Widget>[
+    const Icon(Icons.restaurant_menu, size: 22, color: Colors.white),
+    const Icon(Icons.favorite, size: 22, color: Colors.white),
+    const Icon(Icons.home, size: 22, color: Colors.white),
+    Obx(() => Badge(
+        badgeColor: AppColors.redColor,
+        alignment: AlignmentDirectional.topEnd,
+        badgeContent: CustomText(
+          controller.cartCounter.value.toString(),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 11,
+          ),
+        ),
+        animationType: BadgeAnimationType.scale,
+        padding: EdgeInsets.all(controller.cartCounter.value < 9 ? 4 : 3),
+        child: const Icon(Icons.shopping_cart, size: 22, color: Colors.white))),
+    const Icon(Icons.people_rounded, size: 22, color: Colors.white)
   ];
-  static const activeIconsList = <Widget>[
-    Icon(Icons.restaurant_menu, color: Color(0xff00754D), size: 22),
-    Icon(Icons.favorite, color: Color(0xff00754D), size: 22),
-    Icon(Icons.home, color: Color(0xff00754D), size: 22),
-    Icon(Icons.shopping_cart, color: Color(0xff00754D), size: 22),
-    Icon(Icons.people_rounded, color: Color(0xff00754D), size: 22)
+  static List<Widget> activeIconsList = <Widget>[
+    const Icon(Icons.restaurant_menu, color: AppColors.primaryColor, size: 22),
+    const Icon(Icons.favorite, color: AppColors.primaryColor, size: 22),
+    const Icon(Icons.home, color: AppColors.primaryColor, size: 22),
+    Obx(() => Badge(
+        badgeColor: AppColors.redColor,
+        alignment: AlignmentDirectional.topEnd,
+        badgeContent: CustomText(
+          controller.cartCounter.value.toString(),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 11,
+          ),
+        ),
+        animationType: BadgeAnimationType.scale,
+        padding: EdgeInsets.all(controller.cartCounter.value < 9 ? 4 : 3),
+        child: const Icon(Icons.shopping_cart,
+            size: 22, color: AppColors.primaryColor))),
+    const Icon(Icons.people_rounded, size: 22, color: Colors.white),
+    const Icon(Icons.people_rounded, color: AppColors.primaryColor, size: 22)
   ];
 
   static final labelList = <String>[
