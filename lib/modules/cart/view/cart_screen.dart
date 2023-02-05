@@ -64,10 +64,13 @@ class CartScreen extends GetView<CartController> {
                             : () => controller.increase(data.items![index].id!,
                                 data.items![index].qty!, context),
                     onDecrement: () => controller.decrease(
-                        data.items![index].id!, data.items![index].qty!, context),
+                        data.items![index].id!,
+                        data.items![index].qty!,
+                        context),
                     onDelete: data.items![index].freeBogo ?? false
                         ? null
-                        : () => controller.deleteFromCart(data.items![index].id!),
+                        : () =>
+                            controller.deleteFromCart(data.items![index].id!),
                   );
                 },
               ),
@@ -89,29 +92,37 @@ class CartScreen extends GetView<CartController> {
                     ),
                   ),
                   child: Obx(
-                    () => Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                    () => Center(
+                      child: SizedBox(
+                        height: 50,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            CustomText(
-                                "${data.items!.length} ${Translate.items.tr}"),
-                            const SizedBox(height: 4.0),
-                            CustomText(
-                                "${Translate.total.tr} ${controller.total.value} ${Translate.egp.tr}"),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText(
+                                    "${data.items!.length} ${Translate.items.tr}"),
+                                const SizedBox(height: 4.0),
+                                CustomText(
+                                    "${Translate.total.tr} ${controller.total.value} ${Translate.egp.tr}"),
+                              ],
+                            ),
+                            const SizedBox(width: 8.0),
+                            Expanded(
+                              child: CustomBorderButton(
+                                mdh: 40,
+                                radius: 50,
+                                color: AppColors.redColor,
+                                title: Translate.buyNow.tr,
+                                onTap: () async =>
+                                    controller.onTapCheckOut(context),
+                              ),
+                            ),
                           ],
                         ),
-                        const SizedBox(width: 8.0),
-                        Expanded(
-                          child: CustomBorderButton(
-                            radius: 20,
-                            color: AppColors.redColor,
-                            title: Translate.buyNow.tr,
-                            onTap: () async => controller.onTapCheckOut(context),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),

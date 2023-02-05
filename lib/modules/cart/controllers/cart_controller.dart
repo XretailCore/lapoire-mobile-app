@@ -20,7 +20,7 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
   RxInt cartCounter = 0.obs;
   final List<int> cartItemsIds = <int>[];
   final facebookAppEvents = FacebookAppEvents();
-  Rx<num> total =0.0.obs;
+  Rx<num> total = 0.0.obs;
 
   final Rx<CartSummaryModel> cartSummaryResult = CartSummaryModel().obs;
   final UserSharedPrefrenceController _userSharedPrefrenceController =
@@ -78,7 +78,9 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
         await Get.defaultDialog(
               radius: 4,
               title: Translate.prebookingPolicy.tr,
-              titleStyle: TextStyle(color: Theme.of(context).primaryColor,fontWeight: FontWeight.w700),
+              titleStyle: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.w700),
               content: const PreBookingPolicyWidget(),
             ) ??
             false;
@@ -127,13 +129,13 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
         setCartCount(cartSummaryResult.value.items ?? []);
         change(cartSummaryResult.value, status: RxStatus.empty());
       } else {
-        if(cartSummaryResult.value.summary!.last.value!.contains("."))
-        {
-          total.value= double.parse(cartSummaryResult.value.summary?.last.value ??"0.0");
-
-        }
-        else{
-          total.value= int.parse(cartSummaryResult.value.summary?.last.value ??"0").toDouble();
+        if (cartSummaryResult.value.summary!.last.value!.contains(".")) {
+          total.value = double.parse(
+              cartSummaryResult.value.summary?.last.value ?? "0.0");
+        } else {
+          total.value =
+              int.parse(cartSummaryResult.value.summary?.last.value ?? "0")
+                  .toDouble();
         }
         cartItemsIds.clear();
         for (var i = 0; i < cartSummaryResult.value.items!.length; i++) {
@@ -157,7 +159,7 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
       List<CartItemModel> guestCartItems = await LinkTspApi.instance.cart
           .guestCartUpdate(cartSkuModel: guestCart);
       if (guestCartItems.isNotEmpty) {
-        for(var item in guestCartItems) {
+        for (var item in guestCartItems) {
           total.value += item.finalPrice! * item.qty!;
         }
         setCartCount(guestCartItems.cast<CartItemModel>());

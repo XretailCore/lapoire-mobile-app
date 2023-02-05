@@ -17,6 +17,8 @@ class LocationWidget extends GetView<MapController> {
   Widget build(BuildContext context) {
     return Obx(
       () => InkWell(
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
         onTap: () {
           controller.determinePosition();
           controller.getZonesDetails();
@@ -35,7 +37,8 @@ class LocationWidget extends GetView<MapController> {
             ),
             const SizedBox(width: 5),
             SizedBox(
-              width: controller.selectedAddress.value.isNotEmpty?0.30.sw:0.0,
+              width:
+                  controller.selectedAddress.value.isNotEmpty ? 0.30.sw : 0.0,
               child: CustomText(
                 controller.selectedAddress.value,
                 overflow: TextOverflow.ellipsis,

@@ -33,75 +33,69 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var body = Padding(
-      padding: const EdgeInsets.only(bottom: 60.0),
-      child: CustomConnectivityAlertWidget(
-        onlineWidget: PageView(
-          controller: dashboardController.navigationBarController,
-          allowImplicitScrolling: false,
-          physics: const NeverScrollableScrollPhysics(),
-          onPageChanged: (index) {
-            setState(() {
-              pageIndex = index;
-              dashboardController.navigationBarController.jumpToPage(index);
-            });
-          },
-          children: const [
-            CategoriesScreen(),
-            WishlistScreen(),
-            HomeScreen(),
-            CartScreen(),
-            MyAccountScreen(),
-          ],
-        ),
+    var body = CustomConnectivityAlertWidget(
+      onlineWidget: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 60.0),
+            child: PageView(
+              controller: dashboardController.navigationBarController,
+              allowImplicitScrolling: false,
+              physics: const NeverScrollableScrollPhysics(),
+              onPageChanged: (index) {
+                setState(() {
+                  pageIndex = index;
+                  dashboardController.navigationBarController.jumpToPage(index);
+                });
+              },
+              children: const [
+                CategoriesScreen(),
+                WishlistScreen(),
+                HomeScreen(),
+                CartScreen(),
+                MyAccountScreen(),
+              ],
+            ),
+          ),
+          CustomBottomNavigationBar(
+            onImageTapped: () {
+              pageIndex = 2;
+              dashboardController.navigationBarController.jumpToPage(2);
+            },
+            pageIndex: pageIndex,
+            onChanged: (index) => setState(
+              () {
+                pageIndex = index;
+                dashboardController.navigationBarController.jumpToPage(index);
+              },
+            ),
+          ),
+        ],
       ),
     );
     return pageIndex == 2
         ? Scaffold(
             resizeToAvoidBottomInset: false,
             extendBody: true,
-            bottomNavigationBar: CustomBottomNavigationBar(
-              onImageTapped: () {
-                pageIndex = 2;
-                dashboardController.navigationBarController.jumpToPage(2);
-              },
-              pageIndex: pageIndex,
-              onChanged: (index) => setState(
-                () {
-                  pageIndex = index;
-                  dashboardController.navigationBarController.jumpToPage(index);
-                },
-              ),
-            ),
             body: body,
           )
         : Scaffold(
             resizeToAvoidBottomInset: false,
             extendBody: true,
             appBar: CustomAppBar(
-              bottom: pageIndex==4?CustomText(
-                userSharedPrefrenceController.getUserEmail,
-                style: const TextStyle(
-                  color: AppColors.redColor,
-                ),
-              ):const SizedBox(),
+              bottom: pageIndex == 4
+                  ? CustomText(
+                      userSharedPrefrenceController.getUserEmail,
+                      style: const TextStyle(
+                        color: AppColors.redColor,
+                      ),
+                    )
+                  : const SizedBox(),
               title: pageIndex == 4
                   ? "${Translate.hello.tr} ${userSharedPrefrenceController.getUserFirstName}"
                   : BottomAppBarItemsData.labelList[pageIndex],
               showAction: pageIndex == 4 ? false : true,
-            ),
-            bottomNavigationBar: CustomBottomNavigationBar(
-              onImageTapped: () {
-                pageIndex = 2;
-                dashboardController.navigationBarController.jumpToPage(2);
-              },
-              pageIndex: pageIndex,
-              onChanged: (index) => setState(
-                () {
-                  pageIndex = index;
-                  dashboardController.navigationBarController.jumpToPage(index);
-                },
-              ),
             ),
             body: body,
           );
