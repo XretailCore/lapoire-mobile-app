@@ -40,6 +40,7 @@ class HomeScreen extends GetView<HomeController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      const SizedBox(width: 8.0),
                       Expanded(
                         child: LocationWidget(
                           pageName: MapPages.homeScreen.name,
@@ -47,18 +48,32 @@ class HomeScreen extends GetView<HomeController> {
                       ),
                       Row(
                         children: [
-                          Icon(
-                            Icons.language,
-                            size: 20,
-                            color: CustomThemes.appTheme.primaryColor,
-                          ),
-                          const SizedBox(width: 8.0),
-                          CustomText(
-                            Translate.language.tr,
-                            style: TextStyle(
-                                color: CustomThemes.appTheme.primaryColor),
+                          InkWell(
+                            highlightColor: Colors.transparent,
+                            splashColor: Colors.transparent,
+                            onTap: () {
+                              Get.toNamed(Routes.languageScreen);
+                            },
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.language,
+                                  size: 20,
+                                  color: CustomThemes.appTheme.primaryColor,
+                                ),
+                                const SizedBox(width: 8.0),
+                                CustomText(
+                                  Translate.language.tr,
+                                  style: TextStyle(
+                                      color:
+                                          CustomThemes.appTheme.primaryColor),
+                                ),
+                              ],
+                            ),
                           ),
                           InkWell(
+                            highlightColor: Colors.transparent,
+                            splashColor: Colors.transparent,
                             onTap: () {
                               Get.toNamed(Routes.search);
                             },
