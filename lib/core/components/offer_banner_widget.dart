@@ -26,19 +26,21 @@ class OfferBannerWidget extends StatelessWidget {
           painter: RPSCustomPainter(backgroundColor),
         ),
         SizedBox(
-          height: 30,
-          width: 30,
-          child: CustomText(
-            offerText,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.w900,
-              fontSize: 10,
-              color: textColor,
+          height: 50,
+          width: 40,
+          child: Center(
+            child: CustomText(
+              offerText,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.w900,
+                fontSize: 9,
+                color: textColor,
+              ),
+              softWrap: true,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
-            softWrap: true,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
           ),
         ),
       ],

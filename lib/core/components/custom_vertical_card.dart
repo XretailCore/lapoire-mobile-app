@@ -147,17 +147,6 @@ class VerticalProductCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CustomText(
-                          promoText,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            color: Color.fromRGBO(237, 151, 32, 1),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                          ),
-                        ),
-                        SizedBox(height: promoText.isEmpty ? 0 : 5),
-                        CustomText(
                           productName!,
                           maxLines: 2,
                           softWrap: true,
@@ -462,7 +451,7 @@ class VerticalProductCard extends StatelessWidget {
               child: Row(
                 children: [
                   Offstage(
-                    offstage: !hasOffer!,
+                    offstage: !promoText.isNotEmpty,
                     child: OfferBannerWidget(
                       offerText: promoText,
                       textColor: Colors.white,
