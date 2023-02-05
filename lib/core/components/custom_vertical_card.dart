@@ -1,5 +1,7 @@
+import 'package:cowpay/core/helpers/screen_size.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:linktsp_api/linktsp_api.dart';
@@ -96,6 +98,7 @@ class VerticalProductCard extends StatelessWidget {
                         )
                       : SizedBox(
                           width: double.infinity,
+                          height: 150,
                           child: ExtendedImage.network(
                             productImage!,
                             cacheHeight: 800,
@@ -136,7 +139,6 @@ class VerticalProductCard extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(height: 0),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
@@ -394,7 +396,7 @@ class VerticalProductCard extends StatelessWidget {
                     InkWell(
                       highlightColor: AppColors.highlighter,
                       customBorder: const CircleBorder(),
-                      onTap: isAvailable ? onAddToCart : null,
+                      onTap: isAvailable ? onAddToCart : showOutOfStockMessage,
                       child: Container(
                         height: 35,
                         decoration: BoxDecoration(
@@ -483,6 +485,17 @@ class VerticalProductCard extends StatelessWidget {
       ],
     );
   }
+}
+
+void showOutOfStockMessage() {
+  Fluttertoast.showToast(
+      msg: Translate.outOfStock.tr,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: AppColors.redColor,
+      textColor: Colors.white,
+      fontSize: 16.0);
 }
 
 class CartCounterWidget extends StatelessWidget {
