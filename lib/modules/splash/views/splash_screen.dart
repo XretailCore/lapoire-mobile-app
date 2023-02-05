@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:imtnan/core/components/no_internet_widget.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
+import 'package:imtnan/modules/splash/views/progres_bar.dart';
 
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
@@ -68,28 +71,13 @@ class SplashWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: AlignmentDirectional.bottomCenter,
       children: [
         Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           color: Colors.white,
         ),
-        Center(
-          child: Image.asset(
-            'assets/images/splash.png',
-            width: 150,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: CustomText(
-            'Powered By Link TSP',
-            style: TextStyle(
-                color: CustomThemes.appTheme.primaryColor, fontSize: 12),
-            textAlign: TextAlign.center,
-          ),
-        ),
+        const ProgressBarCustom(),
       ],
     );
   }
