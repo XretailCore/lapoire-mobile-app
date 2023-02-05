@@ -31,7 +31,7 @@ class HomeListingWidget extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
       color: isYellow ? AppColors.highlighter : Colors.white,
       child: Offstage(
         offstage: items == null || items!.isEmpty,
@@ -39,13 +39,16 @@ class HomeListingWidget extends GetView<HomeController> {
           children: [
             CustomText(
               title,
+              maxLines: 1,
+              softWrap: true,
               style: TextStyle(
                   color: CustomThemes.appTheme.primaryColor,
                   fontWeight: FontWeight.w400,
                   fontSize: 32,
+                  overflow: TextOverflow.ellipsis,
                   fontFamily: "Bayshore"),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 18),
             CarouselSlider.builder(
               itemBuilder:
                   (BuildContext context, int itemIndex, int pageViewIndex) {
@@ -88,7 +91,7 @@ class HomeListingWidget extends GetView<HomeController> {
                 },
                 viewportFraction: 0.5,
                 initialPage: 0,
-                aspectRatio: 1 / .68,
+                aspectRatio: 1 / .73,
                 enableInfiniteScroll: items!.length <= 1 ? false : true,
                 reverse: false,
                 autoPlay: false,
