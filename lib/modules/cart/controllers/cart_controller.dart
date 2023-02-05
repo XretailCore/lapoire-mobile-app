@@ -63,7 +63,7 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
           final CustomerSummaryController _customerSummaryController =
               Get.find<CustomerSummaryController>();
           _customerSummaryController.getSummaryData();
-          Get.toNamed(Routes.paymentScreen);
+          Get.toNamed(Routes.customerLocationsScreen);
         }
       } on ExceptionApi catch (e) {
         HelperFunctions.showSnackBar(
@@ -78,7 +78,7 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
         await Get.defaultDialog(
               radius: 4,
               title: Translate.prebookingPolicy.tr,
-              titleStyle: TextStyle(color: Theme.of(context).primaryColor),
+              titleStyle: TextStyle(color: Theme.of(context).primaryColor,fontWeight: FontWeight.w700),
               content: const PreBookingPolicyWidget(),
             ) ??
             false;

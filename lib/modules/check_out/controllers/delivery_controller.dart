@@ -52,7 +52,7 @@ class DeliveryController extends GetxController {
         HelperFunctions.showSnackBar(
             message: alertMessage, context: Get.context!);
       } else {
-        Get.toNamed(Routes.paymentScreen);
+        Get.toNamed(Routes.customerLocationsScreen);
       }
     } on ExceptionApi catch (e) {
       HelperFunctions.showSnackBar(

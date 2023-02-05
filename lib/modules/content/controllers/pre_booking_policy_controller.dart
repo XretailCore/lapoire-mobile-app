@@ -51,7 +51,7 @@ class PreBookingPolicyController extends GetxController
     await Get.defaultDialog(
           radius: 4,
           title: Translate.prebookingPolicy.tr,
-          titleStyle: TextStyle(color: Theme.of(context).primaryColor),
+          titleStyle: TextStyle(color: Theme.of(context).primaryColor,fontWeight: FontWeight.w700),
           content: const PreBookingPolicyWidget(),
         ) ??
         false;
