@@ -424,6 +424,9 @@ class VerticalProductCard extends StatelessWidget {
                 ),
               ),
               visible: !hideButtonsRow,
+            ),
+            const SizedBox(
+              height: 5,
             )
           ],
         ),
