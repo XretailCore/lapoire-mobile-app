@@ -79,7 +79,7 @@ class SplashController extends GetxController with StateMixin {
       final wishList = Get.find<WishlistController>();
       await wishList.setWishList();
 
-      _startUpPage();
+      // _startUpPage();
       change(null, status: RxStatus.success());
     } catch (e) {
       change(null, status: RxStatus.error(e.toString()));

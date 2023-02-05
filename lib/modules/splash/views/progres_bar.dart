@@ -57,20 +57,23 @@ class _ProgressBarCustomState extends State<ProgressBarCustom> {
               Container(
                 color: Colors.white,
                 width: 18,
-                height: double.infinity,
-                child: Stack(
-                  children: [
-                    AnimatedPositioned(
-                      curve: Curves.bounceOut,
-                      duration: const Duration(milliseconds: 1000),
-                      top: selected ? .515.sh : -100,
-                      child: SvgPicture.asset(
-                        'assets/images/logo_splash.svg',
-                        height: 50,
-                        width: 20,
+                height: .5.sh,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 0),
+                  child: Stack(
+                    children: [
+                      AnimatedPositioned(
+                        curve: Curves.bounceOut,
+                        duration: const Duration(milliseconds: 1000),
+                        top: selected ? .20.sh : -.5.sw,
+                        child: SvgPicture.asset(
+                          'assets/images/logo_splash.svg',
+                          height: 50,
+                          width: 20,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Container(
