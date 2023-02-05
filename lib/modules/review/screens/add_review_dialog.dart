@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-
+import 'package:imtnan/core/components/custom_button.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
 import '../../../core/components/custom_text.dart';
-import '../../../core/components/text_form_field_widget.dart';
+import '../../../core/components/custom_text_field.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/routes.dart';
+import '../../../core/utils/theme.dart';
 import '../../../core/utils/validator.dart';
-import '../../check_out/widgets/next_widget.dart';
 import '../controllers/add_review_controller.dart';
 
 Future<void> openAddReviewDialog(BuildContext context,
@@ -41,7 +42,7 @@ class AddReviewWidget extends GetView<AddReviewController> {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: const BoxDecoration(
-        color: Colors.white,
+        color: AppColors.highlighter,
       ),
       child: Form(
         autovalidateMode: AutovalidateMode.always,
@@ -49,81 +50,86 @@ class AddReviewWidget extends GetView<AddReviewController> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
+            Column(
               children: [
                 CustomText(
                   Translate.addReview.tr,
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: primaryColor),
                 ),
-                const Spacer(),
-                const CloseButton(),
+                Divider(color: primaryColor,thickness: 1.5),
               ],
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              decoration: const BoxDecoration(
-                border: Border(
-                  top: BorderSide(color: Colors.grey),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomText(
+                  Translate.rateProduct.tr,
+                  style: const TextStyle(
+                      fontSize: 13, color: AppColors.redColor),
                 ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText(
-                    Translate.rateProduct.tr,
-                    style: const TextStyle(
-                        fontSize: 13, color: Color.fromRGBO(102, 102, 102, 1)),
-                  ),
-                  const SizedBox(height: 8),
-                  RatingBar.builder(
-                    minRating: 1,
-                    initialRating: controller.rate,
-                    itemSize: 20,
-                    itemCount: 5,
-                    itemBuilder: (context, _) => Icon(
+                const SizedBox(height: 8),
+                RatingBar.builder(
+                  minRating: 1,
+                  initialRating: controller.rate,
+                  glowColor: primaryColor,
+                  unratedColor: primaryColor,
+                  itemSize: 20,
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return (controller.rate) >
+                        index
+                        ? Icon(
                       Icons.star,
                       color: primaryColor,
-                    ),
-                    onRatingUpdate: (double value) =>
-                        controller.onUpdateRate(value),
-                  ),
-                  const SizedBox(height: 15),
-                  TextFormFieldWidget(
-                    hint: Translate.describeYourExperience.tr,
-                    hintStyle: const TextStyle(
-                      fontSize: 11,
-                    ),
-                    textEditingController: controller.reviewTEC,
-                    validator: CustomValidator.multiLineTextValidation,
-                    minLines: 2,
-                    maxLines: 5,
-                    backgroundColor: Colors.white,
-                    focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    enabledBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                    ),
-                    contentPadding: const EdgeInsets.all(8),
-                    autovalidateMode: AutovalidateMode.disabled,
-                    autocorrect: true,
-                    enableSuggestions: true,
-                    textInputAction: TextInputAction.done,
-                    textInputType: TextInputType.multiline,
-                  )
-                ],
-              ),
+                    )
+                        : Icon(
+                      Icons.star_border_outlined,
+                      color: primaryColor,
+                    );
+                  },
+                  onRatingUpdate: (double value) =>
+                      controller.onUpdateRate(value),
+                ),
+                const SizedBox(height: 15),
+                // TextFormFieldWidget(
+                //   hint: Translate.describeYourExperience.tr,
+                //   hintStyle: TextStyle(
+                //     fontSize: 11,
+                //     color: primaryColor,
+                //     fontWeight: FontWeight.w400,
+                //   ),
+                //   textEditingController: controller.reviewTEC,
+                //   validator: CustomValidator.multiLineTextValidation,
+                //   minLines: 2,
+                //   maxLines: 5,
+                //   backgroundColor: AppColors.highlighter,
+                //   contentPadding: const EdgeInsets.all(8),
+                //   autovalidateMode: AutovalidateMode.disabled,
+                //   autocorrect: true,
+                //   enableSuggestions: true,
+                //   textInputAction: TextInputAction.done,
+                //   textInputType: TextInputType.multiline,
+                // ),
+                CustomTextField(
+                  labelText: Translate.describeYourExperience.name.tr,
+                  controller: controller.reviewTEC,
+                  validator: CustomValidator.requiredValidation,
+                  borderColor: CustomThemes.appTheme.primaryColor,
+                  maxLines: 5,
+                  labelColor: CustomThemes.appTheme.primaryColor,
+                ),
+              ],
             ),
             const SizedBox(height: 15),
             Row(
               children: [
                 Expanded(
-                  child: TextButtonWidget(
-                    height: 40,
-                    backgroundColor: primaryColor,
-                    text: Translate.post.tr,
+                  child: CustomBorderButton(
+                    title: Translate.post.tr,
+                    color: AppColors.redColor,
+                    radius: 20.0,
                     onTap: () => controller.postReviewAction(context),
                   ),
                 ),

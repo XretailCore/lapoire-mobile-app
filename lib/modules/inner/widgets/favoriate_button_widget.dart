@@ -41,7 +41,7 @@ class _FavoriateButtonWidgetState extends State<FavoriateButtonWidget> {
         widget.onFavoraite(changeFavoriateValue);
       },
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(5.0),
         child: FaIcon(
           isFavoraite ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart,
           size: widget.iconSize,

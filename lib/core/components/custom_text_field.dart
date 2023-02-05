@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:imtnan/core/utils/theme.dart';
 
+import '../utils/app_colors.dart';
+
 class CustomTextField extends StatelessWidget {
   final String labelText;
   final TextEditingController controller;
@@ -36,10 +38,10 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
 
       maxLines: maxLines,
-      style: const TextStyle(
-          color: Color(0xffACBAC3),
+      style: TextStyle(
+          color: CustomThemes.appTheme.primaryColor,
           fontSize: 14,
-          fontWeight: FontWeight.normal,
+          fontWeight: FontWeight.w700,
           letterSpacing: 0),
       autovalidateMode: AutovalidateMode.disabled,
       keyboardType: keyboardType ?? TextInputType.text,
@@ -67,17 +69,17 @@ class CustomTextField extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.0),
           borderSide:
-              BorderSide(color: borderColor ?? Colors.transparent, width: 2.0),
+              BorderSide(color: borderColor ?? Colors.transparent, width: 1.0),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.0),
           borderSide: BorderSide(
-              color: errorBorderColor ?? Colors.transparent, width: 2.0),
+              color: errorBorderColor ?? AppColors.redColor, width: 1.0),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20.0),
           borderSide: BorderSide(
-              color: errorBorderColor ?? Colors.transparent, width: 2.0),
+              color: errorBorderColor ?? AppColors.redColor, width: 1.0),
         ),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20.0),
@@ -157,10 +159,10 @@ class _CustomSearchTextFieldState extends State<CustomSearchTextField> {
             fontSize: 14,
             fontWeight: FontWeight.normal,
             letterSpacing: 0),
-        hintStyle: const TextStyle(
-          color: Color(0xffACBAC3),
+        hintStyle: TextStyle(
+          color: CustomThemes.appTheme.primaryColor,
           fontSize: 14,
-          fontWeight: FontWeight.normal,
+          fontWeight: FontWeight.w400,
           letterSpacing: 0,
         ),
         enabledBorder: OutlineInputBorder(

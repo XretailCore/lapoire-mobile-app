@@ -75,7 +75,6 @@ class InnerProductScreen extends GetView<InnerProductController> {
                             children: [
                               Obx(
                                 () => Container(
-                                  padding: const EdgeInsets.all(4),
                                   decoration: const BoxDecoration(
                                     color: AppColors.redColor,
                                     borderRadius: BorderRadius.all(
