@@ -47,7 +47,7 @@ class MyAccountController extends GetxController
 
   void goToProfile() {
     if (userSharedPrefrenceController.isUser) {
-      Get.toNamed(Routes.profile);
+      Get.toNamed(Routes.checkoutConfirmationScreen);
     } else {
       Get.toNamed(Routes.sign);
     }

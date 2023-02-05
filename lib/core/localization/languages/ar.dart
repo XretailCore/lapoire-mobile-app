@@ -146,7 +146,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.yourOrderNumberIs.name: 'رقم الطلب الخاص بك هو',
       Translate.continueShopping.name: 'مواصلة التسوق',
       Translate.userNotSelected.name: 'المستخدم غير محدد',
-      Translate.yourOrderHasBeenPlaced.name: 'لقد تم وضع طلبك',
+      Translate.yourOrderHasBeenPlaced.name: 'لقد تم وضع طلبك بنجاح',
       Translate.orderCode.name: 'كود الطلب',
       Translate.trackYourOrder.name: 'تابع طلبك',
       Translate.trackOrder.name: 'تابع الطلب',

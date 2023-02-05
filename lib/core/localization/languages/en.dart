@@ -148,7 +148,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.yourOrderNumberIs.name: 'Your Order Number Is',
       Translate.continueShopping.name: 'Continue Shopping',
       Translate.userNotSelected.name: 'User Not Selected',
-      Translate.yourOrderHasBeenPlaced.name: 'Your Order Has Been Placed',
+      Translate.yourOrderHasBeenPlaced.name: 'Your Order has been placed Successfully',
       Translate.orderCode.name: 'Order Code',
       Translate.trackYourOrder.name: 'Track Your Order',
       Translate.trackOrder.name: 'Track Order',
@@ -272,7 +272,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate
               .weAreGettingYourOrderReadyToBeShippedWeWillNotifyYouWithDeliveryDate
               .name:
-          'we Are Getting Your Order Ready To Be Shipped We Will Notify You With Delivery Date',
+          'we are getting your order ready to be shipped we will notify you with Delivery date',
       Translate.changeYourPassword.name: 'Change Your Password',
       Translate.enterTheCodeToVerifyYourPhone.name:
           'Enter The Code To Verify Your Phone',
