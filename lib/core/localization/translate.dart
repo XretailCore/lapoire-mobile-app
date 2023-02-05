@@ -3,6 +3,8 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 enum Translate {
   appName,
   home,
+  call,
+  openingHours,
   menu,
   wishlist,
   subtotal,

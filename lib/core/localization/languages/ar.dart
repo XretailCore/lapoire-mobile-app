@@ -2,8 +2,9 @@ import '../translate.dart';
 
 Map<String, String> getArabicTranslation() => {
       Translate.appName.name: "لابوار",
-      Translate.home.name: "الرئيسية",
+      Translate.call.name: "اتصل",
       Translate.menu.name: "القائمة",
+      Translate.openingHours.name: "ساعات العمل",
       Translate.wishlist.name: "المفضلة",
       Translate.subtotal.name: "المجموع الجزئي",
       Translate.shopNow.name: "تسوق الان",

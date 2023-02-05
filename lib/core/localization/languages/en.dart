@@ -3,7 +3,9 @@ import '../translate.dart';
 Map<String, String> getEnglishTranslation() => {
       Translate.appName.name: "Lapoire",
       Translate.home.name: "Home",
+      Translate.call.name: "Call",
       Translate.menu.name: "Menu",
+      Translate.openingHours.name: "Opening Hours",
       Translate.wishlist.name: "Wish List",
       Translate.subtotal.name: "Subtotal",
       Translate.shopNow.name: "Shop Now",
