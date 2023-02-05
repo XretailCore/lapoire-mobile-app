@@ -1,5 +1,4 @@
 import 'package:imtnan/core/components/custom_appbar.dart';
-import 'package:imtnan/core/utils/theme.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/app_colors.dart';
@@ -15,12 +14,13 @@ class ContactUsScreen extends GetView<ContactUsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(
-          title: Translate.contactUs.tr,
-          showBackButton: true,
-          showAction: false,
-        ),
-        body: controller.obx((contactInfo) {
+      appBar: CustomAppBar(
+        title: Translate.contactUs.tr,
+        showBackButton: true,
+        showAction: false,
+      ),
+      body: controller.obx(
+        (contactInfo) {
           final phone =
               getSelectedContactInfo(contactInfo, ContactInfo.hotLine)?.value;
           final email =
@@ -57,7 +57,10 @@ class ContactUsScreen extends GetView<ContactUsController> {
                         controller.launchUrl(
                             url: facebookUrl, context: context);
                       },
-                      child: SvgPicture.asset('assets/images/facebook.svg'),
+                      child: SvgPicture.asset(
+                        'assets/images/facebook.svg',
+                        color: AppColors.redColor,
+                      ),
                     ),
                     const SizedBox(width: 20),
                     InkWell(
@@ -67,6 +70,7 @@ class ContactUsScreen extends GetView<ContactUsController> {
                       },
                       child: SvgPicture.asset(
                         'assets/images/instagram.svg',
+                        color: AppColors.redColor,
                       ),
                     ),
                     const SizedBox(width: 15),
@@ -77,7 +81,7 @@ class ContactUsScreen extends GetView<ContactUsController> {
                       },
                       child: SvgPicture.asset(
                         'assets/images/youtube.svg',
-                        color: CustomThemes.appTheme.primaryColor,
+                        color: AppColors.redColor,
                         height: 45,
                       ),
                     ),
@@ -106,6 +110,8 @@ class ContactUsScreen extends GetView<ContactUsController> {
               ],
             ),
           );
-        }));
+        },
+      ),
+    );
   }
 }
