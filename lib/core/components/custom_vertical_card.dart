@@ -87,8 +87,10 @@ class VerticalProductCard extends StatelessWidget {
                             width: double.infinity,
                             height: double.infinity,
                             child: Image.asset(
-                              'assets/images/main_logo.png',
-                              width: 50,
+                              'assets/images/no_image_logo.png',
+                              width: 150,
+                              fit: BoxFit.cover,
+                              height: 100,
                             ),
                           ),
                         )
@@ -177,6 +179,7 @@ class VerticalProductCard extends StatelessWidget {
                                 ),
                               )
                             : Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CustomText(
                                     "$price ${Translate.egp.name.tr}",
@@ -186,19 +189,26 @@ class VerticalProductCard extends StatelessWidget {
                                       color: AppColors.redColor,
                                     ),
                                   ),
-                                  const Spacer(),
                                   Offstage(
                                     offstage: !(hasOffer ?? false),
-                                    child: CustomText(
-                                      "$oldPrice ${Translate.egp.name.tr}",
-                                      maxLines: 1,
-                                      style: const TextStyle(
-                                        fontSize: 11,
-                                        color: Colors.grey,
-                                        decorationColor: Colors.red,
-                                        decoration: TextDecoration.lineThrough,
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
+                                    child: Row(
+                                      children: [
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        CustomText(
+                                          "$oldPrice ${Translate.egp.name.tr}",
+                                          maxLines: 1,
+                                          style: const TextStyle(
+                                            fontSize: 11,
+                                            color: Colors.grey,
+                                            decorationColor: Colors.red,
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],

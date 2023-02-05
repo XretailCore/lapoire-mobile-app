@@ -94,8 +94,10 @@ class HorizontalProductCard extends StatelessWidget {
                       width: imageWidth,
                       child: image == null || image == ""
                           ? Image.asset(
-                              'assets/images/main_logo.png',
-                              width: 70,
+                              'assets/images/no_image_logo.png',
+                              width: 150,
+                              fit: BoxFit.cover,
+                              height: 70,
                             )
                           : CachedNetworkImage(
                               imageUrl: image!,
@@ -206,47 +208,53 @@ class HorizontalProductCard extends StatelessWidget {
                                 SizedBox(height: size.isEmpty ? 0 : 5),
                                 price == 0
                                     ? CustomText(
-                                  Translate.freeGift.tr,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    color: CustomThemes.appTheme.primaryColor,
-                                  ),
-                                )
-                                    : Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                      child: CustomText(
-                                        "$price ${Translate.egp.name.tr}",
+                                        Translate.freeGift.tr,
                                         style: TextStyle(
-                                          fontSize: !isCart! ? 14 : 13,
                                           fontWeight: FontWeight.w500,
-                                          color: AppColors.redColor,
+                                          fontSize: 13,
+                                          color: CustomThemes
+                                              .appTheme.primaryColor,
                                         ),
-                                      ),
-                                    ),
-                                    // const SizedBox(width: 20),
-                                    Expanded(
-                                      child: Offstage(
-                                        offstage: !(hasOffer ?? false),
-                                        child: CustomText(
-                                          "$oldPrice ${Translate.egp.name.tr}",
-                                          maxLines: 1,
-                                          style: TextStyle(
-                                            fontSize: !isCart! ? 14 : 13,
-                                            color: Colors.grey,
-                                            decorationColor: Colors.red,
-                                            overflow: TextOverflow.ellipsis,
-                                            decoration: TextDecoration.lineThrough,
+                                      )
+                                    : Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                            child: CustomText(
+                                              "$price ${Translate.egp.name.tr}",
+                                              style: TextStyle(
+                                                fontSize: !isCart! ? 14 : 13,
+                                                fontWeight: FontWeight.w500,
+                                                color: AppColors.redColor,
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                          // const SizedBox(width: 20),
+                                          Expanded(
+                                            child: Offstage(
+                                              offstage: !(hasOffer ?? false),
+                                              child: CustomText(
+                                                "$oldPrice ${Translate.egp.name.tr}",
+                                                maxLines: 1,
+                                                style: TextStyle(
+                                                  fontSize: !isCart! ? 14 : 13,
+                                                  color: Colors.grey,
+                                                  decorationColor: Colors.red,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  decoration: TextDecoration
+                                                      .lineThrough,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height:8),
-                                isAvailable? CustomText(Translate.inStock.tr):CustomText(Translate.outOfStock.tr),
+                                const SizedBox(height: 8),
+                                isAvailable
+                                    ? CustomText(Translate.inStock.tr)
+                                    : CustomText(Translate.outOfStock.tr),
                                 SizedBox(height: (rate != null) ? 10 : 0),
                               ],
                             ),
