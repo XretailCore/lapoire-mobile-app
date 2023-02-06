@@ -93,7 +93,10 @@ class Routes {
           name: forgetPasswordScreen, page: () => const ForgetPasswordScreen()),
       GetPage(name: splashscreen, page: () => const SplashScreen()),
       GetPage(name: intro, page: () => const IntroScreen()),
-      GetPage(name: home, page: () => const HomeScreen()),
+      GetPage(
+          name: home,
+          page: () => const HomeScreen(),
+          transitionDuration: Duration(seconds: 4)),
       GetPage(name: sign, page: () => const SignWidget()),
       GetPage(name: categories, page: () => const CategoriesScreen()),
       GetPage(name: cart, page: () => const CartScreen()),
@@ -134,7 +137,11 @@ class Routes {
       GetPage(name: languageScreen, page: () => const LanguageScreen()),
       GetPage(name: allReviewsScreen, page: () => const AllReviwesScreen()),
       GetPage(name: wishlist, page: () => const WishlistScreen()),
-      GetPage(name: dashboard, page: () => DashboardScreen()),
+      GetPage(
+          name: dashboard,
+          page: () => DashboardScreen(),
+          transitionDuration: const Duration(milliseconds: 500),
+          transition: Transition.cupertino),
       GetPage(name: myAccount, page: () => const MyAccountScreen()),
       GetPage(name: search, page: () => const SearchScreen()),
     ];
