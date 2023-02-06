@@ -42,7 +42,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.size.name: "Size",
       Translate.chooseSize.name: "Choose Size",
       Translate.outOfStock.name: "Out Of Stock",
-      Translate.deliveredWithin.name: "Delivered\nWithin",
+      Translate.deliveredWithin.name: "Delivered Within",
       Translate.anOrderMayBeDeliveredLatelyManyMinutesInCaseRushHours.name:
           "An order may be delivered lately many Minutes in case rush hours",
       Translate.description.name: "Description",
@@ -163,7 +163,7 @@ Map<String, String> getEnglishTranslation() => {
           'Get Your Product Delivered To Your Home Select Your Address To Deliver It To Your Door',
       Translate.useCoupon.name: 'Use Coupon',
       Translate.selectAPaymentMethod.name: 'Select a Payment Method',
-      Translate.paymentsMethod.name: 'Payments Method',
+      Translate.paymentsMethod.name: 'Payment Methods',
       Translate.yourItems.name: 'Your Items',
       Translate.confirm.name: 'Confirm',
       Translate.confirmPasswordMessage.name: "The password confirmation doesn't match",

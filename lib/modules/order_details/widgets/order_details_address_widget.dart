@@ -9,20 +9,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderDetailsAddressWidget extends GetView<OrderDetailsController> {
-  final OrderDetailsModel orderDetailsModel;
+  final AddressModel addressModel;
   const OrderDetailsAddressWidget({
     Key? key,
-    required this.orderDetailsModel,
+    required this.addressModel,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CardAddressBookWidget(
-      address: orderDetailsModel.address?.address ?? "",
-      firstName: orderDetailsModel.address?.firstName ?? "",
-      lastName: orderDetailsModel.address?.lastName ?? "",
-      cityName: orderDetailsModel.address?.city?.name ?? "",
-      mobileNumer: orderDetailsModel.address?.mobile ?? "",
+      address: addressModel.address?? "",
+      firstName: addressModel.firstName ?? "",
+      lastName: addressModel.lastName ?? "",
+      cityName: addressModel.city?.name ?? "",
+      mobileNumer: addressModel.mobile ?? "",
     );
   }
 }
@@ -48,7 +48,7 @@ class CardAddressBookWidget extends StatelessWidget {
     final primary=CustomThemes.appTheme.primaryColor;
     return Card(
       color: Colors.white,
-      elevation: 2,
+      elevation: 0,
       margin: const EdgeInsets.all(0),
       child: Container(
         padding: const EdgeInsets.all(15),

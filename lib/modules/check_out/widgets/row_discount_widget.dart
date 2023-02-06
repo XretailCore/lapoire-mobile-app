@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:imtnan/core/components/custom_button.dart';
 
 import '../../../core/localization/translate.dart';
-import 'next_widget.dart';
 
 class RowDiscountWidget extends StatelessWidget {
   const RowDiscountWidget({
@@ -22,53 +22,53 @@ class RowDiscountWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: TextFormField(
-            enabled: isApply,
-            controller: textEditingController,
-            textInputAction: TextInputAction.done,
-            style: const TextStyle(fontSize: 14),
-            maxLines: 1,
-            decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: BorderSide(color: primaryColor),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: primaryColor),
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: TextFormField(
+              enabled: isApply,
+              controller: textEditingController,
+              textInputAction: TextInputAction.done,
+              style: TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.w700,
+                color: primaryColor,
               ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: BorderSide(color: primaryColor),
+              maxLines: 1,
+              decoration: InputDecoration(
+                hintStyle: TextStyle(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.w400,
+                  color: primaryColor,
+                ),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+                border: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                hintText: hintText,
+                enabledBorder: InputBorder.none,
+                focusedErrorBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
               ),
-              hintText: hintText,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: BorderSide(color: primaryColor),
-              ),
-              focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: BorderSide(color: primaryColor),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: const BorderSide(color: Colors.red),
-              ),
+              validator: validator,
             ),
-            validator: validator,
           ),
-        ),
-        const SizedBox(width: 10),
-        TextButtonWidget(
-          width: 90,
-          backgroundColor:
-              isApply ? Theme.of(context).primaryColor : Colors.grey[700]!,
-          text: isApply ? Translate.apply.tr : Translate.clear.tr,
-          onTap: isApply ? onTapApply : onTapClear,
-        )
-      ],
+          const SizedBox(width: 10),
+          CustomBorderButton(
+            textColor: Colors.white,
+            radius: 20.0,
+            color: isApply ? Theme.of(context).primaryColor : Colors.grey[700]!,
+            title: isApply ? Translate.apply.tr : Translate.clear.tr,
+            onTap: isApply ? onTapApply : onTapClear,
+          )
+        ],
+      ),
     );
   }
 }

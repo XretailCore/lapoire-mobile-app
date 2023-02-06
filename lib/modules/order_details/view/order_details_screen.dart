@@ -28,7 +28,7 @@ class OrderDetailsScreen extends GetView<OrderDetailsController> {
         (orderDetailsModel) => Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 16.0,right: 16.0,top: 8.0),
+              padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
               child: Column(
                 children: [
                   Row(
@@ -51,7 +51,8 @@ class OrderDetailsScreen extends GetView<OrderDetailsController> {
                       ),
                     ],
                   ),
-                  Divider(color: CustomThemes.appTheme.primaryColor,thickness: 1)
+                  Divider(
+                      color: CustomThemes.appTheme.primaryColor, thickness: 1)
                 ],
               ),
             ),
@@ -63,8 +64,9 @@ class OrderDetailsScreen extends GetView<OrderDetailsController> {
                   OrderDetailsItemsWidget(
                       orderDetailsModel: orderDetailsModel!),
                   const SizedBox(height: 8),
-                  OrderDetailsAddressWidget(
-                      orderDetailsModel: orderDetailsModel),
+                  if (orderDetailsModel.address != null)
+                    OrderDetailsAddressWidget(
+                        addressModel: orderDetailsModel.address!),
                 ],
               ),
             ),

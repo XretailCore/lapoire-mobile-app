@@ -15,7 +15,7 @@ class ShippingInformationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return Card(
-      elevation: 1.5,
+      elevation: 0,
       margin: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
         padding: const EdgeInsets.all(15),

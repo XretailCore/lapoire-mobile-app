@@ -96,8 +96,18 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
                       children: [
                         Expanded(
                           child: CustomText(
-                            summary?.configDeliveryPeriod?.deliveryNote
-                                ?.toUpperCase(),
+                            Translate.deliveredWithinMinMaxBusinessDays.trParams(
+                              params: {
+                                'Min':
+                                summary?.configDeliveryPeriod?.min.toString()??"",
+                                'Max':
+                                summary?.configDeliveryPeriod?.max.toString()??"",
+                                'PeriodName': (summary?.configDeliveryPeriod?.periodName??"")
+                              },
+                            ),
+                           // " ${Translate.deliveredWithin.tr} ${summary?.configDeliveryPeriod?.min}-${summary?.configDeliveryPeriod?.max} ${Translate.minutes.tr}",
+                            // summary?.configDeliveryPeriod?.deliveryNote
+                            //     ?.toUpperCase(),
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontWeight: FontWeight.w400,
@@ -115,6 +125,7 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
               ),
             ),
           ),
+          const SizedBox(height: 10),
           CheckoutSummaryWidget(
             onTapNext: (isPreOrder) {
               final _paymentController = Get.find<PaymentController>();

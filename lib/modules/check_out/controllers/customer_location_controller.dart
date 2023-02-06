@@ -14,11 +14,14 @@ import 'locations.dart';
 class CustomerLocationController extends GetxController
     with StateMixin<List<AddressModel>> {
   CustomerLocationController();
+
   final Rx<bool> _isAddressEmpty = Rx<bool>(true);
+
   bool get isAddressEmpty => _isAddressEmpty.value;
   final UserSharedPrefrenceController _userSharedPrefrenceController =
       Get.find<UserSharedPrefrenceController>();
   int? selectedZoneId = 0;
+
   @override
   void onReady() {
     super.onReady();
@@ -37,7 +40,7 @@ class CustomerLocationController extends GetxController
       if (isUser) {
         final customerId = _userSharedPrefrenceController.getUserId;
 // TODO : uncomment below comment when change imtenan to multi store
-final addresses = await LinkTspApi.instance.address
+        final addresses = await LinkTspApi.instance.address
             .getShipmentAddresses(customId: customerId!);
 //         final addresses = await LinkTspApi.instance.address
 //             .getAddressBook(customId: customerId!);

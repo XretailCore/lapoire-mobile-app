@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:imtnan/core/components/custom_button.dart';
 import '../../../core/localization/translate.dart';
+import '../../../core/utils/app_colors.dart';
 import '../controllers/customer_summary_controller.dart';
-
-import 'next_widget.dart';
 import 'row_checkout_summary_information_widget.dart';
 
 class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
@@ -11,18 +11,21 @@ class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
 
   /// Default name is Translate.next.tr
   final String? buttonName;
+
   const CheckoutSummaryWidget(
       {Key? key, this.color, required this.onTapNext, this.buttonName})
       : super(key: key);
   final void Function(bool isPreOrder) onTapNext;
+
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return controller.obx(
       (checkoutSummary) => Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-          color: color ?? Colors.brown,
+          borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+          color: color ?? AppColors.highlighter,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -30,18 +33,18 @@ class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
           children: [
             const SizedBox(height: 10),
             Container(
-              color: const Color.fromRGBO(243, 243, 243, 1),
+              color: AppColors.highlighter,
               padding: const EdgeInsets.all(15),
               child: Column(
                 children: checkoutSummary?.summary
                         ?.mapIndexed(
                           (summary, index) =>
                               RowCheckOutSummaryInformationWidget(
-                            title: summary.title ?? 'sssss',
+                            title: summary.title ?? '',
                             isLastIndex:
                                 checkoutSummary.summary?.length == index + 1,
                             value:
-                                '${(summary.additionalInfo ?? 'sss').isNotEmpty ? '(${summary.additionalInfo}) ' : 'ssss'} ${summary.value} ${summary.currencySymbol ?? 'ssss'}',
+                                '${summary.value ?? ""} ${summary.currencySymbol ?? ''}',
                           ),
                         )
                         .toList() ??
@@ -50,17 +53,20 @@ class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
             ),
             const SizedBox(height: 10),
             Center(
-              child: TextButtonWidget(
-                backgroundColor: primaryColor,
-                height: 45,
-                width: 240,
-                text: buttonName ?? Translate.next.tr,
-                onTap: () {
-                  final isPreOrder =
-                      checkoutSummary?.configDeliveryPeriod?.preOrder ?? false;
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: CustomBorderButton(
+                  color: AppColors.redColor,
+                  radius: 20.0,
+                  title: buttonName ?? Translate.next.tr,
+                  onTap: () {
+                    final isPreOrder =
+                        checkoutSummary?.configDeliveryPeriod?.preOrder ??
+                            false;
 
-                  onTapNext(isPreOrder);
-                },
+                    onTapNext(isPreOrder);
+                  },
+                ),
               ),
             ),
             const SizedBox(height: 15),
