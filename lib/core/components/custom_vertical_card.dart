@@ -372,6 +372,7 @@ class VerticalProductCard extends StatelessWidget {
                                     child: Center(
                                       child: FavoriateButtonWidget(
                                         key: UniqueKey(),
+                                        padding: const EdgeInsets.all(10),
                                         iconSize: 15,
                                         defaultValue:
                                             Get.find<WishlistController>()

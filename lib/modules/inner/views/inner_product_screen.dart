@@ -78,33 +78,37 @@ class InnerProductScreen extends GetView<InnerProductController> {
                                   decoration: const BoxDecoration(
                                     color: AppColors.redColor,
                                     borderRadius: BorderRadius.all(
-                                      Radius.circular(20),
+                                      Radius.circular(30),
                                     ),
                                   ),
-                                  child: FavoriateButtonWidget(
-                                    isInner: true,
-                                    key: UniqueKey(),
-                                    iconSize: 25,
-                                    defaultValue: Get.find<WishlistController>()
-                                        .isFavorite(
-                                            product!.selectedProductSku.id!),
-                                    onFavoraite: (v) {
-                                      var listingItem = ListingItem(
-                                        id: product.selectedProductSku.id,
-                                        finalPrice: product
-                                            .selectedProductSku.finalPrice,
-                                      );
-                                      final wishlistController =
-                                          Get.find<WishlistController>();
-                                      wishlistController.onChangeFavorite(
-                                          context, v, listingItem);
-                                    },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(5.0),
+                                    child: FavoriateButtonWidget(
+                                      isInner: true,
+                                      key: UniqueKey(),
+                                      iconSize: 20,
+                                      defaultValue:
+                                          Get.find<WishlistController>()
+                                              .isFavorite(product!
+                                                  .selectedProductSku.id!),
+                                      onFavoraite: (v) {
+                                        var listingItem = ListingItem(
+                                          id: product.selectedProductSku.id,
+                                          finalPrice: product
+                                              .selectedProductSku.finalPrice,
+                                        );
+                                        final wishlistController =
+                                            Get.find<WishlistController>();
+                                        wishlistController.onChangeFavorite(
+                                            context, v, listingItem);
+                                      },
+                                    ),
                                   ),
                                 ),
                               ),
                               const SizedBox(height: 8.0),
                               Container(
-                                padding: const EdgeInsets.all(4),
+                                padding: const EdgeInsets.all(9),
                                 decoration: BoxDecoration(
                                     color: AppColors.redColor,
                                     border: Border.all(
@@ -118,7 +122,7 @@ class InnerProductScreen extends GetView<InnerProductController> {
                                   child: const Icon(
                                     Icons.share,
                                     color: Colors.white,
-                                    size: 25,
+                                    size: 20,
                                   ),
                                 ),
                               ),

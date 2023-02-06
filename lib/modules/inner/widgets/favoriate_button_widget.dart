@@ -10,11 +10,13 @@ class FavoriateButtonWidget extends StatefulWidget {
     required this.defaultValue,
     required this.onFavoraite,
     this.iconSize = 18.0,
+    this.padding = const EdgeInsets.all(5),
     this.isInner = false,
   }) : super(key: key);
   final bool defaultValue;
   final bool isInner;
   final double iconSize;
+  final EdgeInsetsGeometry? padding;
   final void Function(bool isFavoriate) onFavoraite;
 
   @override
@@ -41,7 +43,7 @@ class _FavoriateButtonWidgetState extends State<FavoriateButtonWidget> {
         widget.onFavoraite(changeFavoriateValue);
       },
       child: Padding(
-        padding: const EdgeInsets.all(5.0),
+        padding: widget.padding ?? const EdgeInsets.all(5),
         child: FaIcon(
           isFavoraite ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart,
           size: widget.iconSize,
