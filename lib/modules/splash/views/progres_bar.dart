@@ -34,7 +34,7 @@ class _ProgressBarCustomState extends State<ProgressBarCustom> {
       children: [
         Center(
           child: Hero(
-            tag: 'abdo tag',
+            tag: 'splash logo tag',
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

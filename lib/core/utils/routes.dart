@@ -94,9 +94,9 @@ class Routes {
       GetPage(name: splashscreen, page: () => const SplashScreen()),
       GetPage(name: intro, page: () => const IntroScreen()),
       GetPage(
-          name: home,
-          page: () => const HomeScreen(),
-          transitionDuration: Duration(seconds: 4)),
+        name: home,
+        page: () => const HomeScreen(),
+      ),
       GetPage(name: sign, page: () => const SignWidget()),
       GetPage(name: categories, page: () => const CategoriesScreen()),
       GetPage(name: cart, page: () => const CartScreen()),
@@ -110,7 +110,11 @@ class Routes {
       GetPage(name: orderDetails, page: () => const OrderDetailsScreen()),
       GetPage(name: trackOrder, page: () => const TrackOrderScreen()),
       GetPage(name: chooseZoneScreen, page: () => const ChooseZoneScreen()),
-      GetPage(name: innerScreen, page: () => const InnerProductScreen()),
+      GetPage(
+          name: innerScreen,
+          page: () => const InnerProductScreen(),
+          transitionDuration: const Duration(milliseconds: 1000),
+          transition: Transition.cupertino),
       GetPage(name: addressDetails, page: () => const AddressDetailsScreen()),
       GetPage(
           name: customerLocationsScreen, page: () => CustomerLocationsScreen()),

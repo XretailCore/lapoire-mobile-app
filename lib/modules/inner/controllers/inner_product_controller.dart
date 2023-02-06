@@ -25,7 +25,7 @@ enum ExpansionTileStatus {
 class InnerProductController extends GetxController
     with StateMixin<ProductEntity?> {
   int quantity = 1;
-  RxInt pageIndex=0.obs;
+  RxInt pageIndex = 0.obs;
   bool isCustomerChangedSize = true;
   bool comeFromRelated = false;
   bool comeFromDeepLinking = false;
@@ -69,8 +69,9 @@ class InnerProductController extends GetxController
   }
 
   void updateIndex(int newIndex) {
-   pageIndex.value=newIndex;
+    pageIndex.value = newIndex;
   }
+
   bool navigateRelated(BuildContext context) {
     Get.toNamed(
       Routes.innerScreen,
@@ -127,8 +128,6 @@ class InnerProductController extends GetxController
 
   void _init(int selectdSkuId) async {
     try {
-      change(null, status: RxStatus.loading());
-
       product = await _getProduct(selectdSkuId);
       change(selectedProduct, status: RxStatus.success());
 
