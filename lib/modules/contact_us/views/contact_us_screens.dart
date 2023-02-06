@@ -1,3 +1,4 @@
+import 'package:cowpay/core/helpers/screen_size.dart';
 import 'package:imtnan/core/components/custom_appbar.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
@@ -36,11 +37,31 @@ class ContactUsScreen extends GetView<ContactUsController> {
               getSelectedContactInfo(contactInfo, ContactInfo.youTube);
 
           return Container(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.fromLTRB(8.0, 0, 8, 8),
             child: Column(
               children: [
-                Image.asset("assets/images/no_image_logo.png",
-                    height: 200, width: 200),
+                Container(
+                  color: Colors.white,
+                  width: 1.sw,
+                  height: 200,
+                  child: Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      Obx(
+                        () => AnimatedPositioned(
+                          curve: Curves.linear,
+                          duration: const Duration(milliseconds: 300),
+                          top: controller.selected.value ? 0 : -200.0,
+                          child: Image.asset(
+                            "assets/images/no_image_logo.png",
+                            height: 200,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 CustomText(
                   "${Translate.call.tr} $phone",
                   style: const TextStyle(
