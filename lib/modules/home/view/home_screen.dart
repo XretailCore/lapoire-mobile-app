@@ -33,24 +33,8 @@ class HomeScreen extends GetView<HomeController> {
           tag: 'abdo tag',
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 30, 0, 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(
-                  'assets/images/la_splash.svg',
-                  height: 35,
-                ),
-                SvgPicture.asset(
-                  'assets/images/logo_splash.svg',
-                  height: 50,
-                  width: 20,
-                ),
-                SvgPicture.asset(
-                  'assets/images/poire_splash.svg',
-                  height: 35,
-                ),
-              ],
-            ),
+            child: Image.asset("assets/images/main_logo.png",
+                height: 40, width: 85),
           ),
         ),
         //const HomeAppBarWidget(),
