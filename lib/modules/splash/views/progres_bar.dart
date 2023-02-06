@@ -34,7 +34,7 @@ class _ProgressBarCustomState extends State<ProgressBarCustom> {
       children: [
         Center(
           child: Hero(
-            tag: 'abdo tag',
+            tag: 'splash logo tag',
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -46,7 +46,7 @@ class _ProgressBarCustomState extends State<ProgressBarCustom> {
                     children: [
                       AnimatedPositioned(
                         curve: Curves.linear,
-                        duration: const Duration(milliseconds: 800),
+                        duration: const Duration(milliseconds: 350),
                         left: selected ? .29.sw : -100,
                         child: SvgPicture.asset(
                           'assets/images/la_splash.svg',
@@ -86,7 +86,7 @@ class _ProgressBarCustomState extends State<ProgressBarCustom> {
                     children: [
                       AnimatedPositioned(
                         curve: Curves.linear,
-                        duration: const Duration(milliseconds: 800),
+                        duration: const Duration(milliseconds: 350),
                         right: selected ? .28.sw : -100.0,
                         child: SvgPicture.asset(
                           'assets/images/poire_splash.svg',
@@ -123,7 +123,7 @@ class _ProgressBarCustomState extends State<ProgressBarCustom> {
             children: [
               AnimatedPositioned(
                 curve: Curves.linear,
-                duration: const Duration(milliseconds: 800),
+                duration: const Duration(milliseconds: 500),
                 bottom: selected ? 0 : -100.0,
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),

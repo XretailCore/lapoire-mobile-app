@@ -1,5 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linktsp_api/data/exception_api.dart';
@@ -11,10 +13,18 @@ import '../../../core/utils/helper_functions.dart';
 
 class ContactUsController extends GetxController
     with StateMixin<List<ContactInfoModel>> {
+  RxBool selected = false.obs;
   @override
   void onInit() {
     super.onInit();
     getContactInfo();
+  }
+
+  void _updateProgress() {
+    const oneSec = Duration(milliseconds: 200);
+    Timer.periodic(oneSec, (Timer t) {
+      selected.value = true;
+    });
   }
 
   launchUrl({required String url, required BuildContext context}) async {
@@ -42,6 +52,7 @@ class ContactUsController extends GetxController
       final contactInformations =
           await LinkTspApi.instance.menu.getContactInfo();
       change(contactInformations, status: RxStatus.success());
+      _updateProgress();
     } on ExceptionApi catch (e) {
       change(null, status: RxStatus.error(e.message));
     } catch (e) {

@@ -30,7 +30,7 @@ class HomeScreen extends GetView<HomeController> {
     return Column(
       children: [
         Hero(
-          tag: 'abdo tag',
+          tag: 'splash logo tag',
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 30, 0, 10),
             child: Image.asset("assets/images/main_logo.png",
