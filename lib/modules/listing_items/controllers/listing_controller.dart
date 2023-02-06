@@ -21,10 +21,10 @@ class ListItemsController extends GetxController
   final refreshController = RefreshController(initialRefresh: false);
   final searchController = TextEditingController(text: '');
   final CarouselController categoriesScrollController = CarouselController();
-  String? categoryName;
+  RxString categoryName="".obs;
   final products = <new_model.ListingItem>[];
-  var pageIndex = 1;
-  Rx<FilterModel> filterModel = FilterModel().obs;
+  int pageIndex = 1;
+  FilterModel filterModel = FilterModel();
   NewListingDataModel listingDataModel = NewListingDataModel();
   List<Item> categoriesList = [];
 
@@ -32,50 +32,49 @@ class ListItemsController extends GetxController
   void onInit() {
     super.onInit();
     final arguments = (Get.arguments ?? {}) as Map;
-    filterModel.value = (arguments[Arguments.filterModel] ?? FilterModel());
-    categoryName = (arguments[Arguments.categoryAppBarTitle] ?? "");
-    if (filterModel.value.listType == null) {
+    filterModel = (arguments[Arguments.filterModel] ?? FilterModel());
+    categoryName.value = (arguments[Arguments.categoryAppBarTitle] ?? "");
+    if (filterModel.listType == null) {
       change(null, status: RxStatus.empty());
     } else {
-      getCategories();
       _getfilterOptions();
       getList();
     }
   }
 
-  Future<List<Item>> getCategories() async {
-    final userSharedPrefrenceController =
-        Get.find<UserSharedPrefrenceController>();
-    final categories = await LinkTspApi.instance.menu.getMenu(
-        version: 3, customerID: userSharedPrefrenceController.getUserId);
-    categoriesList = categories.items ?? [];
-    return categories.items ?? [];
-  }
-
   Future<void> _getfilterOptions() async {
     final filterController = Get.find<FilterController>();
 
-    await filterController.getFilterOptions(filterModel.value);
+    await filterController.getFilterOptions(filterModel);
   }
 
   Future<void> getList(
-      {bool isRefresh = false, bool showLoader = false}) async {
+      {bool isRefresh = false,
+      bool showLoader = false,
+      bool fromCategories = false}) async {
     final _languageController = Get.find<LanguageController>();
     final languageId = _languageController.getLanguageIdByName();
     if (showLoader) change(null, status: RxStatus.loading());
     try {
+      if(fromCategories) openLoadingDialog(Get.context!);
       final filterController = Get.find<FilterController>();
       final userSharedPrefrenceController =
           Get.find<UserSharedPrefrenceController>();
-
+      final categories = await LinkTspApi.instance.menu.getMenu(
+          version: 3, customerID: userSharedPrefrenceController.getUserId);
+      categoriesList = categories.items ?? [];
+      if (fromCategories) {
+        pageIndex = 1;
+        products.clear();
+      }
       listingDataModel = await LinkTspApi.instance.list.getListingWithCategory(
         version: 3,
         listModel: ListModel(
-          listType: filterModel.value.listType.toString(),
+          listType: filterModel.listType.toString(),
           listTypeId:
-              filterModel.value.listType == null || filterModel.value.listTypeId == null
+              filterModel.listType == null || filterModel.listTypeId == null
                   ? null
-                  : filterModel.value.listTypeId!,
+                  : filterModel.listTypeId!,
           languageId: languageId,
           pageIndex: pageIndex,
           rowCount: 30,
@@ -83,11 +82,11 @@ class ListItemsController extends GetxController
               ? null
               : searchController.text.trim(),
           minPrice:
-              int.parse(filterController.minPriceController.value.text) == 0
+              int.parse(filterController.minPriceController.value.text) == 0 || fromCategories
                   ? null
                   : int.parse(filterController.minPriceController.value.text),
           maxPrice:
-              int.tryParse(filterController.maxPriceController.value.text) == 0
+              int.tryParse(filterController.maxPriceController.value.text) == 0 || fromCategories
                   ? null
                   : int.tryParse(
                       filterController.maxPriceController.value.text),
@@ -106,8 +105,10 @@ class ListItemsController extends GetxController
       products.addAll(listingDataModel.items!);
       if (products.isNotEmpty) {
         change(listingDataModel, status: RxStatus.success());
+        if(fromCategories)Get.back();
       } else {
         change(listingDataModel, status: RxStatus.empty());
+        if(fromCategories)Get.back();
       }
     } catch (e) {
       change(null, status: RxStatus.error(e.toString()));
@@ -156,7 +157,7 @@ class ListItemsController extends GetxController
   }
 
   Future<void> onCategoryTap(FilterModel filterModel) async {
-    this.filterModel.value = filterModel;
+    this.filterModel = filterModel;
     await onRefresh(showLoader: true);
   }
 

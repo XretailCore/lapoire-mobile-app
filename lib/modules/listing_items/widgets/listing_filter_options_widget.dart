@@ -1,71 +1,99 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-
-import '../../../core/components/custom_text.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
+import 'package:linktsp_api/data/page_block/models/new_page_block_model.dart';
+import '../../../core/components/custom_slider.dart';
 import '../../../core/utils/theme.dart';
-import '../controllers/filter_controller.dart';
+import '../../home/widgets/home_categories_widget.dart';
+import '../controllers/listing_controller.dart';
 
-class ListingFilterOptionwidget extends GetView<FilterController> {
+class ListingFilterOptionwidget extends GetView<ListItemsController> {
   const ListingFilterOptionwidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Offstage(
-        offstage: ((controller.subCategories).isEmpty),
-        child: Card(
-          margin: const EdgeInsets.all(0),
-          child: Container(
-            height: 48,
-            padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 0, 10),
-            child: ListView.separated(
-              itemCount: controller.subCategories.length,
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsetsDirectional.only(end: 10),
-              separatorBuilder: (context, index) => const SizedBox(width: 8),
-              itemBuilder: (context, index) {
-                final subCategory = controller.subCategories[index];
-
-                return Obx(
-                  () => GestureDetector(
-                    onTap: () => controller.applyFilterOnsubCategory(
-                      subCategoryId: subCategory.id!,
-                      subCategoryName: subCategory.title ?? '',
-                      context: context,
-                    ),
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 0),
-                      decoration: BoxDecoration(
-                        color: (controller.selectedsubCategoriesIds
-                                .contains(subCategory.id))
-                            ? CustomThemes.appTheme.primaryColor
-                            : Colors.transparent,
-                        border: Border.all(
-                          color: (controller.selectedsubCategoriesIds
-                                  .contains(subCategory.id))
-                              ? Colors.transparent
-                              : CustomThemes.appTheme.primaryColor,
-                        ),
-                      ),
-                      child: CustomText(
-                        subCategory.title ?? '',
-                        style: TextStyle(
-                          color: (controller.selectedsubCategoriesIds
-                                  .contains(subCategory.id))
-                              ? Colors.white
-                              : CustomThemes.appTheme.primaryColor,
-                        ),
-                      ),
+    return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () {
+                  controller.categoriesScrollController.previousPage();
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: CustomThemes.appTheme.primaryColor,
+                      shape: BoxShape.circle),
+                  child: const Padding(
+                    padding: EdgeInsets.all(4.0),
+                    child: Icon(
+                      FontAwesomeIcons.caretLeft,
+                      color: Colors.white,
+                      size: 15,
                     ),
                   ),
-                );
-              },
-            ),
+                ),
+              ),
+              const SizedBox(width: 5),
+              Expanded(
+                child: Obx(()=> CustomSlider(
+                    showTitleAndButton: false,
+                    showIndicator: false,
+                    autoPlay: false,
+                    viewportFraction: 0.4,
+                    height: 30,
+                    controller: controller.categoriesScrollController,
+                    sliderImages: [
+                      for (var item in controller.categoriesList)
+                        Center(
+                          child: CategoryWidget(
+                            textStyle: TextStyle(
+                                color: controller.categoryName.value.toLowerCase()==item.name!.toLowerCase()?AppColors.redColor:CustomThemes.appTheme.primaryColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12.0),
+
+                            onTap: () async {
+                              controller.categoryName.value= item.name!;
+                              controller.filterModel = item.filterModel!;
+                              await controller.getList(fromCategories: true);
+                            },
+                            category: ItemItem(
+                              id: item.id,
+                              name: item.name,
+                              filterModel: item.filterModel,
+                              listTypeId: item.listTypeID,
+                              listTypeName: item.listTypeName,
+                            ),
+                            index: controller.categoriesList.indexOf(item),
+                          ),
+                        )
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(width: 5),
+              InkWell(
+                onTap: () {
+                  controller.categoriesScrollController.nextPage();
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: CustomThemes.appTheme.primaryColor,
+                      shape: BoxShape.circle),
+                  child: const Padding(
+                    padding: EdgeInsets.all(4.0),
+                    child: Icon(
+                      FontAwesomeIcons.caretRight,
+                      color: Colors.white,
+                      size: 15,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ),
-      ),
     );
   }
 }

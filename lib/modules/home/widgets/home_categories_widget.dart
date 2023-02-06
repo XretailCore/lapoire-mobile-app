@@ -116,10 +116,12 @@ class CategoryWidget extends GetView<HomeController> {
   final int index;
   final ItemItem? category;
   final void Function()? onTap;
+  final TextStyle? textStyle;
 
   const CategoryWidget({
     Key? key,
     this.onTap,
+    this.textStyle,
     this.category,
     required this.index,
   }) : super(key: key);
@@ -140,7 +142,7 @@ class CategoryWidget extends GetView<HomeController> {
           textAlign: TextAlign.start,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(
+          style: textStyle??TextStyle(
               color: CustomThemes.appTheme.primaryColor,
               fontWeight: FontWeight.bold,
               fontSize: 12.0),
