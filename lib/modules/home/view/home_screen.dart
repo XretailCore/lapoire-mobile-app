@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/modules/home/widgets/home_ads_widget.dart';
 import 'package:linktsp_api/data/page_block/models/new_page_block_model.dart'
@@ -27,15 +29,36 @@ class HomeScreen extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Hero(
+          tag: 'abdo tag',
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 30, 0, 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/images/la_splash.svg',
+                  height: 35,
+                ),
+                SvgPicture.asset(
+                  'assets/images/logo_splash.svg',
+                  height: 50,
+                  width: 20,
+                ),
+                SvgPicture.asset(
+                  'assets/images/poire_splash.svg',
+                  height: 35,
+                ),
+              ],
+            ),
+          ),
+        ),
         //const HomeAppBarWidget(),
         Expanded(
           child: controller.obx(
             (data) {
               return Column(
                 children: [
-                  const SizedBox(height: 24.0),
-                  Image.asset("assets/images/main_logo.png",
-                      height: 60, width: 85),
                   DottedLine(dashColor: CustomThemes.appTheme.primaryColor),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -33,68 +33,71 @@ class _ProgressBarCustomState extends State<ProgressBarCustom> {
       alignment: AlignmentDirectional.bottomCenter,
       children: [
         Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                color: Colors.white,
-                width: .4.sw,
-                height: 35,
-                child: Stack(
-                  children: [
-                    AnimatedPositioned(
-                      curve: Curves.linear,
-                      duration: const Duration(milliseconds: 800),
-                      left: selected ? .29.sw : -100,
-                      child: SvgPicture.asset(
-                        'assets/images/la_splash.svg',
-                        height: 35,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                color: Colors.white,
-                width: 18,
-                height: .5.sh,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 0),
+          child: Hero(
+            tag: 'abdo tag',
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  color: Colors.white,
+                  width: .4.sw,
+                  height: 35,
                   child: Stack(
                     children: [
                       AnimatedPositioned(
-                        curve: Curves.bounceOut,
-                        duration: const Duration(milliseconds: 1000),
-                        top: selected ? .20.sh : -.5.sw,
+                        curve: Curves.linear,
+                        duration: const Duration(milliseconds: 800),
+                        left: selected ? .29.sw : -100,
                         child: SvgPicture.asset(
-                          'assets/images/logo_splash.svg',
-                          height: 50,
-                          width: 20,
+                          'assets/images/la_splash.svg',
+                          height: 35,
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              Container(
-                color: Colors.white,
-                width: .5.sw,
-                height: 35,
-                child: Stack(
-                  children: [
-                    AnimatedPositioned(
-                      curve: Curves.linear,
-                      duration: const Duration(milliseconds: 800),
-                      right: selected ? .28.sw : -100.0,
-                      child: SvgPicture.asset(
-                        'assets/images/poire_splash.svg',
-                        height: 35,
-                      ),
+                Container(
+                  color: Colors.white,
+                  width: 18,
+                  height: .5.sh,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 0),
+                    child: Stack(
+                      children: [
+                        AnimatedPositioned(
+                          curve: Curves.bounceOut,
+                          duration: const Duration(milliseconds: 1000),
+                          top: selected ? .20.sh : -.5.sw,
+                          child: SvgPicture.asset(
+                            'assets/images/logo_splash.svg',
+                            height: 50,
+                            width: 20,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+                Container(
+                  color: Colors.white,
+                  width: .5.sw,
+                  height: 35,
+                  child: Stack(
+                    children: [
+                      AnimatedPositioned(
+                        curve: Curves.linear,
+                        duration: const Duration(milliseconds: 800),
+                        right: selected ? .28.sw : -100.0,
+                        child: SvgPicture.asset(
+                          'assets/images/poire_splash.svg',
+                          height: 35,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         Padding(
