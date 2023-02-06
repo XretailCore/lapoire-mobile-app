@@ -115,9 +115,11 @@ class HomeCategoriesWidget extends GetView<HomeController> {
 class CategoryWidget extends GetView<HomeController> {
   final int index;
   final ItemItem? category;
+  final void Function()? onTap;
 
   const CategoryWidget({
     Key? key,
+    this.onTap,
     this.category,
     required this.index,
   }) : super(key: key);
@@ -126,10 +128,11 @@ class CategoryWidget extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return InkWell(
       highlightColor: Colors.transparent,
-      onTap: () => controller.goToListingWithId(
-        filterModel: category?.filterModel ?? FilterModel(),
-        name: category?.name ?? "",
-      ),
+      onTap: onTap ??
+          () => controller.goToListingWithId(
+                filterModel: category?.filterModel ?? FilterModel(),
+                name: category?.name ?? "",
+              ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: CustomText(

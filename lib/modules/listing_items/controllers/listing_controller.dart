@@ -24,27 +24,38 @@ class ListItemsController extends GetxController
   String? categoryName;
   final products = <new_model.ListingItem>[];
   var pageIndex = 1;
-  var filterModel = FilterModel();
+  Rx<FilterModel> filterModel = FilterModel().obs;
   NewListingDataModel listingDataModel = NewListingDataModel();
+  List<Item> categoriesList = [];
 
   @override
   void onInit() {
     super.onInit();
     final arguments = (Get.arguments ?? {}) as Map;
-    filterModel = (arguments[Arguments.filterModel] ?? FilterModel());
+    filterModel.value = (arguments[Arguments.filterModel] ?? FilterModel());
     categoryName = (arguments[Arguments.categoryAppBarTitle] ?? "");
-    if (filterModel.listType == null) {
+    if (filterModel.value.listType == null) {
       change(null, status: RxStatus.empty());
     } else {
+      getCategories();
       _getfilterOptions();
       getList();
     }
   }
 
+  Future<List<Item>> getCategories() async {
+    final userSharedPrefrenceController =
+        Get.find<UserSharedPrefrenceController>();
+    final categories = await LinkTspApi.instance.menu.getMenu(
+        version: 3, customerID: userSharedPrefrenceController.getUserId);
+    categoriesList = categories.items ?? [];
+    return categories.items ?? [];
+  }
+
   Future<void> _getfilterOptions() async {
     final filterController = Get.find<FilterController>();
 
-    await filterController.getFilterOptions(filterModel);
+    await filterController.getFilterOptions(filterModel.value);
   }
 
   Future<void> getList(
@@ -60,23 +71,26 @@ class ListItemsController extends GetxController
       listingDataModel = await LinkTspApi.instance.list.getListingWithCategory(
         version: 3,
         listModel: ListModel(
-          listType: filterModel.listType.toString(),
+          listType: filterModel.value.listType.toString(),
           listTypeId:
-              filterModel.listType == null || filterModel.listTypeId == null
+              filterModel.value.listType == null || filterModel.value.listTypeId == null
                   ? null
-                  : filterModel.listTypeId!,
+                  : filterModel.value.listTypeId!,
           languageId: languageId,
           pageIndex: pageIndex,
           rowCount: 30,
           keyword: searchController.text.trim().isEmpty
               ? null
               : searchController.text.trim(),
-          minPrice: int.parse(filterController.minPriceController.value.text) == 0
-              ? null
-              : int.parse(filterController.minPriceController.value.text),
-          maxPrice: int.tryParse(filterController.maxPriceController.value.text) == 0
-              ? null
-              : int.tryParse(filterController.maxPriceController.value.text),
+          minPrice:
+              int.parse(filterController.minPriceController.value.text) == 0
+                  ? null
+                  : int.parse(filterController.minPriceController.value.text),
+          maxPrice:
+              int.tryParse(filterController.maxPriceController.value.text) == 0
+                  ? null
+                  : int.tryParse(
+                      filterController.maxPriceController.value.text),
           categoryIDs: filterController.allSelectedCategories,
           sortProp: filterController.sortProp.value == ""
               ? null
@@ -142,7 +156,7 @@ class ListItemsController extends GetxController
   }
 
   Future<void> onCategoryTap(FilterModel filterModel) async {
-    this.filterModel = filterModel;
+    this.filterModel.value = filterModel;
     await onRefresh(showLoader: true);
   }
 
