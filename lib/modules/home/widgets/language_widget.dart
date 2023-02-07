@@ -37,6 +37,8 @@ class LanguageWidget extends StatelessWidget {
               height: 20,
             ),
             InkWell(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
               onTap: () {
                 languageController.changeLanguage(context,
                     language: Languages.en);
@@ -80,6 +82,8 @@ class LanguageWidget extends StatelessWidget {
               color: Colors.black38,
             ),
             InkWell(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
               onTap: () {
                 languageController.changeLanguage(context,
                     language: Languages.ar);
