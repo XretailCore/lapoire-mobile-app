@@ -5,6 +5,7 @@ import '../../../../core/components/custom_button.dart';
 import '../../../../core/components/custom_text.dart';
 import '../../../../core/localization/translate.dart';
 import '../../../../core/utils/theme.dart';
+import '../../../core/utils/app_colors.dart';
 import '../controllers/select_location_from_map_controller.dart';
 
 class AddressMapBottomWidget extends GetView<SelectLocationFromMapController> {
@@ -60,7 +61,7 @@ class AddressMapBottomWidget extends GetView<SelectLocationFromMapController> {
           const SizedBox(height: 30),
           CustomBorderButton(
             title: Translate.deliverHere.name.tr,
-            color: CustomThemes.appTheme.primaryColor,
+            color: AppColors.redColor,
             radius: 20,
             onTap: onTap,
           )
