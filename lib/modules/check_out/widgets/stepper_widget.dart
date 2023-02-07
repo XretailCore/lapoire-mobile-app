@@ -31,41 +31,36 @@ class StepperWidget extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            const Positioned.fill(
+            Positioned.fill(
               child: Align(
                 alignment: Alignment.center,
-                child: Divider(thickness: 3, color: AppColors.primaryColor),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                          thickness: 3,
+                          color: currentIndex == 0
+                              ? AppColors.primaryColor
+                              : AppColors.redColor),
+                    ),
+                    Expanded(
+                      child: Divider(
+                          thickness: 3,
+                          color: currentIndex == 2
+                              ? AppColors.redColor
+                              : AppColors.primaryColor),
+                    ),
+                  ],
+                ),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: steps
-                  .mapIndexed(
-                    (v, index) => steps[index].isEmpty
-                        ? Container(
-                            height: 5,
-                            width: 30,
-                            color: Colors.transparent,
-                          )
-                        : Container(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 5, horizontal: 15),
-                            decoration: BoxDecoration(
-                              color: _changeColor(index),
-                              borderRadius: BorderRadius.circular(2),
-                              border: Border.all(
-                                  color: _changeColor(index), width: 1.3),
-                            ),
-                            child: CustomText(
-                              v,
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                          ),
-                  )
-                  .toList(),
+              children: [
+                stepperItem(color: AppColors.redColor, title: steps[0]),
+                stepperItem(color: currentIndex==0?AppColors.primaryColor:AppColors.redColor, title: steps[1]),
+                stepperItem(color: currentIndex==2?AppColors.redColor:AppColors.primaryColor, title: steps[2]),
+              ],
             ),
           ],
         ),
@@ -73,16 +68,19 @@ class StepperWidget extends StatelessWidget {
     );
   }
 
-  Color _changeColor(int index) {
-    return _isEqualCurrentIndex(index) ? selectedColor : unSelectedColor;
-  }
-
-  bool _isEqualCurrentIndex(int index) => index == currentIndex;
-}
-
-extension IndexedIterable<E> on Iterable<E> {
-  Iterable<T> mapIndexed<T>(T Function(E e, int i) f) {
-    var i = 0;
-    return map((e) => f(e, i++));
+  Widget stepperItem({required Color color, required String title}) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(2),
+        border: Border.all(color: color, width: 1.3),
+      ),
+      child: CustomText(
+        title,
+        style: const TextStyle(
+            color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400),
+      ),
+    );
   }
 }
