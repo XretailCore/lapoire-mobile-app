@@ -30,7 +30,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
   final UserSharedPrefrenceController userSharedPrefrenceController =
       Get.find<UserSharedPrefrenceController>();
   int pageIndex = 2;
-
+  final labelList = <String>[
+    Translate.menu.tr,
+    Translate.wishlist.tr,
+    Translate.home.tr,
+    Translate.myCart.tr,
+    Translate.account.tr,
+  ];
   @override
   Widget build(BuildContext context) {
     var body = CustomConnectivityAlertWidget(
@@ -94,7 +100,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   : const SizedBox(),
               title: pageIndex == 4
                   ? "${Translate.hello.tr} ${userSharedPrefrenceController.getUserFirstName}"
-                  : Translate.account.tr,
+                  : labelList[pageIndex],
               showAction: pageIndex == 4 ? false : true,
             ),
             body: body,

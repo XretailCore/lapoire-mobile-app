@@ -141,7 +141,6 @@ class BottomAppBarItemsData {
         padding: EdgeInsets.all(controller.cartCounter.value < 9 ? 4 : 3),
         child: const Icon(Icons.shopping_cart,
             size: 22, color: AppColors.primaryColor))),
-    const Icon(Icons.people_rounded, size: 22, color: Colors.white),
     const Icon(Icons.people_rounded, color: AppColors.primaryColor, size: 22)
   ];
 }
