@@ -1,12 +1,13 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../../../core/components/appbar_widget.dart';
 import '../../../core/components/custm_product_card.dart';
+import '../../../core/components/custom_appbar.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/components/imtnan_loading_widget.dart';
 import '../../../core/localization/translate.dart';
+import '../../../core/utils/app_colors.dart';
 import '../controllers/all_reviews_controller.dart';
 import '../widgets/add_review_widget.dart';
 import '../widgets/list_of_reviews_widget.dart';
@@ -19,8 +20,10 @@ class AllReviwesScreen extends GetView<AllReviewsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBarWidget(
+      appBar: CustomAppBar(
         title: Translate.allReviews.tr,
+        showBackButton: true,
+        showAction: false,
       ),
       body: controller.obx(
           (review) => Column(
@@ -32,6 +35,7 @@ class AllReviwesScreen extends GetView<AllReviewsController> {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: ProductCardWidget(
+                          elevation: 0,
                           productId: controller
                               .productDetailsModel!.selectedProductSku.id!,
                           isHorizontal: true,
@@ -76,6 +80,7 @@ class AllReviwesScreen extends GetView<AllReviewsController> {
                               : '',
                         ),
                       ),
+                  const DottedLine(dashColor: AppColors.redColor),
                   RatingNumbersWidget(
                     numberOfRatings: review!.reviewsCount!,
                     productRate: review.reviewsAvgRate!,

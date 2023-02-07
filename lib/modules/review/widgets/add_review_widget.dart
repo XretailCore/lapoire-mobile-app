@@ -47,7 +47,7 @@ class AddReviewWidget extends GetView<AllReviewsController> {
                     foregroundColor: MaterialStateProperty.all(
                         const Color.fromRGBO(46, 46, 46, 1))),
                 icon: const Icon(
-                  FontAwesomeIcons.penToSquare,
+                  FontAwesomeIcons.solidPenToSquare,
                   size: 16,
                 ),
                 label: CustomText(
