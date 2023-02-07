@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/instance_manager.dart';
 import 'package:imtnan/core/localization/translate.dart';
+import 'package:imtnan/core/utils/helper_functions.dart';
 import 'package:imtnan/modules/settings/controller/language_controller.dart';
 
 import '../../../core/components/custom_text.dart';
@@ -39,15 +37,20 @@ class LanguageWidget extends StatelessWidget {
               height: 20,
             ),
             InkWell(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
               onTap: () {
                 languageController.changeLanguage(context,
                     language: Languages.en);
               },
               child: Row(
                 children: [
-                  const FaIcon(
-                    FontAwesomeIcons.language,
-                    size: 20,
+                  CustomText(
+                    HelperFunctions.countryFlag("US"),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                        fontSize: 16),
                   ),
                   const SizedBox(
                     width: 15,
@@ -79,15 +82,20 @@ class LanguageWidget extends StatelessWidget {
               color: Colors.black38,
             ),
             InkWell(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
               onTap: () {
                 languageController.changeLanguage(context,
                     language: Languages.ar);
               },
               child: Row(
                 children: [
-                  const FaIcon(
-                    FontAwesomeIcons.language,
-                    size: 20,
+                  CustomText(
+                    HelperFunctions.countryFlag("EG"),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                        fontSize: 16),
                   ),
                   const SizedBox(
                     width: 15,

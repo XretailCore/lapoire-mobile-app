@@ -225,6 +225,16 @@ class HelperFunctions {
   static bool cityFilterByName(String filter, String cityName) {
     return cityName.toLowerCase().contains(filter.toLowerCase());
   }
+
+  static String countryFlag(String countryCode) {
+    int flagOffset = 0x1F1E6;
+    int asciiOffset = 0x41;
+
+    int firstChar = countryCode.codeUnitAt(0) - asciiOffset + flagOffset;
+    int secondChar = countryCode.codeUnitAt(1) - asciiOffset + flagOffset;
+
+    return String.fromCharCode(firstChar) + String.fromCharCode(secondChar);
+  }
 }
 
 void customSnackBar(String? title, String message, {Color? bgcolor}) =>
