@@ -76,7 +76,7 @@ class HomeCategoriesWidget extends GetView<HomeController> {
                       height: 40,
                       controller: controller.categoriesScrollController,
                       sliderImages: [
-                        for (var item in controller.categories.items!)
+                        for (var item in controller.categories.items ?? [])
                           Center(
                             child: CategoryWidget(
                               category: item,
