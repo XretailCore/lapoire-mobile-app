@@ -100,6 +100,7 @@ class CustomSearchTextField extends StatefulWidget {
   final String? Function(String? value) validator;
   final void Function(String? value)? onChanged;
   final void Function(String? value)? onSave;
+  final void Function()? onTap;
   const CustomSearchTextField({
     Key? key,
     required this.labelText,
@@ -107,7 +108,7 @@ class CustomSearchTextField extends StatefulWidget {
     this.keyboardType,
     required this.validator,
     this.onChanged,
-    this.onSave,
+    this.onSave, this.onTap,
   }) : super(key: key);
 
   @override
@@ -117,65 +118,67 @@ class CustomSearchTextField extends StatefulWidget {
 class _CustomSearchTextFieldState extends State<CustomSearchTextField> {
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      textInputAction: TextInputAction.search,
-      controller: widget.controller,
-      style: const TextStyle(
-          color: Color(0xffACBAC3),
-          fontSize: 14,
-          fontWeight: FontWeight.normal,
-          letterSpacing: 0),
-      autovalidateMode: AutovalidateMode.disabled,
-      keyboardType: TextInputType.text,
-      onChanged: ((value) {
-        widget.onChanged;
-        setState(() {});
-      }),
-      // onSaved: onSave,
-      onFieldSubmitted: widget.onSave,
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-        hintText: widget.labelText,
-        filled: true,
-        suffixIcon: InkWell(
-          onTap: (() {
-            setState(() {
-              widget.controller!.clear();
-            });
-          }),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: FaIcon(
-              FontAwesomeIcons.xmark,
-              color: widget.controller!.text.length > 0
-                  ? CustomThemes.appTheme.primaryColor
-                  : Colors.transparent,
-            ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          bottom: BorderSide(
+            color: CustomThemes.appTheme.primaryColor,
+            width: 2,
           ),
         ),
-        fillColor: Colors.white,
-        labelStyle: const TextStyle(
-            color: Color(0xffACBAC3),
+      ),
+      child: TextFormField(
+        textInputAction: TextInputAction.search,
+        controller: widget.controller,
+        style: const TextStyle(
+            color: AppColors.primaryColor,
             fontSize: 14,
-            fontWeight: FontWeight.normal,
+            fontWeight: FontWeight.w700,
             letterSpacing: 0),
-        hintStyle: TextStyle(
-          color: CustomThemes.appTheme.primaryColor,
-          fontSize: 14,
-          fontWeight: FontWeight.w400,
-          letterSpacing: 0,
+        autovalidateMode: AutovalidateMode.disabled,
+        keyboardType: TextInputType.text,
+        onChanged: ((value) {
+          widget.onChanged;
+          setState(() {});
+        }),
+        // onSaved: onSave,
+        onFieldSubmitted: widget.onSave,
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+          hintText: widget.labelText,
+          filled: true,
+          suffixIcon: InkWell(
+            onTap: widget.onTap,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              child: FaIcon(
+                FontAwesomeIcons.magnifyingGlass,
+                size: 18,
+                color: CustomThemes.appTheme.primaryColor
+              ),
+            ),
+          ),
+          fillColor: Colors.white,
+          labelStyle: const TextStyle(
+              color: Color(0xffACBAC3),
+              fontSize: 14,
+              fontWeight: FontWeight.normal,
+              letterSpacing: 0),
+          hintStyle: TextStyle(
+            color: CustomThemes.appTheme.primaryColor,
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 0,
+          ),
+          enabledBorder: InputBorder.none,
+          disabledBorder: InputBorder.none,
+          border: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          suffixIconConstraints:
+              const BoxConstraints(minHeight: 30, minWidth: 30),
+          floatingLabelBehavior: FloatingLabelBehavior.auto,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.transparent, width: 1),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.transparent, width: 2.0),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        suffixIconConstraints:
-            const BoxConstraints(minHeight: 30, minWidth: 30),
-        floatingLabelBehavior: FloatingLabelBehavior.auto,
       ),
     );
   }

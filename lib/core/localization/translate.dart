@@ -35,6 +35,7 @@ enum Translate {
   orderNow,
   bestSeller,
   searchHere,
+  search,
   enterYourSearch,
   egp,
   allPricesIncudeVatDetails,

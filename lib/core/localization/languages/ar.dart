@@ -35,6 +35,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.orderNow.name: "اطلب الان",
       Translate.bestSeller.name: "الأكثر مبيعا",
       Translate.searchHere.name: "ابحث هنا...",
+      Translate.search.name: "ابحث",
       Translate.egp.name: "ج.م",
       Translate.allPricesIncudeVatDetails.name:
           "تشمل جميع الأسعار ضريبة القيمة المضافة",
