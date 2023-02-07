@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:imtnan/modules/home/widgets/home_ads_widget.dart';
+import 'package:imtnan/modules/home/widgets/language_widget.dart';
 import 'package:linktsp_api/data/page_block/models/new_page_block_model.dart'
     as model;
 import '../../../core/components/custom_error_widget.dart';
@@ -59,7 +61,22 @@ class HomeScreen extends GetView<HomeController> {
                             highlightColor: Colors.transparent,
                             splashColor: Colors.transparent,
                             onTap: () {
-                              Get.toNamed(Routes.languageScreen);
+                              showModalBottomSheet(
+                                context: context,
+                                // color is applied to main screen when modal bottom screen is displayed
+                                //background color for modal bottom screen
+                                backgroundColor: Colors.white,
+                                //elevates modal bottom screen
+                                elevation: 10,
+                                // gives rounded corner to modal bottom screen
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                builder: (BuildContext context) {
+                                  // UDE : SizedBox instead of Container for whitespaces
+                                  return LanguageWidget();
+                                },
+                              );
                             },
                             child: Row(
                               children: [

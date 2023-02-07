@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:imtnan/core/components/custom_slider.dart';
 import '../../../core/components/custom_text.dart';
+import '../../../core/localization/lanaguages_enum.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/shimmer_loader/images_shimmer.dart';
 import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/theme.dart';
 import '../controllers/home_controller.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,8 @@ class HomeAdsWidget extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    final language = Get.find<UserSharedPrefrenceController>().getLanguage;
+
     return Offstage(
       offstage: items == null || items!.isEmpty,
       child: Padding(
@@ -33,9 +37,15 @@ class HomeAdsWidget extends GetView<HomeController> {
                 decoration: BoxDecoration(
                     color: CustomThemes.appTheme.primaryColor,
                     shape: BoxShape.circle),
-                child: const Icon(
-                  FontAwesomeIcons.caretLeft,
-                  color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Icon(
+                    language == Languages.ar.name
+                        ? FontAwesomeIcons.caretRight
+                        : FontAwesomeIcons.caretLeft,
+                    color: Colors.white,
+                    size: 15,
+                  ),
                 ),
               ),
             ),
@@ -57,8 +67,7 @@ class HomeAdsWidget extends GetView<HomeController> {
                           flex: 1,
                           child: CachedNetworkImage(
                             imageUrl: items?[0].imageUrl ?? "",
-                            imageBuilder: (context, imageProvider) =>
-                                Container(
+                            imageBuilder: (context, imageProvider) => Container(
                               height: 200,
                               width: 200,
                               decoration: BoxDecoration(
@@ -88,8 +97,8 @@ class HomeAdsWidget extends GetView<HomeController> {
                             children: [
                               CustomText(
                                 items?[0].description ?? "sssssss",
-                                style: const TextStyle(
-                                    color: AppColors.redColor),
+                                style:
+                                    const TextStyle(color: AppColors.redColor),
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
@@ -99,8 +108,7 @@ class HomeAdsWidget extends GetView<HomeController> {
                                     borderRadius: BorderRadius.circular(15),
                                     side: BorderSide(
                                       width: 2.0,
-                                      color:
-                                          CustomThemes.appTheme.primaryColor,
+                                      color: CustomThemes.appTheme.primaryColor,
                                     ),
                                   ),
                                 ),
@@ -134,25 +142,24 @@ class HomeAdsWidget extends GetView<HomeController> {
                           flex: 1,
                           child: CachedNetworkImage(
                             imageUrl: items?[0].imageUrl ?? "",
-                            imageBuilder: (context, imageProvider) =>
-                                Container(
-                                  height: 200,
-                                  width: 200,
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(5),
-                                      topLeft: Radius.circular(5),
-                                    ),
-                                    image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image: NetworkImage(
-                                        items?[0].imageUrl ?? "",
-                                      ),
-                                    ),
+                            imageBuilder: (context, imageProvider) => Container(
+                              height: 200,
+                              width: 200,
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(5),
+                                  topLeft: Radius.circular(5),
+                                ),
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: NetworkImage(
+                                    items?[0].imageUrl ?? "",
                                   ),
                                 ),
+                              ),
+                            ),
                             placeholder: (context, image) =>
-                            const ImagesShimmerLoader(
+                                const ImagesShimmerLoader(
                               width: double.infinity,
                               height: 200,
                             ),
@@ -165,8 +172,8 @@ class HomeAdsWidget extends GetView<HomeController> {
                             children: [
                               CustomText(
                                 items?[0].description ?? "sssssss",
-                                style: const TextStyle(
-                                    color: AppColors.redColor),
+                                style:
+                                    const TextStyle(color: AppColors.redColor),
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
@@ -176,8 +183,7 @@ class HomeAdsWidget extends GetView<HomeController> {
                                     borderRadius: BorderRadius.circular(15),
                                     side: BorderSide(
                                       width: 2.0,
-                                      color:
-                                      CustomThemes.appTheme.primaryColor,
+                                      color: CustomThemes.appTheme.primaryColor,
                                     ),
                                   ),
                                 ),
@@ -211,25 +217,24 @@ class HomeAdsWidget extends GetView<HomeController> {
                           flex: 1,
                           child: CachedNetworkImage(
                             imageUrl: items?[0].imageUrl ?? "",
-                            imageBuilder: (context, imageProvider) =>
-                                Container(
-                                  height: 200,
-                                  width: 200,
-                                  decoration: BoxDecoration(
-                                    borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(5),
-                                      topLeft: Radius.circular(5),
-                                    ),
-                                    image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image: NetworkImage(
-                                        items?[0].imageUrl ?? "",
-                                      ),
-                                    ),
+                            imageBuilder: (context, imageProvider) => Container(
+                              height: 200,
+                              width: 200,
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(5),
+                                  topLeft: Radius.circular(5),
+                                ),
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: NetworkImage(
+                                    items?[0].imageUrl ?? "",
                                   ),
                                 ),
+                              ),
+                            ),
                             placeholder: (context, image) =>
-                            const ImagesShimmerLoader(
+                                const ImagesShimmerLoader(
                               width: double.infinity,
                               height: 200,
                             ),
@@ -242,8 +247,8 @@ class HomeAdsWidget extends GetView<HomeController> {
                             children: [
                               CustomText(
                                 items?[0].description ?? "sssssss",
-                                style: const TextStyle(
-                                    color: AppColors.redColor),
+                                style:
+                                    const TextStyle(color: AppColors.redColor),
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
@@ -253,8 +258,7 @@ class HomeAdsWidget extends GetView<HomeController> {
                                     borderRadius: BorderRadius.circular(15),
                                     side: BorderSide(
                                       width: 2.0,
-                                      color:
-                                      CustomThemes.appTheme.primaryColor,
+                                      color: CustomThemes.appTheme.primaryColor,
                                     ),
                                   ),
                                 ),
@@ -288,9 +292,15 @@ class HomeAdsWidget extends GetView<HomeController> {
                 decoration: BoxDecoration(
                     color: CustomThemes.appTheme.primaryColor,
                     shape: BoxShape.circle),
-                child: const Icon(
-                  FontAwesomeIcons.caretRight,
-                  color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Icon(
+                    language == Languages.ar.name
+                        ? FontAwesomeIcons.caretLeft
+                        : FontAwesomeIcons.caretRight,
+                    color: Colors.white,
+                    size: 15,
+                  ),
                 ),
               ),
             ),

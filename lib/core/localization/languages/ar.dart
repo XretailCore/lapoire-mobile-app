@@ -3,6 +3,7 @@ import '../translate.dart';
 Map<String, String> getArabicTranslation() => {
       Translate.appName.name: "لابوار",
       Translate.call.name: "اتصل",
+      Translate.home.name: "الرئيسية",
       Translate.menu.name: "القائمة",
       Translate.openingHours.name: "ساعات العمل",
       Translate.wishlist.name: "المفضلة",
@@ -341,4 +342,5 @@ Map<String, String> getArabicTranslation() => {
           'تحقق من اتصالك بالإنترنت وحاول مرة أخرى',
       Translate.noDataFound.name: 'لم يتم العثور علي نتائج',
       Translate.ordersThisMonth.name: 'طلباتك هذا الشهر',
+      Translate.selectLanguage.name: 'اختر اللغة',
     };

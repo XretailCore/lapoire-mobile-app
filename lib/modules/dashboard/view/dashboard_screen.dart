@@ -94,7 +94,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   : const SizedBox(),
               title: pageIndex == 4
                   ? "${Translate.hello.tr} ${userSharedPrefrenceController.getUserFirstName}"
-                  : BottomAppBarItemsData.labelList[pageIndex],
+                  : Translate.account.tr,
               showAction: pageIndex == 4 ? false : true,
             ),
             body: body,

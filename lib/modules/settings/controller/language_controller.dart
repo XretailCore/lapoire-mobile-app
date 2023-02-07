@@ -1,4 +1,5 @@
 import 'package:imtnan/core/utils/helper_functions.dart';
+import 'package:imtnan/core/utils/routes.dart';
 
 import '../../dashboard/controller/dashboard_controller.dart';
 import '../../../core/localization/lanaguages_enum.dart';
@@ -21,21 +22,18 @@ class LanguageController extends GetxController {
         final userSharedPrefrenceController =
             Get.find<UserSharedPrefrenceController>();
         var currentZone = userSharedPrefrenceController.getCurrentZone;
-        currentZone = const CityModel(
-          id: 29,
-        );
+
         await LinkTspApi.init(
           domain: domain,
           admin: admin,
-          zoneid: currentZone.id ?? 0,
+          zoneid: currentZone?.id ?? 0,
           lang: getLanguageId(language.name),
         );
         userSharedPrefrenceController.setLanguage = language.name;
+        Get.back();
+        Get.offAllNamed(Routes.dashboard);
         final homeController = Get.find<HomeController>();
         homeController.init();
-        final dashboardController = Get.find<DashboardController>();
-        dashboardController.updateIndex(0);
-        Get.back();
       },
     );
   }

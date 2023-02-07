@@ -315,7 +315,8 @@ enum Translate {
   noInternetConnection,
   checkYourInternetConnection,
   noDataFound,
-  ordersThisMonth
+  ordersThisMonth,
+  selectLanguage,
 }
 
 extension TR on Translate {

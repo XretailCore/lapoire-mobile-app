@@ -1,4 +1,5 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:imtnan/core/localization/lanaguages_enum.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
 import '../../../core/components/custom_slider.dart';
 import '../../../core/components/custom_text.dart';
@@ -53,10 +54,12 @@ class HomeCategoriesWidget extends GetView<HomeController> {
                       decoration: BoxDecoration(
                           color: CustomThemes.appTheme.primaryColor,
                           shape: BoxShape.circle),
-                      child: const Padding(
-                        padding: EdgeInsets.all(4.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
                         child: Icon(
-                          FontAwesomeIcons.caretLeft,
+                          language == Languages.ar.name
+                              ? FontAwesomeIcons.caretRight
+                              : FontAwesomeIcons.caretLeft,
                           color: Colors.white,
                           size: 15,
                         ),
@@ -70,7 +73,7 @@ class HomeCategoriesWidget extends GetView<HomeController> {
                       showIndicator: false,
                       autoPlay: false,
                       viewportFraction: 0.4,
-                      height: 30,
+                      height: 40,
                       controller: controller.categoriesScrollController,
                       sliderImages: [
                         for (var item in controller.categories.items!)
@@ -92,10 +95,12 @@ class HomeCategoriesWidget extends GetView<HomeController> {
                       decoration: BoxDecoration(
                           color: CustomThemes.appTheme.primaryColor,
                           shape: BoxShape.circle),
-                      child: const Padding(
-                        padding: EdgeInsets.all(4.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
                         child: Icon(
-                          FontAwesomeIcons.caretRight,
+                          language == Languages.ar.name
+                              ? FontAwesomeIcons.caretLeft
+                              : FontAwesomeIcons.caretRight,
                           color: Colors.white,
                           size: 15,
                         ),
@@ -142,10 +147,11 @@ class CategoryWidget extends GetView<HomeController> {
           textAlign: TextAlign.start,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: textStyle??TextStyle(
-              color: CustomThemes.appTheme.primaryColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 12.0),
+          style: textStyle ??
+              TextStyle(
+                  color: CustomThemes.appTheme.primaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12.0),
         ),
       ),
     );

@@ -148,7 +148,8 @@ Map<String, String> getEnglishTranslation() => {
       Translate.yourOrderNumberIs.name: 'Your Order Number Is',
       Translate.continueShopping.name: 'Continue Shopping',
       Translate.userNotSelected.name: 'User Not Selected',
-      Translate.yourOrderHasBeenPlaced.name: 'Your Order has been placed Successfully',
+      Translate.yourOrderHasBeenPlaced.name:
+          'Your Order has been placed Successfully',
       Translate.orderCode.name: 'Order Code',
       Translate.trackYourOrder.name: 'Track Your Order',
       Translate.trackOrder.name: 'Track Order',
@@ -166,7 +167,8 @@ Map<String, String> getEnglishTranslation() => {
       Translate.paymentsMethod.name: 'Payment Methods',
       Translate.yourItems.name: 'Your Items',
       Translate.confirm.name: 'Confirm',
-      Translate.confirmPasswordMessage.name: "The password confirmation doesn't match",
+      Translate.confirmPasswordMessage.name:
+          "The password confirmation doesn't match",
       Translate.selectCollectingStore.name: 'Select Collecting Store',
       Translate.nearestStores.name: 'Nearest Stores',
       Translate.allStores.name: 'All Stores',
@@ -358,4 +360,5 @@ Map<String, String> getEnglishTranslation() => {
           'Check your internet connection & try again',
       Translate.noDataFound.name: 'No data found',
       Translate.ordersThisMonth.name: 'Orders this month',
+      Translate.selectLanguage.name: 'Select Language',
     };

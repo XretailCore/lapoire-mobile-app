@@ -34,7 +34,13 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
   Widget build(BuildContext context) {
     Color bottomColor = CustomThemes.appTheme.disabledColor;
     AnimationController? hideAnimationController;
-
+    final labelList = <String>[
+      Translate.menu.tr,
+      Translate.wishlist.tr,
+      Translate.home.tr,
+      Translate.myCart.tr,
+      Translate.account.tr,
+    ];
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -68,7 +74,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
                       ? BottomAppBarItemsData.activeIconsList[index]
                       : BottomAppBarItemsData.iconsList[index],
                   CustomText(
-                    BottomAppBarItemsData.labelList[index],
+                    labelList[index],
                     style: TextStyle(
                       color: bottomColor,
                       fontSize: 12.0,
@@ -137,13 +143,5 @@ class BottomAppBarItemsData {
             size: 22, color: AppColors.primaryColor))),
     const Icon(Icons.people_rounded, size: 22, color: Colors.white),
     const Icon(Icons.people_rounded, color: AppColors.primaryColor, size: 22)
-  ];
-
-  static final labelList = <String>[
-    Translate.menu.tr,
-    Translate.wishlist.tr,
-    Translate.home.tr,
-    Translate.myCart.tr,
-    Translate.account.tr,
   ];
 }
