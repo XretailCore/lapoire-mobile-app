@@ -15,9 +15,9 @@ class IsDefaultSwitchWidget extends GetView<AddressDetailsController> {
       () => Row(
         children: [
           Switch.adaptive(
-            value: controller.isDefaultAddress,
+            value: controller.isDefaultAddress!.value,
             onChanged: (value) {
-              controller.isDefaultAddress = value;
+              controller.isDefaultAddress!.value = value;
             },
             activeColor: primaryColor,
           ),

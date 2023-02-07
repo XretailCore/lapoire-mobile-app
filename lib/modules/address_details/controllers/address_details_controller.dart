@@ -1,196 +1,352 @@
-import 'dart:async';
+// ignore_for_file: use_build_context_synchronously
 
+import 'dart:async';
+import 'package:linktsp_api/data/exception_api.dart';
+import '../../../core/components/custom_loaders.dart';
+import '../../../core/localization/translate.dart';
+import '../../../core/utils/custom_shared_prefrenece.dart';
+import '../../../core/utils/helper_functions.dart';
+import '../../../core/utils/strings.dart';
+import '../../../core/utils/validation.dart';
+import '../../check_out/controllers/customer_location_controller.dart';
+import '../../my_addresses/controller/my_addresses_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:linktsp_api/linktsp_api.dart';
 
-import '../../../core/localization/translate.dart';
-import '../../../core/utils/custom_shared_prefrenece.dart';
-import '../../../core/utils/helper_functions.dart';
-import '../../../core/utils/validation.dart';
-import '../../check_out/controllers/customer_location_controller.dart';
-import '../../my_addresses/controller/my_addresses_controller.dart';
-
-class AddressDetailsController extends GetxController
-    with StateMixin<List<CityModel>> {
-  final mapController = Completer<GoogleMapController>();
+class AddressDetailsController extends GetxController with StateMixin {
+  AddressModel addressModel = AddressModel();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final streetNameController = TextEditingController();
+  final mobileController = TextEditingController();
+  final postalCodeController = TextEditingController();
+  final addressNameController = TextEditingController(text: '');
+  final buildingNumberController = TextEditingController();
+  final apartmentNumberController = TextEditingController();
+  final floorNumberController = TextEditingController();
+  Rx<LatLng> currentPostion = const LatLng(30.110972, 30.317374).obs;
+  int? addressId;
+  Completer<GoogleMapController> mapController = Completer();
+  final List<Marker> markers = <Marker>[];
   final formKey = GlobalKey<FormState>();
+  RxBool? isDefaultAddress = false.obs;
+  RxList<CityModel> zoneMenu = <CityModel>[].obs;
+  final Rx<CityModel?> selectedZone = Rx<CityModel?>(null);
+  Rx<CityModel> selectedAddressName = const CityModel().obs;
+  RxString selectedZoneName = ''.obs;
+  RxList<CityModel> districtMenu = <CityModel>[].obs;
+  Rx<CityModel?> selectedDistrict = Rx<CityModel?>(null);
+  RxString selectedDistrictName = ''.obs;
+  RxString currentAddress = ''.obs;
+  RxDouble lat = 0.0.obs;
+  RxDouble lng = 0.0.obs;
+  RxString firstNameError = "".obs;
+  RxString lastNameError = "".obs;
+  RxString addressNameError = "".obs;
+  RxString streetNameError = "".obs;
+  RxString buildingNumberError = "".obs;
+  RxString flooNumberError = "".obs;
+  RxString apartmentNumberError = "".obs;
+  RxString mobileNumberError = "".obs;
+  final _prefs = Get.find<UserSharedPrefrenceController>();
+  bool isCheckoutAddress = false;
   final TextEditingController searchZoneTEController = TextEditingController();
 
-  final firstNameTEC = TextEditingController(text: ''),
-      lastNameTEC = TextEditingController(text: ''),
-      addressNameTEC = TextEditingController(text: ''),
-      streetNameTEC = TextEditingController(text: ''),
-      mobileTEC = TextEditingController(text: ''),
-      postalCodeTEC = TextEditingController(text: ''),
-      buildingNumberTEC = TextEditingController(text: ''),
-      apartmentNumberTEC = TextEditingController(text: ''),
-      floorNumberTEC = TextEditingController(text: '');
-
-  final _isDefaultAddress = false.obs;
-  bool get isDefaultAddress => _isDefaultAddress.value;
-  set isDefaultAddress(bool v) => _isDefaultAddress.value = v;
-
-  final _selectedCity = Rx<CityModel?>(null);
-  CityModel? get selectedZone => _selectedCity.value;
-  set selectedZone(CityModel? v) => _selectedCity.value = v;
-
-  final _selectedDistrict = Rx<CityModel?>(null);
-  CityModel? get selectedDistrict => _selectedDistrict.value;
-  set selectedDistrict(CityModel? v) => _selectedDistrict.value = v;
-
-  final districts = RxList<CityModel>();
-  AddressModel? addressModel;
   @override
-  void onReady() {
-    super.onReady();
-    if (Get.arguments is AddressModel) {
-      addressModel = Get.arguments;
-    }
-    init();
+  void onInit() async {
+    super.onInit();
+    change(null, status: RxStatus.loading());
+    getAddressDetails();
+    getZones();
   }
 
-  Future<void> init() async {
-    await HelperFunctions.errorRequestsHandler<List<CityModel>>(
-      loadingFunction: () async {
-        change(null, status: RxStatus.loading());
-        final zones = await LinkTspApi.instance.lookUp.getZoneLookup();
-        zones.sort((a, b) {
-          return a.name!.toLowerCase().compareTo(b.name!.toLowerCase());
-        });
-        return zones;
-      },
-      onDioErrorFunction: (e, m) async {
-        change(null, status: RxStatus.error(m));
-      },
-      onUnexpectedErrorFunction: (e, m) async {
-        change(null, status: RxStatus.error(m));
-      },
-      onApiErrorFunction: (e, m) async {
-        change(null, status: RxStatus.error(e.message.toString()));
-      },
-      onSuccessFunction: (zones) async {
-        if (zones.isEmpty) {
-          change(zones, status: RxStatus.empty());
-          return;
-        }
-        await _setAddressDetails(zones);
-        change(zones, status: RxStatus.success());
-      },
-    );
-  }
-
-  Future<void> _setAddressDetails(List<CityModel> zones) async {
-    final userSharedPrefrenceController =
-        Get.find<UserSharedPrefrenceController>();
-    firstNameTEC.text = addressModel?.firstName ??
-        userSharedPrefrenceController.getUserFirstName;
-    lastNameTEC.text =
-        addressModel?.lastName ?? userSharedPrefrenceController.getUserLastName;
-    addressNameTEC.text = addressModel?.name ?? '';
-    streetNameTEC.text = addressModel?.address ?? '';
-    buildingNumberTEC.text = addressModel?.building ?? '';
-    floorNumberTEC.text = addressModel?.floor ?? '';
-    apartmentNumberTEC.text = addressModel?.apartment ?? '';
-    mobileTEC.text = addressModel?.mobile ?? '';
-    isDefaultAddress = addressModel?.isDefault ?? false;
+  void getAddressDetails() async {
+    change(null, status: RxStatus.loading());
+    final args = (Get.arguments ?? {}) as Map?;
+    isCheckoutAddress =
+    args == null ? null : (args[Arguments.isCheckoutAddress] ?? false);
+    addressId = args == null ? null : args[Arguments.addressId] as int?;
+    streetNameController.text =
+    args == null ? null : args[Arguments.address] ?? "";
+    lat.value = 0;
+    lng.value = 0;
+    lat.value = args == null ? null : args[Arguments.lat] ?? 30.110972;
+    lng.value = args == null ? null : args[Arguments.lng] ?? 31.317374;
     try {
-      selectedZone =
-          zones.firstWhere((element) => element.id == addressModel?.zoneId);
-      if (selectedZone?.id != null) {
-        await _setDistrict(Get.context!, selectedZone!.id!);
-        selectedDistrict = districts
-            .firstWhere((element) => element.id == addressModel?.city?.id);
+      if (addressId != null) {
+        addressModel = await LinkTspApi.instance.address
+            .getAddressDetails(addressId: addressId!);
+        if (addressModel.id != null) {
+          isDefaultAddress!.value = addressModel.isDefault ?? true;
+          firstNameController.text = addressModel.firstName ?? "";
+          addressNameController.text = addressModel.name ?? '';
+          lastNameController.text = addressModel.lastName ?? "";
+          buildingNumberController.text = addressModel.building ?? "";
+          floorNumberController.text = addressModel.floor ?? "";
+          apartmentNumberController.text = addressModel.apartment ?? "";
+          mobileController.text = addressModel.mobile ?? "";
+          getLocation(lat: lat.value, lng: lng.value);
+        } else {
+          getLocation(lat: lat.value, lng: lng.value);
+          change(null, status: RxStatus.error());
+        }
+      } else {
+        getLocation(lat: lat.value, lng: lng.value);
       }
     } catch (e) {
-      debugPrint(e.toString());
+      getLocation(lat: lat.value, lng: lng.value);
+      change(null, status: RxStatus.error());
     }
   }
 
-  Future<void> _setDistrict(BuildContext context, int zoneId) async {
-    await HelperFunctions.errorRequestsSnakBarHandler<List<CityModel>>(
-      context,
-      loadingFunction: () async {
-        final districts = await LinkTspApi.instance.lookUp
-            .getCityPerZoneLookup(zoneId: zoneId);
-        districts.sort((a, b) {
-          return a.name!.toLowerCase().compareTo(b.name!.toLowerCase());
-        });
-        return districts;
-      },
-      onSuccessFunction: (d) async {
-        districts.clear();
-        districts.addAll(d);
-      },
-    );
-  }
-
-  Future<void> onChangeZone(CityModel? newValue, BuildContext context) async {
-    selectedZone = newValue;
-    selectedDistrict = null;
-    if (selectedZone?.id != null) {
-      await _setDistrict(context, selectedZone!.id!);
-    }
-  }
-
-  Future<void> saveAddress({required BuildContext context}) async {
-    if (formKey.currentState?.validate() ?? false) {
-      await HelperFunctions.errorRequestsSnakBarHandler(context,
-          loadingFunction: () async {
-        final userSharedPrefrenceController =
-            Get.find<UserSharedPrefrenceController>();
-        final address = AddressModel(
-          id: addressModel?.id,
-          apartment: apartmentNumberTEC.text,
-          building: buildingNumberTEC.text,
-          customerId: userSharedPrefrenceController.getUserId!,
-          floor: floorNumberTEC.text,
-          isDefault: isDefaultAddress,
-          zoneId: selectedZone?.id,
-          city: selectedDistrict,
-          firstName: firstNameTEC.text,
-          lastName: lastNameTEC.text,
-          name: addressNameTEC.text,
-          address: streetNameTEC.text,
-          mobile: changeNumericToEnglish(mobileTEC.text),
-          postalCode: postalCodeTEC.text,
-          latitude: addressModel?.latitude,
-          longitude: addressModel?.longitude,
+  Future editAddress({required BuildContext context}) async {
+    final controller = Get.find<UserSharedPrefrenceController>();
+    final addressBookController = Get.find<MyAddressesController>();
+    final customerLocationController = Get.find<CustomerLocationController>();
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      openLoadingDialog(context);
+      try {
+        AddressModel result = await LinkTspApi.instance.address.saveAddress(
+          addressModel: AddressModel(
+            id: addressId,
+            apartment: apartmentNumberController.text,
+            building: buildingNumberController.text,
+            customerId: controller.getUserId!,
+            floor: floorNumberController.text,
+            isDefault: isDefaultAddress!.value,
+            zoneId: selectedZone.value?.id ?? 36,
+            city: CityModel(
+                id: selectedDistrict.value?.id,
+                name: selectedDistrict.value?.name),
+            firstName: firstNameController.text,
+            lastName: lastNameController.text,
+            name: addressNameController.text,
+            address: streetNameController.text,
+            mobile: changeNumericToEnglish(mobileController.text),
+            latitude: lat.value == 0.0 ? null : lat.value,
+            longitude: lng.value == 0.0 ? null : lng.value,
+          ),
         );
-        await LinkTspApi.instance.address.saveAddress(
-          addressModel: address,
-        );
-
-        final addressBookController = Get.find<MyAddressesController>();
-        addressBookController.getAddresses();
-        final customerLocationController =
-            Get.find<CustomerLocationController>();
-        await customerLocationController.init();
+        if (result.id != null) {
+          addressBookController.getAddresses();
+          customerLocationController.onInit();
+          change(addressModel, status: RxStatus.success());
+          Get.back(); // this one is for closing loading dialog
+          Get.back();
+          ScaffoldMessenger.of(context).showSnackBar(
+            HelperFunctions.customSnackBar(
+                message: Translate.addressHasBeenSavedSuccessfuly.tr),
+          );
+        } else {
+          Get.back();
+          ScaffoldMessenger.of(context).showSnackBar(
+            HelperFunctions.customSnackBar(
+                message: Translate.error.tr, backgroundColor: Colors.red),
+          );
+        }
+      } on ExceptionApi catch (e) {
+        Get.back();
         ScaffoldMessenger.of(context).showSnackBar(
           HelperFunctions.customSnackBar(
-              message: Translate.addressHasBeenSavedSuccessfuly.tr),
+              message: e.message, backgroundColor: Colors.red),
         );
+      } catch (e) {
         Get.back();
-        Get.back();
-      });
+        ScaffoldMessenger.of(context).showSnackBar(
+          HelperFunctions.customSnackBar(
+              message: e.toString(), backgroundColor: Colors.red),
+        );
+      }
     }
   }
 
+  Future getZones() async {
+    final args = (Get.arguments ?? {}) as Map?;
+    final isCheckoutAddress =
+    args == null ? null : (args[Arguments.isCheckoutAddress] ?? false);
+    // change(null, status: RxStatus.loading());
+    try {
+      List<CityModel> zones = await LinkTspApi.instance.lookUp.getZoneLookup();
+      if (zones.isNotEmpty) {
+        zoneMenu.clear();
+        for (int i = 0; i < zones.length; i++) {
+          zoneMenu.add(CityModel(id: zones[i].id, name: zones[i].name));
+        }
+        zoneMenu.sort((a, b) {
+          return a.name!.toLowerCase().compareTo(b.name!.toLowerCase());
+        });
+        List<CityModel> searchZoneMenu = [];
+        if (isCheckoutAddress) {
+          searchZoneMenu = zoneMenu
+              .where((zone) => zone.id == (_prefs.getCurrentZone!.id))
+              .toList();
+          selectedZone.value = searchZoneMenu.first;
+          selectedZoneName.value = selectedZone.value?.name ?? '';
+          getDistrict(_prefs.getCurrentZone!.id!);
+        } else {
+          final selectedZoneId =
+          args == null ? null : args[Arguments.selectedZoneId] as int?;
+          searchZoneMenu =
+              zoneMenu.where((zone) => zone.id == selectedZoneId).toList();
+          selectedZone.value = searchZoneMenu.first;
+          selectedZoneName.value = selectedZone.value?.name ?? '';
+          getDistrict(selectedZone.value?.id ?? 0);
+        }
+      } else {
+        change(null, status: RxStatus.error());
+      }
+    } catch (e) {
+      change(null, status: RxStatus.error());
+    }
+  }
+
+  bool _checkIfZoneContainsDistrict() {
+    if (districtMenu
+        .where((zone) => zone.id == addressModel.city?.id)
+        .toList()
+        .isEmpty) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  Future getDistrict(int zoneId) async {
+    // change(null, status: RxStatus.loading());
+    List<CityModel> districts = await LinkTspApi.instance.lookUp
+        .getCityPerZoneLookup(zoneId: selectedZone.value?.id ?? 0);
+    if (districts.isNotEmpty) {
+      districtMenu.clear();
+      for (int i = 0; i < districts.length; i++) {
+        districtMenu
+            .add(CityModel(id: districts[i].id, name: districts[i].name));
+      }
+      districtMenu.sort((a, b) {
+        return a.name!.toLowerCase().compareTo(b.name!.toLowerCase());
+      });
+      if (addressId != null) {
+        selectedDistrict.value = _checkIfZoneContainsDistrict()
+            ? districtMenu
+            .where((district) => district.id == addressModel.city?.id)
+            .toList()
+            .first
+            : districtMenu.first;
+        selectedDistrictName.value = selectedDistrict.value?.name ?? '';
+      }
+      change(null, status: RxStatus.success());
+    } else {
+      change(null, status: RxStatus.error());
+    }
+  }
+
+  void addMakrer(double lat, double lng) {
+    markers.clear();
+    markers.add(Marker(
+        markerId: const MarkerId('SomeId'),
+        position: LatLng(lat, lng),
+        infoWindow: const InfoWindow(title: '')));
+  }
+
+  Future<void> getLocation(
+      {double lat = 30.110972, double lng = 31.317374}) async {
+    List<Placemark> placemarks = await placemarkFromCoordinates(
+      lat,
+      lng,
+      localeIdentifier: "en",
+    );
+    currentAddress.value =
+    "${placemarks.first.thoroughfare}, ${placemarks.first.street}";
+    streetNameController.text = currentAddress.value;
+    this.lat.value = lat;
+    this.lng.value = lng;
+    currentPostion.value = LatLng(this.lat.value, this.lng.value);
+    addMakrer(this.lat.value, this.lng.value);
+    change(addressModel, status: RxStatus.success());
+  }
+
+  String? getFirstNameError(String? error) {
+    firstNameError.value = error ?? "";
+    return firstNameError.value == "" ? null : firstNameError.value;
+  }
+
+  String? getLastNameError(String? error) {
+    lastNameError.value = error ?? "";
+    return lastNameError.value == "" ? null : lastNameError.value;
+  }
+
+  String? getAddressNameError(String? error) {
+    addressNameError.value = error ?? "";
+    return addressNameError.value == "" ? null : addressNameError.value;
+  }
+
+  String? getStreetNameError(String? error) {
+    streetNameError.value = error ?? "";
+    return streetNameError.value == "" ? null : streetNameError.value;
+  }
+
+  String? getBuildingNumberError(String? error) {
+    buildingNumberError.value = error ?? "";
+    return buildingNumberError.value.isEmpty ? null : buildingNumberError.value;
+  }
+
+  String? getFloorNumberError(String? error) {
+    flooNumberError.value = error ?? "";
+    return flooNumberError.value.isEmpty ? null : flooNumberError.value;
+  }
+
+  String? getApartmentNumberError(String? error) {
+    apartmentNumberError.value = error ?? "";
+    return apartmentNumberError.value.isEmpty
+        ? null
+        : apartmentNumberError.value;
+  }
+
+  String? getMobileNumbetError(String? error) {
+    mobileNumberError.value = error ?? "";
+    return mobileNumberError.value.isEmpty ? null : mobileNumberError.value;
+  }
+
+  void onMapComplete(GoogleMapController googleController) {
+    if (!mapController.isCompleted) mapController.complete(googleController);
+  }
+
+  void onMapAction() {
+    // Get.toNamed(Routes.addressMap, arguments: {
+    //   Arguments.lat: addressModel.latitude,
+    //   Arguments.lng: addressModel.longitude,
+    //   Arguments.address: addressModel.address,
+    //   Arguments.addressModel: addressModel,
+    //   Arguments.isMapAction: true,
+    // });
+  }
+
+  void onAddressNameChange(CityModel value) {
+    selectedAddressName.value = value;
+  }
+
+  void onDistricChange(String value) {
+    selectedDistrict.value =
+        districtMenu.where((e) => e.name == value).toList().first;
+    selectedDistrictName.value = value;
+  }
   @override
   void onClose() {
-    firstNameTEC.dispose();
-    lastNameTEC.dispose();
-    addressNameTEC.dispose();
-    streetNameTEC.dispose();
-    buildingNumberTEC.dispose();
-    floorNumberTEC.dispose();
-    apartmentNumberTEC.dispose();
-    mobileTEC.dispose();
-    _isDefaultAddress.close();
-    _selectedCity.close();
-    _selectedDistrict.close();
-    districts.close();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    addressNameController.dispose();
+    streetNameController.dispose();
+    buildingNumberController.dispose();
+    floorNumberController.dispose();
+    apartmentNumberController.dispose();
+    mobileController.dispose();
+    isDefaultAddress?.close();
+    selectedZone.close();
+    selectedDistrict.close();
+    districtMenu.close();
     super.onClose();
   }
 }

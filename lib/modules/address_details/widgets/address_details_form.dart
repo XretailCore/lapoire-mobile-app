@@ -28,7 +28,7 @@ class AddressDetailsForm extends GetView<AddressDetailsController> {
                 Expanded(
                   child: TextFormFieldWidget(
                     hint: '${Translate.firstName.tr} *',
-                    textEditingController: controller.firstNameTEC,
+                    textEditingController: controller.firstNameController,
                     textInputType: TextInputType.name,
                     validator: CustomValidator.requiredValidation,
                   ),
@@ -37,7 +37,7 @@ class AddressDetailsForm extends GetView<AddressDetailsController> {
                 Expanded(
                   child: TextFormFieldWidget(
                     hint: '${Translate.lastName.tr} *',
-                    textEditingController: controller.lastNameTEC,
+                    textEditingController: controller.lastNameController,
                     textInputType: TextInputType.name,
                     validator: CustomValidator.requiredValidation,
                   ),
@@ -47,13 +47,13 @@ class AddressDetailsForm extends GetView<AddressDetailsController> {
             const SizedBox(height: 10),
             TextFormFieldWidget(
               hint: '${Translate.addressName.tr} *',
-              textEditingController: controller.addressNameTEC,
+              textEditingController: controller.addressNameController,
               validator: CustomValidator.requiredValidation,
             ),
             const SizedBox(height: 10),
             TextFormFieldWidget(
               hint: '${Translate.streetName.tr} *',
-              textEditingController: controller.streetNameTEC,
+              textEditingController: controller.streetNameController,
               textInputType: TextInputType.name,
               validator: CustomValidator.requiredValidation,
             ),
@@ -63,7 +63,7 @@ class AddressDetailsForm extends GetView<AddressDetailsController> {
                 Expanded(
                   child: TextFormFieldWidget(
                     hint: '${Translate.buildingNumber.tr} *',
-                    textEditingController: controller.buildingNumberTEC,
+                    textEditingController: controller.buildingNumberController,
                     textInputType: TextInputType.name,
                     validator: CustomValidator.requiredValidation,
                   ),
@@ -72,7 +72,7 @@ class AddressDetailsForm extends GetView<AddressDetailsController> {
                 Expanded(
                   child: TextFormFieldWidget(
                     hint: '${Translate.floorNumber.tr} *',
-                    textEditingController: controller.floorNumberTEC,
+                    textEditingController: controller.floorNumberController,
                     textInputType: TextInputType.name,
                     validator: CustomValidator.requiredValidation,
                   ),
@@ -81,7 +81,7 @@ class AddressDetailsForm extends GetView<AddressDetailsController> {
                 Expanded(
                   child: TextFormFieldWidget(
                     hint: '${Translate.apartmentNumber.tr} *',
-                    textEditingController: controller.apartmentNumberTEC,
+                    textEditingController: controller.apartmentNumberController,
                     textInputType: TextInputType.name,
                     validator: CustomValidator.requiredValidation,
                   ),
@@ -97,7 +97,7 @@ class AddressDetailsForm extends GetView<AddressDetailsController> {
             const SizedBox(height: 10),
             TextFormFieldWidget(
               hint: '${Translate.mobileNumber.tr} *',
-              textEditingController: controller.mobileTEC,
+              textEditingController: controller.mobileController,
               textInputType: TextInputType.phone,
               validator: CustomValidator.requiredValidation,
             ),
@@ -109,7 +109,7 @@ class AddressDetailsForm extends GetView<AddressDetailsController> {
               child: CustomBorderButton(
                 color: AppColors.redColor,
                 radius: 20,
-                onTap: () => controller.saveAddress(context: context),
+                onTap: () => controller.editAddress(context: context),
                 textColor: Colors.white,
                 title: Translate.save.tr,
               ),

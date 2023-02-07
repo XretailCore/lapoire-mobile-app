@@ -48,7 +48,7 @@ class DistrictWidget extends GetView<AddressDetailsController> {
               enabledBorder: const OutlineInputBorder(),
             ),
           ),
-          selectedItem: controller.selectedDistrict,
+          selectedItem: controller.selectedDistrict.value,
           dropdownSearchDecoration: InputDecoration(
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -79,7 +79,7 @@ class DistrictWidget extends GetView<AddressDetailsController> {
             );
           },
           dropdownBuilder: (context, item) {
-            if (controller.selectedDistrict?.name?.isEmpty ?? true) {
+            if (controller.selectedDistrict.value?.name?.isEmpty ?? true) {
               return CustomText(
                 Translate.district.tr,
                 overflow: TextOverflow.ellipsis,
@@ -94,9 +94,9 @@ class DistrictWidget extends GetView<AddressDetailsController> {
             }
           },
           onChanged: (newValue) async {
-            controller.selectedDistrict = newValue;
+            controller.selectedDistrict.value = newValue;
           },
-          items: controller.districts,
+          items: controller.districtMenu,
         ),
       ),
     );

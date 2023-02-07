@@ -5,6 +5,7 @@ import 'package:linktsp_api/linktsp_api.dart';
 import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/helper_functions.dart';
 import '../../../core/utils/routes.dart';
+import '../../../core/utils/strings.dart';
 
 class MyAddressesController extends GetxController
     with StateMixin<List<AddressModel>> {
@@ -43,7 +44,12 @@ class MyAddressesController extends GetxController
   }
 
   void addNewAddressAction() {
-    Get.toNamed(Routes.selectLocationFromMapScreen);
+    Get.toNamed(
+      Routes.selectLocationFromMapScreen,
+      arguments: {
+        Arguments.isCheckoutAddress: false,
+      },
+    );
   }
 
   void editAddressAction(AddressModel addressModel) {

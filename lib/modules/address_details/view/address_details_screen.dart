@@ -29,7 +29,7 @@ class AddressDetailsScreen extends GetView<AddressDetailsController> {
         onLoading: const CustomLoadingWidget(),
         onError: (e) => CustomErrorWidget(
           errorText: e,
-          onReload: controller.init,
+          onReload: controller.onInit,
         ),
       ),
     );

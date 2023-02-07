@@ -5,6 +5,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:imtnan/core/utils/strings.dart';
 import 'package:linktsp_api/linktsp_api.dart';
 
 import '../../../../core/utils/helper_functions.dart';
@@ -15,15 +16,22 @@ class SelectLocationFromMapController extends GetxController {
   GoogleMapController? googleMapController;
   final defaultLatLng = const LatLng(30.0444, 31.2357);
   final _address = Rx<String>('');
+
   String get showAddressName => _address.value;
+
   set showAddressName(String v) => _address.value = v;
 
   late AddressModel addressModel;
-
+bool isCheckoutAddress=false;
   bool _isCreateAddress = true;
+
   @override
   void onReady() {
     super.onReady();
+    final args = (Get.arguments ?? {}) as Map?;
+    isCheckoutAddress =
+    args == null ? null : (args[Arguments.isCheckoutAddress] ?? false);
+    addressModel = args == null ? null : args[Arguments.addressModel] ??AddressModel();
     if (Get.arguments is AddressModel) {
       addressModel = Get.arguments;
       _isCreateAddress = false;
@@ -70,7 +78,13 @@ class SelectLocationFromMapController extends GetxController {
   }
 
   Future<void> submitLocationAction() async {
-    Get.toNamed(Routes.addressDetails, arguments: addressModel);
+    Get.toNamed(
+      Routes.addressDetails,
+      arguments: {
+        Arguments.addressModel: addressModel,
+        Arguments.isCheckoutAddress: isCheckoutAddress,
+      },
+    );
   }
 
   Future<void> onCameraIdle() async {
