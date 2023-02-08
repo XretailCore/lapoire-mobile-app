@@ -30,11 +30,16 @@ class AddressBookItemWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0.0),
       ),
-      child: Container(
-        padding: const EdgeInsets.all(10),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 24.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            address?.isDefault ?? false
+                ? const FaIcon(FontAwesomeIcons.house,
+                color: AppColors.redColor, size: 16.0)
+                : const FaIcon(FontAwesomeIcons.house,
+                color: Colors.white, size: 16.0),
             const SizedBox(width: 15),
             Expanded(
               child: Column(
@@ -86,28 +91,21 @@ class AddressBookItemWidget extends StatelessWidget {
                   Row(
                     children: [
                       address?.isDefault ?? false
-                          ? const FaIcon(FontAwesomeIcons.house,
-                              color: AppColors.redColor, size: 16.0)
-                          : const SizedBox(),
-                      address?.isDefault ?? false
                           ? const SizedBox(width: 16.0)
                           : const SizedBox(),
-                      InkWell(
-                        onTap: address?.isDefault ?? false ? null : editAddressAction,
-                        child: CustomText(
-                          address?.isDefault ?? false
-                              ? Translate.defaultAddress.name.tr
-                              : Translate.selectAsDefaultAddress.tr,
-                          style: const TextStyle(
-                              decoration: TextDecoration.underline,
-                              color: AppColors.redColor,
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 0),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
+                      address?.isDefault ?? false
+                          ? CustomText(
+                              Translate.defaultAddress.name.tr,
+                              style: const TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  color: AppColors.redColor,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 0),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            )
+                          : const SizedBox.shrink(),
                     ],
                   ),
                 ],
