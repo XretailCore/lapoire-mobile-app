@@ -3,8 +3,11 @@ import '../translate.dart';
 Map<String, String> getArabicTranslation() => {
       Translate.appName.name: "لابوار",
       Translate.call.name: "اتصل",
+      Translate.collectFromStore.name: "احصل من المتجر",
+      Translate.collectFromStoreMessage.name: "الاستلام من المتجر يمكنك استلام طلبك خلال ساعتين (عندما تكون المتاجر مفتوحة)",
       Translate.home.name: "الرئيسية",
       Translate.menu.name: "القائمة",
+      Translate.homeDeliveryMessage.name: "يتم تسليم الطلبات من 1 إلى 3 ساعات عمل",
       Translate.openingHours.name: "ساعات العمل",
       Translate.wishlist.name: "المفضلة",
       Translate.subtotal.name: "المجموع الجزئي",

@@ -12,6 +12,7 @@ import '../../modules/auth/screens/verify_otp_screen.dart';
 import '../../modules/cart/view/cart_screen.dart';
 import '../../modules/categories/view/categories_screen.dart';
 import '../../modules/check_out/views/checkout_confirmation_screen.dart';
+import '../../modules/check_out/views/checkout_options_screen.dart';
 import '../../modules/check_out/views/credit_card_screen.dart';
 import '../../modules/check_out/views/customer_locations_screen.dart';
 import '../../modules/check_out/views/payment_screen.dart';
@@ -70,6 +71,7 @@ class Routes {
       paymentScreen = '/paymentScreen',
       creditCardScreen = '/creditCardScreen',
       summaryScreen = '/summaryScreen',
+      checkOutOptionsScreen = '/checkOutOptionsScreen',
       checkoutConfirmationScreen = '/checkoutConfirmationScreen',
       deliveryScreen = '/deliveryScreen',
       subscribeScreen = '/subscribeScreen',
@@ -110,6 +112,7 @@ class Routes {
           transition: Transition.cupertino),
       GetPage(name: categories, page: () => const CategoriesScreen()),
       GetPage(name: cart, page: () => const CartScreen()),
+      GetPage(name: checkOutOptionsScreen, page: () =>  CheckoutOptionsScreen()),
       GetPage(
           name: verifyOtpScreen,
           page: () => const VerifyOtpScreen(),
