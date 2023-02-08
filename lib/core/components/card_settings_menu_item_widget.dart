@@ -22,8 +22,8 @@ class CardSettingsMenuItemWidget extends StatelessWidget {
           width: double.infinity,
           child: Card(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              side: BorderSide(color: primaryColor, width: 0.5),
+              borderRadius: BorderRadius.circular(20.0),
+              side: BorderSide(color: primaryColor, width: 1.5),
             ),
             elevation: 0,
             child: Center(
@@ -43,12 +43,14 @@ class CardSettingsMenuItemWidget extends StatelessWidget {
                       style: TextStyle(
                         color: primaryColor,
                         fontSize: 14,
+                        fontWeight: FontWeight.w600
                       ),
                     ),
                     const Spacer(),
                     Icon(
                       Icons.chevron_right,
                       color: primaryColor,
+                      size: 30.0,
                     ),
                   ],
                 ),

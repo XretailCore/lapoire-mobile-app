@@ -19,6 +19,7 @@ dependencies:
   dots_indicator: ^2.0.0
   dotted_border: any
   dotted_line: ^3.1.0
+  flutter_switch: ^0.3.2
   fcm_config: ^3.1.8
   flutter:
     sdk: flutter

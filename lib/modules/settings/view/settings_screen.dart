@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-
-import '../../../core/components/appbar_widget.dart';
+import 'package:imtnan/core/components/custom_appbar.dart';
 import '../../../core/components/card_settings_menu_item_widget.dart';
 import '../../../core/localization/translate.dart';
 import '../controller/settings_controller.dart';
 import '../widgets/notification_widget.dart';
-import '../widgets/title_widget.dart';
 
 class SettingsScreen extends GetView<SettingsController> {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -14,22 +13,21 @@ class SettingsScreen extends GetView<SettingsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(title: Translate.settings.tr),
+      appBar: CustomAppBar(title: Translate.settings.tr,showAction: false,showBackButton: true),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10.0, 20, 10, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TitlesWidget(title: Translate.account.tr),
               const SizedBox(height: 10),
               CardSettingsMenuItemWidget(
-                icon: Icons.assignment,
+                icon: FontAwesomeIcons.envelopeOpenText,
                 itemTitle: Translate.subscribeToOurNewsletter.tr,
                 itemAction: controller.goToChangeSubscribeScreen,
               ),
               CardSettingsMenuItemWidget(
-                icon: Icons.security,
+                icon: FontAwesomeIcons.solidMessage,
                 itemTitle: Translate.changePassword.tr,
                 itemAction: controller.goToChangePasswordScreen,
               ),
@@ -54,8 +52,6 @@ class SettingsScreen extends GetView<SettingsController> {
                 itemTitle: Translate.aboutUs.tr,
                 itemAction: controller.goToAboutScreen,
               ),
-              const SizedBox(height: 10),
-              TitlesWidget(title: Translate.notifications.tr),
               const SizedBox(height: 10),
               const NotificationWidget(),
               const SizedBox(height: 10),
