@@ -15,14 +15,15 @@ class AddressDetailsScreen extends GetView<AddressDetailsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: Translate.addressBook.tr,showBackButton: true),
+      appBar:
+          CustomAppBar(title: Translate.addressBook.tr, showBackButton: true),
       body: controller.obx(
         (zones) => GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: ListView(
-            children: [
-              const MapWidget(),
-              AddressDetailsForm(zones: zones ?? []),
+            children: const [
+              MapWidget(),
+              AddressDetailsForm(),
             ],
           ),
         ),

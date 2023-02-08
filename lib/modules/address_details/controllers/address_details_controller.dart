@@ -68,13 +68,13 @@ class AddressDetailsController extends GetxController with StateMixin {
     final args = (Get.arguments ?? {}) as Map?;
     isCheckoutAddress =
     args == null ? null : (args[Arguments.isCheckoutAddress] ?? false);
-    addressId = args == null ? null : args[Arguments.addressId] as int?;
-    streetNameController.text =
-    args == null ? null : args[Arguments.address] ?? "";
+    addressModel = args == null ? null : args[Arguments.addressModel] ?? AddressModel();
+    addressId=addressModel.id;
+    streetNameController.text =addressModel.address ?? "";
     lat.value = 0;
     lng.value = 0;
-    lat.value = args == null ? null : args[Arguments.lat] ?? 30.110972;
-    lng.value = args == null ? null : args[Arguments.lng] ?? 31.317374;
+    lat.value = addressModel.latitude ?? 30.110972;
+    lng.value = addressModel.longitude ?? 31.317374;
     try {
       if (addressId != null) {
         addressModel = await LinkTspApi.instance.address
@@ -188,12 +188,18 @@ class AddressDetailsController extends GetxController with StateMixin {
           selectedZoneName.value = selectedZone.value?.name ?? '';
           getDistrict(_prefs.getCurrentZone!.id!);
         } else {
-          final selectedZoneId =
-          args == null ? null : args[Arguments.selectedZoneId] as int?;
-          searchZoneMenu =
-              zoneMenu.where((zone) => zone.id == selectedZoneId).toList();
-          selectedZone.value = searchZoneMenu.first;
-          selectedZoneName.value = selectedZone.value?.name ?? '';
+          int? selectedZoneId;
+          if(addressModel.zoneId !=null)
+            {
+              selectedZoneId=addressModel.zoneId;
+            }
+          if(selectedZoneId !=null)
+            {
+              searchZoneMenu =
+                  zoneMenu.where((zone) => zone.id == selectedZoneId).toList();
+              selectedZone.value = searchZoneMenu.first;
+              selectedZoneName.value = selectedZone.value?.name ?? '';
+            }
           getDistrict(selectedZone.value?.id ?? 0);
         }
       } else {

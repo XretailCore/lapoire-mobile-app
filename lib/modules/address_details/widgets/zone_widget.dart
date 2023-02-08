@@ -5,12 +5,12 @@ import 'package:linktsp_api/linktsp_api.dart';
 
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
+import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/helper_functions.dart';
 import '../controllers/address_details_controller.dart';
 
 class ZoneWidget extends GetView<AddressDetailsController> {
-  const ZoneWidget({Key? key, required this.cities}) : super(key: key);
-  final List<CityModel> cities;
+  const ZoneWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
@@ -29,7 +29,7 @@ class ZoneWidget extends GetView<AddressDetailsController> {
               child: Icon(Icons.arrow_drop_down,
                   color: controller.isCheckoutAddress
                       ? Colors.grey
-                      : Colors.black),
+                      : AppColors.primaryColor),
             );
           },
           onPopupDismissed: () {

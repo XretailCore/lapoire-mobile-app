@@ -55,7 +55,9 @@ class MyAddressesController extends GetxController
   void editAddressAction(AddressModel addressModel) {
     Get.toNamed(
       Routes.selectLocationFromMapScreen,
-      arguments: addressModel,
+      arguments:{
+        Arguments.addressModel: addressModel,
+      }
     );
   }
 

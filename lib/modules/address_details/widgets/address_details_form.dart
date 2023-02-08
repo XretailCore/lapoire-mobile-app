@@ -13,8 +13,7 @@ import 'is_default_switch_widget.dart';
 import 'zone_widget.dart';
 
 class AddressDetailsForm extends GetView<AddressDetailsController> {
-  const AddressDetailsForm({Key? key, required this.zones}) : super(key: key);
-  final List<CityModel> zones;
+  const AddressDetailsForm({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -89,9 +88,7 @@ class AddressDetailsForm extends GetView<AddressDetailsController> {
               ],
             ),
             const SizedBox(height: 10),
-            ZoneWidget(
-              cities: zones,
-            ),
+            ZoneWidget(),
             const SizedBox(height: 10),
             const DistrictWidget(),
             const SizedBox(height: 10),

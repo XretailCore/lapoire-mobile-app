@@ -22,7 +22,7 @@ class SelectLocationFromMapController extends GetxController {
   set showAddressName(String v) => _address.value = v;
 
   late AddressModel addressModel;
-bool isCheckoutAddress=false;
+  bool isCheckoutAddress = false;
   bool _isCreateAddress = true;
 
   @override
@@ -31,10 +31,10 @@ bool isCheckoutAddress=false;
     final args = (Get.arguments ?? {}) as Map?;
     isCheckoutAddress =
     args == null ? null : (args[Arguments.isCheckoutAddress] ?? false);
-    addressModel = args == null ? null : args[Arguments.addressModel] ??AddressModel();
-    if (Get.arguments is AddressModel) {
-      addressModel = Get.arguments;
+    addressModel = args == null ? null : args[Arguments.addressModel] ?? AddressModel();
+    if (addressModel.id !=null) {
       _isCreateAddress = false;
+      _address.value=addressModel.address??"";
     } else {
       addressModel = AddressModel(
           longitude: defaultLatLng.longitude, latitude: defaultLatLng.latitude);

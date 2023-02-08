@@ -1,6 +1,7 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:imtnan/core/utils/strings.dart';
 import 'package:linktsp_api/linktsp_api.dart';
 
 import '../../../core/utils/app_colors.dart';
@@ -28,7 +29,7 @@ class CustomerLocationsWidget extends StatelessWidget {
             return Column(
               children: [
                 LocationPlaceWidget(
-                  addressName: address.name??"",
+                  addressName: address.name ?? "",
                   title: address.address ?? '',
                   userName: '${address.firstName} ${address.lastName}',
                   city: address.city?.name ?? '',
@@ -42,7 +43,10 @@ class CustomerLocationsWidget extends StatelessWidget {
                   onEdit: () {
                     Get.toNamed(
                       Routes.selectLocationFromMapScreen,
-                      arguments: address,
+                      arguments: {
+                        Arguments.addressModel: address,
+                        Arguments.isCheckoutAddress: true,
+                      },
                     );
                   },
                 ),
