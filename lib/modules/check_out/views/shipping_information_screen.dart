@@ -9,6 +9,7 @@ import '../../../core/localization/translate.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../order_details/widgets/order_details_address_widget.dart';
 import '../controllers/shipping_information_controller.dart';
+import '../widgets/checkout_title_divider_widget.dart';
 import '../widgets/custom_stepper_widget.dart';
 import '../widgets/final_summary_widget.dart';
 
@@ -27,6 +28,8 @@ class ShoppingInformationScreen extends GetView<ShippingInformationController> {
             children: [
               const SizedBox(height: 10),
               const CustomStepperWidget(currentIndex: 2),
+              const SizedBox(height: 10),
+              CheckOutTitleDividerWidget(title: "${shippingInfo?.items?.length.toString()} ${Translate.items.tr}"),
               const SizedBox(height: 10),
               Expanded(
                 child: ListView(
