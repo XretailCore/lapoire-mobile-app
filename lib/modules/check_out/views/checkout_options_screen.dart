@@ -27,7 +27,9 @@ class CheckoutOptionsScreen extends GetView<CustomerLocationController> {
           const CustomStepperWidget(currentIndex: 0),
           const SizedBox(height: 24),
           ListTile(
-              onTap: (){},
+              onTap: (){
+                Get.toNamed(Routes.checkoutPickStoreOptionScreen);
+              },
             title: CustomText(Translate.collectFromStore.tr),
             subtitle: CustomText(
               Translate.collectFromStoreMessage.tr,

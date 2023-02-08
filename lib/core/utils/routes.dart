@@ -13,6 +13,7 @@ import '../../modules/cart/view/cart_screen.dart';
 import '../../modules/categories/view/categories_screen.dart';
 import '../../modules/check_out/views/checkout_confirmation_screen.dart';
 import '../../modules/check_out/views/checkout_options_screen.dart';
+import '../../modules/check_out/views/checkout_pick_store_option.dart';
 import '../../modules/check_out/views/credit_card_screen.dart';
 import '../../modules/check_out/views/customer_locations_screen.dart';
 import '../../modules/check_out/views/payment_screen.dart';
@@ -50,6 +51,7 @@ class Routes {
       cart = "/mybasket",
       sign = '/sign',
       verifyOtpScreen = '/verifyOtpScreen',
+      checkoutPickStoreOptionScreen = '/checkoutPickStoreOptionScreen',
       verifyOtpForgetPasswordScreen = '/verifyOtpForgetPasswordScreen',
       changePasswordScreen = '/changePasswordScreen',
       listingItems = '/listingItems',
@@ -113,6 +115,7 @@ class Routes {
       GetPage(name: categories, page: () => const CategoriesScreen()),
       GetPage(name: cart, page: () => const CartScreen()),
       GetPage(name: checkOutOptionsScreen, page: () =>  CheckoutOptionsScreen()),
+      GetPage(name: checkoutPickStoreOptionScreen, page: () =>  CheckoutPickStoreOptionScreen()),
       GetPage(
           name: verifyOtpScreen,
           page: () => const VerifyOtpScreen(),

@@ -16,7 +16,7 @@ class CustomerLocationController extends GetxController
   CustomerLocationController();
 
   final Rx<bool> _isAddressEmpty = Rx<bool>(true);
-
+RxInt toggleValue=0.obs;
   bool get isAddressEmpty => _isAddressEmpty.value;
   final UserSharedPrefrenceController _userSharedPrefrenceController =
       Get.find<UserSharedPrefrenceController>();
