@@ -7,9 +7,9 @@ import '../../../core/utils/app_colors.dart';
 import '../controllers/customer_summary_controller.dart';
 import '../controllers/payment_controller.dart';
 import '../widgets/checkout_summary_widget.dart';
-import '../widgets/choice_payment_method_widget.dart';
 import '../widgets/custom_stepper_widget.dart';
 import '../widgets/discount_method_widget.dart';
+import '../widgets/payment_option_item_widget.dart';
 
 class PaymentScreen extends GetView<PaymentController> {
   PaymentScreen({Key? key}) : super(key: key);
@@ -30,29 +30,24 @@ class PaymentScreen extends GetView<PaymentController> {
               currentIndex: 1,
             ),
             const SizedBox(height: 8),
+            const SizedBox(height: 8),
             Expanded(
-              child: ListView(
-                children: [
-                  const SizedBox(height: 8),
-                  controller.obx(
-                    (payments) => ChoicePaymentMethodWidget(
-                      groupValue: 0,
-                      payments: payments ?? [],
-                    ),
-                    onLoading: Center(
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
-                      ),
-                    ),
+              child: controller.obx(
+                    (payments) => PaymentOptionItemWidget(
+                  payments: payments ?? [],
+                ),
+                onLoading: Center(
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
                   ),
-                  const SizedBox(height: 10),
-                  const DiscountMethodsWidget(),
-                  const SizedBox(height: 8),
-                ],
+                ),
               ),
             ),
             Column(
               children: [
+                const SizedBox(height: 10),
+                const DiscountMethodsWidget(),
+                const SizedBox(height: 10),
                 customerSummaryController.obx(
                       (summary) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
