@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:imtnan/core/components/imtnan_loading_widget.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:imtnan/modules/home/widgets/home_ads_widget.dart';
 import 'package:imtnan/modules/home/widgets/language_widget.dart';
@@ -39,7 +40,6 @@ class HomeScreen extends GetView<HomeController> {
                 height: 40, width: 85),
           ),
         ),
-        //const HomeAppBarWidget(),
         Expanded(
           child: controller.obx(
             (data) {
@@ -63,18 +63,13 @@ class HomeScreen extends GetView<HomeController> {
                             onTap: () {
                               showModalBottomSheet(
                                 context: context,
-                                // color is applied to main screen when modal bottom screen is displayed
-                                //background color for modal bottom screen
                                 backgroundColor: Colors.white,
-                                //elevates modal bottom screen
                                 elevation: 10,
-                                // gives rounded corner to modal bottom screen
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
                                 builder: (BuildContext context) {
-                                  // UDE : SizedBox instead of Container for whitespaces
-                                  return LanguageWidget();
+                                  return const LanguageWidget();
                                 },
                               );
                             },
@@ -132,7 +127,6 @@ class HomeScreen extends GetView<HomeController> {
                             title: Translate.bestSeller.tr,
                           ),
                           const SizedBox(height: 16),
-
                           CachedNetworkImage(
                             imageUrl:
                                 controller.firstAd.items?[0].imageUrl ?? "",
@@ -186,7 +180,7 @@ class HomeScreen extends GetView<HomeController> {
                 ],
               );
             },
-            onLoading: const HomeShimmerLoader(),
+            onLoading: const CustomLoadingWidget(),
             onError: (e) => CustomErrorWidget(
               errorText: e,
               onReload: controller.init,

@@ -31,17 +31,10 @@ class HomeController extends GetxController with StateMixin {
       secondAd = DataItem(),
       thirdAd = DataItem(),
       fourthAd = DataItem();
-  final categoriesColors = <Color>[
-    const Color(0xffE99A3E),
-    const Color(0xff5BB479),
-    const Color(0xff9AC555),
-    const Color(0xffD83935),
-    const Color(0xffCB6BA4),
-  ];
 
   @override
-  void onReady() {
-    super.onReady();
+  void onInit() {
+    super.onInit();
     init();
   }
 
@@ -64,7 +57,7 @@ class HomeController extends GetxController with StateMixin {
       _getPageBlockItems(homeModel);
       change(null, status: RxStatus.success());
     } catch (e) {
-      change(null, status: RxStatus.success());
+      change(null, status: RxStatus.error());
     }
   }
 

@@ -15,27 +15,22 @@ class LanguageController extends GetxController {
 
   Future<void> changeLanguage(BuildContext context,
       {required Languages language}) async {
-    return await HelperFunctions.errorRequestsSnakBarHandler(
-      context,
-      loadingFunction: () async {
-        await Get.updateLocale(Locale(language.name));
-        final userSharedPrefrenceController =
-            Get.find<UserSharedPrefrenceController>();
-        var currentZone = userSharedPrefrenceController.getCurrentZone;
+    Get.back();
+    await Get.updateLocale(Locale(language.name));
+    final userSharedPrefrenceController =
+        Get.find<UserSharedPrefrenceController>();
+    var currentZone = userSharedPrefrenceController.getCurrentZone;
 
-        await LinkTspApi.init(
-          domain: domain,
-          admin: admin,
-          zoneid: currentZone?.id ?? 0,
-          lang: getLanguageId(language.name),
-        );
-        userSharedPrefrenceController.setLanguage = language.name;
-        Get.back();
-        Get.offAllNamed(Routes.dashboard);
-        final homeController = Get.find<HomeController>();
-        homeController.init();
-      },
+    await LinkTspApi.init(
+      domain: domain,
+      admin: admin,
+      zoneid: currentZone?.id ?? 0,
+      lang: getLanguageId(language.name),
     );
+    userSharedPrefrenceController.setLanguage = language.name;
+
+    final homeController = Get.find<HomeController>();
+    homeController.onInit();
   }
 
   Future<void> setDefaultLanguage() async {

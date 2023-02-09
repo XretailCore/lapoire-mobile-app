@@ -88,7 +88,7 @@ class SearchController extends GetxController
 
   void continueShoppingAction() {
     final dashboardController = Get.find<DashboardController>();
-    dashboardController.updateIndex(0);
+    dashboardController.updateIndex(2);
     Get.offAllNamed(Routes.dashboard);
   }
 

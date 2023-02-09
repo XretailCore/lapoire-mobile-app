@@ -116,11 +116,13 @@ class VerticalProductCard extends StatelessWidget {
                     child: Offstage(
                       offstage: !(isBogo && bogoText.isNotEmpty),
                       child: Container(
-                        padding: const EdgeInsets.all(2),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
                         margin: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 15),
                         decoration: const BoxDecoration(
-                          color: Color.fromRGBO(219, 183, 6, 1),
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                          color: AppColors.highlighter,
                         ),
                         child: CustomText(
                           bogoText,
@@ -128,8 +130,8 @@ class VerticalProductCard extends StatelessWidget {
                           maxLines: 2,
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 11,
+                            color: AppColors.redColor,
+                            fontSize: 12,
                           ),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -431,7 +433,8 @@ class VerticalProductCard extends StatelessWidget {
             )
           ],
         ),
-        Positioned(
+        PositionedDirectional(
+          start: 5,
           child: Container(
             margin: const EdgeInsets.fromLTRB(5, 5, 5, 0),
             child: Row(
@@ -450,8 +453,8 @@ class VerticalProductCard extends StatelessWidget {
         ),
         Visibility(
           visible: promoText.isNotEmpty,
-          child: Positioned(
-            right: 5,
+          child: PositionedDirectional(
+            end: 5,
             child: Container(
               margin: const EdgeInsets.fromLTRB(5, 5, 5, 5),
               child: Row(
