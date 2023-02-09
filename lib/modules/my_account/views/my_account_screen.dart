@@ -11,12 +11,16 @@ class MyAccountScreen extends GetView<MyAccountController> {
   @override
   Widget build(BuildContext context) {
     return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const SizedBox(height: 20),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const SizedBox(height: 20),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                  colorScheme:
+                      ColorScheme.fromSwatch(accentColor: Colors.white)),
               child: ListView(
                 children: [
                   MenuItemWidget(
@@ -84,7 +88,8 @@ class MyAccountScreen extends GetView<MyAccountController> {
               ),
             ),
           ),
-        ],
+        ),
+      ],
     );
   }
 }

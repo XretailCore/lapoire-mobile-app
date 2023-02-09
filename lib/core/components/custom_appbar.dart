@@ -139,7 +139,11 @@ class CustomAppBar extends GetView<CartController>
   Widget build(BuildContext context) {
     return AppBar(
       bottom: PreferredSize(
-          child: bottom ?? const SizedBox(), preferredSize: preferredSize),
+          preferredSize: preferredSize,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: bottom ?? const SizedBox(),
+          )),
       iconTheme: IconThemeData(color: CustomThemes.appTheme.primaryColor),
       backgroundColor: AppColors.highlighter,
       elevation: 1,

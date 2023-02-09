@@ -1,7 +1,5 @@
-import 'package:imtnan/core/utils/helper_functions.dart';
-import 'package:imtnan/core/utils/routes.dart';
+import 'package:imtnan/modules/dashboard/controller/dashboard_controller.dart';
 
-import '../../dashboard/controller/dashboard_controller.dart';
 import '../../../core/localization/lanaguages_enum.dart';
 import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/strings.dart';
@@ -30,6 +28,8 @@ class LanguageController extends GetxController {
     userSharedPrefrenceController.setLanguage = language.name;
 
     final homeController = Get.find<HomeController>();
+    final dashboardController = Get.find<DashboardController>();
+    dashboardController.updateIndex(2);
     homeController.onInit();
   }
 

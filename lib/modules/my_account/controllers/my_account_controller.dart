@@ -10,6 +10,7 @@ import 'package:linktsp_api/linktsp_api.dart';
 import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/routes.dart';
 import '../../dashboard/controller/dashboard_controller.dart';
+import '../../home/widgets/language_widget.dart';
 import '../../wishlist/controllers/wishlist_controller.dart';
 
 class MyAccountController extends GetxController
@@ -90,7 +91,17 @@ class MyAccountController extends GetxController
   }
 
   void goToLanguage() {
-    Get.toNamed(Routes.languageScreen);
+    showModalBottomSheet(
+      context: Get.context!,
+      backgroundColor: Colors.white,
+      elevation: 10,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      builder: (BuildContext context) {
+        return const LanguageWidget();
+      },
+    );
   }
 
   void goToBranches() {
@@ -124,22 +135,9 @@ class MyAccountController extends GetxController
         final cartController = Get.find<CartController>();
         await cartController.clearGuestCart();
         final dashboardController = Get.find<DashboardController>();
-        dashboardController.updateIndex(0);
+        dashboardController.updateIndex(2);
       },
     );
-
-    //  try {
-    //   userSharedPrefrenceController.clearCacheUserData();
-    //   await SocialAuth.instance.signoutFromAllSocialMedia();
-    //   final wishList = Get.find<WishlistController>();
-    //   await wishList.setWishList();
-    //   final cartController = Get.find<CartController>();
-    //   await cartController.clearGuestCart();
-    //   final dashboardController = Get.find<DashboardController>();
-    //   dashboardController.updateIndex(0);
-    // } catch (e) {
-    //   print(e);
-    // }
   }
 
   Future<void> sendToRateApp(BuildContext context) async {
@@ -150,6 +148,6 @@ class MyAccountController extends GetxController
   }
 
   void shareAction(BuildContext context) {
-    Share.share('Check out Imtenan Mobile App \n $appUrl');
+    Share.share('Check out LaPoire Mobile App \n $appUrl');
   }
 }

@@ -17,24 +17,29 @@ class MenuItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(
+        vertical: 8.0,
+      ),
       child: InkWell(
+        borderRadius: BorderRadius.circular(30.0),
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           decoration: BoxDecoration(
             border: Border.all(color: primaryColor),
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(30.0),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
                 width: 30,
-                child: FaIcon(
-                  icon,
-                  size: 20,
-                  color: primaryColor,
+                child: Center(
+                  child: FaIcon(
+                    icon,
+                    size: 20,
+                    color: primaryColor,
+                  ),
                 ),
               ),
               const SizedBox(width: 10),

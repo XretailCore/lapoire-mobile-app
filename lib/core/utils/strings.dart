@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:linktsp_api/core/models/admin_model.dart';
 
+// todo : change urls
 const String currency = 'EGP',
     appIdAndroid = 'com.Linktsp.Lapoire',
     appIdIOs = '6443763789',
