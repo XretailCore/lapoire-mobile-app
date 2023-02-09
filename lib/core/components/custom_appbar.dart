@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../modules/cart/controllers/cart_controller.dart';
@@ -139,8 +139,7 @@ class CustomAppBar extends GetView<CartController>
   Widget build(BuildContext context) {
     return AppBar(
       bottom: PreferredSize(
-          child:  bottom ?? const SizedBox(),
-          preferredSize: preferredSize),
+          child: bottom ?? const SizedBox(), preferredSize: preferredSize),
       iconTheme: IconThemeData(color: CustomThemes.appTheme.primaryColor),
       backgroundColor: AppColors.highlighter,
       elevation: 1,
@@ -249,9 +248,13 @@ class DashboardCustomAppBar extends GetView<CartController>
             },
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(15, 15, 0, 15),
-              child: Badge(
-                badgeColor: Colors.white,
-                alignment: AlignmentDirectional.topEnd,
+              child: badges.Badge(
+                badgeStyle: badges.BadgeStyle(
+                  badgeColor: Colors.white,
+                  padding:
+                      EdgeInsets.all(controller.cartCounter.value < 9 ? 4 : 3),
+                ),
+                position: badges.BadgePosition.topEnd(),
                 badgeContent: Obx(
                   () => CustomText(
                     controller.cartCounter.value.toString(),
@@ -261,9 +264,8 @@ class DashboardCustomAppBar extends GetView<CartController>
                     ),
                   ),
                 ),
-                animationType: BadgeAnimationType.scale,
-                padding:
-                    EdgeInsets.all(controller.cartCounter.value < 9 ? 4 : 3),
+                badgeAnimation: const badges.BadgeAnimation.scale(
+                    toAnimate: true, animationDuration: Duration(seconds: 1)),
                 child: Icon(
                   Icons.shopping_cart,
                   color: CustomThemes.appTheme.primaryColor,

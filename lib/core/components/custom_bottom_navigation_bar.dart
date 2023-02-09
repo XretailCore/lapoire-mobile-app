@@ -1,5 +1,5 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -108,39 +108,62 @@ class BottomAppBarItemsData {
     const Icon(Icons.restaurant_menu, size: 22, color: Colors.white),
     const Icon(Icons.favorite, size: 22, color: Colors.white),
     const Icon(Icons.home, size: 22, color: Colors.white),
-    Obx(() => Badge(
-        badgeColor: AppColors.redColor,
-        alignment: AlignmentDirectional.topEnd,
-        badgeContent: CustomText(
-          controller.cartCounter.value.toString(),
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 11,
+    Obx(
+      () => badges.Badge(
+        badgeStyle: badges.BadgeStyle(
+          badgeColor: AppColors.redColor,
+          padding: EdgeInsets.all(controller.cartCounter.value < 9 ? 4 : 3),
+        ),
+        position: badges.BadgePosition.topEnd(),
+        badgeContent: Obx(
+          () => CustomText(
+            controller.cartCounter.value.toString(),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 11,
+            ),
           ),
         ),
-        animationType: BadgeAnimationType.scale,
-        padding: EdgeInsets.all(controller.cartCounter.value < 9 ? 4 : 3),
-        child: const Icon(Icons.shopping_cart, size: 22, color: Colors.white))),
+        badgeAnimation: const badges.BadgeAnimation.scale(
+            toAnimate: true, animationDuration: Duration(seconds: 1)),
+        child: const Icon(
+          Icons.shopping_cart,
+          color: Colors.white,
+          size: 22,
+        ),
+      ),
+    ),
     const Icon(Icons.people_rounded, size: 22, color: Colors.white)
   ];
   static List<Widget> activeIconsList = <Widget>[
     const Icon(Icons.restaurant_menu, color: AppColors.primaryColor, size: 22),
     const Icon(Icons.favorite, color: AppColors.primaryColor, size: 22),
     const Icon(Icons.home, color: AppColors.primaryColor, size: 22),
-    Obx(() => Badge(
-        badgeColor: AppColors.redColor,
-        alignment: AlignmentDirectional.topEnd,
-        badgeContent: CustomText(
-          controller.cartCounter.value.toString(),
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 11,
+    Obx(
+      () => badges.Badge(
+        badgeStyle: badges.BadgeStyle(
+          badgeColor: AppColors.redColor,
+          padding: EdgeInsets.all(controller.cartCounter.value < 9 ? 4 : 3),
+        ),
+        position: badges.BadgePosition.topEnd(),
+        badgeContent: Obx(
+          () => CustomText(
+            controller.cartCounter.value.toString(),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 11,
+            ),
           ),
         ),
-        animationType: BadgeAnimationType.scale,
-        padding: EdgeInsets.all(controller.cartCounter.value < 9 ? 4 : 3),
-        child: const Icon(Icons.shopping_cart,
-            size: 22, color: AppColors.primaryColor))),
+        badgeAnimation: const badges.BadgeAnimation.scale(
+            toAnimate: true, animationDuration: Duration(seconds: 1)),
+        child: const Icon(
+          Icons.shopping_cart,
+          color: AppColors.primaryColor,
+          size: 22,
+        ),
+      ),
+    ),
     const Icon(Icons.people_rounded, color: AppColors.primaryColor, size: 22)
   ];
 }

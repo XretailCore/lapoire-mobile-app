@@ -20,7 +20,6 @@ class FirebaseNotification {
       importance: Importance.max,
     );
     await FCMConfig.instance.init(
-      displayInForeground: false,
       defaultAndroidChannel: channel,
     );
     final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
