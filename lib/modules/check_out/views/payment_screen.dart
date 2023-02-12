@@ -15,25 +15,24 @@ class PaymentScreen extends GetView<PaymentController> {
   PaymentScreen({Key? key}) : super(key: key);
   final CustomerSummaryController customerSummaryController =
       Get.find<CustomerSummaryController>();
+
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: CustomAppBar(title: Translate.checkout.tr,showBackButton: true),
+      appBar: CustomAppBar(title: Translate.checkout.tr, showBackButton: true),
       body: Form(
         key: controller.formKey,
         child: Column(
           children: [
             const SizedBox(height: 8),
-            const CustomStepperWidget(
-              currentIndex: 1,
-            ),
+            const CustomStepperWidget(currentIndex: 1),
             const SizedBox(height: 8),
             const SizedBox(height: 8),
             Expanded(
               child: controller.obx(
-                    (payments) => PaymentOptionItemWidget(
+                (payments) => PaymentOptionItemWidget(
                   payments: payments ?? [],
                 ),
                 onLoading: Center(
@@ -49,7 +48,7 @@ class PaymentScreen extends GetView<PaymentController> {
                 const DiscountMethodsWidget(),
                 const SizedBox(height: 10),
                 customerSummaryController.obx(
-                      (summary) => Padding(
+                  (summary) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Container(
                       padding: const EdgeInsets.all(8.0),
@@ -61,13 +60,18 @@ class PaymentScreen extends GetView<PaymentController> {
                         children: [
                           Expanded(
                             child: CustomText(
-                              Translate.deliveredWithinMinMaxBusinessDays.trParams(
+                              Translate.deliveredWithinMinMaxBusinessDays
+                                  .trParams(
                                 params: {
-                                  'Min':
-                                  summary?.configDeliveryPeriod?.min.toString()??"",
-                                  'Max':
-                                  summary?.configDeliveryPeriod?.max.toString()??"",
-                                  'PeriodName': (summary?.configDeliveryPeriod?.periodName??"")
+                                  'Min': summary?.configDeliveryPeriod?.min
+                                          .toString() ??
+                                      "",
+                                  'Max': summary?.configDeliveryPeriod?.max
+                                          .toString() ??
+                                      "",
+                                  'PeriodName': (summary
+                                          ?.configDeliveryPeriod?.periodName ??
+                                      "")
                                 },
                               ),
                               textAlign: TextAlign.center,

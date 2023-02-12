@@ -8,35 +8,46 @@ import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/theme.dart';
-import '../controllers/locations.dart';
 import '../controllers/payment_controller.dart';
 
-class PaymentOptionItemWidget extends StatelessWidget {
+class PaymentOptionItemWidget extends StatefulWidget {
   const PaymentOptionItemWidget(
       {Key? key, required this.payments})
       : super(key: key);
   final List<PaymentOptionsModel> payments;
 
   @override
+  State<PaymentOptionItemWidget> createState() => _PaymentOptionItemWidgetState();
+}
+
+class _PaymentOptionItemWidgetState extends State<PaymentOptionItemWidget> {
+  final PaymentController paymentController = Get.find<PaymentController>();
+  int selectedIndex=0;
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<PaymentController>(builder: (controller) {
       return Scrollbar(
         child: ListView.separated(
-          itemCount: payments.length,
+          itemCount: widget.payments.length,
           separatorBuilder: (context, index) => const SizedBox(height: 5),
           itemBuilder: (_, index) {
-            final payment = payments.elementAt(index);
+            final payment = widget.payments.elementAt(index);
             return Column(
               children: [
                 PaymentOptionWidget(
                   payment: payment,
-                  isSelected: Locations.locationId == payment.id,
+                  isSelected: selectedIndex == payment.id!-1,
                   showRadioButton: true,
                   onTap: () {
+                    setState(() {
+                      selectedIndex=index;
+                      paymentController.paymentOptionId =
+                          widget.payments.elementAt(index).id;
+                    });
                     //controller.onSelectAddress(context, payment);
                   },
                 ),
-                index != payments.length - 1
+                index != widget.payments.length - 1
                     ? const DottedLine(dashColor: AppColors.redColor)
                     : const SizedBox(),
               ],

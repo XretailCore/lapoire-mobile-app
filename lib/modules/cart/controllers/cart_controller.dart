@@ -49,7 +49,7 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
       try {
         final cartValidate = await LinkTspApi.instance.multiStore.cartValidate(
             customerID: _userSharedPrefrenceController.getUserId!,
-            addressId: Locations.locationId ?? 3);
+            addressId: Locations.locationId??0);
         if (cartValidate.alertMessage != null) {
           for (var i = 0; i < cartValidate.storeCartItems!.length; i++) {
             if (cartValidate.storeCartItems?[i].status != 1) {
