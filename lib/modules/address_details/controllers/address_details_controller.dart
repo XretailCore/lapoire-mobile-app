@@ -141,6 +141,7 @@ class AddressDetailsController extends GetxController with StateMixin {
             HelperFunctions.customSnackBar(
                 message: Translate.addressHasBeenSavedSuccessfuly.tr),
           );
+          Get.back();
         } else {
           Get.back();
           ScaffoldMessenger.of(context).showSnackBar(

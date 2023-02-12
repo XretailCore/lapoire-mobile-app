@@ -11,6 +11,7 @@ import '../controllers/address_details_controller.dart';
 
 class ZoneWidget extends GetView<AddressDetailsController> {
   const ZoneWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
@@ -93,13 +94,11 @@ class ZoneWidget extends GetView<AddressDetailsController> {
             }
           },
           onChanged: (city) {
-            controller.isCheckoutAddress == true
-                ? null
-                : (newValue) {
-              controller.selectedZone.value = newValue as CityModel;
-              controller.selectedZoneName.value = newValue.name ?? '';
-              controller.getDistrict(newValue.id!);
-            };
+            if (!controller.isCheckoutAddress) {
+              controller.selectedZone.value = city as CityModel;
+              controller.selectedZoneName.value = city.name ?? '';
+              controller.getDistrict(city.id!);
+            }
           },
           items: controller.zoneMenu,
         ),

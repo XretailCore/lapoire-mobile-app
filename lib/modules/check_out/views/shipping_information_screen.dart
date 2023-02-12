@@ -46,6 +46,7 @@ class ShoppingInformationScreen extends GetView<ShippingInformationController> {
                           final product = products.elementAt(index);
                           return ProductCardWidget(
                             isHorizontal: true,
+                            cardColor: Colors.white,
                             imageHeight: .3.sw,
                             promoText: product.promoText ?? '',
                             productId: product.id!,

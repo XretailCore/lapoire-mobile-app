@@ -287,22 +287,25 @@ class HorizontalProductCard extends StatelessWidget {
                               const SizedBox(height: 16.0),
                               Offstage(
                                 offstage: !showFavorite!,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: CustomThemes.appTheme.primaryColor,
-                                    border: Border.all(
+                                child: InkWell(
+                                  onTap: onAddToCart,
+                                  child: Container(
+                                    decoration: BoxDecoration(
                                       color: CustomThemes.appTheme.primaryColor,
+                                      border: Border.all(
+                                        color: CustomThemes.appTheme.primaryColor,
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(20),
+                                      ),
                                     ),
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(20),
-                                    ),
-                                  ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.all(5.0),
-                                    child: Icon(
-                                      Icons.shopping_cart,
-                                      size: 22,
-                                      color: Colors.white,
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(5.0),
+                                      child: Icon(
+                                        Icons.shopping_cart,
+                                        size: 22,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
