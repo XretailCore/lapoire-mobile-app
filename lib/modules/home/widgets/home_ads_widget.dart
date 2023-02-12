@@ -29,7 +29,7 @@ class HomeAdsWidget extends GetView<HomeController> {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Row(
           children: [
-            InkWell(
+            if(items!.length>1)InkWell(
               onTap: () {
                 controller.scrollController.previousPage();
               },
@@ -56,235 +56,86 @@ class HomeAdsWidget extends GetView<HomeController> {
                 controller: controller.scrollController,
                 showTitleAndButton: false,
                 sliderImages: [
-                  InkWell(
-                    onTap: () => controller.goToListingWithId(
-                      filterModel: items?[0].filterModel ?? FilterModel(),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: CachedNetworkImage(
-                            imageUrl: items?[0].imageUrl ?? "",
-                            imageBuilder: (context, imageProvider) => Container(
-                              height: 200,
-                              width: 200,
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                  topRight: Radius.circular(5),
-                                  topLeft: Radius.circular(5),
-                                ),
-                                image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: NetworkImage(
-                                    items?[0].imageUrl ?? "",
+                  for (var item in items ?? [])
+                    InkWell(
+                      onTap: () => controller.goToListingWithId(
+                        filterModel: item.filterModel ?? FilterModel(),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: CachedNetworkImage(
+                              imageUrl: item.imageUrl ?? "",
+                              imageBuilder: (context, imageProvider) => Container(
+                                height: 200,
+                                width: 200,
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.only(
+                                    topRight: Radius.circular(5),
+                                    topLeft: Radius.circular(5),
+                                  ),
+                                  image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: NetworkImage(
+                                      item.imageUrl ?? "",
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            placeholder: (context, image) =>
-                                const ImagesShimmerLoader(
-                              width: double.infinity,
-                              height: 200,
+                              placeholder: (context, image) =>
+                              const ImagesShimmerLoader(
+                                width: double.infinity,
+                                height: 200,
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CustomText(
-                                items?[0].description ?? "sssssss",
-                                style:
-                                    const TextStyle(color: AppColors.redColor),
-                              ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  elevation: 0.0,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                    side: BorderSide(
-                                      width: 2.0,
+                          Expanded(
+                            flex: 1,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CustomText(
+                                  item.description ??"",
+                                  style:
+                                  const TextStyle(color: AppColors.redColor),
+                                ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 0.0,
+                                    backgroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                      side: BorderSide(
+                                        width: 2.0,
+                                        color: CustomThemes.appTheme.primaryColor,
+                                      ),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    controller.goToListingWithId(
+                                        filterModel: item.filterModel ??
+                                            FilterModel());
+                                  },
+                                  child: Text(
+                                    Translate.shopNow.tr,
+                                    style: TextStyle(
+                                      fontSize: 16.sm,
                                       color: CustomThemes.appTheme.primaryColor,
                                     ),
                                   ),
                                 ),
-                                onPressed: () {
-                                  controller.goToListingWithId(
-                                      filterModel: items?[0].filterModel ??
-                                          FilterModel());
-                                },
-                                child: Text(
-                                  Translate.shopNow.tr,
-                                  style: TextStyle(
-                                    fontSize: 16.sm,
-                                    color: CustomThemes.appTheme.primaryColor,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () => controller.goToListingWithId(
-                      filterModel: items?[0].filterModel ?? FilterModel(),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: CachedNetworkImage(
-                            imageUrl: items?[0].imageUrl ?? "",
-                            imageBuilder: (context, imageProvider) => Container(
-                              height: 200,
-                              width: 200,
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                  topRight: Radius.circular(5),
-                                  topLeft: Radius.circular(5),
-                                ),
-                                image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: NetworkImage(
-                                    items?[0].imageUrl ?? "",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            placeholder: (context, image) =>
-                                const ImagesShimmerLoader(
-                              width: double.infinity,
-                              height: 200,
+                              ],
                             ),
                           ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CustomText(
-                                items?[0].description ?? "sssssss",
-                                style:
-                                    const TextStyle(color: AppColors.redColor),
-                              ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  elevation: 0.0,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                    side: BorderSide(
-                                      width: 2.0,
-                                      color: CustomThemes.appTheme.primaryColor,
-                                    ),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  controller.goToListingWithId(
-                                      filterModel: items?[0].filterModel ??
-                                          FilterModel());
-                                },
-                                child: Text(
-                                  Translate.shopNow.tr,
-                                  style: TextStyle(
-                                    fontSize: 16.sm,
-                                    color: CustomThemes.appTheme.primaryColor,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  InkWell(
-                    onTap: () => controller.goToListingWithId(
-                      filterModel: items?[0].filterModel ?? FilterModel(),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: CachedNetworkImage(
-                            imageUrl: items?[0].imageUrl ?? "",
-                            imageBuilder: (context, imageProvider) => Container(
-                              height: 200,
-                              width: 200,
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                  topRight: Radius.circular(5),
-                                  topLeft: Radius.circular(5),
-                                ),
-                                image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: NetworkImage(
-                                    items?[0].imageUrl ?? "",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            placeholder: (context, image) =>
-                                const ImagesShimmerLoader(
-                              width: double.infinity,
-                              height: 200,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              CustomText(
-                                items?[0].description ?? "sssssss",
-                                style:
-                                    const TextStyle(color: AppColors.redColor),
-                              ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  elevation: 0.0,
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                    side: BorderSide(
-                                      width: 2.0,
-                                      color: CustomThemes.appTheme.primaryColor,
-                                    ),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  controller.goToListingWithId(
-                                      filterModel: items?[0].filterModel ??
-                                          FilterModel());
-                                },
-                                child: Text(
-                                  Translate.shopNow.tr,
-                                  style: TextStyle(
-                                    fontSize: 16.sm,
-                                    color: CustomThemes.appTheme.primaryColor,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
-            InkWell(
+            if(items!.length>1)InkWell(
               onTap: () {
                 controller.scrollController.nextPage();
               },
@@ -310,37 +161,3 @@ class HomeAdsWidget extends GetView<HomeController> {
     );
   }
 }
-// Container(
-//   padding: const EdgeInsets.all(5),
-//   decoration: const BoxDecoration(
-//     color: Colors.white,
-//     borderRadius: BorderRadius.all(
-//       Radius.circular(5),
-//     ),
-//   ),
-//   child: Row(
-//     children: [
-//       Expanded(
-//         child: Padding(
-//           padding: const EdgeInsets.symmetric(horizontal: 5),
-//           child: CustomText(
-//             items?[0].name ?? "",
-//             softWrap: true,
-//             maxLines: 1,
-//             overflow: TextOverflow.ellipsis,
-//           ),
-//         ),
-//       ),
-//       // SizedBox(
-//       //   width: 120,
-//       //   child: CustomButton(
-//       //     title: Translate.orderNow.tr,
-//       //     color: CustomThemes.appTheme.primaryColor,
-//       //     onTap: () => controller.goToListingWithId(
-//       //       filterModel: items?[0].filterModel ?? FilterModel(),
-//       //     ),
-//       //   ),
-//       // ),
-//     ],
-//   ),
-// )
