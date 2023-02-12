@@ -27,70 +27,61 @@ class InnerListingWidget extends GetView<InnerProductController> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomText(
                   title,
                   style: TextStyle(
-                    color: CustomThemes.appTheme.primaryColor,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 28,
-                    fontFamily: "Bayshore"
-                  ),
+                      color: CustomThemes.appTheme.primaryColor,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 28,
+                      fontFamily: "Bayshore"),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 5),
-          Container(
-            margin: const EdgeInsetsDirectional.only(start: 15),
-            child: CarouselSlider(
-              items: [
-                for (var item in items!)
-                  ProductCardWidget(
-                    onCardTap: () {
-                      controller.onStartAction(
-                          isRelatedProduct: true, skuId: item.id);
-                      controller.productsInQueue.add(item.id!);
-                    },
-                    productId: item.id!,
-                    isPreOrder: item.preOrder,
-                    elevation: 0,
-                    imageHeight: .3.sw,
-                    productName: item.name,
-                    image: item.imageUrl,
-                    oldPrice: item.price,
-                    price: item.finalPrice,
-                    isBogo: (item.bogoPromoText.isNotEmpty),
-                    hasOffer: (item.productDiscountList.isNotEmpty),
-                    offerPercentage: item.productDiscountList.isEmpty
-                        ? ""
-                        : item.productDiscountList.first.value,
-                    isAvailable: !(item.isOutOfStock),
-                    bogoText: item.bogoPromoText,
-                    showFavorite: true,
-                    onAddToCart: () => controller.onTapAddToCard(
-                      context: context,
-                      price: item.price,
-                      skuId: item.id!,
-                      quantity: 1,
-                    ),
-                  )
-              ],
-              options: CarouselOptions(
-                enlargeCenterPage: true,
+          CarouselSlider(
+            items: [
+              for (var item in items!)
+                ProductCardWidget(
+                  productId: item.id!,
+                  isPreOrder: item.preOrder,
+                  elevation: 0,
+                  imageHeight: .3.sw,
+                  productName: item.name,
+                  image: item.imageUrl,
+                  oldPrice: item.price,
+                  price: item.finalPrice,
+                  isBogo: (item.bogoPromoText.isNotEmpty),
+                  hasOffer: (item.productDiscountList.isNotEmpty),
+                  offerPercentage: item.productDiscountList.isEmpty
+                      ? ""
+                      : item.productDiscountList.first.value,
+                  isAvailable: !(item.isOutOfStock),
+                  bogoText: item.bogoPromoText,
+                  showFavorite: true,
+                  onAddToCart: () => controller.onTapAddToCard(
+                    context: context,
+                    price: item.price,
+                    skuId: item.id!,
+                    quantity: 1,
+                  ),
+                )
+            ],
+            options: CarouselOptions(
+              enlargeCenterPage: true,
               //onPageChanged: onPageChanged,
-                viewportFraction: 0.5,
-                initialPage: 0,
-                aspectRatio: 1 / .68,
-                enableInfiniteScroll: items!.length <= 1 ? false : true,
-                reverse: false,
-                autoPlay: false,
-                autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                autoPlayCurve: Curves.easeOutSine,
-              ),
+              viewportFraction: 0.5,
+              initialPage: 0,
+              aspectRatio: 1 / .68,
+              enableInfiniteScroll: items!.length <= 1 ? false : true,
+              reverse: false,
+              autoPlay: false,
+              autoPlayAnimationDuration: const Duration(milliseconds: 800),
+              autoPlayCurve: Curves.easeOutSine,
             ),
           ),
         ],

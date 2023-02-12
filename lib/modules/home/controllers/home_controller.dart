@@ -33,8 +33,8 @@ class HomeController extends GetxController with StateMixin {
       fourthAd = DataItem();
 
   @override
-  void onInit() {
-    super.onInit();
+  void onReady() {
+    super.onReady();
     init();
   }
 

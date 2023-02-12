@@ -20,7 +20,7 @@ class PanelWidget extends GetView<InnerProductController> {
     final primaryColor = Theme.of(context).primaryColor;
     final f = DateFormat('yyyy-MM-dd hh:mm');
     return Container(
-      padding: const EdgeInsets.all(4),
+      padding: const EdgeInsets.all(10),
       child: Column(
         children: [
           Expanded(
@@ -34,7 +34,7 @@ class PanelWidget extends GetView<InnerProductController> {
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
+                              borderRadius: BorderRadius.circular(50.0),
                             ),
                           ),
                           backgroundColor: MaterialStateProperty.all(
@@ -101,7 +101,7 @@ class PanelWidget extends GetView<InnerProductController> {
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
+                            borderRadius: BorderRadius.circular(50.0),
                           ),
                         ),
                         backgroundColor: MaterialStateProperty.all(

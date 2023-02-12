@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:linktsp_api/linktsp_api.dart';
 
 import '../../../core/components/custom_text.dart';
@@ -72,7 +73,7 @@ class ListOfReviewsWidget extends StatelessWidget {
                         itemCount: 5,
                         itemBuilder: (context, _) => const Icon(
                           Icons.star,
-                          color: Color(0xff1F3755),
+                          color: AppColors.primaryColor,
                         ),
                         onRatingUpdate: (double value) {},
                       ),

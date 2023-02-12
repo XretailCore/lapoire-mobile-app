@@ -1,18 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/core/components/imtnan_loading_widget.dart';
-import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:imtnan/modules/home/widgets/home_ads_widget.dart';
 import 'package:imtnan/modules/home/widgets/language_widget.dart';
 import 'package:linktsp_api/data/page_block/models/new_page_block_model.dart'
     as model;
 import '../../../core/components/custom_error_widget.dart';
-import '../../../core/components/star_widget.dart';
 import '../../../core/localization/translate.dart';
-import '../../../core/shimmer_loader/home_shimmer.dart';
 import '../../../core/shimmer_loader/images_shimmer.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/home_categories_widget.dart';
@@ -114,7 +109,6 @@ class HomeScreen extends GetView<HomeController> {
                       child: Column(
                         children: [
                           HomeAd(items: controller.homeTopBanner.items ?? []),
-                          // const SizedBox(height: 15),
                           const HomeCategoriesWidget(),
                           const SizedBox(height: 10),
                           HomeListingWidget(

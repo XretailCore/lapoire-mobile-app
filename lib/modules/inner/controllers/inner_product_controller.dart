@@ -128,6 +128,8 @@ class InnerProductController extends GetxController
 
   void _init(int selectdSkuId) async {
     try {
+      change(null, status: RxStatus.loading());
+
       product = await _getProduct(selectdSkuId);
       change(selectedProduct, status: RxStatus.success());
 

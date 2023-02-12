@@ -1,9 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:imtnan/core/utils/theme.dart';
-import '../localization/translate.dart';
 
 class CustomSlider extends StatefulWidget {
   final List<Widget> sliderImages;
@@ -45,7 +43,6 @@ class _CustomSliderState extends State<CustomSlider> {
     return Stack(
       children: [
         CarouselSlider(
-          ///List of widget to show image
           items: widget.sliderImages,
           options: CarouselOptions(
               enlargeCenterPage: false,
@@ -64,35 +61,15 @@ class _CustomSliderState extends State<CustomSlider> {
               autoPlayInterval: const Duration(seconds: 4),
               autoPlayAnimationDuration: const Duration(milliseconds: 800),
               autoPlayCurve: Curves.easeOutSine,
-              height: widget.height
-              // pauseAutoPlayOnTouch: Duration(seconds: 10),
-              ),
+              height: widget.height),
           carouselController: widget.controller,
         ),
         Positioned(
-          bottom: 0,
+          bottom: 10,
           right: 0,
           left: 0,
           child: Column(
             children: [
-              widget.showTitleAndButton
-                  ? ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0.0,
-                        backgroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                      onPressed: () {},
-                      child: Text(
-                        Translate.orderNow.tr,
-                        style: TextStyle(
-                            fontSize: 12.sm,
-                            color: CustomThemes.appTheme.primaryColor),
-                      ),
-                    )
-                  : const SizedBox(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -110,8 +87,8 @@ class _CustomSliderState extends State<CustomSlider> {
                             .map(
                               (entry) => SizedBox(
                                 child: Container(
-                                  width: 12.0,
-                                  height: 12.0,
+                                  width: 8.0,
+                                  height: 8.0,
                                   margin: const EdgeInsets.fromLTRB(
                                       4.0, 0.0, 4.0, 4.0),
                                   decoration: BoxDecoration(

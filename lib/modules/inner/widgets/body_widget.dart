@@ -49,111 +49,6 @@ class _BodyWidgetState extends State<BodyWidget> {
       physics: const BouncingScrollPhysics(),
       shrinkWrap: true,
       children: [
-        // Stack(
-        //   children: [
-        //     SizedBox(
-        //       height: .3.sh,
-        //       child: widget.imagesUrl.isEmpty
-        //           ? Align(
-        //               child: SvgPicture.asset(
-        //                 'assets/images/etoile_with_name.svg',
-        //                 fit: BoxFit.scaleDown,
-        //                 height: 120,
-        //                 width: 120,
-        //               ),
-        //             )
-        //           : PhotoViewGallery.builder(
-        //               enableRotation: false,
-        //               allowImplicitScrolling: true,
-        //               scrollPhysics: const BouncingScrollPhysics(),
-        //               onPageChanged: (index) {
-        //                 setState(() {
-        //                   indexImage = index;
-        //                 });
-        //               },
-        //               builder: (BuildContext context, int index) {
-        //                 final imageUrl = widget.imagesUrl.elementAt(index);
-        //                 return PhotoViewGalleryPageOptions(
-        //                   basePosition: Alignment.center,
-        //                   imageProvider: NetworkImage(imageUrl ?? ''),
-        //                   maxScale: PhotoViewComputedScale.contained * 1.2,
-        //                   minScale: PhotoViewComputedScale.contained,
-        //                   heroAttributes:
-        //                       PhotoViewHeroAttributes(tag: imageUrl ?? ''),
-        //                 );
-        //               },
-        //               itemCount: widget.imagesUrl.length,
-        //               loadingBuilder: (context, event) => Center(
-        //                 child: SizedBox(
-        //                   width: 20.0,
-        //                   height: 20.0,
-        //                   child: CircularProgressIndicator(
-        //                     color: CustomThemes.appTheme.primaryColor,
-        //                   ),
-        //                 ),
-        //               ),
-        //               backgroundDecoration:
-        //                   const BoxDecoration(color: Colors.white),
-        //             ),
-        //     ),
-        //     PositionedDirectional(
-        //       start: 20,
-        //       top: 0,
-        //       child: Offstage(
-        //         offstage: widget.innerProductController.isNotHaveDiscount(),
-        //         child: OfferBannerWidget(
-        //           offerText: widget.innerProductController.isHaveDiscount()
-        //               ? ((widget.selectdProduct?.selectedProductSku.discounts
-        //                       .first?.value) ??
-        //                   '')
-        //               : '',
-        //         ),
-        //       ),
-        //     ),
-        //     Positioned.directional(
-        //       textDirection: Directionality.of(context),
-        //       top: 0,
-        //       end: 20,
-        //       child: Offstage(
-        //         offstage: widget.innerProductController.isNotHaveBogo(),
-        //         child: Container(
-        //           padding: const EdgeInsets.all(4),
-        //           decoration: const BoxDecoration(
-        //             color: Color.fromRGBO(219, 183, 6, 1),
-        //           ),
-        //           child: CustomText(
-        //             widget.selectdProduct?.bogoPromoText ?? '',
-        //             style: const TextStyle(
-        //                 color: Colors.white,
-        //                 fontSize: 13,
-        //                 overflow: TextOverflow.ellipsis,
-        //                 fontWeight: FontWeight.bold),
-        //           ),
-        //         ),
-        //       ),
-        //     ),
-        //     Positioned.directional(
-        //       textDirection: Directionality.of(context),
-        //       start: 0,
-        //       end: 0,
-        //       bottom: 5,
-        //       child: Offstage(
-        //         offstage: widget.imagesUrl.length < 2,
-        //         child: Container(
-        //           color: Colors.transparent,
-        //           child: DotsIndicator(
-        //             dotsCount: widget.imagesUrl.length < 2
-        //                 ? 1
-        //                 : widget.imagesUrl.length,
-        //             position: indexImage.toDouble(),
-        //             decorator: DotsDecorator(
-        //                 activeColor: Theme.of(context).primaryColor),
-        //           ),
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // ),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 8),
           padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -225,7 +120,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                               Translate.addReview.tr,
                               textAlign: TextAlign.start,
                               style: const TextStyle(
-                                fontSize: 11,
+                                fontSize: 14,
                                 color: AppColors.redColor,
                                 fontWeight: FontWeight.w700,
                               ),
@@ -237,47 +132,40 @@ class _BodyWidgetState extends State<BodyWidget> {
                   const Spacer(),
                 ],
               ),
-              Offstage(
-                offstage: (widget.selectdProduct?.promoText ?? '').isEmpty,
-                child: CustomText(
-                  widget.selectdProduct?.promoText,
-                  style: const TextStyle(
-                      color: Color.fromRGBO(237, 151, 32, 1), fontSize: 14),
-                ),
-              ),
-              const SizedBox(height: 8),
               const SizedBox(height: 8),
               Row(
                 children: [
                   CustomText(
                     '${Translate.skuCode.tr.toUpperCase()} : ',
-                    style: const TextStyle(fontSize: 10),
+                    style: const TextStyle(fontSize: 14),
                   ),
                   CustomText(
                     '${widget.selectdProduct?.selectedProductSku.skuCode}',
                     style: const TextStyle(
-                      fontSize: 10,
+                      fontSize: 14,
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  CustomText(
-                    '${Translate.productCode.tr.toUpperCase()} : ',
-                    style: const TextStyle(fontSize: 10),
-                  ),
-                  CustomText(
-                    '${widget.selectdProduct?.code}',
-                    style: const TextStyle(fontSize: 10),
                   ),
                 ],
               ),
               const SizedBox(height: 5),
               Row(
+                children: [
+                  CustomText(
+                    '${Translate.productCode.tr.toUpperCase()} : ',
+                    style: const TextStyle(fontSize: 14),
+                  ),
+                  CustomText(
+                    '${widget.selectdProduct?.code}',
+                    style: const TextStyle(fontSize: 14),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   DottedBorder(
+                    dashPattern: const [4, 4],
                     color: AppColors.redColor,
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     radius: const Radius.circular(8.0),
@@ -286,11 +174,6 @@ class _BodyWidgetState extends State<BodyWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        // CustomText(
-                        //   Translate.quantity.tr.toUpperCase(),
-                        //   style: const TextStyle(
-                        //       fontSize: 12, color: Color.fromRGBO(96, 96, 96, 1)),
-                        // ),
                         QuantityButton(
                           key: UniqueKey(),
                           initialQuantity:
@@ -307,14 +190,14 @@ class _BodyWidgetState extends State<BodyWidget> {
                       ],
                     ),
                   ),
-                  Row(
+                  Column(
                     children: [
                       CustomText(
                         '${widget.selectdProduct?.selectedProductSku.finalPrice} ${Translate.egp.tr}',
                         style: const TextStyle(
                             fontSize: 20, color: AppColors.redColor),
                       ),
-                      const SizedBox(width: 15),
+                      const SizedBox(height: 10),
                       Offstage(
                         offstage:
                             widget.innerProductController.isNotHaveDiscount(),
@@ -331,6 +214,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                   ),
                 ],
               ),
+              const SizedBox(height: 10),
               CustomText(
                 Translate.allPricesIncudeVatDetails.tr,
                 style: const TextStyle(fontSize: 10, color: Colors.grey),
@@ -358,9 +242,11 @@ class _BodyWidgetState extends State<BodyWidget> {
               CustomText(
                 '${Translate.size.tr} :',
                 style: const TextStyle(
-                    fontSize: 12, color: Color.fromRGBO(65, 65, 65, 1)),
+                    fontSize: 16,
+                    color: Color.fromRGBO(65, 65, 65, 1),
+                    fontWeight: FontWeight.w500),
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: 8),
               SelectSizeWidget(
                 selectedSize:
                     widget.innerProductController.isCustomerChangedSize
@@ -379,7 +265,7 @@ class _BodyWidgetState extends State<BodyWidget> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: CustomText(
                   Translate.ingredients.tr.toUpperCase(),
                   style: const TextStyle(
@@ -392,7 +278,7 @@ class _BodyWidgetState extends State<BodyWidget> {
               ),
               const SizedBox(height: 8.0),
               Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: CustomText(
                   widget.selectdProduct?.description ?? '',
                   style: TextStyle(
@@ -405,7 +291,7 @@ class _BodyWidgetState extends State<BodyWidget> {
               ),
               const SizedBox(height: 16.0),
               Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: CustomText(
                   Translate.deliveredWithinMinMaxBusinessDays.trParams(
                     params: {
@@ -413,101 +299,110 @@ class _BodyWidgetState extends State<BodyWidget> {
                           (widget.selectdProduct?.minDeliveryPeriod).toString(),
                       'Max':
                           (widget.selectdProduct?.maxDeliveryPeriod).toString(),
-                      'PeriodName': (widget.selectdProduct?.periodName).toString()
+                      'PeriodName':
+                          (widget.selectdProduct?.periodName).toString()
                     },
                   ),
                   style: const TextStyle(
-                    fontSize: 11,
+                    fontSize: 14,
                     color: AppColors.redColor,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
               const SizedBox(height: 16.0),
-              ExpansionTileWidget(
-                key: Key(ExpansionTileStatus.ingredientsAndHowToUse.name),
-                initiallyExpanded:
-                    widget.innerProductController.expansionTileStatus ==
-                        ExpansionTileStatus.ingredientsAndHowToUse,
-                onExpansionChanged: (isExpanded) {
-                  if (!isExpanded) {
-                    widget.innerProductController.expansionTileStatus = null;
-                    return;
-                  }
-                  widget.innerProductController.expansionTileStatus =
-                      ExpansionTileStatus.ingredientsAndHowToUse;
-                },
-                title: Translate.featuresAndBenefits.tr,
-                children: widget.selectdProduct?.features
-                        .map(
-                          (e) => Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                      flex: 3,
-                                      child: CustomText('${e?.name ?? ''}: ',
-                                          softWrap: true,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12)),
-                                    ),
-                                    Expanded(
-                                        flex: 5,
-                                        child: CustomText(
-                                          e?.value ?? '',
-                                          softWrap: true,
-                                          style: const TextStyle(fontSize: 12),
-                                        )),
-                                  ],
-                                ),
-                                const Divider(
-                                  thickness: 1,
-                                  color: Colors.grey,
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                        .toList() ??
-                    [],
-              ),
-              Offstage(
-                offstage: !(widget.selectdProduct?.isEnableAddReview ?? false),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                 child: ExpansionTileWidget(
-                  key: Key(ExpansionTileStatus.reviews.name),
+                  key: Key(ExpansionTileStatus.ingredientsAndHowToUse.name),
                   initiallyExpanded:
                       widget.innerProductController.expansionTileStatus ==
-                          ExpansionTileStatus.reviews,
+                          ExpansionTileStatus.ingredientsAndHowToUse,
                   onExpansionChanged: (isExpanded) {
                     if (!isExpanded) {
                       widget.innerProductController.expansionTileStatus = null;
                       return;
                     }
                     widget.innerProductController.expansionTileStatus =
-                        ExpansionTileStatus.reviews;
+                        ExpansionTileStatus.ingredientsAndHowToUse;
                   },
-                  title: Translate.reviews.tr,
-                  children: [
-                    ListOfReviewsWidget(
-                      reviews: widget.selectdProduct?.reviews ?? [],
-                    ),
-                    InkWell(
-                      onTap: () => widget.innerProductController
-                          .onTapAllReviews(widget.selectdProduct),
-                      child: CustomText(
-                        Translate.allReviews.tr,
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: primaryColor,
+                  title: Translate.featuresAndBenefits.tr,
+                  children: widget.selectdProduct?.features
+                          .map(
+                            (e) => Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        flex: 3,
+                                        child: CustomText('${e?.name ?? ''}: ',
+                                            softWrap: true,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12)),
+                                      ),
+                                      Expanded(
+                                          flex: 5,
+                                          child: CustomText(
+                                            e?.value ?? '',
+                                            softWrap: true,
+                                            style:
+                                                const TextStyle(fontSize: 12),
+                                          )),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                          .toList() ??
+                      [],
+                ),
+              ),
+              Offstage(
+                offstage: !(widget.selectdProduct?.isEnableAddReview ?? false),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: ExpansionTileWidget(
+                    key: Key(ExpansionTileStatus.reviews.name),
+                    initiallyExpanded:
+                        widget.innerProductController.expansionTileStatus ==
+                            ExpansionTileStatus.reviews,
+                    onExpansionChanged: (isExpanded) {
+                      if (!isExpanded) {
+                        widget.innerProductController.expansionTileStatus =
+                            null;
+                        return;
+                      }
+                      widget.innerProductController.expansionTileStatus =
+                          ExpansionTileStatus.reviews;
+                    },
+                    title: Translate.reviews.tr,
+                    children: [
+                      ListOfReviewsWidget(
+                        reviews: widget.selectdProduct?.reviews ?? [],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      InkWell(
+                        onTap: () => widget.innerProductController
+                            .onTapAllReviews(widget.selectdProduct),
+                        child: CustomText(
+                          Translate.allReviews.tr,
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: primaryColor,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 15),

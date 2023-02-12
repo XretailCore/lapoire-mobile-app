@@ -8,13 +8,15 @@ class OfferBannerWidget extends StatelessWidget {
   final String offerText;
   final Color backgroundColor;
   final Color textColor;
+  final double? size;
 
-  const OfferBannerWidget({
-    Key? key,
-    required this.offerText,
-    required this.backgroundColor,
-    required this.textColor,
-  }) : super(key: key);
+  const OfferBannerWidget(
+      {Key? key,
+      required this.offerText,
+      required this.backgroundColor,
+      required this.textColor,
+      this.size})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class OfferBannerWidget extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         CustomPaint(
-          size: const Size(50, 50),
+          size: Size(size ?? 50, size ?? 50),
           painter: RPSCustomPainter(backgroundColor),
         ),
         SizedBox(

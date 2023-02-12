@@ -6,6 +6,7 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../../../core/components/custom_error_widget.dart';
 import '../../../core/components/custom_slider.dart';
 import '../../../core/components/imtnan_loading_widget.dart';
+import '../../../core/components/offer_banner_widget.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../wishlist/controllers/wishlist_controller.dart';
 import '../controllers/inner_product_controller.dart';
@@ -131,30 +132,53 @@ class InnerProductScreen extends GetView<InnerProductController> {
                         ],
                       ),
                       Obx(
-                        () => CustomSlider(
-                          pageIndex: controller.pageIndex.value,
-                          onPageChanged: (index, reason) {
-                            controller.updateIndex(index);
-                          },
-                          isInner: true,
-                          showTitleAndButton: false,
-                          indicatorColor: AppColors.redColor,
-                          ratio: 1.15,
-                          showIndicator: true,
-                          sliderImages: [
-                            //for (var image in product!.selectedProductSku.images)
-                            Image.network(
-                                product!.selectedProductSku.images.first?.url ??
-                                    ""),
-                            Image.network(
-                                product.selectedProductSku.images.first?.url ??
-                                    ""),
-                            Image.network(
-                                product.selectedProductSku.images.first?.url ??
-                                    ""),
-                            Image.network(
-                                product.selectedProductSku.images.first?.url ??
-                                    ""),
+                        () => Stack(
+                          children: [
+                            CustomSlider(
+                              pageIndex: controller.pageIndex.value,
+                              onPageChanged: (index, reason) {
+                                controller.updateIndex(index);
+                              },
+                              isInner: true,
+                              showTitleAndButton: false,
+                              indicatorColor: AppColors.redColor,
+                              ratio: 1.15,
+                              showIndicator: true,
+                              sliderImages: [
+                                for (var image
+                                    in product!.selectedProductSku.images)
+                                  Image.network(image?.url ?? ""),
+                              ],
+                            ),
+                            PositionedDirectional(
+                              start: 30,
+                              top: 30,
+                              child: Offstage(
+                                offstage: controller.isNotHaveDiscount(),
+                                child: OfferBannerWidget(
+                                  size: 60,
+                                  textColor: Colors.white,
+                                  backgroundColor: AppColors.redColor,
+                                  offerText: controller.isHaveDiscount()
+                                      ? ((product.selectedProductSku.discounts
+                                              .first?.value) ??
+                                          '')
+                                      : '',
+                                ),
+                              ),
+                            ),
+                            PositionedDirectional(
+                              end: 30,
+                              top: 30,
+                              child: Offstage(
+                                offstage: (product.promoText ?? '').isEmpty,
+                                child: OfferBannerWidget(
+                                    size: 60,
+                                    textColor: Colors.white,
+                                    backgroundColor: AppColors.primaryColor,
+                                    offerText: (product.promoText) ?? ''),
+                              ),
+                            ),
                           ],
                         ),
                       ),

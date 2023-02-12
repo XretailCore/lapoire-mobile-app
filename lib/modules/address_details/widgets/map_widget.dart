@@ -9,8 +9,8 @@ class MapWidget extends GetView<AddressDetailsController> {
 
   @override
   Widget build(BuildContext context) {
-    final position = LatLng(controller.addressModel?.latitude ?? 0,
-        controller.addressModel?.longitude ?? 0);
+    final position = LatLng(controller.addressModel.latitude ?? 0,
+        controller.addressModel.longitude ?? 0);
     return SizedBox(
       width: double.infinity,
       height: 200,

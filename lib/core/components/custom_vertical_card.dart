@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:linktsp_api/linktsp_api.dart';
+import '../../modules/inner/controllers/inner_product_controller.dart';
 import '../../modules/inner/widgets/favoriate_button_widget.dart';
 import '../../modules/wishlist/controllers/wishlist_controller.dart';
 import '../localization/translate.dart';
@@ -42,6 +43,7 @@ class VerticalProductCard extends StatelessWidget {
   final String itemSize;
   final bool isPreOrder;
   final bool hideButtonsRow;
+  final Function()? onShowProductTap;
 
   const VerticalProductCard({
     Key? key,
@@ -67,6 +69,7 @@ class VerticalProductCard extends StatelessWidget {
     this.count = 1,
     this.onIncrement,
     this.onDecrement,
+    this.onShowProductTap,
     this.itemSize = '',
     this.isPreOrder = false,
   }) : super(key: key);
@@ -117,11 +120,16 @@ class VerticalProductCard extends StatelessWidget {
                       offstage: !(isBogo && bogoText.isNotEmpty),
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
+                            horizontal: 15, vertical: 8),
                         margin: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 15),
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.red,
+                            width: .5,
+                          ),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(30)),
                           color: AppColors.highlighter,
                         ),
                         child: CustomText(
@@ -252,53 +260,8 @@ class VerticalProductCard extends StatelessWidget {
                 ],
               ),
             ),
-            // isBogo && isCart
-            //     ? Container()
-            //     : isCart == true
-            //         ? Padding(
-            //             padding: const EdgeInsets.symmetric(vertical: 5),
-            //             child: Row(
-            //               children: [
-            //                 CartCounterWidget(
-            //                   count: count,
-            //                   onIncrement: onIncrement,
-            //                   onDecrement: onDecrement,
-            //                 ),
-            //                 const Spacer(),
-            //               ],
-            //             ),
-            //           )
-            //         : InkWell(
-            //             onTap: isAvailable ? onAddToCart : null,
-            //             child: Container(
-            //               padding: const EdgeInsets.symmetric(vertical: 10),
-            //               decoration: BoxDecoration(
-            //                 color: isPreOrder
-            //                     ? const Color.fromRGBO(199, 209, 66, 1)
-            //                     : isAvailable
-            //                         ? CustomThemes.appTheme.primaryColor
-            //                         : Colors.grey.withOpacity(.4),
-            //               ),
-            //               child: Row(
-            //                 mainAxisAlignment: MainAxisAlignment.center,
-            //                 children: [
-            //                   CustomText(
-            //                     !isAvailable
-            //                         ? Translate.outOfNStock.tr
-            //                         : isPreOrder
-            //                             ? Translate.prebooking.tr
-            //                             : Translate.addToBasket.tr,
-            //                     style: TextStyle(
-            //                       color:
-            //                           isAvailable ? Colors.white : Colors.red,
-            //                     ),
-            //                   ),
-            //                 ],
-            //               ),
-            //             ),
-            //           ),
-
             Visibility(
+              visible: !hideButtonsRow,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -307,14 +270,7 @@ class VerticalProductCard extends StatelessWidget {
                     InkWell(
                       highlightColor: AppColors.highlighter,
                       customBorder: const CircleBorder(),
-                      onTap: () {
-                        Get.toNamed(
-                          Routes.innerScreen,
-                          arguments: {
-                            Arguments.skuId: productId,
-                          },
-                        );
-                      },
+                      onTap: onShowProductTap,
                       child: Container(
                         height: 35,
                         decoration: BoxDecoration(
@@ -344,20 +300,6 @@ class VerticalProductCard extends StatelessWidget {
                             // offstage: !(onDelete != null || hasBogo),
                             child: Visibility(
                               visible: onDelete != null,
-                              child: InkWell(
-                                onTap: onDelete,
-                                child: Container(
-                                  padding: const EdgeInsets.all(7),
-                                  decoration: BoxDecoration(
-                                      color: CustomThemes.appTheme.primaryColor,
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: const Icon(
-                                    Icons.clear,
-                                    size: 20,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
                               replacement: Offstage(
                                 offstage: !showFavorite!,
                                 child: Obx(
@@ -394,6 +336,20 @@ class VerticalProductCard extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              child: InkWell(
+                                onTap: onDelete,
+                                child: Container(
+                                  padding: const EdgeInsets.all(7),
+                                  decoration: BoxDecoration(
+                                      color: CustomThemes.appTheme.primaryColor,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: const Icon(
+                                    Icons.clear,
+                                    size: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                     InkWell(
@@ -426,7 +382,6 @@ class VerticalProductCard extends StatelessWidget {
                   ],
                 ),
               ),
-              visible: !hideButtonsRow,
             ),
             const SizedBox(
               height: 5,

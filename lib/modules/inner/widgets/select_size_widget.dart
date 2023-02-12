@@ -29,12 +29,12 @@ class SelectSizeWidget extends GetView<InnerProductController> {
                   const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
               decoration: BoxDecoration(
                 color: _isSelected(e) ? AppColors.redColor : AppColors.redColor,
-                borderRadius: BorderRadius.circular(18),
+                borderRadius: BorderRadius.circular(25),
               ),
               child: CustomText(
                 e?.name ?? '',
                 style: TextStyle(
-                  fontSize: 9,
+                  fontSize: 12,
                   color: _isSelected(e) ? Colors.white : null,
                   fontWeight: FontWeight.bold,
                   decoration: _isSelected(e) &&
