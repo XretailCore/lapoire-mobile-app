@@ -66,6 +66,7 @@ class ListItemsController extends GetxController
       if (fromCategories) {
         pageIndex = 1;
         products.clear();
+        await _getfilterOptions();
       }
       listingDataModel = await LinkTspApi.instance.list.getListingWithCategory(
         version: 3,

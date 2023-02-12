@@ -68,6 +68,7 @@ class FilterController extends GetxController with StateMixin<FilterDataModel> {
   }
 
   void _getSubCategories() {
+    categories.value=[];
     for (int i = 0; i < filterParameters.categories!.length; i++) {
       categories.add(
         CategoriesFilterModel(
