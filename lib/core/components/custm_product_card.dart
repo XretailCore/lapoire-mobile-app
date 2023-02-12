@@ -25,6 +25,7 @@ class ProductCardWidget extends StatelessWidget {
   final bool? isCart;
   final String? size;
   final String? color;
+  final Color? cardColor;
   final int? count;
   final Function()? onIncrement;
   final Function()? onDecrement;
@@ -76,7 +77,7 @@ class ProductCardWidget extends StatelessWidget {
     this.onAddFeedBack,
     this.hideButtonsRow = false,
     this.isPreOrder = false,
-    this.showDashedLine = false,
+    this.showDashedLine = false, this.cardColor,
   }) : super(key: key);
 
   @override
@@ -96,7 +97,7 @@ class ProductCardWidget extends StatelessWidget {
             if (isCart ?? false) controller.setCustomerChangedSize();
           },
       child: Card(
-        color: Colors.transparent,
+        color: cardColor??Colors.transparent,
         // ignore: prefer_if_null_operators
         elevation: elevation != null
             ? elevation

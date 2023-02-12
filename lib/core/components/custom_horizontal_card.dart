@@ -269,10 +269,7 @@ class HorizontalProductCard extends StatelessWidget {
                                   borderType: BorderType.Circle,
                                   color: AppColors.redColor,
                                   child: InkWell(
-                                    onTap: () {
-                                      if (onDelete != null) {
-                                        onDelete;
-                                      } else {
+                                    onTap:onDelete?? () {
                                         var listingItem = ListingItem(
                                           id: productId,
                                           finalPrice: price,
@@ -281,7 +278,6 @@ class HorizontalProductCard extends StatelessWidget {
                                             Get.find<WishlistController>();
                                         wishlistController.onChangeFavorite(
                                             context, false, listingItem);
-                                      }
                                     },
                                     child: const Icon(Icons.clear,
                                         color: AppColors.redColor),

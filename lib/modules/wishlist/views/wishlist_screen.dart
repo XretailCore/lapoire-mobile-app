@@ -24,6 +24,7 @@ class WishlistScreen extends GetView<WishlistController> {
           itemBuilder: (context, index) {
             final oneOfWishlist = wishList.elementAt(index);
             return ProductCardWidget(
+              cardColor: Colors.white,
               showDashedLine: index != wishList.length - 1,
               productId: oneOfWishlist.id!,
               isPreOrder: oneOfWishlist.preOrder ?? false,
