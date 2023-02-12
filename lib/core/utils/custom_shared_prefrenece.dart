@@ -1,3 +1,4 @@
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:linktsp_api/linktsp_api.dart';
@@ -15,6 +16,7 @@ class _CustomSharedPrefrenece {
       _userEmail = 'userEmail',
       _appLanguage = 'appLanguage',
       _userMobile = 'userMobile',
+      _currentLocation = 'currentLocation',
       _cart = 'cart',
       _zone = 'zone',
       language = 'language';
@@ -56,7 +58,14 @@ class _CustomSharedPrefrenece {
       return CityModel.fromJson(_getStorage.read(_zone));
     }
   }
-
+  Position? get getcurrentLocation {
+    final position = _getStorage.read(_currentLocation);
+    if (position is Position?) {
+      return position;
+    } else {
+      return Position.fromMap(position);
+    }
+  }
   set setUserZone(CityModel? v) => _getStorage.write(_zone, v);
   bool _productsIsEmpty(List<CartSkuModel> products, CartSkuModel product) {
     if (products.isEmpty ||
@@ -130,6 +139,7 @@ class UserSharedPrefrenceController extends GetxController {
   final Rx<String?> _userFirstName = Rx<String?>(null);
   final Rx<String?> _userLastName = Rx<String?>(null);
   final Rx<String?> _userEmail = Rx<String?>(null);
+  final Rx<Position?> _currentLocation = Rx<Position?>(null);
   final Rx<String?> _userMobile = Rx<String?>(null);
   final Rx<String> _language = Rx<String>(Languages.en.name);
   final Rx<bool?> _notificationsSubscription = Rx<bool?>(null);
@@ -191,7 +201,10 @@ class UserSharedPrefrenceController extends GetxController {
     _customSharedPrefrenece.setSkipIntro = v;
     _skipIntro.value = v!;
   }
-
+  Position? get getCurrentLocation {
+    _currentLocation.value = _customSharedPrefrenece.getcurrentLocation;
+    return _currentLocation.value;
+  }
   String get getUserFirstName =>
       _userFirstName.value = _customSharedPrefrenece.getFirstName;
   set setUserFirstName(String? v) {

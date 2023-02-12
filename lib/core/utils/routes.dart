@@ -18,6 +18,7 @@ import '../../modules/check_out/views/credit_card_screen.dart';
 import '../../modules/check_out/views/customer_locations_screen.dart';
 import '../../modules/check_out/views/payment_screen.dart';
 import '../../modules/check_out/views/shipping_information_screen.dart';
+import '../../modules/check_out/views/stores_location_screen.dart';
 import '../../modules/choose_zone/view/choose_zone_screen.dart';
 import '../../modules/contact_us/views/contact_us_screens.dart';
 import '../../modules/content/view/content_screen.dart';
@@ -121,6 +122,8 @@ class Routes {
           page: () => const VerifyOtpScreen(),
           transitionDuration: const Duration(milliseconds: 400),
           transition: Transition.cupertino),
+      GetPage(
+          name: storesLocationScreen, page: () => const StoresLocationScreen()),
       GetPage(
           name: listingItems,
           page: () => ListItemsScreen(),

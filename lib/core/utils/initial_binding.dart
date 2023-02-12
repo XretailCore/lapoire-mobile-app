@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../../modules/check_out/controllers/store_location_controller.dart';
 import '../../modules/content/controllers/pre_booking_policy_controller.dart';
 import '../../modules/dashboard/controller/dashboard_controller.dart';
 import '../../modules/my_account/controllers/my_account_controller.dart';
@@ -70,6 +71,7 @@ class InitialBinding extends Bindings {
     Get.lazyPut(() => SignupController(), fenix: true);
     Get.lazyPut(() => VerifyOtpController(), fenix: true);
     Get.lazyPut(() => ChangePasswordController(), fenix: true);
+    Get.lazyPut(() => StoreLocationController(), fenix: true);
     Get.lazyPut(() => ListItemsController(), fenix: true);
     Get.lazyPut(() => FilterController(), fenix: true);
     Get.lazyPut(() => ContentPagesController(), fenix: true);

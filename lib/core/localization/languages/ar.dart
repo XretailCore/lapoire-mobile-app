@@ -9,6 +9,8 @@ Map<String, String> getArabicTranslation() => {
       Translate.menu.name: "القائمة",
       Translate.homeDeliveryMessage.name: "يتم تسليم الطلبات من 1 إلى 3 ساعات عمل",
       Translate.openingHours.name: "ساعات العمل",
+      Translate.viewMap.name: "إعرض الموقع",
+      Translate.pleaseSelectStore.name: 'الرجاء تحديد المتجر',
       Translate.wishlist.name: "المفضلة",
       Translate.subtotal.name: "المجموع الجزئي",
       Translate.shopNow.name: "تسوق الان",

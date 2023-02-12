@@ -28,7 +28,7 @@ class CheckoutOptionsScreen extends GetView<CustomerLocationController> {
           const SizedBox(height: 24),
           ListTile(
               onTap: (){
-                Get.toNamed(Routes.checkoutPickStoreOptionScreen);
+                Get.toNamed(Routes.storesLocationScreen);
               },
             title: CustomText(Translate.collectFromStore.tr),
             subtitle: CustomText(

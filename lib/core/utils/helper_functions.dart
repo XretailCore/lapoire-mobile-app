@@ -3,6 +3,7 @@
 import 'package:dio/dio.dart';
 import 'package:fcm_config/fcm_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -62,9 +63,11 @@ class HelperFunctions {
       {required String message,
       required BuildContext context,
       Color color = Colors.red,
+        Duration duration = const Duration(seconds: 3),
       bool hasCloseBtn = false}) {
     final snackBar = HelperFunctions.customSnackBar(
         message: message,
+        duration: duration,
         textColor: Colors.white,
         backgroundColor: color,
         hasCloseBtn: hasCloseBtn);
@@ -212,7 +215,12 @@ class HelperFunctions {
     }
     return null;
   }
-
+  static Future<void> vibrate() async {
+    bool canVibrate = await Vibrate.canVibrate;
+    if (canVibrate) {
+      Vibrate.vibrate();
+    }
+  }
   static Future<String?> getDeviceToken() async {
     try {
       return await FCMConfig.instance.messaging.getToken();

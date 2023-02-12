@@ -2,11 +2,13 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 enum Translate {
   appName,
+  pleaseSelectStore,
   home,
   call,
   collectFromStoreMessage,
   collectFromStore,
   homeDeliveryMessage,
+  viewMap,
   openingHours,
   menu,
   wishlist,
