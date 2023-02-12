@@ -163,7 +163,7 @@ class CustomAppBar extends GetView<CartController>
                   Get.toNamed(Routes.search);
                 },
                 child: const Padding(
-                  padding: EdgeInsets.only(top: 20.0, right: 16.0),
+                  padding: EdgeInsets.only(top: 20.0, right: 16.0, left: 16),
                   child: Icon(
                     Icons.search,
                     size: 25,
