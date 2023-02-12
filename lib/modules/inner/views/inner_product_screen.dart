@@ -59,77 +59,80 @@ class InnerProductScreen extends GetView<InnerProductController> {
                   child: Column(
                     children: [
                       const SizedBox(height: 32.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomBackButton(
-                            onTap: () {
-                              if (!controller.comeFromRelated) {
-                                Get.back();
-                              } else {
-                                controller.navigateRelated(context);
-                              }
-                            },
-                          ),
-                          Column(
-                            children: [
-                              Obx(
-                                () => Container(
-                                  decoration: const BoxDecoration(
-                                    color: AppColors.redColor,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(30),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: FavoriateButtonWidget(
-                                      isInner: true,
-                                      key: UniqueKey(),
-                                      iconSize: 20,
-                                      defaultValue:
-                                          Get.find<WishlistController>()
-                                              .isFavorite(product!
-                                                  .selectedProductSku.id!),
-                                      onFavoraite: (v) {
-                                        var listingItem = ListingItem(
-                                          id: product.selectedProductSku.id,
-                                          finalPrice: product
-                                              .selectedProductSku.finalPrice,
-                                        );
-                                        final wishlistController =
-                                            Get.find<WishlistController>();
-                                        wishlistController.onChangeFavorite(
-                                            context, v, listingItem);
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 8.0),
-                              Container(
-                                padding: const EdgeInsets.all(9),
-                                decoration: BoxDecoration(
-                                    color: AppColors.redColor,
-                                    border: Border.all(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CustomBackButton(
+                              onTap: () {
+                                if (!controller.comeFromRelated) {
+                                  Get.back();
+                                } else {
+                                  controller.navigateRelated(context);
+                                }
+                              },
+                            ),
+                            Column(
+                              children: [
+                                Obx(
+                                  () => Container(
+                                    decoration: const BoxDecoration(
                                       color: AppColors.redColor,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(30),
+                                      ),
                                     ),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(50))),
-                                child: InkWell(
-                                  onTap: () => controller.onTapShareProduct(
-                                      product?.selectedProductSku.id),
-                                  child: const Icon(
-                                    Icons.share,
-                                    color: Colors.white,
-                                    size: 20,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: FavoriateButtonWidget(
+                                        isInner: true,
+                                        key: UniqueKey(),
+                                        iconSize: 20,
+                                        defaultValue:
+                                            Get.find<WishlistController>()
+                                                .isFavorite(product!
+                                                    .selectedProductSku.id!),
+                                        onFavoraite: (v) {
+                                          var listingItem = ListingItem(
+                                            id: product.selectedProductSku.id,
+                                            finalPrice: product
+                                                .selectedProductSku.finalPrice,
+                                          );
+                                          final wishlistController =
+                                              Get.find<WishlistController>();
+                                          wishlistController.onChangeFavorite(
+                                              context, v, listingItem);
+                                        },
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                                const SizedBox(height: 8.0),
+                                Container(
+                                  padding: const EdgeInsets.all(9),
+                                  decoration: BoxDecoration(
+                                      color: AppColors.redColor,
+                                      border: Border.all(
+                                        color: AppColors.redColor,
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(50))),
+                                  child: InkWell(
+                                    onTap: () => controller.onTapShareProduct(
+                                        product?.selectedProductSku.id),
+                                    child: const Icon(
+                                      Icons.share,
+                                      color: Colors.white,
+                                      size: 20,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                       Obx(
                         () => Stack(

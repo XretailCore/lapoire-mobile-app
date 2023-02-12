@@ -92,6 +92,7 @@ class ProductCardWidget extends StatelessWidget {
               },
             );
             final controller = Get.find<InnerProductController>();
+            controller.onStartAction(isRelatedProduct: true, skuId: productId);
             controller.productsInQueue.add(productId);
             controller.comeFromRelated = true;
             if (isCart ?? false) controller.setCustomerChangedSize();
