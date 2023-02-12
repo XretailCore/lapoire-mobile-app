@@ -10,6 +10,7 @@ import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/routes.dart';
 import '../../../core/utils/strings.dart';
 import '../../cart/controllers/cart_controller.dart';
+import '../../choose_zone/change_zone_dialogue.dart';
 import '../../dashboard/controller/dashboard_controller.dart';
 
 class HomeController extends GetxController with StateMixin {
@@ -69,6 +70,8 @@ class HomeController extends GetxController with StateMixin {
     offers = _getItem('offers');
     firstAd = _getItem("Poster 1");
     secondAd = _getItem("Poster 2");
+    final _prefs = Get.find<UserSharedPrefrenceController>();
+    if(_prefs.getCurrentZone ==null){openZoneDialog(Get.context!);}
   }
 
   DataItem _getItem(String pageblockName) {

@@ -1,10 +1,9 @@
 import 'package:cowpay/core/helpers/screen_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../modules/choose_zone/change_zone_dialogue.dart';
 import '../../modules/map/controllers/map_controller.dart';
 import '../localization/translate.dart';
-import '../utils/routes.dart';
-import '../utils/strings.dart';
 import '../utils/theme.dart';
 import 'custom_text.dart';
 
@@ -23,7 +22,7 @@ class LocationWidget extends GetView<MapController> {
           controller.determinePosition();
           controller.getZonesDetails();
           controller.getZones();
-          Get.toNamed(Routes.map, arguments: {Arguments.mapPageName: pageName});
+          openZoneDialog(context);
         },
         child: Row(
           children: [

@@ -1,20 +1,21 @@
 import 'dart:async';
+import 'package:get/get.dart';
+import 'package:imtnan/core/utils/strings.dart';
+import 'package:imtnan/modules/home/controllers/home_controller.dart';
+import 'package:imtnan/modules/map/controllers/map_controller.dart';
+import 'package:linktsp_api/linktsp_api.dart';
 import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/routes.dart';
-import '../../../core/utils/strings.dart';
-import '../../settings/controller/language_controller.dart';
-import 'package:get/get.dart';
-import 'package:linktsp_api/linktsp_api.dart';
 
 class ZoneController extends GetxController with StateMixin<List<CityModel>> {
   List<CityModel> zonesList = <CityModel>[];
   final RxString selectedZoneName = ''.obs;
   final Rx<CityModel> selectedZone = const CityModel().obs;
   RxList<CityModel> feedbackMenu = <CityModel>[].obs;
-  final LanguageController _languageController = Get.find<LanguageController>();
+
   @override
-  void onReady() {
-    super.onReady();
+  void onInit() {
+    super.onInit();
     getZones();
   }
 
@@ -30,8 +31,8 @@ class ZoneController extends GetxController with StateMixin<List<CityModel>> {
           feedbackMenu
               .add(CityModel(id: zonesList[i].id, name: zonesList[i].name));
         }
-
-        selectedZone.value = feedbackMenu[0];
+        selectedZone.value = _prefs.getCurrentZone ?? const CityModel();
+        selectedZone.value=feedbackMenu.firstWhere((element) => element.id ==selectedZone.value.id);
         selectedZoneName.value = _prefs.getCurrentZone?.name == null
             ? selectedZone.value.name ?? ''
             : _prefs.getCurrentZone?.name ?? "";
@@ -41,51 +42,33 @@ class ZoneController extends GetxController with StateMixin<List<CityModel>> {
       change(null, status: RxStatus.error());
     }
   }
-
+  Future<void> onChangeZone(newValue) async {
+    selectedZone.value = newValue as CityModel;
+    selectedZoneName.value = newValue.name ?? '';
+  }
   Future<void> onChooseZone(newValue) async {
     selectedZone.value = newValue as CityModel;
     selectedZoneName.value = newValue.name ?? '';
     final _prefs = Get.find<UserSharedPrefrenceController>();
     _prefs.setCurrentZone = selectedZone.value;
-    final languageId = _languageController.getLanguageIdByName();
     await LinkTspApi.init(
-      domain: domain,
-      admin: admin,
-      zoneid: _prefs.getCurrentZone?.id,
-      lang: languageId,
-    );
-    checkIntro();
-  }
-
-  void checkIntro() {
-    final _prefs = Get.find<UserSharedPrefrenceController>();
-    bool skipIntro = _prefs.getSkipIntro ?? false;
-    Timer(const Duration(milliseconds: 500), () {
-      skipIntro
-          ? Get.offAllNamed(Routes.dashboard)
-          : Get.offAllNamed(Routes.intro);
-    });
-    _prefs.setSkipIntro = true;
-  }
-
-  Future<void> onChangeZone(newValue) async {
-    final _prefs = Get.find<UserSharedPrefrenceController>();
-    selectedZone.value = newValue as CityModel;
-    selectedZoneName.value = newValue.name ?? '';
-    _prefs.setCurrentZone = selectedZone.value;
-    await LinkTspApi.init(
-        domain: domain,
-        admin: admin,
-        zoneid: _prefs.getCurrentZone?.id,
-        lang: _languageController.getLanguageIdByName());
-  }
-
-  Future<void> onSubmitNewZone(
-      {Function()? afterSubmitZoneAction, String? address}) async {
-    final _prefs = Get.find<UserSharedPrefrenceController>();
-    _prefs.setCurrentZone = selectedZone.value;
-    selectedZoneName.value = address ?? selectedZone.value.name ?? "";
-    if (afterSubmitZoneAction != null) afterSubmitZoneAction();
+        admin: admin, domain: domain, zoneid: _prefs.getCurrentZone?.id);
     Get.offAllNamed(Routes.dashboard);
+  }
+
+
+  Future<void> onSubmitNewZone({Function()? afterSubmitZoneAction}) async {
+    final _prefs = Get.find<UserSharedPrefrenceController>();
+    final mapController = Get.find<MapController>();
+    final homeController = Get.find<HomeController>();
+
+    _prefs.setCurrentZone = selectedZone.value;
+    await LinkTspApi.init(
+        domain: domain, admin: admin, zoneid: _prefs.getCurrentZone?.id);
+    await homeController.getPageBlock();
+    selectedZoneName.value = selectedZone.value.name ?? "";
+    mapController.selectedAddress.value=selectedZone.value.name ?? "";
+    if (afterSubmitZoneAction != null) afterSubmitZoneAction();
+    Get.back();
   }
 }

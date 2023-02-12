@@ -46,9 +46,8 @@ class HomeScreen extends GetView<HomeController> {
                     children: [
                       const SizedBox(width: 8.0),
                       Expanded(
-                        child: LocationWidget(
-                          pageName: MapPages.homeScreen.name,
-                        ),
+                        child:
+                            LocationWidget(pageName: MapPages.homeScreen.name),
                       ),
                       Row(
                         children: [

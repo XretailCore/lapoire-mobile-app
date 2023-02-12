@@ -50,7 +50,14 @@ class SplashController extends GetxController with StateMixin {
       print(e);
     }
   }
-
+  void checkZone(CityModel? currentZone) {
+    Timer(const Duration(seconds: 1), () {
+      // currentZone?.id == null
+      //     ? Get.offAllNamed(Routes.chooseZoneScreen)
+         // :
+      Get.offAllNamed(Routes.dashboard);
+    });
+  }
   Future<void> getTokenApi({bool isRetry = false}) async {
     if (isRetry) change(null, status: RxStatus.loading());
     try {
@@ -59,9 +66,6 @@ class SplashController extends GetxController with StateMixin {
       final _prefs = Get.find<UserSharedPrefrenceController>();
 
       var currentZone = _prefs.getCurrentZone;
-      currentZone = const CityModel(
-        id: 7,
-      );
       _prefs.setCurrentZone = currentZone;
       final LanguageController languageController =
           Get.find<LanguageController>();
@@ -69,7 +73,7 @@ class SplashController extends GetxController with StateMixin {
       await LinkTspApi.init(
         domain: domain,
         admin: admin,
-        zoneid: currentZone.id,
+        zoneid: currentZone?.id,
         lang: languageController.getLanguageIdByName(),
       );
       if (userSharedPrefrenceController.getNotificationsSubscription ?? true) {
