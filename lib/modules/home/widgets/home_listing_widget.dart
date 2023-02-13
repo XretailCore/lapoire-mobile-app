@@ -106,7 +106,7 @@ class HomeListingWidget extends GetView<HomeController> {
             ),
             const SizedBox(height: 10),
             SizedBox(
-              width: 200,
+              width: 150,
               child: CustomBorderButton(
                 title: Translate.allProducts.tr.toUpperCase(),
                 color: isYellow?AppColors.highlighter:Colors.white,
