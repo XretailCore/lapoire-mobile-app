@@ -36,8 +36,8 @@ class CartScreen extends GetView<CartController> {
                   return ProductCardWidget(
                     elevation: 0,
                     isCart: true,
-                    imageHeight: .22.sw,
-                    imageWidth: .22.sw,
+                    imageHeight: .35.sw,
+                    imageWidth: .35.sw,
                     showDashedLine: index != data.items!.length - 1,
                     productId: item!.id!,
                     promoText: item.promoText ?? '',

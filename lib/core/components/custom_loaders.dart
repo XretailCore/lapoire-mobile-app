@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imtnan/core/components/imtnan_loading_widget.dart';
 import '../utils/theme.dart';
 
 void openLoadingDialog(BuildContext context) {
@@ -19,20 +20,14 @@ void openLoadingDialog(BuildContext context) {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(.4),
+                        color: Colors.black.withOpacity(.5),
                         borderRadius: BorderRadius.circular(15)),
-                    child: SizedBox(
+                    child: const SizedBox(
                       width: 80,
                       height: 80,
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          color: CustomThemes.appTheme.primaryColor,
-                          strokeWidth: 6,
-                          backgroundColor: Colors.black.withOpacity(.6),
-                        ),
-                      ),
+                      child: Center(child: CustomLoadingWidget()),
                     ),
                   ),
                 ],

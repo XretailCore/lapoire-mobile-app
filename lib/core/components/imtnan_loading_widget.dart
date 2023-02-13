@@ -26,11 +26,11 @@ class _CustomLoadingWidgetState extends State<CustomLoadingWidget>
       opacity: Tween(begin: 0.0, end: 1.0).animate(controller),
       child: Center(
         child: SizedBox(
-          height: .25.sh,
-          width: .25.sw,
+          height: .2.sh,
+          width: .2.sw,
           child: Image.asset(
-            'assets/images/main_logo.png',
-            width: 130,
+            'assets/images/splash.png',
+            width: 110,
           ),
         ),
       ),

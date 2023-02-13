@@ -15,9 +15,13 @@ class CounterPart extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: disable || onTap == null ? () {} : onTap,
-      child: Icon(icon,
-          size: 15,
-          color: disable || onTap == null ? Colors.black : AppColors.redColor),
+      child: Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: Icon(icon,
+            size: 15,
+            color:
+                disable || onTap == null ? Colors.black : AppColors.redColor),
+      ),
     );
   }
 }
@@ -39,6 +43,7 @@ class CounterWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return StatefulBuilder(
       builder: (context, setState) => DottedBorder(
+        padding: const EdgeInsets.symmetric(horizontal: 7),
         radius: const Radius.circular(20.0),
         borderType: BorderType.RRect,
         color: AppColors.redColor,
@@ -46,10 +51,13 @@ class CounterWidget extends StatelessWidget {
           children: [
             CounterPart((count == 1), decrement, Icons.remove),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 3),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
               child: CustomText(
                 count.toString(),
-                style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 12,color: AppColors.redColor),
+                style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 12,
+                    color: AppColors.redColor),
               ),
             ),
             CounterPart(

@@ -92,10 +92,8 @@ class VerticalProductCard extends StatelessWidget {
                             width: double.infinity,
                             height: double.infinity,
                             child: Image.asset(
-                              'assets/images/no_image_logo.png',
-                              width: 150,
-                              fit: BoxFit.cover,
-                              height: 100,
+                              'assets/images/logo_white.png',
+                              fit: BoxFit.fitHeight,
                             ),
                           ),
                         )
@@ -158,15 +156,18 @@ class VerticalProductCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        CustomText(
-                          productName!,
-                          maxLines: 2,
-                          softWrap: true,
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: CustomThemes.appTheme.primaryColor,
-                            fontSize: 15,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: CustomText(
+                            productName!,
+                            maxLines: 2,
+                            softWrap: true,
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: CustomThemes.appTheme.primaryColor,
+                              fontSize: 15,
+                            ),
                           ),
                         ),
                         const SizedBox(height: 5),
@@ -185,7 +186,7 @@ class VerticalProductCard extends StatelessWidget {
                                   CustomText(
                                     "$price ${Translate.egp.name.tr}",
                                     style: const TextStyle(
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.w600,
                                       fontSize: 13,
                                       color: AppColors.redColor,
                                     ),
@@ -201,7 +202,7 @@ class VerticalProductCard extends StatelessWidget {
                                           "$oldPrice ${Translate.egp.name.tr}",
                                           maxLines: 1,
                                           style: const TextStyle(
-                                            fontSize: 11,
+                                            fontSize: 12,
                                             color: Colors.grey,
                                             decorationColor: Colors.red,
                                             decoration:
