@@ -17,6 +17,7 @@ class HomeController extends GetxController with StateMixin {
   final CarouselController carouselController = CarouselController();
   final refreshController = RefreshController(initialRefresh: false);
   final CarouselController scrollController = CarouselController();
+  final CarouselController secondScrollController = CarouselController();
   final CarouselController categoriesScrollController = CarouselController();
   ItemItem productItem = ItemItem();
 

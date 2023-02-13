@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:imtnan/core/components/custom_slider.dart';
@@ -14,8 +15,9 @@ import 'package:linktsp_api/data/page_block/models/new_page_block_model.dart';
 
 class HomeAdsWidget extends GetView<HomeController> {
   final List<ItemItem>? items;
+  final CarouselController carouselController;
 
-  const HomeAdsWidget({Key? key, this.items}) : super(key: key);
+  const HomeAdsWidget({Key? key, this.items,required this.carouselController,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class HomeAdsWidget extends GetView<HomeController> {
             if (items!.length > 1)
               InkWell(
                 onTap: () {
-                  controller.scrollController.previousPage();
+                  carouselController.previousPage();
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
@@ -57,7 +59,7 @@ class HomeAdsWidget extends GetView<HomeController> {
               child: CustomSlider(
                 height: 180,
                 viewportFraction: 1.0,
-                controller: controller.scrollController,
+                controller: carouselController,
                 showTitleAndButton: false,
                 sliderImages: [
                   for (var item in items ?? [])
@@ -138,7 +140,7 @@ class HomeAdsWidget extends GetView<HomeController> {
             if (items!.length > 1)
               InkWell(
                 onTap: () {
-                  controller.scrollController.nextPage();
+                  carouselController.nextPage();
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),

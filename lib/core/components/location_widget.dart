@@ -26,13 +26,10 @@ class LocationWidget extends GetView<MapController> {
         },
         child: Row(
           children: [
-            InkWell(
-              onTap: () {},
-              child: Icon(
-                Icons.location_on,
-                size: 20,
-                color: CustomThemes.lightThemeData.primaryColor,
-              ),
+            Icon(
+              Icons.location_on,
+              size: 20,
+              color: CustomThemes.lightThemeData.primaryColor,
             ),
             const SizedBox(width: 5),
             SizedBox(

@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +9,6 @@ import 'package:linktsp_api/data/page_block/models/new_page_block_model.dart'
     as model;
 import '../../../core/components/custom_error_widget.dart';
 import '../../../core/localization/translate.dart';
-import '../../../core/shimmer_loader/images_shimmer.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/home_categories_widget.dart';
 import '../widgets/home_listing_widget.dart';
@@ -133,7 +131,10 @@ class HomeScreen extends GetView<HomeController> {
                             enableLoadState: false,
                           ),
                           const SizedBox(height: 16),
-                          HomeAdsWidget(items: controller.secondAd.items),
+                          HomeAdsWidget(
+                            items: controller.secondAd.items,
+                            carouselController: controller.carouselController,
+                          ),
                           const SizedBox(height: 14),
                           HomeListingWidget(
                             onAllProductsPressed: () =>
@@ -146,7 +147,11 @@ class HomeScreen extends GetView<HomeController> {
                             title: Translate.newArrivals.tr,
                           ),
                           const SizedBox(height: 14),
-                          HomeAdsWidget(items: controller.thirdAd.items),
+                          HomeAdsWidget(
+                            items: controller.thirdAd.items,
+                            carouselController:
+                                controller.secondScrollController,
+                          ),
                           const SizedBox(height: 16),
                           HomeListingWidget(
                             onAllProductsPressed: () =>
