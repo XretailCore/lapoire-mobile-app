@@ -49,7 +49,7 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
       try {
         final cartValidate = await LinkTspApi.instance.multiStore.cartValidate(
             customerID: _userSharedPrefrenceController.getUserId!,
-            addressId: Locations.locationId??0);
+            addressId: Locations.locationId ?? 0);
         if (cartValidate.alertMessage != null) {
           for (var i = 0; i < cartValidate.storeCartItems!.length; i++) {
             if (cartValidate.storeCartItems?[i].status != 1) {
@@ -176,6 +176,8 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
   Future<void> increase(int skuid, int qty, BuildContext context) async {
     if (userId != null) {
       qty++;
+      openLoadingDialog(context);
+
       updateCart(skuid, qty);
     } else {
       openLoadingDialog(context);
@@ -184,7 +186,7 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
       final controller = Get.find<UserSharedPrefrenceController>();
       controller.updateFromCart(product);
       await getGuestUserCart(isUpdate: true);
-      Get.back();
+      //Get.back();
     }
   }
 

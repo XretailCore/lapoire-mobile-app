@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:linktsp_api/data/list/models/list_model.dart';
@@ -84,7 +86,7 @@ class HorizontalProductCard extends StatelessWidget {
             Row(
               crossAxisAlignment: !isCart!
                   ? CrossAxisAlignment.center
-                  : CrossAxisAlignment.start,
+                  : CrossAxisAlignment.center,
               children: [
                 Stack(
                   clipBehavior: Clip.none,
@@ -93,31 +95,21 @@ class HorizontalProductCard extends StatelessWidget {
                       height: imageHeight,
                       width: imageWidth,
                       child: image == null || image == ""
-                          ? Image.asset(
-                              'assets/images/no_image_logo.png',
-                              width: 150,
-                              fit: BoxFit.cover,
-                              height: 70,
+                          ? Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: Image.asset(
+                                'assets/images/logo_white.png',
+                                fit: BoxFit.fitHeight,
+                              ),
                             )
-                          : CachedNetworkImage(
-                              imageUrl: image!,
-                              height: 20,
-                              imageBuilder: (_, imagwe) => Container(
-                                height: imageHeight,
-                                width: imageWidth,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    // fit: BoxFit.fitHeight,
-                                    image: NetworkImage(image as String),
-                                  ),
-                                ),
-                              ),
-                              errorWidget: (_, __, ___) => const Center(
-                                child: Icon(Icons.error_outline),
-                              ),
-                              placeholder: (context, String image) =>
-                                  ImagesShimmerLoader(
-                                      height: imageHeight, width: imageWidth),
+                          : ExtendedImage.network(
+                              image ?? "",
+                              cacheHeight: 800,
+                              enableMemoryCache: false,
+                              fit: BoxFit.fitHeight,
+                              filterQuality: FilterQuality.high,
+                              clearMemoryCacheWhenDispose: true,
+                              enableLoadState: false,
                             ),
                     ),
                     Positioned(
@@ -127,23 +119,42 @@ class HorizontalProductCard extends StatelessWidget {
                       child: Offstage(
                         offstage: !(isBogo && bogoText.isNotEmpty),
                         child: Container(
-                          padding: const EdgeInsets.all(2),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 5, vertical: 5),
                           margin: const EdgeInsets.symmetric(
-                              vertical: 5, horizontal: 0),
-                          decoration: const BoxDecoration(
-                            color: Color.fromRGBO(219, 183, 6, 1),
+                              vertical: 5, horizontal: 5),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.red,
+                              width: .5,
+                            ),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(30)),
+                            color: AppColors.highlighter,
                           ),
                           child: CustomText(
                             bogoText,
                             textAlign: TextAlign.center,
-                            maxLines: 2,
+                            maxLines: 1,
                             style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 11,
                               fontWeight: FontWeight.bold,
+                              color: AppColors.redColor,
+                              fontSize: 12,
                             ),
                             overflow: TextOverflow.ellipsis,
                           ),
+                        ),
+                      ),
+                    ),
+                    PositionedDirectional(
+                      end: 10,
+                      top: 10,
+                      child: Offstage(
+                        offstage: !promoText.isNotEmpty,
+                        child: OfferBannerWidget(
+                          offerText: promoText,
+                          textColor: Colors.white,
+                          backgroundColor: CustomThemes.appTheme.primaryColor,
                         ),
                       ),
                     ),
@@ -169,18 +180,7 @@ class HorizontalProductCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 0),
-                      CustomText(
-                        promoText,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: Color.fromRGBO(237, 151, 32, 1),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      ),
-                      SizedBox(height: promoText.isEmpty ? 0 : 5),
+                      const SizedBox(height: 15),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -225,7 +225,7 @@ class HorizontalProductCard extends StatelessWidget {
                                               "$price ${Translate.egp.name.tr}",
                                               style: TextStyle(
                                                 fontSize: !isCart! ? 14 : 13,
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.w600,
                                                 color: AppColors.redColor,
                                               ),
                                             ),
@@ -237,9 +237,10 @@ class HorizontalProductCard extends StatelessWidget {
                                               child: CustomText(
                                                 "$oldPrice ${Translate.egp.name.tr}",
                                                 maxLines: 1,
-                                                style: TextStyle(
-                                                  fontSize: !isCart! ? 14 : 13,
+                                                style: const TextStyle(
+                                                  fontSize: 12,
                                                   color: Colors.grey,
+                                                  fontWeight: FontWeight.w600,
                                                   decorationColor: Colors.red,
                                                   overflow:
                                                       TextOverflow.ellipsis,
@@ -269,18 +270,19 @@ class HorizontalProductCard extends StatelessWidget {
                                   borderType: BorderType.Circle,
                                   color: AppColors.redColor,
                                   child: InkWell(
-                                    onTap:onDelete?? () {
-                                        var listingItem = ListingItem(
-                                          id: productId,
-                                          finalPrice: price,
-                                        );
-                                        final wishlistController =
-                                            Get.find<WishlistController>();
-                                        wishlistController.onChangeFavorite(
-                                            context, false, listingItem);
-                                    },
+                                    onTap: onDelete ??
+                                        () {
+                                          var listingItem = ListingItem(
+                                            id: productId,
+                                            finalPrice: price,
+                                          );
+                                          final wishlistController =
+                                              Get.find<WishlistController>();
+                                          wishlistController.onChangeFavorite(
+                                              context, false, listingItem);
+                                        },
                                     child: const Icon(Icons.clear,
-                                        color: AppColors.redColor),
+                                        size: 16, color: AppColors.redColor),
                                   ),
                                 ),
                               ),
@@ -293,7 +295,8 @@ class HorizontalProductCard extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       color: CustomThemes.appTheme.primaryColor,
                                       border: Border.all(
-                                        color: CustomThemes.appTheme.primaryColor,
+                                        color:
+                                            CustomThemes.appTheme.primaryColor,
                                       ),
                                       borderRadius: const BorderRadius.all(
                                         Radius.circular(20),
@@ -343,19 +346,22 @@ class HorizontalProductCard extends StatelessWidget {
                             ? Container()
                             : Row(
                                 children: [
-                                  CounterWidget(
-                                    count: count ?? 1,
-                                    increment: onIncrement!,
-                                    decrement: count == null || count == 1
-                                        ? () {}
-                                        : ondecrement!,
-                                    maxCount:
-                                        price == 0 ? count ?? 1 : maxCount,
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 5),
+                                    child: CounterWidget(
+                                      count: count ?? 1,
+                                      increment: onIncrement!,
+                                      decrement: count == null || count == 1
+                                          ? () {}
+                                          : ondecrement!,
+                                      maxCount:
+                                          price == 0 ? count ?? 1 : maxCount,
+                                    ),
                                   ),
                                 ],
                               ),
                       ),
-                      isCart! ? const SizedBox(height: 8.0) : const SizedBox(),
+                      isCart! ? const SizedBox(height: 15.0) : const SizedBox(),
                     ],
                   ),
                 )),
@@ -363,18 +369,18 @@ class HorizontalProductCard extends StatelessWidget {
             ),
             PositionedDirectional(
               end: 10,
-              top: 10,
+              top: 15,
               child: Offstage(
                 offstage: !(price == 0.0),
-                child: Image.asset(
-                  "assets/images/gift.png",
+                child: FaIcon(
+                  FontAwesomeIcons.gift,
+                  size: 20,
                   color: CustomThemes.appTheme.primaryColor,
                 ),
               ),
             ),
           ],
         ),
-        const SizedBox(height: 8.0),
         if (showDashedLine)
           const DottedLine(
             dashColor: AppColors.redColor,

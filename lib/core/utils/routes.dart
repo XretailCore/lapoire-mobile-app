@@ -115,8 +115,10 @@ class Routes {
           transition: Transition.cupertino),
       GetPage(name: categories, page: () => const CategoriesScreen()),
       GetPage(name: cart, page: () => const CartScreen()),
-      GetPage(name: checkOutOptionsScreen, page: () =>  CheckoutOptionsScreen()),
-      GetPage(name: checkoutPickStoreOptionScreen, page: () =>  CheckoutPickStoreOptionScreen()),
+      GetPage(name: checkOutOptionsScreen, page: () => CheckoutOptionsScreen()),
+      GetPage(
+          name: checkoutPickStoreOptionScreen,
+          page: () => CheckoutPickStoreOptionScreen()),
       GetPage(
           name: verifyOtpScreen,
           page: () => const VerifyOtpScreen(),
@@ -261,7 +263,11 @@ class Routes {
           transitionDuration: const Duration(milliseconds: 500),
           transition: Transition.cupertino),
       GetPage(name: myAccount, page: () => const MyAccountScreen()),
-      GetPage(name: search, page: () => const SearchScreen()),
+      GetPage(
+          name: search,
+          page: () => const SearchScreen(),
+          transitionDuration: const Duration(milliseconds: 400),
+          transition: Transition.cupertino),
     ];
   }
 }

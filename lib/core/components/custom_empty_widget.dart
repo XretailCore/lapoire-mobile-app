@@ -34,12 +34,12 @@ class CustomEmptyWidget extends StatelessWidget {
             const SizedBox(height: 20),
             if (emptyBtnAction != null)
               SizedBox(
-                width: MediaQuery.of(context).size.width/2,
+                width: MediaQuery.of(context).size.width / 2,
                 child: CustomBorderButton(
-                    radius: 20,
-                    color: AppColors.redColor,
-                    title: buttonLabel ?? Translate.continueShopping.tr,
-                    onTap: emptyBtnAction ?? () {},
+                  radius: 40,
+                  color: AppColors.redColor,
+                  title: buttonLabel ?? Translate.continueShopping.tr,
+                  onTap: emptyBtnAction ?? () {},
                 ),
               ),
           ],
