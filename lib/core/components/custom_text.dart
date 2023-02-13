@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:imtnan/core/utils/theme.dart';
+
+import '../localization/lanaguages_enum.dart';
+import '../utils/custom_shared_prefrenece.dart';
 
 class CustomText extends StatelessWidget {
   final String? title;
@@ -36,6 +41,7 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final language = Get.find<UserSharedPrefrenceController>().getLanguage;
     return Text(
       data ?? '',
       textAlign: textAlign,
@@ -43,20 +49,33 @@ class CustomText extends StatelessWidget {
       maxLines: maxLines,
       softWrap: softWrap,
       style: style?.copyWith(
-              color: style?.color ?? CustomThemes.appTheme.primaryColor,
-              fontSize: style?.fontSize?.sm,
-              height: style?.height ?? 1,
-              fontWeight: style?.fontWeight ?? FontWeight.w700) ??
+            color: style?.color ?? CustomThemes.appTheme.primaryColor,
+            fontSize: style?.fontSize?.sm,
+            height: style?.height ?? 1,
+            fontWeight: style?.fontWeight ?? FontWeight.w700,
+            fontFamily: style?.fontFamily ?? getLanguage(language),
+          ) ??
           TextStyle(
             color: color ?? CustomThemes.appTheme.primaryColor,
             fontWeight: fontWeight ?? FontWeight.w700,
             decoration: decoration,
             decorationColor: decorationColor,
+            fontFamily: getLanguage(language),
           ),
       strutStyle: StrutStyle(
         forceStrutHeight:
             forceStrutHeight, // apply the same height for both arabic and english
       ),
     );
+  }
+  String getLanguage(String lang)
+  {
+    if(lang==Languages.ar.name)
+      {
+        return "Cairo";
+      }
+    else{
+      return "Gilroy";
+    }
   }
 }

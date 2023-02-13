@@ -100,6 +100,14 @@ flutter:
           weight: 500
         - asset: assets/fonts/Gilroy-Semibold.otf
           weight: 600
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Cairo-Regular.ttf
+          weight: 500
+        - asset: assets/fonts/Cairo-Semibold.ttf
+          weight: 600
 
   assets:
     - assets/images/

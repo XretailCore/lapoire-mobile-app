@@ -1,11 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:imtnan/core/components/prouct_buttons_widget.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:linktsp_api/data/page_block/models/new_page_block_model.dart';
-
 import '../../../core/components/custm_product_card.dart';
 import '../../../core/components/custom_text.dart';
+import '../../../core/localization/lanaguages_enum.dart';
 import '../../../core/localization/translate.dart';
+import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/theme.dart';
 import '../controllers/home_controller.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +30,7 @@ class HomeListingWidget extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    final language=  Get.find<UserSharedPrefrenceController>().getLanguage;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20.0),
       color: isYellow ? AppColors.highlighter : Colors.white,
@@ -46,7 +47,7 @@ class HomeListingWidget extends GetView<HomeController> {
                   fontWeight: FontWeight.w400,
                   fontSize: 32,
                   overflow: TextOverflow.ellipsis,
-                  fontFamily: "Bayshore"),
+                  fontFamily: language == Languages.ar.name ?'Cairo':"Bayshore"),
             ),
             const SizedBox(height: 18),
             CarouselSlider.builder(

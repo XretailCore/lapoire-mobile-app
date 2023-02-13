@@ -32,11 +32,11 @@ class HomeCategoriesWidget extends GetView<HomeController> {
                 children: [
                   CustomText(
                     Translate.enjoyCategories.tr,
-                    style: const TextStyle(
+                    style:  TextStyle(
                         color: AppColors.redColor,
                         fontWeight: FontWeight.w400,
                         fontSize: 32,
-                        fontFamily: "Bayshore"),
+                        fontFamily: language == Languages.ar.name ?'Cairo':"Bayshore"),
                   ),
                 ],
               ),

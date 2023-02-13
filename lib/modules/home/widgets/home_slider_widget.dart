@@ -3,7 +3,9 @@ import 'package:cowpay/core/helpers/screen_size.dart';
 import 'package:extended_image/extended_image.dart';
 import '../../../core/components/custom_slider.dart';
 import '../../../core/components/custom_text.dart';
+import '../../../core/localization/lanaguages_enum.dart';
 import '../../../core/localization/translate.dart';
+import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/theme.dart';
 import '../controllers/home_controller.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,7 @@ class HomeAd extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    final language=  Get.find<UserSharedPrefrenceController>().getLanguage;
     final List<Widget> sliderImages = items.isEmpty
         ? []
         : List.generate(
@@ -57,9 +60,9 @@ class HomeAd extends GetView<HomeController> {
                         softWrap: true,
                         forceStrutHeight: false,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        style: TextStyle(
                             color: Colors.white,
-                            fontFamily: "Bayshore",
+                            fontFamily: language == Languages.ar.name ?'Cairo':"Bayshore",
                             fontSize: 36),
                       ),
                     ),

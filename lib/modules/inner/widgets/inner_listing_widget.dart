@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:linktsp_api/data/sku/models/inner_product/inner_product_model.dart';
 import '../../../core/components/custm_product_card.dart';
 import '../../../core/components/custom_text.dart';
+import '../../../core/localization/lanaguages_enum.dart';
+import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/theme.dart';
 import '../controllers/inner_product_controller.dart';
 
@@ -22,6 +24,7 @@ class InnerListingWidget extends GetView<InnerProductController> {
 
   @override
   Widget build(BuildContext context) {
+  final language=  Get.find<UserSharedPrefrenceController>().getLanguage;
     return Offstage(
       offstage: items == null || items!.isEmpty,
       child: Column(
@@ -37,7 +40,7 @@ class InnerListingWidget extends GetView<InnerProductController> {
                       color: CustomThemes.appTheme.primaryColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 28,
-                      fontFamily: "Bayshore"),
+                      fontFamily: language == Languages.ar.name ?'Cairo':"Bayshore"),
                 ),
               ],
             ),
