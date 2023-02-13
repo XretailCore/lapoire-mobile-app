@@ -6,11 +6,13 @@ Map<String, String> getEnglishTranslation() => {
       Translate.pleaseSelectStore.name: 'Please select a store',
       Translate.call.name: "Call",
       Translate.thisOrderWillBeDeliveredTomorrow.name:
-      'This Order Will Be Delivered Tomorrow',
+          'This Order Will Be Delivered Tomorrow',
       Translate.collectFromStore.name: "Collect From Store",
-      Translate.collectFromStoreMessage.name: "Collect From Store You can collect your order in 2 hours (when stores are open)",
+      Translate.collectFromStoreMessage.name:
+          "Collect From Store You can collect your order in 2 hours (when stores are open)",
       Translate.menu.name: "Menu",
-      Translate.homeDeliveryMessage.name: "Orders are delivered in 1 to 3 working hours",
+      Translate.homeDeliveryMessage.name:
+          "Orders are delivered in 1 to 3 working hours",
       Translate.openingHours.name: "Opening Hours",
       Translate.viewMap.name: "View Map",
       Translate.wishlist.name: "Wish List",
@@ -130,7 +132,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.noSubCategories.name: "No Sub-Categories",
       Translate.helloSelectYourZone.name: "Hello, Select Your Zone",
       Translate.chooseYourLocationToStartEnjoyingOurDeliveringService.name:
-          "Choose Your Location To Start Enjoying Our Delivering Service",
+          "Choose Your Zone To Start Enjoying Our Delivering Service",
       Translate.selectYourZone.name: "Select Your Zone",
       Translate.workingHours7AMTo11Pm.name: "Working Hours 7 AM To 11 PM",
       Translate.prebooking.name: "Pre Booking",

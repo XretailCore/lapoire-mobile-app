@@ -4,12 +4,14 @@ Map<String, String> getArabicTranslation() => {
       Translate.appName.name: "لابوار",
       Translate.call.name: "اتصل",
       Translate.collectFromStore.name: "احصل من المتجر",
-      Translate.collectFromStoreMessage.name: "الاستلام من المتجر يمكنك استلام طلبك خلال ساعتين (عندما تكون المتاجر مفتوحة)",
+      Translate.collectFromStoreMessage.name:
+          "الاستلام من المتجر يمكنك استلام طلبك خلال ساعتين (عندما تكون المتاجر مفتوحة)",
       Translate.home.name: "الرئيسية",
       Translate.thisOrderWillBeDeliveredTomorrow.name:
-      'سيتم تسليم هذا الطلب غدا',
+          'سيتم تسليم هذا الطلب غدا',
       Translate.menu.name: "القائمة",
-      Translate.homeDeliveryMessage.name: "يتم تسليم الطلبات من 1 إلى 3 ساعات عمل",
+      Translate.homeDeliveryMessage.name:
+          "يتم تسليم الطلبات من 1 إلى 3 ساعات عمل",
       Translate.openingHours.name: "ساعات العمل",
       Translate.viewMap.name: "إعرض الموقع",
       Translate.pleaseSelectStore.name: 'الرجاء تحديد المتجر',
@@ -130,7 +132,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.noSubCategories.name: "لا توجد فئات فرعية",
       Translate.helloSelectYourZone.name: "مرحبًا ، حدد منطقتك",
       Translate.chooseYourLocationToStartEnjoyingOurDeliveringService.name:
-          "اختر موقعك لبدء الاستمتاع بخدمة التوصيل لدينا",
+          "اختر منطقتك لبدء الاستمتاع بخدمة التوصيل لدينا",
       Translate.selectYourZone.name: "حدد منطقتك",
       Translate.workingHours7AMTo11Pm.name:
           "ساعات العمل من 7 صباحا إلى 11 مساءا",

@@ -19,8 +19,6 @@ class LocationWidget extends GetView<MapController> {
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
         onTap: () {
-          controller.determinePosition();
-          controller.getZonesDetails();
           controller.getZones();
           openZoneDialog(context);
         },
@@ -34,7 +32,7 @@ class LocationWidget extends GetView<MapController> {
             const SizedBox(width: 5),
             SizedBox(
               width:
-                  controller.selectedAddress.value.isNotEmpty ? 0.30.sw : 0.0,
+                  controller.selectedAddress.value.isNotEmpty ? 0.25.sw : 0.0,
               child: CustomText(
                 controller.selectedAddress.value,
                 overflow: TextOverflow.ellipsis,

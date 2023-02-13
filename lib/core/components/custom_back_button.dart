@@ -18,20 +18,22 @@ class CustomBackButton extends StatelessWidget {
 
     return InkWell(
       onTap: onTap ?? () => Get.back(),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 24.0),
-          language == Languages.ar.name
-              ? RotatedBox(
-                  quarterTurns: 2,
-                  child: SvgPicture.asset("assets/images/back.svg"))
-              : SvgPicture.asset("assets/images/back.svg"),
-          CustomText(
-            Translate.back.tr,
-            style: const TextStyle(fontSize: 10, color: AppColors.redColor),
-          )
-        ],
+      child: Padding(
+        padding: const EdgeInsets.only(top: 15.0, right: 12.0, left: 12),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            language == Languages.ar.name
+                ? RotatedBox(
+                    quarterTurns: 2,
+                    child: SvgPicture.asset("assets/images/back.svg"))
+                : SvgPicture.asset("assets/images/back.svg"),
+            CustomText(
+              Translate.back.tr,
+              style: const TextStyle(fontSize: 10, color: AppColors.redColor),
+            )
+          ],
+        ),
       ),
     );
   }
