@@ -76,7 +76,7 @@ class ShippingInformationController extends GetxController
             storeId: Locations.storeId ?? 0,
             customerId: _userSharedPrefrenceController.getUserId!,
             shipmentMethods: "HomeDelivery",
-            zoneID: _customerLocationController.selectedZoneId,
+            zoneID: _userSharedPrefrenceController.getCurrentZone?.id,
           );
           final confirmationController =
               Get.find<CheckoutConfirmationController>();

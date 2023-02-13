@@ -31,6 +31,7 @@ class CheckoutConfirmationScreen
             CustomText(
               Translate.yourOrderHasBeenPlaced.tr,
               textAlign: TextAlign.center,
+              softWrap: true,
               style: TextStyle(
                 fontSize: 20,
                 color: primaryColor,
