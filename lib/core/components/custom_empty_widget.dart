@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:imtnan/core/components/custom_button.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
 import '../localization/translate.dart';
-import '../utils/theme.dart';
 import 'custom_text.dart';
 
 class CustomEmptyWidget extends StatelessWidget {
@@ -26,9 +25,9 @@ class CustomEmptyWidget extends StatelessWidget {
           children: [
             CustomText(
               emptyLabel ?? '',
-              style: TextStyle(
+              style:const TextStyle(
                 fontWeight: FontWeight.bold,
-                color: CustomThemes.appTheme.colorScheme.secondary,
+                color: AppColors.primaryColor,
               ),
             ),
             const SizedBox(height: 20),
