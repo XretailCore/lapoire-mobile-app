@@ -34,7 +34,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
   Widget build(BuildContext context) {
     Color bottomColor = CustomThemes.appTheme.disabledColor;
     AnimationController? hideAnimationController;
-    final labelList = <String>[
+    var labelList = <String>[
       Translate.menu.tr,
       Translate.wishlist.tr,
       Translate.home.tr,
