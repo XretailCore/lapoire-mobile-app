@@ -1,10 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cowpay/core/helpers/screen_size.dart';
 import 'package:extended_image/extended_image.dart';
+import 'package:imtnan/core/components/custom_button.dart';
 import '../../../core/components/custom_slider.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/lanaguages_enum.dart';
 import '../../../core/localization/translate.dart';
+import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/theme.dart';
 import '../controllers/home_controller.dart';
@@ -72,27 +74,19 @@ class HomeAd extends GetView<HomeController> {
                     right: 0,
                     left: 0,
                     child: Center(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          elevation: .5,
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                        onPressed: () => controller.goToListingWithId(
-                          filterModel:
-                              items[index].filterModel ?? FilterModel(),
-                          name: items[index].name ?? "",
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Text(
-                            Translate.orderNow.tr,
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: CustomThemes.appTheme.primaryColor),
+                      child: SizedBox(
+                        width: 150.0,
+                        child: CustomBorderButton(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 16),
+                          title: Translate.orderNow.tr,
+                          color: Colors.white,
+                          radius: 30.0,
+                          fontSize: 14.0,
+                          textColor: AppColors.primaryColor,
+                          onTap: () => controller.goToListingWithId(
+                            filterModel:
+                                items[index].filterModel ?? FilterModel(),
+                            name: items[index].name ?? "",
                           ),
                         ),
                       ),

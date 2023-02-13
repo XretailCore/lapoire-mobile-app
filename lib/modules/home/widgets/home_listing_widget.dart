@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:imtnan/core/components/custom_button.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:linktsp_api/data/page_block/models/new_page_block_model.dart';
 import '../../../core/components/custm_product_card.dart';
@@ -104,28 +105,18 @@ class HomeListingWidget extends GetView<HomeController> {
               ),
             ),
             const SizedBox(height: 10),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                elevation: 0.0,
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                backgroundColor:
-                    isYellow ? AppColors.highlighter : Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  side: const BorderSide(
-                    width: 2,
-                    color: Colors.red,
-                  ),
-                ),
-              ),
-              onPressed: onAllProductsPressed,
-              child: Text(
-                Translate.allProducts.tr.toUpperCase(),
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.redColor,
-                ),
+            SizedBox(
+              width: 200,
+              child: CustomBorderButton(
+                title: Translate.allProducts.tr.toUpperCase(),
+                color: isYellow?AppColors.highlighter:Colors.white,
+                borderColor: AppColors.redColor,
+                textColor: AppColors.redColor,
+                onTap: onAllProductsPressed,
+                radius: 30.0,
+                fontSize: 14,
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 15, vertical: 5),
               ),
             ),
             const SizedBox(height: 14),
