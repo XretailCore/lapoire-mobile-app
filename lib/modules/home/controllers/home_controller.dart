@@ -70,8 +70,12 @@ class HomeController extends GetxController with StateMixin {
     offers = _getItem('offers');
     firstAd = _getItem("Poster 1");
     secondAd = _getItem("Poster 2");
+    thirdAd = _getItem("Poster 3");
+
     final _prefs = Get.find<UserSharedPrefrenceController>();
-    if(_prefs.getCurrentZone ==null){openZoneDialog(Get.context!);}
+    if (_prefs.getCurrentZone == null) {
+      openZoneDialog(Get.context!);
+    }
   }
 
   DataItem _getItem(String pageblockName) {

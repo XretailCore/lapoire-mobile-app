@@ -104,12 +104,13 @@ class HomeListingWidget extends GetView<HomeController> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 elevation: 0.0,
+                padding: const EdgeInsets.symmetric(horizontal: 25),
                 backgroundColor:
                     isYellow ? AppColors.highlighter : Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(30),
                   side: const BorderSide(
-                    width: 2.0,
+                    width: 2,
                     color: Colors.red,
                   ),
                 ),
@@ -117,8 +118,9 @@ class HomeListingWidget extends GetView<HomeController> {
               onPressed: onAllProductsPressed,
               child: Text(
                 Translate.allProducts.tr.toUpperCase(),
-                style: TextStyle(
-                  fontSize: 16.sm,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
                   color: AppColors.redColor,
                 ),
               ),

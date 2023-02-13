@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/core/components/imtnan_loading_widget.dart';
 import 'package:imtnan/modules/home/widgets/home_ads_widget.dart';
@@ -119,31 +121,20 @@ class HomeScreen extends GetView<HomeController> {
                             items: controller.bestSellers.items ?? [],
                             title: Translate.bestSeller.tr,
                           ),
-                          const SizedBox(height: 16),
-                          CachedNetworkImage(
-                            imageUrl:
-                                controller.firstAd.items?[0].imageUrl ?? "",
-                            imageBuilder: (context, imageProvider) => Container(
-                              height: 100,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.fill,
-                                  image: NetworkImage(
-                                    controller.firstAd.items?[0].imageUrl ?? "",
-                                  ),
-                                ),
-                              ),
-                            ),
-                            placeholder: (context, image) =>
-                                const ImagesShimmerLoader(
-                              width: double.infinity,
-                              height: 200,
-                            ),
+                          ExtendedImage.network(
+                            controller.firstAd.items?[0].imageUrl ?? "",
+                            cacheHeight: 800,
+                            height: .5.sw,
+                            width: double.infinity,
+                            enableMemoryCache: false,
+                            fit: BoxFit.fitWidth,
+                            filterQuality: FilterQuality.high,
+                            clearMemoryCacheWhenDispose: true,
+                            enableLoadState: false,
                           ),
                           const SizedBox(height: 16),
-                          HomeAdsWidget(items: controller.firstAd.items),
-                          const SizedBox(height: 16),
+                          HomeAdsWidget(items: controller.secondAd.items),
+                          const SizedBox(height: 14),
                           HomeListingWidget(
                             onAllProductsPressed: () =>
                                 controller.goToListingWithId(
@@ -154,8 +145,8 @@ class HomeScreen extends GetView<HomeController> {
                             items: controller.newArrivals.items ?? [],
                             title: Translate.newArrivals.tr,
                           ),
-                          const SizedBox(height: 10),
-                          HomeAdsWidget(items: controller.secondAd.items),
+                          const SizedBox(height: 14),
+                          HomeAdsWidget(items: controller.thirdAd.items),
                           const SizedBox(height: 16),
                           HomeListingWidget(
                             onAllProductsPressed: () =>
