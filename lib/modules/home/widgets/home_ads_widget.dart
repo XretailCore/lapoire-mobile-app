@@ -17,7 +17,11 @@ class HomeAdsWidget extends GetView<HomeController> {
   final List<ItemItem>? items;
   final CarouselController carouselController;
 
-  const HomeAdsWidget({Key? key, this.items,required this.carouselController,}) : super(key: key);
+  const HomeAdsWidget({
+    Key? key,
+    this.items,
+    required this.carouselController,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class HomeAdsWidget extends GetView<HomeController> {
       child: Padding(
         padding: (items?.length ?? 0) > 1
             ? const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5)
-            : const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
+            : const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20),
         child: Row(
           children: [
             if (items!.length > 1)

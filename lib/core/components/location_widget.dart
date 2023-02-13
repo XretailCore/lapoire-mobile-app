@@ -19,8 +19,6 @@ class LocationWidget extends GetView<MapController> {
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
         onTap: () {
-          controller.determinePosition();
-          controller.getZonesDetails();
           controller.getZones();
           openZoneDialog(context);
         },

@@ -40,8 +40,7 @@ class MapController extends GetxController with StateMixin {
   void onReady() {
     super.onReady();
     change(null, status: RxStatus.loading());
-    determinePosition();
-    getZonesDetails();
+
     getZones();
   }
 
@@ -117,6 +116,8 @@ class MapController extends GetxController with StateMixin {
   Future<void> getZones() async {
     change(null, status: RxStatus.loading());
     try {
+      final prefs = Get.find<UserSharedPrefrenceController>();
+      selectedAddress.value = prefs.getCurrentZone?.name ?? "";
       zones = await LinkTspApi.instance.lookUp.getZoneLookup();
       if (zones.isNotEmpty) {
         zoneMenu.clear();

@@ -35,7 +35,7 @@ class HomeListingWidget extends GetView<HomeController> {
     return Offstage(
       offstage: items == null || items!.isEmpty,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20.0),
+        padding: const EdgeInsets.symmetric(vertical: 25.0),
         color: isYellow ? AppColors.highlighter : Colors.white,
         child: Column(
           children: [
@@ -51,7 +51,7 @@ class HomeListingWidget extends GetView<HomeController> {
                   fontFamily:
                       language == Languages.ar.name ? 'Cairo' : "Bayshore"),
             ),
-            const SizedBox(height: 18),
+            const SizedBox(height: 25),
             CarouselSlider.builder(
               itemBuilder:
                   (BuildContext context, int itemIndex, int pageViewIndex) {

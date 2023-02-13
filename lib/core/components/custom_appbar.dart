@@ -111,6 +111,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 }
+
 class OrderDetailsAppBar extends GetView<OrderDetailsController>
     implements PreferredSizeWidget {
   final String title;
@@ -146,13 +147,14 @@ class OrderDetailsAppBar extends GetView<OrderDetailsController>
         visible: Navigator.of(context).canPop(),
         replacement: IconButton(
           onPressed: () => controller.goToHomeAction(),
-          icon: const Icon(Icons.home,color: AppColors.primaryColor),
+          icon: const Icon(Icons.home, color: AppColors.primaryColor),
         ),
         child: const CustomBackButton(),
       ),
     );
   }
 }
+
 class CustomAppBar extends GetView<CartController>
     implements PreferredSizeWidget {
   final String title;
@@ -193,7 +195,10 @@ class CustomAppBar extends GetView<CartController>
         padding: const EdgeInsets.only(top: 15.0),
         child: CustomText(
           title,
-          style: TextStyle(color: CustomThemes.appTheme.primaryColor),
+          style: TextStyle(
+              color: CustomThemes.appTheme.primaryColor,
+              fontSize: 18,
+              fontWeight: FontWeight.w600),
         ),
       ),
       centerTitle: true,
@@ -205,7 +210,7 @@ class CustomAppBar extends GetView<CartController>
                   Get.toNamed(Routes.search);
                 },
                 child: const Padding(
-                  padding: EdgeInsets.only(top: 20.0, right: 16.0, left: 16),
+                  padding: EdgeInsets.only(top: 15.0, right: 12.0, left: 12),
                   child: Icon(
                     Icons.search,
                     size: 25,
