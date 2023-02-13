@@ -30,12 +30,13 @@ class HomeListingWidget extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final language=  Get.find<UserSharedPrefrenceController>().getLanguage;
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20.0),
-      color: isYellow ? AppColors.highlighter : Colors.white,
-      child: Offstage(
-        offstage: items == null || items!.isEmpty,
+    final language = Get.find<UserSharedPrefrenceController>().getLanguage;
+
+    return Offstage(
+      offstage: items == null || items!.isEmpty,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 20.0),
+        color: isYellow ? AppColors.highlighter : Colors.white,
         child: Column(
           children: [
             CustomText(
@@ -47,7 +48,8 @@ class HomeListingWidget extends GetView<HomeController> {
                   fontWeight: FontWeight.w400,
                   fontSize: 32,
                   overflow: TextOverflow.ellipsis,
-                  fontFamily: language == Languages.ar.name ?'Cairo':"Bayshore"),
+                  fontFamily:
+                      language == Languages.ar.name ? 'Cairo' : "Bayshore"),
             ),
             const SizedBox(height: 18),
             CarouselSlider.builder(
@@ -126,6 +128,7 @@ class HomeListingWidget extends GetView<HomeController> {
                 ),
               ),
             ),
+            const SizedBox(height: 14),
           ],
         ),
       ),

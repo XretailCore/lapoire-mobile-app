@@ -145,7 +145,6 @@ class HomeScreen extends GetView<HomeController> {
                             items: controller.newArrivals.items ?? [],
                             title: Translate.newArrivals.tr,
                           ),
-                          const SizedBox(height: 14),
                           HomeAdsWidget(items: controller.thirdAd.items),
                           const SizedBox(height: 16),
                           HomeListingWidget(

@@ -10,7 +10,6 @@ import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:linktsp_api/data/list/models/list_model.dart';
 import '../../modules/wishlist/controllers/wishlist_controller.dart';
 import '../localization/translate.dart';
-import '../shimmer_loader/images_shimmer.dart';
 import '../utils/theme.dart';
 import 'custom_counter.dart';
 import 'custom_text.dart';
@@ -96,7 +95,7 @@ class HorizontalProductCard extends StatelessWidget {
                       width: imageWidth,
                       child: image == null || image == ""
                           ? Padding(
-                              padding: const EdgeInsets.only(top: 20),
+                              padding: const EdgeInsets.only(top: 15),
                               child: Image.asset(
                                 'assets/images/logo_white.png',
                                 fit: BoxFit.fitHeight,
@@ -175,12 +174,11 @@ class HorizontalProductCard extends StatelessWidget {
                 Expanded(
                     child: Container(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 15),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -254,7 +252,11 @@ class HorizontalProductCard extends StatelessWidget {
                                       ),
                                 const SizedBox(height: 8),
                                 isAvailable
-                                    ? CustomText(Translate.inStock.tr)
+                                    ? CustomText(
+                                        Translate.inStock.tr,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.normal),
+                                      )
                                     : CustomText(Translate.outOfStock.tr),
                                 SizedBox(height: (rate != null) ? 10 : 0),
                               ],
@@ -281,8 +283,11 @@ class HorizontalProductCard extends StatelessWidget {
                                           wishlistController.onChangeFavorite(
                                               context, false, listingItem);
                                         },
-                                    child: const Icon(Icons.clear,
-                                        size: 16, color: AppColors.redColor),
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(3.0),
+                                      child: Icon(Icons.clear,
+                                          size: 16, color: AppColors.redColor),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -290,6 +295,9 @@ class HorizontalProductCard extends StatelessWidget {
                               Offstage(
                                 offstage: !showFavorite!,
                                 child: InkWell(
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(20),
+                                  ),
                                   onTap: onAddToCart,
                                   child: Container(
                                     decoration: BoxDecoration(
@@ -306,7 +314,7 @@ class HorizontalProductCard extends StatelessWidget {
                                       padding: EdgeInsets.all(5.0),
                                       child: Icon(
                                         Icons.shopping_cart,
-                                        size: 22,
+                                        size: 16,
                                         color: Colors.white,
                                       ),
                                     ),
@@ -347,7 +355,7 @@ class HorizontalProductCard extends StatelessWidget {
                             : Row(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(bottom: 5),
+                                    padding: const EdgeInsets.only(bottom: 0),
                                     child: CounterWidget(
                                       count: count ?? 1,
                                       increment: onIncrement!,
@@ -361,7 +369,6 @@ class HorizontalProductCard extends StatelessWidget {
                                 ],
                               ),
                       ),
-                      isCart! ? const SizedBox(height: 15.0) : const SizedBox(),
                     ],
                   ),
                 )),

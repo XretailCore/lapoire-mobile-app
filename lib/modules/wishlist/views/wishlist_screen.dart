@@ -18,7 +18,7 @@ class WishlistScreen extends GetView<WishlistController> {
         final wishList = data ?? [];
         return ListView.builder(
           key: UniqueKey(),
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 50),
           shrinkWrap: true,
           itemCount: wishList.length,
           itemBuilder: (context, index) {
@@ -28,22 +28,22 @@ class WishlistScreen extends GetView<WishlistController> {
               showDashedLine: index != wishList.length - 1,
               productId: oneOfWishlist.id!,
               isPreOrder: oneOfWishlist.preOrder ?? false,
-              imageHeight: .32.sw,
-              imageWidth: .22.sw,
+              imageHeight: .35.sw,
+              imageWidth: .35.sw,
               isHorizontal: true,
               promoText: oneOfWishlist.promoText ?? '',
-              elevation: 2,
+              elevation: 0,
               hasOffer: (oneOfWishlist.productDiscountList ?? []).isNotEmpty,
               offerPercentage: (oneOfWishlist.productDiscountList ?? []).isEmpty
                   ? ""
                   : oneOfWishlist.productDiscountList?.first.value ?? "",
-              productName: oneOfWishlist.title!,
-              image: oneOfWishlist.imageUrl!,
-              brandName: oneOfWishlist.brandName!,
-              oldPrice: oneOfWishlist.price!,
+              productName: oneOfWishlist.title ?? '',
+              image: oneOfWishlist.imageUrl ?? '',
+              brandName: oneOfWishlist.brandName ?? '',
+              oldPrice: oneOfWishlist.price ?? 0,
               price: oneOfWishlist.finalPrice!,
-              size: oneOfWishlist.size!,
-              color: oneOfWishlist.color!,
+              size: oneOfWishlist.size,
+              color: oneOfWishlist.color,
               isAvailable: !oneOfWishlist.isOutOfStock!,
               isBogo: (oneOfWishlist.bogoPromoText != null &&
                   oneOfWishlist.bogoPromoText != ""),
