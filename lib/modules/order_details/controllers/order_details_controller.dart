@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/helper_functions.dart';
 import '../../../core/utils/routes.dart';
+import '../../cart/controllers/cart_controller.dart';
 import 'cancel_order_controller.dart';
 import 'feedback_order_controller.dart';
 import 'package:linktsp_api/linktsp_api.dart';
@@ -19,7 +21,16 @@ class OrderDetailsController extends GetxController
     super.onReady();
     getOrderDetails();
   }
-
+  void goToHomeAction() {
+    final UserSharedPrefrenceController userSharedPrefrenceController =
+    Get.find<UserSharedPrefrenceController>();
+    userSharedPrefrenceController.removeCart();
+    final cartController = Get.find<CartController>();
+    cartController.getCart();
+    final myOrdersController = Get.find<MyOrdersController>();
+    myOrdersController.getOrders();
+    Get.offAllNamed(Routes.dashboard);
+  }
   Future<void> getOrderDetails() async {
     await HelperFunctions.errorRequestsHandler<OrderDetailsModel>(
       loadingFunction: () async {

@@ -20,9 +20,8 @@ class OrderDetailsScreen extends GetView<OrderDetailsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: OrderDetailsAppBar(
         title: Translate.orderDetails.name.tr,
-        showBackButton: true,
       ),
       body: controller.obx(
         (orderDetailsModel) => Column(

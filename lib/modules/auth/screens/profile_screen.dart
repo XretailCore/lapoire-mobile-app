@@ -24,13 +24,7 @@ class ProfileScreen extends GetView<ProfileController> {
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       appBar: CustomAppBar(
-        title: "${Translate.hello.tr} ${controller.getUserName}",
-        bottom: CustomText(
-          controller.getEmail,
-          style: const TextStyle(
-            color: AppColors.redColor,
-          ),
-        ),
+        title: Translate.hello.tr,
         showBackButton: true,
         showAction: false,
       ),
@@ -52,8 +46,7 @@ class ProfileScreen extends GetView<ProfileController> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           TextFormFieldWidget(
-                            textEditingController:
-                            controller.firstNameTEC,
+                            textEditingController: controller.firstNameTEC,
                             hint: '${Translate.firstName.tr} *',
                             textInputType: TextInputType.name,
                             validator: CustomValidator.userNameValidation,
@@ -179,7 +172,7 @@ class ProfileScreen extends GetView<ProfileController> {
                             onTap: () async {
                               controller.chooseDate(context);
                             },
-                            child:  Container(
+                            child: Container(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 8.0, horizontal: 16.0),
                               decoration: BoxDecoration(
@@ -187,7 +180,8 @@ class ProfileScreen extends GetView<ProfileController> {
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   CustomText(
                                     "${controller.selectedDate.value.day}/${controller.selectedDate.value.month}/${controller.selectedDate.value.year}",

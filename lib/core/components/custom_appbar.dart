@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../modules/cart/controllers/cart_controller.dart';
 import '../../modules/home/widgets/home_search_widget.dart';
+import '../../modules/order_details/controllers/order_details_controller.dart';
 import '../../modules/search/controller/search_controller.dart';
 import '../localization/translate.dart';
 import '../utils/app_colors.dart';
@@ -110,7 +111,48 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 }
-
+class OrderDetailsAppBar extends GetView<OrderDetailsController>
+    implements PreferredSizeWidget {
+  final String title;
+  final Widget? bottom;
+  const OrderDetailsAppBar({
+    Key? key,
+    this.title = "",
+    this.bottom,
+  }) : super(key: key);
+  @override
+  Size get preferredSize => const Size.fromHeight(70);
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      bottom: PreferredSize(
+          preferredSize: preferredSize,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: bottom ?? const SizedBox(),
+          )),
+      backgroundColor: AppColors.highlighter,
+      iconTheme: IconThemeData(color: CustomThemes.appTheme.primaryColor),
+      elevation: 1,
+      centerTitle: true,
+      title: Padding(
+        padding: const EdgeInsets.only(top: 15.0),
+        child: CustomText(
+          title,
+          style: TextStyle(color: CustomThemes.appTheme.primaryColor),
+        ),
+      ),
+      leading: Visibility(
+        visible: Navigator.of(context).canPop(),
+        replacement: IconButton(
+          onPressed: () => controller.goToHomeAction(),
+          icon: const Icon(Icons.home,color: AppColors.primaryColor),
+        ),
+        child: const CustomBackButton(),
+      ),
+    );
+  }
+}
 class CustomAppBar extends GetView<CartController>
     implements PreferredSizeWidget {
   final String title;
