@@ -65,6 +65,8 @@ class CustomBorderButton extends StatelessWidget {
   final double iconSize;
   final EdgeInsets? padding;
   final double radius;
+  final double? fontSize;
+
   final bool isFixed;
   final Color? borderColor;
   const CustomBorderButton({
@@ -78,28 +80,32 @@ class CustomBorderButton extends StatelessWidget {
     this.icon,
     this.enabled,
     this.iconSize = 24,
+    this.fontSize = 16,
     this.radius = 5,
     this.isFixed = true,
-    this.borderColor, this.padding=const EdgeInsets.all(16.0),
+    this.borderColor,
+    this.padding = const EdgeInsets.all(16.0),
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
       onTap: enabled ?? true ? onTap : null,
       child: Container(
         alignment: Alignment.center,
         padding: padding,
         decoration: BoxDecoration(
           color: color,
-          border: Border.all(color: borderColor??Colors.transparent),
+          border: Border.all(color: borderColor ?? Colors.transparent),
           borderRadius: BorderRadius.circular(radius),
         ),
         child: CustomText(
           title,
           style: TextStyle(
             color: textColor ?? Colors.white,
-            fontSize: 16,
+            fontSize: fontSize ?? 16,
           ),
         ),
       ),

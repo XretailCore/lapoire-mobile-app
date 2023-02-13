@@ -1,13 +1,14 @@
 import 'package:cowpay/core/helpers/screen_size.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:imtnan/modules/choose_zone/controllers/choose_zone_controller.dart';
 import '../../modules/choose_zone/change_zone_dialogue.dart';
 import '../../modules/map/controllers/map_controller.dart';
 import '../localization/translate.dart';
 import '../utils/theme.dart';
 import 'custom_text.dart';
 
-class LocationWidget extends GetView<MapController> {
+class LocationWidget extends GetView<ZoneController> {
   final String pageName;
 
   const LocationWidget({Key? key, required this.pageName}) : super(key: key);
@@ -31,10 +32,11 @@ class LocationWidget extends GetView<MapController> {
             ),
             const SizedBox(width: 5),
             SizedBox(
-              width:
-                  controller.selectedAddress.value.isNotEmpty ? 0.25.sw : 0.0,
+              width: controller.selectedZone.value.name?.isNotEmpty ?? false
+                  ? 0.25.sw
+                  : 0.0,
               child: CustomText(
-                controller.selectedAddress.value,
+                controller.selectedZone.value.name,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   color: Color.fromRGBO(112, 112, 112, 1),

@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:get/get.dart';
+import 'package:imtnan/core/localization/custom_translations.dart';
+import 'package:imtnan/core/localization/lanaguages_enum.dart';
 import 'package:imtnan/core/utils/strings.dart';
 import 'package:imtnan/modules/home/controllers/home_controller.dart';
 import 'package:imtnan/modules/map/controllers/map_controller.dart';
@@ -20,9 +22,10 @@ class ZoneController extends GetxController with StateMixin<List<CityModel>> {
   }
 
   Future getZones() async {
-    final _prefs = Get.find<UserSharedPrefrenceController>();
+    final prefs = Get.find<UserSharedPrefrenceController>();
     change(null, status: RxStatus.loading());
     try {
+      feedbackMenu.clear();
       zonesList = await LinkTspApi.instance.lookUp.getZoneLookup();
       if (zonesList.isEmpty) {
         change(null, status: RxStatus.empty());
@@ -31,43 +34,48 @@ class ZoneController extends GetxController with StateMixin<List<CityModel>> {
           feedbackMenu
               .add(CityModel(id: zonesList[i].id, name: zonesList[i].name));
         }
-        selectedZone.value = _prefs.getCurrentZone ?? const CityModel();
-        selectedZone.value=feedbackMenu.firstWhere((element) => element.id ==selectedZone.value.id);
-        selectedZoneName.value = _prefs.getCurrentZone?.name == null
+        selectedZone.value = prefs.getCurrentZone ?? const CityModel();
+        selectedZone.value = feedbackMenu
+            .firstWhere((element) => element.id == selectedZone.value.id);
+        selectedZoneName.value = prefs.getCurrentZone?.name == null
             ? selectedZone.value.name ?? ''
-            : _prefs.getCurrentZone?.name ?? "";
+            : prefs.getCurrentZone?.name ?? "";
         change(zonesList, status: RxStatus.success());
       }
     } catch (e) {
       change(null, status: RxStatus.error());
     }
   }
+
   Future<void> onChangeZone(newValue) async {
     selectedZone.value = newValue as CityModel;
     selectedZoneName.value = newValue.name ?? '';
   }
+
   Future<void> onChooseZone(newValue) async {
     selectedZone.value = newValue as CityModel;
     selectedZoneName.value = newValue.name ?? '';
-    final _prefs = Get.find<UserSharedPrefrenceController>();
-    _prefs.setCurrentZone = selectedZone.value;
+    final prefs = Get.find<UserSharedPrefrenceController>();
+    prefs.setCurrentZone = selectedZone.value;
     await LinkTspApi.init(
-        admin: admin, domain: domain, zoneid: _prefs.getCurrentZone?.id);
+        admin: admin, domain: domain, zoneid: prefs.getCurrentZone?.id);
     Get.offAllNamed(Routes.dashboard);
   }
 
-
   Future<void> onSubmitNewZone({Function()? afterSubmitZoneAction}) async {
-    final _prefs = Get.find<UserSharedPrefrenceController>();
+    final prefs = Get.find<UserSharedPrefrenceController>();
     final mapController = Get.find<MapController>();
     final homeController = Get.find<HomeController>();
-
-    _prefs.setCurrentZone = selectedZone.value;
+    var languageId = prefs.getLanguage == Languages.en.name ? 1 : 2;
+    prefs.setCurrentZone = selectedZone.value;
     await LinkTspApi.init(
-        domain: domain, admin: admin, zoneid: _prefs.getCurrentZone?.id);
+        domain: domain,
+        admin: admin,
+        zoneid: prefs.getCurrentZone?.id,
+        lang: languageId);
     await homeController.getPageBlock();
     selectedZoneName.value = selectedZone.value.name ?? "";
-    mapController.selectedAddress.value=selectedZone.value.name ?? "";
+    mapController.selectedAddress.value = selectedZone.value.name ?? "";
     if (afterSubmitZoneAction != null) afterSubmitZoneAction();
     Get.back();
   }

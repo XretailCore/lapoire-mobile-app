@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:extended_image/extended_image.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:imtnan/core/components/custom_button.dart';
 import 'package:imtnan/core/components/custom_slider.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/lanaguages_enum.dart';
@@ -103,33 +105,21 @@ class HomeAdsWidget extends GetView<HomeController> {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    elevation: 0.0,
+                                SizedBox(
+                                  width: 100,
+                                  child: CustomBorderButton(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 25, vertical: 0),
-                                    backgroundColor: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                      side: BorderSide(
-                                        width: 2.0,
-                                        color:
-                                            CustomThemes.appTheme.primaryColor,
-                                      ),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    controller.goToListingWithId(
-                                        filterModel:
-                                            item.filterModel ?? FilterModel());
-                                  },
-                                  child: Text(
-                                    Translate.shopNow.tr,
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      color: CustomThemes.appTheme.primaryColor,
-                                    ),
+                                        horizontal: 15, vertical: 5),
+                                    title: Translate.shopNow.tr,
+                                    fontSize: 12,
+                                    textColor: AppColors.primaryColor,
+                                    borderColor: AppColors.primaryColor,
+                                    onTap: () {
+                                      controller.goToListingWithId(
+                                          filterModel: item.filterModel ??
+                                              FilterModel());
+                                    },
+                                    radius: 30.0,
                                   ),
                                 ),
                               ],

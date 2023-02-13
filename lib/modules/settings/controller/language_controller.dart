@@ -1,3 +1,4 @@
+import 'package:imtnan/modules/choose_zone/controllers/choose_zone_controller.dart';
 import 'package:imtnan/modules/dashboard/controller/dashboard_controller.dart';
 
 import '../../../core/localization/lanaguages_enum.dart';
@@ -26,7 +27,8 @@ class LanguageController extends GetxController {
       lang: getLanguageId(language.name),
     );
     userSharedPrefrenceController.setLanguage = language.name;
-
+    final zoneController = Get.find<ZoneController>();
+    await zoneController.getZones();
     final homeController = Get.find<HomeController>();
     final dashboardController = Get.find<DashboardController>();
     dashboardController.updateIndex(2);
