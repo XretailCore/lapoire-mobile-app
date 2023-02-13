@@ -5,6 +5,8 @@ Map<String, String> getEnglishTranslation() => {
       Translate.home.name: "Home",
       Translate.pleaseSelectStore.name: 'Please select a store',
       Translate.call.name: "Call",
+      Translate.thisOrderWillBeDeliveredTomorrow.name:
+      'This Order Will Be Delivered Tomorrow',
       Translate.collectFromStore.name: "Collect From Store",
       Translate.collectFromStoreMessage.name: "Collect From Store You can collect your order in 2 hours (when stores are open)",
       Translate.menu.name: "Menu",

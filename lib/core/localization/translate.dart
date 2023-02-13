@@ -4,6 +4,7 @@ enum Translate {
   appName,
   pleaseSelectStore,
   home,
+  thisOrderWillBeDeliveredTomorrow,
   call,
   collectFromStoreMessage,
   collectFromStore,

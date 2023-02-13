@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_guid/flutter_guid.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/modules/check_out/controllers/customer_location_controller.dart';
@@ -10,9 +9,10 @@ import '../../../core/localization/translate.dart';
 import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/helper_functions.dart';
 import '../../../core/utils/routes.dart';
-import '../../../core/utils/strings.dart';
 import 'checkout_confirmation_controller.dart';
+import 'credit_card_controller.dart';
 import 'customer_summary_controller.dart';
+import 'delivery_controller.dart';
 import 'locations.dart';
 import 'payment_controller.dart';
 
@@ -25,6 +25,7 @@ class ShippingInformationController extends GetxController
       Get.find<CustomerSummaryController>();
   final UserSharedPrefrenceController _userSharedPrefrenceController =
       Get.find<UserSharedPrefrenceController>();
+  final DeliveryController _deliveryController = Get.find<DeliveryController>();
   double amount = 0;
   CheckoutReviewModel checkoutReviewModel = CheckoutReviewModel();
 
@@ -104,27 +105,23 @@ class ShippingInformationController extends GetxController
     } else {
       try {
         openLoadingDialog(context);
-        generateGuid();
         final PaymentFrameModel paymentFrameModel =
-            await LinkTspApi.instance.checkOut.confirmOrderCowpay(
-          ccOrderId: merchantGuid,
+        await LinkTspApi.instance.checkOut.confirmOrder(
           paymentOptionId: paymentMethodId,
-          addressId: Locations.locationId,
+          addressId: Locations.locationId ?? 0,
+          zoneID: _userSharedPrefrenceController.getCurrentZone?.id,
           loyaltyPoints:
-              int.tryParse(_customerSummaryController.pointTEC.text) ?? 0,
+          int.tryParse(_customerSummaryController.pointTEC.text) ?? 0,
           finalAmount: amount,
           storeId: Locations.storeId ?? 0,
           customerId: _userSharedPrefrenceController.getUserId!,
-          shipmentMethods: "HomeDelivery",
-          zoneID: _customerLocationController.selectedZoneId,
+          shipmentMethods: _deliveryController.selectedShipmentMethods??"",
         );
         Get.back();
-        Get.toNamed(Routes.creditCardScreen, arguments: {
-          Arguments.paymentFrameModel: paymentFrameModel,
-          Arguments.paymentOptionId: paymentMethodId,
-          Arguments.finalAmount: amount,
-          Arguments.merchantGuid: merchantGuid
-        });
+
+        final creditCardController = Get.find<CreditCardController>();
+        creditCardController.paymentModel = paymentFrameModel;
+        Get.toNamed(Routes.creditCardScreen);
       } on ExceptionApi catch (e) {
         Get.back();
         ScaffoldMessenger.of(context).showSnackBar(
