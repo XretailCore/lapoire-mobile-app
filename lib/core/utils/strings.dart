@@ -10,7 +10,7 @@ const String currency = 'EGP',
     appUrl = "https://imtenan.page.link/start",
     appUrlIOs = "itms-apps://itunes.apple.com/app/id$appIdIOs";
 // Live Domain
-const String liveDomain = "https://mobile.imtenan.com";
+const String liveDomain = "http://193.42.121.138:5002";
 // Test Domain
 const String testDomain = "http://193.42.121.138:5002";
 

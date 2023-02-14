@@ -134,56 +134,58 @@ class InnerProductScreen extends GetView<InnerProductController> {
                           ],
                         ),
                       ),
-                      Obx(
-                        () => Stack(
-                          children: [
-                            CustomSlider(
-                              pageIndex: controller.pageIndex.value,
-                              onPageChanged: (index, reason) {
-                                controller.updateIndex(index);
-                              },
-                              isInner: true,
-                              showTitleAndButton: false,
-                              indicatorColor: AppColors.redColor,
-                              ratio: 1.15,
-                              showIndicator: true,
-                              sliderImages: [
-                                for (var image
-                                    in product!.selectedProductSku.images)
-                                  Image.network(image?.url ?? ""),
-                              ],
+                      Stack(
+                        children: [
+                          product!.selectedProductSku.images.isEmpty
+                              ? Image.asset("assets/images/logo_white.png")
+                              : Obx(
+                                  () => CustomSlider(
+                                    pageIndex: controller.pageIndex.value,
+                                    onPageChanged: (index, reason) {
+                                      controller.updateIndex(index);
+                                    },
+                                    isInner: true,
+                                    showTitleAndButton: false,
+                                    indicatorColor: AppColors.redColor,
+                                    ratio: 1.15,
+                                    showIndicator: true,
+                                    sliderImages: [
+                                      for (var image
+                                          in product!.selectedProductSku.images)
+                                        Image.network(image?.url ?? ""),
+                                    ],
+                                  ),
+                                ),
+                          PositionedDirectional(
+                            start: 30,
+                            top: 30,
+                            child: Offstage(
+                              offstage: controller.isNotHaveDiscount(),
+                              child: OfferBannerWidget(
+                                size: 60,
+                                textColor: Colors.white,
+                                backgroundColor: AppColors.redColor,
+                                offerText: controller.isHaveDiscount()
+                                    ? ((product?.selectedProductSku.discounts
+                                            .first?.value) ??
+                                        '')
+                                    : '',
+                              ),
                             ),
-                            PositionedDirectional(
-                              start: 30,
-                              top: 30,
-                              child: Offstage(
-                                offstage: controller.isNotHaveDiscount(),
-                                child: OfferBannerWidget(
+                          ),
+                          PositionedDirectional(
+                            end: 30,
+                            top: 30,
+                            child: Offstage(
+                              offstage: (product?.promoText ?? '').isEmpty,
+                              child: OfferBannerWidget(
                                   size: 60,
                                   textColor: Colors.white,
-                                  backgroundColor: AppColors.redColor,
-                                  offerText: controller.isHaveDiscount()
-                                      ? ((product.selectedProductSku.discounts
-                                              .first?.value) ??
-                                          '')
-                                      : '',
-                                ),
-                              ),
+                                  backgroundColor: AppColors.primaryColor,
+                                  offerText: (product?.promoText) ?? ''),
                             ),
-                            PositionedDirectional(
-                              end: 30,
-                              top: 30,
-                              child: Offstage(
-                                offstage: (product.promoText ?? '').isEmpty,
-                                child: OfferBannerWidget(
-                                    size: 60,
-                                    textColor: Colors.white,
-                                    backgroundColor: AppColors.primaryColor,
-                                    offerText: (product.promoText) ?? ''),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

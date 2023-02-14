@@ -176,8 +176,6 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
   Future<void> increase(int skuid, int qty, BuildContext context) async {
     if (userId != null) {
       qty++;
-      openLoadingDialog(context);
-
       updateCart(skuid, qty);
     } else {
       openLoadingDialog(context);
