@@ -6,14 +6,18 @@ import 'package:imtnan/core/utils/app_colors.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/routes.dart';
+import '../../../core/utils/shipment_methods.dart';
 import '../controllers/customer_location_controller.dart';
 import '../controllers/customer_summary_controller.dart';
+import '../controllers/delivery_controller.dart';
 import '../widgets/custom_stepper_widget.dart';
 
 class CheckoutOptionsScreen extends GetView<CustomerLocationController> {
   CheckoutOptionsScreen({Key? key}) : super(key: key);
   final CustomerSummaryController customerSummaryController =
       Get.find<CustomerSummaryController>();
+  final DeliveryController deliveryController =
+  Get.find<DeliveryController>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +32,7 @@ class CheckoutOptionsScreen extends GetView<CustomerLocationController> {
           const SizedBox(height: 24),
           ListTile(
               onTap: (){
+                deliveryController.selectedShipmentMethods = ShipmentMethods.pickAtStore;
                 Get.toNamed(Routes.storesLocationScreen);
               },
             title: CustomText(Translate.collectFromStore.tr),
@@ -44,6 +49,7 @@ class CheckoutOptionsScreen extends GetView<CustomerLocationController> {
           const DottedLine(dashColor: AppColors.redColor),
           ListTile(
             onTap: (){
+              deliveryController.selectedShipmentMethods = ShipmentMethods.homeDelivery;
               Get.toNamed(Routes.customerLocationsScreen);
             },
             title: CustomText(Translate.homeDelivery.tr),

@@ -12,7 +12,7 @@ import '../../../core/utils/shipment_methods.dart';
 import '../../cart/controllers/cart_controller.dart';
 
 class DeliveryController extends GetxController {
-  String? selectedShipmentMethods;
+  String? selectedShipmentMethods=ShipmentMethods.homeDelivery;
   final UserSharedPrefrenceController _userSharedPrefrenceController =
       Get.find<UserSharedPrefrenceController>();
 
@@ -52,7 +52,7 @@ class DeliveryController extends GetxController {
         HelperFunctions.showSnackBar(
             message: alertMessage, context: Get.context!);
       } else {
-        Get.toNamed(Routes.customerLocationsScreen);
+        Get.toNamed(Routes.checkOutOptionsScreen);
       }
     } on ExceptionApi catch (e) {
       HelperFunctions.showSnackBar(

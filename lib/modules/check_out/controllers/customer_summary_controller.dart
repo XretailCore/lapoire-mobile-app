@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linktsp_api/data/exception_api.dart';
 import 'package:linktsp_api/linktsp_api.dart';
-
 import '../../../core/components/custom_loaders.dart';
 import '../../../core/utils/custom_shared_prefrenece.dart';
-import '../../../core/utils/shipment_methods.dart';
 import 'delivery_controller.dart';
 import 'locations.dart';
 import 'payment_controller.dart';
@@ -19,25 +17,22 @@ class CustomerSummaryController extends GetxController
   final DeliveryController _deliveryController = Get.find<DeliveryController>();
   String? errorCoupon, errorloyelty;
   int? userId;
-  final UserSharedPrefrenceController _userSharedPrefrenceController =
-      Get.find<UserSharedPrefrenceController>();
 
+  @override
+  void onInit() {
+    super.onInit();
+    userId = Get.find<UserSharedPrefrenceController>().getUserId;
+  }
   Future<void> getSummaryData() async {
     change(null, status: RxStatus.loading());
-    if (Locations.locationId == null) {
-      change(null, status: RxStatus.empty());
-      return;
-    }
     try {
-      if (_userSharedPrefrenceController.isUser) {
-        userId = _userSharedPrefrenceController.getUserId;
-
+      if (userId != null) {
         final checkouCartSummaryModel =
-            await LinkTspApi.instance.checkOut.chehckoutCartSummary(
+        await LinkTspApi.instance.checkOut.chehckoutCartSummary(
           addressId: Locations.locationId,
           storeId: Locations.storeId,
           customerId: userId!,
-          shipmentMethods: ShipmentMethods.homeDelivery,
+          shipmentMethods: _deliveryController.selectedShipmentMethods,
         );
 
         change(checkouCartSummaryModel, status: RxStatus.success());
@@ -48,7 +43,6 @@ class CustomerSummaryController extends GetxController
       change(null, status: RxStatus.error(e.message));
     } catch (e) {
       change(null, status: RxStatus.error(e.toString()));
-      printInfo(info: e.toString());
     }
   }
 

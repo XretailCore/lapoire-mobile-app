@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:imtnan/modules/check_out/controllers/payment_controller.dart';
 import 'package:linktsp_api/data/exception_api.dart';
 import '../../../core/utils/helper_functions.dart';
 import '../../../core/utils/strings.dart';
@@ -113,6 +114,9 @@ RxInt toggleValue=0.obs;
         HelperFunctions.showSnackBar(
             message: alertMessage, context: Get.context!);
       } else {
+        final PaymentController paymentController =
+        Get.find<PaymentController>();
+        paymentController.onInit();
         Get.toNamed(Routes.paymentScreen);
       }
     } on ExceptionApi catch (e) {

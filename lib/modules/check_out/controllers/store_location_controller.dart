@@ -1,3 +1,5 @@
+import 'package:imtnan/modules/check_out/controllers/payment_controller.dart';
+
 import '../../../core/components/custom_loaders.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/custom_shared_prefrenece.dart';
@@ -17,6 +19,7 @@ import 'customer_summary_controller.dart';
 class StoreLocationController extends GetxController
     with StateMixin<List<StoreModel>?> {
   late final CustomerSummaryController _customerSummaryController;
+
   @override
   void onInit() {
     super.onInit();
@@ -25,7 +28,7 @@ class StoreLocationController extends GetxController
     Locations.locationId = null;
     _customerSummaryController = Get.find<CustomerSummaryController>();
     final UserSharedPrefrenceController userSharedPrefrenceController =
-    Get.find<UserSharedPrefrenceController>();
+        Get.find<UserSharedPrefrenceController>();
     getStores(position: userSharedPrefrenceController.getCurrentLocation);
     HelperFunctions.vibrate();
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -68,7 +71,8 @@ class StoreLocationController extends GetxController
     openLoadingDialog(context);
     await _customerSummaryController.getSummaryData();
     Get.back();
-
+    final paymentController = Get.find<PaymentController>();
+    await paymentController.init();
     Get.toNamed(Routes.paymentScreen);
   }
 }

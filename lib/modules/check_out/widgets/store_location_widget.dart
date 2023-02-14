@@ -39,6 +39,9 @@ class StoreLocationWidget extends StatelessWidget {
           children: [
             Radio<bool>(
               value: true,
+              activeColor: AppColors.primaryColor,
+              fillColor: MaterialStateColor.resolveWith(
+                      (states) => Theme.of(context).primaryColor),
               groupValue: isSelected,
               onChanged: (v) {
                 onTap();

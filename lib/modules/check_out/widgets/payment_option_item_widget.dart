@@ -31,12 +31,12 @@ class _PaymentOptionItemWidgetState extends State<PaymentOptionItemWidget> {
           itemCount: widget.payments.length,
           separatorBuilder: (context, index) => const SizedBox(height: 5),
           itemBuilder: (_, index) {
-            final payment = widget.payments.elementAt(index);
+            final payment =widget.payments.elementAt(index);
             return Column(
               children: [
                 PaymentOptionWidget(
                   payment: payment,
-                  isSelected: selectedIndex == payment.id!-1,
+                  isSelected: selectedIndex == payment.id!-1 || widget.payments.length==1,
                   showRadioButton: true,
                   onTap: () {
                     setState(() {
@@ -79,7 +79,7 @@ class PaymentOptionWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children: [
             Expanded(
@@ -106,7 +106,7 @@ class PaymentOptionWidget extends StatelessWidget {
                   children: [
                     CustomText(
                       payment.title ?? '',
-                      style: const TextStyle(fontWeight: FontWeight.w400),
+                      style: const TextStyle(fontWeight: FontWeight.w400,fontSize: 14),
                     ),
                     Offstage(
                       offstage: payment.additionalFees == null,
@@ -133,7 +133,7 @@ class PaymentOptionWidget extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
               child: const FaIcon(FontAwesomeIcons.check,
-                  color: Colors.white, size: 20),
+                  color: Colors.white, size: 15),
             ),
           ],
         ),

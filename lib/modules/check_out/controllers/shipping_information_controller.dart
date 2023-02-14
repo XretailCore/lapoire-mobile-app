@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_guid/flutter_guid.dart';
 import 'package:get/get.dart';
-import 'package:imtnan/modules/check_out/controllers/customer_location_controller.dart';
 import 'package:linktsp_api/data/exception_api.dart';
 import 'package:linktsp_api/linktsp_api.dart';
 import '../../../core/components/custom_loaders.dart';
@@ -48,7 +47,7 @@ class ShippingInformationController extends GetxController
               int.tryParse(_customerSummaryController.pointTEC.text) ?? 0,
           pickStoreID: Locations.storeId,
           customerId: _userSharedPrefrenceController.getUserId!,
-          shipmentMethods: "HomeDelivery",
+          shipmentMethods: _deliveryController.selectedShipmentMethods??"",
           version: 3,
         );
         amount = checkoutReviewModel.total ?? 0;
@@ -63,7 +62,6 @@ class ShippingInformationController extends GetxController
 
   void confirm(context) async {
     final paymentMethodId = _paymentController.paymentOptionId;
-    var _customerLocationController = Get.find<CustomerLocationController>();
     if (paymentMethodId == 1) {
       try {
         openLoadingDialog(context);
@@ -76,7 +74,7 @@ class ShippingInformationController extends GetxController
             finalAmount: amount,
             storeId: Locations.storeId ?? 0,
             customerId: _userSharedPrefrenceController.getUserId!,
-            shipmentMethods: "HomeDelivery",
+            shipmentMethods: _deliveryController.selectedShipmentMethods??"",
             zoneID: _userSharedPrefrenceController.getCurrentZone?.id,
           );
           final confirmationController =

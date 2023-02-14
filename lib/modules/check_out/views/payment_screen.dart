@@ -4,6 +4,7 @@ import '../../../core/components/custom_appbar.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/routes.dart';
 import '../controllers/customer_summary_controller.dart';
 import '../controllers/payment_controller.dart';
 import '../widgets/checkout_summary_widget.dart';
@@ -91,7 +92,7 @@ class PaymentScreen extends GetView<PaymentController> {
                 const SizedBox(height: 10),
                 CheckoutSummaryWidget(
                   onTapNext: (isPreOrder) {
-                    controller.nextBtnAction();
+                    Get.toNamed(Routes.summaryScreen);
                   },
                 ),
               ],
