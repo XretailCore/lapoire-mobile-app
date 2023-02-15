@@ -49,15 +49,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
-  api_manager:
-    dependency: transitive
-    description:
-      path: "."
-      ref: "v1.0.2"
-      resolved-ref: "1e4821708c59944307256e65550f3d680d93ea61"
-      url: "https://github.com/m0h2medtalaat/api_manager"
-    source: git
-    version: "0.0.1"
   archive:
     dependency: transitive
     description:
@@ -106,14 +97,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
-  bloc:
-    dependency: transitive
-    description:
-      name: bloc
-      sha256: "6f1b87b6eca9041d5672b6e29273cd1594db48ebb66fd2471066e9f3c3a516bd"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.2.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -330,13 +313,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.4"
-  cowpay:
-    dependency: "direct main"
-    description:
-      path: "../cow_payment_sdk"
-      relative: true
-    source: path
-    version: "1.0.0"
   crypto:
     dependency: transitive
     description:
@@ -377,14 +353,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.3"
-  dartz:
-    dependency: transitive
-    description:
-      name: dartz
-      sha256: e6acf34ad2e31b1eb00948692468c30ab48ac8250e0f0df661e29f12dd252168
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.10.1"
   dbus:
     dependency: transitive
     description:
@@ -397,18 +365,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "7d328c4d898a61efc3cd93655a0955858e29a0aa647f0f9e02d59b3bb275e2e8"
+      sha256: "9fdbf71baeb250fc9da847f6cb2052196f62c19906a3657adfc18631a667d316"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.6"
-  dio_logger:
-    dependency: transitive
-    description:
-      name: dio_logger
-      sha256: cbb04b6216d8ad3944cdfbde2801e1e292fc44da49f2d0c746636e30a2c82dbf
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.8+8"
+    version: "5.0.0"
   dots_indicator:
     dependency: "direct main"
     description:
@@ -441,14 +401,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
-  equatable:
-    dependency: transitive
-    description:
-      name: equatable
-      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.5"
   extended_image:
     dependency: "direct main"
     description:
@@ -578,18 +530,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_animate
-      sha256: "3cb5eb80827abb48e362a9f29f7ba4e1b0edba6b2e2f35b1d350b6ef069bb547"
+      sha256: "660b7f53311078ad5cec7868caf065cac6d1e786be832f7a1085b9dd90cec058"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.0"
-  flutter_bloc:
-    dependency: transitive
-    description:
-      name: flutter_bloc
-      sha256: cdd1351ced09eeb46cfa7946e095b7679344af927415ca9cd972928fa6d5b23f
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.3.3"
+    version: "4.0.0"
   flutter_blurhash:
     dependency: transitive
     description:
@@ -853,14 +797,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
-  formz:
-    dependency: transitive
-    description:
-      name: formz
-      sha256: ed92f501f4a44b1da9137a025007df773b3732147b413c464158ecd997612ab6
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.4.1"
   freezed:
     dependency: "direct dev"
     description:
@@ -1484,14 +1420,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.8+1"
-  pretty_dio_logger:
-    dependency: transitive
-    description:
-      name: pretty_dio_logger
-      sha256: "948f7eeb36e7aa0760b51c1a8e3331d4b21e36fabd39efca81f585ed93893544"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.0-beta-1"
   process:
     dependency: transitive
     description:

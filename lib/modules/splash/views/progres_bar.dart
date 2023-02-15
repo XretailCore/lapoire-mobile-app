@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:cowpay/core/helpers/screen_size.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../core/components/custom_text.dart';

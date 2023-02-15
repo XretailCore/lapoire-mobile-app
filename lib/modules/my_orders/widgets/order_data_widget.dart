@@ -1,5 +1,5 @@
-import 'package:cowpay/core/helpers/screen_size.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:imtnan/core/components/custom_button.dart';
 import 'package:imtnan/core/localization/translate.dart';
 import 'package:linktsp_api/linktsp_api.dart';
@@ -53,7 +53,8 @@ class OrderDataWidget extends StatelessWidget {
                     title: Translate.orderDetails.tr,
                     color: AppColors.redColor,
                     radius: 20.0,
-                    padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 16.0),
                     onTap: orderDetailsAction,
                   ),
                 ),
@@ -65,7 +66,8 @@ class OrderDataWidget extends StatelessWidget {
                     color: Colors.white,
                     borderColor: CustomThemes.appTheme.primaryColor,
                     radius: 20.0,
-                    padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 16.0),
                     onTap: trackOrderAction,
                     textColor: CustomThemes.appTheme.primaryColor,
                   ),

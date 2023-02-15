@@ -1,4 +1,3 @@
-import 'package:cowpay/core/helpers/screen_size.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

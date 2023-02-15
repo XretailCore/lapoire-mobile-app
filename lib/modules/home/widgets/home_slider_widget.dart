@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cowpay/core/helpers/screen_size.dart';
 import 'package:extended_image/extended_image.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:imtnan/core/components/custom_button.dart';
 import '../../../core/components/custom_slider.dart';
 import '../../../core/components/custom_text.dart';
@@ -24,7 +24,7 @@ class HomeAd extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final language=  Get.find<UserSharedPrefrenceController>().getLanguage;
+    final language = Get.find<UserSharedPrefrenceController>().getLanguage;
     final List<Widget> sliderImages = items.isEmpty
         ? []
         : List.generate(
@@ -64,7 +64,9 @@ class HomeAd extends GetView<HomeController> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.white,
-                            fontFamily: language == Languages.ar.name ?'Cairo':"Bayshore",
+                            fontFamily: language == Languages.ar.name
+                                ? 'Cairo'
+                                : "Bayshore",
                             fontSize: 36),
                       ),
                     ),
@@ -77,7 +79,8 @@ class HomeAd extends GetView<HomeController> {
                       child: SizedBox(
                         width: 150.0,
                         child: CustomBorderButton(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 16),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 16),
                           title: Translate.orderNow.tr,
                           color: Colors.white,
                           radius: 30.0,

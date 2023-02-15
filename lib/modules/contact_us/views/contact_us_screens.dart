@@ -1,4 +1,4 @@
-import 'package:cowpay/core/helpers/screen_size.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:imtnan/core/components/custom_appbar.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';

@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\flutter"
-export "FLUTTER_APPLICATION_PATH=C:\Users\mohamed.gamal\StudioProjects\lapoire"
+export "FLUTTER_ROOT=/Users/linktsp/Documents/development/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/linktsp/Documents/development/lapoire-mobile-app"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.3"

@@ -15,7 +15,7 @@ dependencies:
   connectivity_alert_widget: ^2.0.0+2
   animated_bottom_navigation_bar: ^1.1.0+1
   cupertino_icons: ^1.0.2
-  dio: ^4.0.6
+  dio: ^5.0.0
   dots_indicator: ^2.0.0
   dotted_border: any
   dotted_line: ^3.1.0
@@ -62,18 +62,16 @@ dependencies:
   url_launcher: ^6.0.4
   webview_flutter: ^3.0.2
   sign_in_with_apple: ^4.1.0
-  cowpay:
-    path: ../cow_payment_sdk
   flutter_guid: ^0.3.1
   facebook_app_events: ^0.18.3
   open_store: ^0.5.0
   firebase_core: ^2.5.0
   flutter_phone_direct_caller: ^2.1.1
-  flutter_animate: ^3.1.0
+  flutter_animate: ^4.0.0
   extended_image: ^7.0.1
   popover: ^0.2.8
   uni_links: ^0.5.1
-  dropdown_search: ^2.0.0
+  dropdown_search: ^2.0.0 
   fluttertoast: ^8.1.2
 
   
