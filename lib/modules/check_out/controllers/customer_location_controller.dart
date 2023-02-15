@@ -19,8 +19,6 @@ class CustomerLocationController extends GetxController
   final Rx<bool> _isAddressEmpty = Rx<bool>(true);
 RxInt toggleValue=0.obs;
   bool get isAddressEmpty => _isAddressEmpty.value;
-  final UserSharedPrefrenceController _userSharedPrefrenceController =
-      Get.find<UserSharedPrefrenceController>();
   int? selectedZoneId = 0;
 
   @override
@@ -40,11 +38,8 @@ RxInt toggleValue=0.obs;
 
       if (isUser) {
         final customerId = _userSharedPrefrenceController.getUserId;
-// TODO : uncomment below comment when change imtenan to multi store
         final addresses = await LinkTspApi.instance.address
             .getShipmentAddresses(customId: customerId!);
-//         final addresses = await LinkTspApi.instance.address
-//             .getAddressBook(customId: customerId!);
         _setDefaultLocation(addresses: addresses);
         _isAddressEmpty.value = addresses.isEmpty;
         change(addresses, status: RxStatus.success());
@@ -98,27 +93,11 @@ RxInt toggleValue=0.obs;
   }
 
   void nextAction() async {
-    String alertMessage = '';
-
     try {
-      final cartValidate = await LinkTspApi.instance.multiStore.cartValidate(
-          customerID: _userSharedPrefrenceController.getUserId!,
-          addressId: Locations.locationId ?? 0);
-      if (cartValidate.alertMessage != null) {
-        for (var i = 0; i < cartValidate.storeCartItems!.length; i++) {
-          if (cartValidate.storeCartItems?[i].status != 1) {
-            alertMessage +=
-                "${cartValidate.storeCartItems?[i].title} : ${cartValidate.storeCartItems?[i].message} ";
-          }
-        }
-        HelperFunctions.showSnackBar(
-            message: alertMessage, context: Get.context!);
-      } else {
         final PaymentController paymentController =
         Get.find<PaymentController>();
         paymentController.onInit();
         Get.toNamed(Routes.paymentScreen);
-      }
     } on ExceptionApi catch (e) {
       HelperFunctions.showSnackBar(
           message: e.toString(), context: Get.context!);

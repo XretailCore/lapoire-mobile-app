@@ -15,7 +15,7 @@ Map<String, String> getEnglishTranslation() => {
           "Orders are delivered in 1 to 3 working hours",
       Translate.openingHours.name: "Opening Hours",
       Translate.viewMap.name: "View Map",
-      Translate.wishlist.name: "Wish List",
+      Translate.wishlist.name: "WishList",
       Translate.subtotal.name: "Subtotal",
       Translate.shopNow.name: "Shop Now",
       Translate.categories.name: "Categories",

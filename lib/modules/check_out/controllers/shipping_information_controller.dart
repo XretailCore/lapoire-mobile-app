@@ -42,7 +42,7 @@ class ShippingInformationController extends GetxController
       if (_userSharedPrefrenceController.isUser) {
         checkoutReviewModel = await LinkTspApi.instance.checkOut.checkoutReview(
           paymentOptionId: _paymentController.paymentOptionId,
-          addressId: Locations.locationId,
+          addressId: Locations.locationId??0,
           loyaltyPoints:
               int.tryParse(_customerSummaryController.pointTEC.text) ?? 0,
           pickStoreID: Locations.storeId,

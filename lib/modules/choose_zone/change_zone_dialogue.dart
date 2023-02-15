@@ -195,13 +195,20 @@ class ChangeZoneWidget extends GetView<ZoneController> {
                   ],
                 ),
                 const SizedBox(height: 15),
-                CustomBorderButton(
-                  title: Translate.submit.tr,
-                  color: AppColors.primaryColor,
-                  radius: 30.0,
-                  onTap: () => controller.onSubmitNewZone(
-                      afterSubmitZoneAction: afterSubmitZoneAction),
-                )
+                Obx(()=> Column(
+                  children: [
+                    CustomBorderButton(
+                        title: Translate.submit.tr,
+                        color:controller.selectedZone.value.id == null?Colors.grey: AppColors.primaryColor,
+                        radius: 30.0,
+                        onTap: controller.selectedZone.value.id == null
+                            ? null
+                            : () => controller.onSubmitNewZone(
+                                afterSubmitZoneAction: afterSubmitZoneAction),
+                      ),
+                  ],
+                ),
+                ),
               ],
             ),
           ],

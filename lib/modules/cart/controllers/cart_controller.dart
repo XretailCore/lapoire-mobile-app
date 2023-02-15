@@ -3,17 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:linktsp_api/data/exception_api.dart';
 import 'package:linktsp_api/linktsp_api.dart' hide Size;
-
 import '../../../core/components/custom_loaders.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/helper_functions.dart';
 import '../../../core/utils/routes.dart';
 import '../../check_out/controllers/customer_summary_controller.dart';
-import '../../check_out/controllers/delivery_controller.dart';
 import '../../check_out/controllers/locations.dart';
 import '../../content/controllers/pre_booking_policy_controller.dart';
-import '../../content/view/pre_booking_poilcy_widget.dart';
 
 class CartController extends GetxController with StateMixin<CartSummaryModel?> {
   int? userId;
@@ -71,32 +68,6 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
       } catch (e) {
         change(null, status: RxStatus.error());
       }
-      final preBookingProducts = cartSummaryResult.value.items
-              ?.where((element) => element.preOrder ?? false) ??
-          [];
-      if (preBookingProducts.isNotEmpty) {
-        await Get.defaultDialog(
-              radius: 4,
-              title: Translate.prebookingPolicy.tr,
-              titleStyle: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontWeight: FontWeight.w700),
-              content: const PreBookingPolicyWidget(),
-            ) ??
-            false;
-        final preBookingPolicyController =
-            Get.find<PreBookingPolicyController>();
-        final isAgree = preBookingPolicyController.isAgree;
-        if (!isAgree) {
-          return;
-        }
-      }
-      final DeliveryController deliveryController =
-          Get.find<DeliveryController>();
-
-      await deliveryController.goToCustomerLocation(
-        Get.context!,
-      );
     } else {
       Get.toNamed(Routes.sign);
     }

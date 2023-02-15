@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/core/components/custom_appbar.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
+import '../../../core/components/custom_error_widget.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/routes.dart';
@@ -76,6 +77,9 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
                   child: CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
                   ),
+                ),
+                onError: (e) => CustomErrorWidget(
+                  errorText: e,
                 ),
               ),
             ),
