@@ -23,6 +23,7 @@ class ProductCardWidget extends StatelessWidget {
   final bool? showFavorite;
   final bool showDashedLine;
   final bool? isCart;
+  final bool? isReview;
   final String? size;
   final String? color;
   final Color? cardColor;
@@ -77,7 +78,7 @@ class ProductCardWidget extends StatelessWidget {
     this.onAddFeedBack,
     this.hideButtonsRow = false,
     this.isPreOrder = false,
-    this.showDashedLine = false, this.cardColor,
+    this.showDashedLine = false, this.cardColor, this.isReview=false,
   }) : super(key: key);
 
   @override
@@ -109,6 +110,7 @@ class ProductCardWidget extends StatelessWidget {
         child: Visibility(
           visible: !isHorizontal,
           replacement: HorizontalProductCard(
+            isReview:isReview,
             showDashedLine: showDashedLine,
             productId: productId,
             productName: productName,

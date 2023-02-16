@@ -24,6 +24,7 @@ class HorizontalProductCard extends StatelessWidget {
   final double? price;
   final double? oldPrice;
   final bool? hasOffer;
+  final bool? isReview;
   final bool? showFavorite;
   final bool? isCart;
   final String size;
@@ -72,6 +73,7 @@ class HorizontalProductCard extends StatelessWidget {
     this.bogoText = '',
     this.promoText = '',
     this.showDashedLine = true,
+    this.isReview = false,
   }) : super(key: key);
 
   @override
@@ -202,7 +204,7 @@ class HorizontalProductCard extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),
-                                SizedBox(height: size.isEmpty ? 0 : 5),
+                                const SizedBox(height: 5),
                                 price == 0
                                     ? CustomText(
                                         Translate.freeGift.tr,
@@ -261,7 +263,7 @@ class HorizontalProductCard extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                if (count == null || isCart!)
+                                if ((count == null || isCart!) && !isReview!)
                                   isAvailable
                                       ? CustomText(
                                           Translate.inStock.tr,
@@ -346,9 +348,9 @@ class HorizontalProductCard extends StatelessWidget {
                           glowColor: primaryColor,
                           unratedColor: primaryColor,
                           ratingWidget: RatingWidget(
-                            full:  Icon(Icons.star, color: primaryColor),
-                            half:  Icon(Icons.star_half, color: primaryColor),
-                            empty:  Icon(Icons.star_border, color: primaryColor),
+                            full: Icon(Icons.star, color: primaryColor),
+                            half: Icon(Icons.star_half, color: primaryColor),
+                            empty: Icon(Icons.star_border, color: primaryColor),
                           ),
                         ),
                       SizedBox(height: count == null ? 0 : 5),

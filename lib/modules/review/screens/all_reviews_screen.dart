@@ -36,6 +36,7 @@ class AllReviwesScreen extends GetView<AllReviewsController> {
                         padding: const EdgeInsets.all(10.0),
                         child: ProductCardWidget(
                           elevation: 0,
+                          isReview:true,
                           productId: controller
                               .productDetailsModel!.selectedProductSku.id!,
                           isHorizontal: true,
