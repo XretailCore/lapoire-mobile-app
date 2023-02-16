@@ -10,6 +10,8 @@ enum Translate {
   collectFromStore,
   homeDeliveryMessage,
   viewMap,
+  showMore,
+  showLess,
   openingHours,
   menu,
   wishlist,

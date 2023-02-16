@@ -14,6 +14,8 @@ Map<String, String> getArabicTranslation() => {
           "يتم تسليم الطلبات من 1 إلى 3 ساعات عمل",
       Translate.openingHours.name: "ساعات العمل",
       Translate.viewMap.name: "إعرض الموقع",
+      Translate.showLess.name: 'عرض أقل',
+      Translate.showMore.name: 'عرض المزيد',
       Translate.pleaseSelectStore.name: 'الرجاء تحديد المتجر',
       Translate.wishlist.name: "المفضلة",
       Translate.subtotal.name: "المجموع الجزئي",

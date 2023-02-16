@@ -29,6 +29,8 @@ Map<String, String> getEnglishTranslation() => {
       Translate.settings.name: "Settings",
       Translate.aboutUs.name: "About Us",
       Translate.contactUs.name: "Contact Us",
+      Translate.showLess.name: 'Show less',
+      Translate.showMore.name: 'Show more',
       Translate.stores.name: "Stores",
       Translate.privacyPolicy.name: "Privacy Policy",
       Translate.deliveryAndReturnPolicy.name: "Delivery And Return Policy",

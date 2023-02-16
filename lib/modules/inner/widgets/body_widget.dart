@@ -5,6 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/core/utils/theme.dart';
 import 'package:linktsp_api/linktsp_api.dart' hide Size;
+import 'package:readmore/readmore.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/components/expansion_tile_widget.dart';
 import '../../../core/components/quantity_widget.dart';
@@ -147,19 +148,6 @@ class _BodyWidgetState extends State<BodyWidget> {
                   ),
                 ],
               ),
-              const SizedBox(height: 5),
-              Row(
-                children: [
-                  CustomText(
-                    '${Translate.productCode.tr.toUpperCase()} : ',
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                  CustomText(
-                    '${widget.selectdProduct?.code}',
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                ],
-              ),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -258,38 +246,58 @@ class _BodyWidgetState extends State<BodyWidget> {
             ],
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         Obx(
           () => Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              widget.selectdProduct!.description!.isNotEmpty
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: CustomText(
+                        Translate.ingredients.tr.toUpperCase(),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: AppColors.redColor,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        softWrap: true,
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+              SizedBox(
+                  height:
+                  widget.selectdProduct!.description!.isNotEmpty ? 8.0 : 0.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: CustomText(
-                  Translate.ingredients.tr.toUpperCase(),
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: AppColors.redColor,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  softWrap: true,
-                ),
-              ),
-              const SizedBox(height: 8.0),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: CustomText(
+                child: ReadMoreText(
                   widget.selectdProduct?.description ?? '',
+                  trimLines: 3,
+                  trimMode: TrimMode.Line,
+                  trimCollapsedText: ' ${Translate.showMore.tr}',
+                  trimExpandedText: ' ${Translate.showLess.tr}',
+                  moreStyle: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.redColor,
+                  ),
+                  lessStyle: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.redColor,
+                  ),
+                  textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
                     color: primaryColor,
                   ),
-                  softWrap: true,
                 ),
               ),
-              const SizedBox(height: 16.0),
+              SizedBox(
+                  height:
+                  widget.selectdProduct!.description!.isNotEmpty? 16.0 : 0.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: CustomText(
