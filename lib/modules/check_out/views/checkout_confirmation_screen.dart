@@ -16,28 +16,45 @@ class CheckoutConfirmationScreen
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       backgroundColor: AppColors.highlighter,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColors.highlighter,
-      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const SizedBox(height: 20),
             SvgPicture.asset('assets/images/confirm-image.svg',color: AppColors.redColor),
-            const SizedBox(height: 20),
-            CustomText(
-              Translate.yourOrderHasBeenPlaced.tr,
-              textAlign: TextAlign.center,
-              softWrap: true,
-              style: TextStyle(
-                fontSize: 20,
-                color: primaryColor,
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CustomText(
+                  Translate.yourOrderHasBeenPlaced.tr,
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: primaryColor,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                CustomText(
+                  '${Translate.orderCode.tr} : ${controller.orderCode}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: AppColors.redColor, fontSize: 12,fontWeight: FontWeight.w400),
+                ),
+                const SizedBox(height: 16),
+                CustomText(
+                  Translate
+                      .weAreGettingYourOrderReadyToBeShippedWeWillNotifyYouWithDeliveryDate
+                      .tr,
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w400,
+                    color: primaryColor,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
             Center(
               child: Container(
                 constraints: const BoxConstraints(maxWidth: 200),
@@ -45,25 +62,6 @@ class CheckoutConfirmationScreen
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    CustomText(
-                      '${Translate.orderCode.tr} : ${controller.orderCode}',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(color: AppColors.redColor, fontSize: 12,fontWeight: FontWeight.w400),
-                    ),
-                    const SizedBox(height: 8),
-                    CustomText(
-                      Translate
-                          .weAreGettingYourOrderReadyToBeShippedWeWillNotifyYouWithDeliveryDate
-                          .tr,
-                      textAlign: TextAlign.center,
-                      softWrap: true,
-                      style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w400,
-                        color: primaryColor,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
                     CustomBorderButton(
                       color: AppColors.redColor,
                       radius: 20,
