@@ -19,6 +19,9 @@ class SizesWidgetFilter extends GetView<FilterController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TitleWithDivider(title: Translate.size.tr),
+              const SizedBox(
+                height: 5,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Wrap(
@@ -33,20 +36,21 @@ class SizesWidgetFilter extends GetView<FilterController> {
                           onTap: () => controller.checkSize(size.id!),
                           child: Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 5),
+                                horizontal: 18, vertical: 8),
                             decoration: BoxDecoration(
                               color: controller.sizesIds.contains(size.id)
                                   ? CustomThemes.appTheme.primaryColor
                                   : Colors.transparent,
-                              borderRadius: BorderRadius.circular(20.0),
+                              borderRadius: BorderRadius.circular(30.0),
                               border: Border.all(
-                                color: CustomThemes.appTheme.primaryColor.withOpacity(.6),
+                                color: CustomThemes.appTheme.primaryColor
+                                    .withOpacity(.6),
                               ),
                             ),
                             child: CustomText(
                               size.title ?? "",
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: 14,
                                 color: controller.sizesIds.contains(size.id)
                                     ? Colors.white
                                     : CustomThemes.appTheme.primaryColor,

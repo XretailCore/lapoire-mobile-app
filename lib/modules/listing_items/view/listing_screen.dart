@@ -51,10 +51,6 @@ class ListItemsScreen extends GetView<ListItemsController> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     const Spacer(),
-                                    const SortWidget(),
-                                    const SizedBox(
-                                      width: 5,
-                                    ),
                                     controller.filterModel.listType != null
                                         ? InkWell(
                                             onTap: () {
@@ -64,7 +60,7 @@ class ListItemsScreen extends GetView<ListItemsController> {
                                             child: Container(
                                               padding:
                                                   const EdgeInsets.symmetric(
-                                                      horizontal: 15,
+                                                      horizontal: 20,
                                                       vertical: 8),
                                               decoration: BoxDecoration(
                                                   color: CustomThemes
@@ -96,6 +92,10 @@ class ListItemsScreen extends GetView<ListItemsController> {
                                             ),
                                           )
                                         : const SizedBox.shrink(),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    const SortWidget(),
                                   ],
                                 ),
                               ),
