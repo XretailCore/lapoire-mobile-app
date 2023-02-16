@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:extended_image/extended_image.dart';
@@ -251,6 +250,18 @@ class HorizontalProductCard extends StatelessWidget {
                                         ],
                                       ),
                                 const SizedBox(height: 8),
+                                if (count != null && !isCart!)
+                                  CustomText(
+                                    "${Translate.qty.tr}: $count",
+                                    maxLines: 1,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      overflow: TextOverflow.ellipsis,
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                if(count ==null || isCart!)
                                 isAvailable
                                     ? CustomText(
                                         Translate.inStock.tr,

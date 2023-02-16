@@ -107,6 +107,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.allProducts.name: "جميع المنتجات",
       Translate.adTitle.name: "اقتن لحظة فرح كل يوم",
       Translate.back.name: "رجوع",
+      Translate.qty.name: "الكمية",
       Translate.required.name: "مطلوب",
       Translate.invalidEmail.name: "الإيميل خطأ",
       Translate.invalidMobile.name: "رقم الهاتف خطأ",

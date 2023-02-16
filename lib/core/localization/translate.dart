@@ -100,6 +100,7 @@ enum Translate {
   allProducts,
   adTitle,
   back,
+  qty,
   required,
   invalidEmail,
   invalidMobile,
@@ -259,6 +260,7 @@ enum Translate {
   verificationCodeHasBeenSentTo,
   orderDate,
   quantity,
+
   featuresAndBenefits,
   ingredients,
   turnOnGps,
