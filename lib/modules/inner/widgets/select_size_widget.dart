@@ -28,20 +28,17 @@ class SelectSizeWidget extends GetView<InnerProductController> {
               padding:
                   const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
               decoration: BoxDecoration(
-                color: _isSelected(e) ? AppColors.redColor : AppColors.redColor,
+                color: _isSelected(e) &&
+                    !controller.isAvaliable() &&
+                    (selectdProduct?.sizes.length ?? 0) > 1? Colors.grey :_isSelected(e) ? AppColors.redColor : Colors.white,
                 borderRadius: BorderRadius.circular(25),
               ),
               child: CustomText(
                 e?.name ?? '',
                 style: TextStyle(
                   fontSize: 12,
-                  color: _isSelected(e) ? Colors.white : null,
+                  color: _isSelected(e) ? Colors.white : AppColors.redColor,
                   fontWeight: FontWeight.bold,
-                  decoration: _isSelected(e) &&
-                          !controller.isAvaliable() &&
-                          (selectdProduct?.sizes.length ?? 0) > 1
-                      ? TextDecoration.lineThrough
-                      : null,
                   decorationColor: Colors.red,
                   decorationThickness: 2,
                 ),
@@ -54,14 +51,20 @@ class SelectSizeWidget extends GetView<InnerProductController> {
                 }
               },
               child: _isSelected(e)
-                  ? child
-                  : DottedBorder(
-                      padding: EdgeInsets.zero,
-                      radius: const Radius.circular(18),
-                      color: AppColors.redColor,
-                      borderType: BorderType.RRect,
-                      child: child,
-                    ),
+                  ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    child: child,
+                  )
+                  : Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    child: DottedBorder(
+                        padding: EdgeInsets.zero,
+                        radius: const Radius.circular(18),
+                        color: AppColors.redColor,
+                        borderType: BorderType.RRect,
+                        child: child,
+                      ),
+                  ),
             );
           }).toList() ??
           <Widget>[],
