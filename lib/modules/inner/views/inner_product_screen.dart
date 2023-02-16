@@ -137,7 +137,9 @@ class InnerProductScreen extends GetView<InnerProductController> {
                       Stack(
                         children: [
                           product!.selectedProductSku.images.isEmpty
-                              ? Image.asset("assets/images/logo_white.png")
+                              ? AspectRatio(
+                              aspectRatio: 1.5,
+                              child: Image.asset("assets/images/logo_white.png"))
                               : Obx(
                                   () => CustomSlider(
                                     pageIndex: controller.pageIndex.value,
