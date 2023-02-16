@@ -26,7 +26,7 @@ class SortWidget extends GetView<FilterController> {
         );
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         decoration: const BoxDecoration(
             color: AppColors.redColor,
             borderRadius: BorderRadius.all(Radius.circular(20))),

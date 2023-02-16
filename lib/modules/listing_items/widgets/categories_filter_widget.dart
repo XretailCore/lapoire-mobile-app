@@ -37,7 +37,8 @@ class CategoriesWidgetFilter extends GetView<FilterController> {
                             Theme(
                               data: ThemeData(
                                 primarySwatch: Colors.blue,
-                                unselectedWidgetColor:  CustomThemes.appTheme.primaryColor,
+                                unselectedWidgetColor:
+                                    CustomThemes.appTheme.primaryColor,
                               ),
                               child: Checkbox(
                                 value: isSelectedCategory,
@@ -142,7 +143,7 @@ class TitleWithDivider extends StatelessWidget {
               color: AppColors.redColor,
             ),
           ),
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 2.0),
           const Divider(color: AppColors.redColor, thickness: 1)
         ],
       ),

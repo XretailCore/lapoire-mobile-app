@@ -1,4 +1,5 @@
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
 import '../../../core/components/custom_error_widget.dart';
 import '../../../core/components/custom_text.dart';
@@ -19,32 +20,28 @@ class FilterScreen extends GetView<FilterController> {
   Widget build(BuildContext context) {
     final primary = CustomThemes.appTheme.primaryColor;
     return SizedBox(
-      width: MediaQuery.of(context).size.width * .9,
+      width: .9.sw,
       child: controller.obx(
         (data) => Container(
           color: AppColors.highlighter,
-          padding: const EdgeInsets.only(top: 50, right: 8.0, left: 8.0),
+          padding: const EdgeInsets.only(top: 50, right: 20.0, left: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Align(
                 alignment: Alignment.centerRight,
                 child: DottedBorder(
+                  padding: const EdgeInsets.all(4),
                   borderType: BorderType.Circle,
                   color: primary,
                   child: InkWell(
                     onTap: () => controller.closeFilter(),
-                    child: Icon(Icons.clear, color: primary),
+                    child: Icon(
+                      Icons.clear,
+                      color: primary,
+                      size: 18,
+                    ),
                   ),
-                ),
-              ),
-              CustomText(
-                Translate.filter.name.tr,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 28,
-                  color: primary,
-                  fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 24),
@@ -69,7 +66,7 @@ class FilterScreen extends GetView<FilterController> {
                     CustomBorderButton(
                       color: AppColors.redColor,
                       title: Translate.apply.name.tr,
-                      radius: 20,
+                      radius: 30,
                       onTap: () {
                         FocusScope.of(context).unfocus();
                         if (int.parse(
@@ -94,9 +91,9 @@ class FilterScreen extends GetView<FilterController> {
                         }
                       },
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 10),
                     CustomBorderButton(
-                      radius: 20,
+                      radius: 30,
                       color: CustomThemes.appTheme.primaryColor,
                       title: Translate.clearAll.name.tr,
                       onTap: controller.clearFilter,
