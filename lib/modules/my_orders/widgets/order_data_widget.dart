@@ -36,16 +36,32 @@ class OrderDataWidget extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 alignment: AlignmentDirectional.topStart,
-                child: DataColumnWidget(
-                  orderDate: order.date,
-                  orderNumber: order.orderNo,
-                  totalAmount: order.total,
-                  orderStatus: order.orderStatus,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    DataColumnWidget(
+                      orderDate: order.date,
+                      orderNumber: order.orderNo,
+                      totalAmount: order.total,
+                      orderStatus: order.orderStatus,
+                    ),
+                    const SizedBox(height: 5),
+                    CustomText(
+                      order.orderStatus,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: (order.orderStatus == "Cancelled" ||
+                                order.orderStatus == "تم الالغاء")
+                            ? AppColors.redColor
+                            : const Color(0xff00BF4C),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   width: 0.4.sw,
@@ -75,21 +91,6 @@ class OrderDataWidget extends StatelessWidget {
               ],
             )
           ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: CustomText(
-            order.orderStatus,
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              color: (order.orderStatus == "New" ||
-                      order.orderStatus == "Store" ||
-                      order.orderStatus == "جديد" ||
-                      order.orderStatus == "في المخزن")
-                  ? const Color(0xff00BF4C)
-                  : const Color.fromRGBO(237, 151, 32, 1),
-            ),
-          ),
         ),
       ],
     );
