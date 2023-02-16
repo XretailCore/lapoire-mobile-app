@@ -41,17 +41,29 @@ class HomeAd extends GetView<HomeController> {
                       name: items[index].name ?? "",
                     ),
                     //Todo : change static image below
-                    child: ExtendedImage.asset(
-                      "assets/images/home_b3.png",
-                      //cacheHeight: 800,
-                      enableMemoryCache: false,
-                      width: double.infinity,
-                      height: double.infinity,
-                      fit: BoxFit.cover,
-                      filterQuality: FilterQuality.high,
-                      clearMemoryCacheWhenDispose: true,
-                      enableLoadState: false,
-                    ),
+                    child: items[index].imageUrl == null
+                        ? ExtendedImage.asset(
+                            "assets/images/logo_white.png",
+                            //cacheHeight: 800,
+                            enableMemoryCache: false,
+                            width: double.infinity,
+                            height: double.infinity,
+                            fit: BoxFit.cover,
+                            filterQuality: FilterQuality.high,
+                            clearMemoryCacheWhenDispose: true,
+                            enableLoadState: false,
+                          )
+                        : ExtendedImage.network(
+                            items[index].imageUrl!,
+                            //cacheHeight: 800,
+                            enableMemoryCache: false,
+                            width: double.infinity,
+                            height: double.infinity,
+                            fit: BoxFit.cover,
+                            filterQuality: FilterQuality.high,
+                            clearMemoryCacheWhenDispose: true,
+                            enableLoadState: false,
+                          ),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 0, 20, 150),
