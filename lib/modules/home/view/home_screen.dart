@@ -120,16 +120,26 @@ class HomeScreen extends GetView<HomeController> {
                             title: Translate.bestSeller.tr,
                           ),
                           if (controller.firstAd.items?[0].imageUrl != null)
-                            ExtendedImage.network(
-                              controller.firstAd.items?[0].imageUrl ?? "",
-                              cacheHeight: 800,
-                              height: .5.sw,
-                              width: double.infinity,
-                              enableMemoryCache: false,
-                              fit: BoxFit.fitWidth,
-                              filterQuality: FilterQuality.high,
-                              clearMemoryCacheWhenDispose: true,
-                              enableLoadState: false,
+                            InkWell(
+                              onTap: controller.firstAd.items![0].filterModel ==
+                                      null
+                                  ? null
+                                  : () => controller.goToListingWithId(
+                                        filterModel: controller
+                                            .firstAd.items![0].filterModel!,
+                                        name: "",
+                                      ),
+                              child: ExtendedImage.network(
+                                controller.firstAd.items?[0].imageUrl ?? "",
+                                cacheHeight: 800,
+                                height: .5.sw,
+                                width: double.infinity,
+                                enableMemoryCache: false,
+                                fit: BoxFit.fitWidth,
+                                filterQuality: FilterQuality.high,
+                                clearMemoryCacheWhenDispose: true,
+                                enableLoadState: false,
+                              ),
                             ),
                           const SizedBox(height: 16),
                           HomeAdsWidget(
