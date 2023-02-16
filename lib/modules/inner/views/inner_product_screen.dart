@@ -151,8 +151,8 @@ class InnerProductScreen extends GetView<InnerProductController> {
                                     showIndicator: true,
                                     sliderImages: [
                                       for (var image
-                                          in product!.selectedProductSku.images)
-                                        Image.network(image?.url ?? ""),
+                                          in product.selectedProductSku.images)
+                                        image?.url !=null? Image.network(image!.url!): Image.asset("assets/images/logo_white.png"),
                                     ],
                                   ),
                                 ),
@@ -166,7 +166,7 @@ class InnerProductScreen extends GetView<InnerProductController> {
                                 textColor: Colors.white,
                                 backgroundColor: AppColors.redColor,
                                 offerText: controller.isHaveDiscount()
-                                    ? ((product?.selectedProductSku.discounts
+                                    ? ((product.selectedProductSku.discounts
                                             .first?.value) ??
                                         '')
                                     : '',
@@ -177,12 +177,12 @@ class InnerProductScreen extends GetView<InnerProductController> {
                             end: 30,
                             top: 30,
                             child: Offstage(
-                              offstage: (product?.promoText ?? '').isEmpty,
+                              offstage: (product.promoText ?? '').isEmpty,
                               child: OfferBannerWidget(
                                   size: 60,
                                   textColor: Colors.white,
                                   backgroundColor: AppColors.primaryColor,
-                                  offerText: (product?.promoText) ?? ''),
+                                  offerText: (product.promoText) ?? ''),
                             ),
                           ),
                         ],
@@ -205,12 +205,12 @@ class InnerProductScreen extends GetView<InnerProductController> {
                           scrollController: scrollController,
                           innerProductController: controller,
                           selectdProduct: product,
-                          selectedSize: product?.sizes.firstWhere((element) =>
+                          selectedSize: product.sizes.firstWhere((element) =>
                               element?.id == product.selectedProductSku.sizeId),
-                          selectedColor: product?.colors.firstWhere((element) =>
+                          selectedColor: product.colors.firstWhere((element) =>
                               element?.id ==
                               product.selectedProductSku.colorId),
-                          imagesUrl: product!.selectedProductSku.images
+                          imagesUrl: product.selectedProductSku.images
                               .map((image) => image?.url)
                               .toList(),
                         ),

@@ -267,8 +267,9 @@ class _BodyWidgetState extends State<BodyWidget> {
                     )
                   : const SizedBox.shrink(),
               SizedBox(
-                  height:
-                  widget.selectdProduct!.description!.isNotEmpty ? 8.0 : 0.0),
+                  height: widget.selectdProduct!.description!.isNotEmpty
+                      ? 8.0
+                      : 0.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: ReadMoreText(
@@ -296,8 +297,9 @@ class _BodyWidgetState extends State<BodyWidget> {
                 ),
               ),
               SizedBox(
-                  height:
-                  widget.selectdProduct!.description!.isNotEmpty? 16.0 : 0.0),
+                  height: widget.selectdProduct!.description!.isNotEmpty
+                      ? 16.0
+                      : 0.0),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: CustomText(
@@ -335,41 +337,31 @@ class _BodyWidgetState extends State<BodyWidget> {
                         ExpansionTileStatus.ingredientsAndHowToUse;
                   },
                   title: Translate.featuresAndBenefits.tr,
-                  children: widget.selectdProduct?.features
-                          .map(
-                            (e) => Padding(
-                              padding: const EdgeInsets.only(bottom: 8),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Expanded(
-                                        flex: 3,
-                                        child: CustomText('${e?.name ?? ''}: ',
-                                            softWrap: true,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 12)),
-                                      ),
-                                      Expanded(
-                                          flex: 5,
-                                          child: CustomText(
-                                            e?.value ?? '',
-                                            softWrap: true,
-                                            style:
-                                                const TextStyle(fontSize: 12),
-                                          )),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                          .toList() ??
-                      [],
+                  children: [
+                    ReadMoreText(
+                      widget.selectdProduct?.details ?? '',
+                      trimLines: 4,
+                      trimMode: TrimMode.Line,
+                      trimCollapsedText: ' ${Translate.showMore.tr}',
+                      trimExpandedText: ' ${Translate.showLess.tr}',
+                      moreStyle: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.redColor,
+                      ),
+                      lessStyle: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.redColor,
+                      ),
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: primaryColor,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Offstage(
