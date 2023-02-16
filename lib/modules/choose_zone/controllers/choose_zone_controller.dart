@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:get/get.dart';
-import 'package:imtnan/core/localization/custom_translations.dart';
 import 'package:imtnan/core/localization/lanaguages_enum.dart';
 import 'package:imtnan/core/utils/strings.dart';
 import 'package:imtnan/modules/home/controllers/home_controller.dart';
@@ -49,7 +48,6 @@ class ZoneController extends GetxController with StateMixin<List<CityModel>> {
 
   Future<void> onChangeZone(newValue) async {
     selectedZone.value = newValue as CityModel;
-    selectedZoneName.value = newValue.name ?? '';
   }
 
   Future<void> onChooseZone(newValue) async {

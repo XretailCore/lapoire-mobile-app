@@ -34,7 +34,7 @@ class HomeListingWidget extends GetView<HomeController> {
     final language = Get.find<UserSharedPrefrenceController>().getLanguage;
 
     return Offstage(
-      offstage: items == null || items!.isEmpty,
+      offstage: items == null || items!.length<3,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 25.0),
         color: isYellow ? AppColors.highlighter : Colors.white,

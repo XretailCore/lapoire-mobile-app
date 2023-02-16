@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/modules/choose_zone/controllers/choose_zone_controller.dart';
 import '../../modules/choose_zone/change_zone_dialogue.dart';
-import '../../modules/map/controllers/map_controller.dart';
 import '../localization/translate.dart';
 import '../utils/theme.dart';
 import 'custom_text.dart';
@@ -32,11 +31,11 @@ class LocationWidget extends GetView<ZoneController> {
             ),
             const SizedBox(width: 5),
             SizedBox(
-              width: controller.selectedZone.value.name?.isNotEmpty ?? false
+              width: controller.selectedZoneName.value.isNotEmpty ?? false
                   ? 0.25.sw
                   : 0.0,
               child: CustomText(
-                controller.selectedZone.value.name,
+                controller.selectedZoneName.value,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   color: Color.fromRGBO(112, 112, 112, 1),
