@@ -4,8 +4,6 @@ import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/helper_functions.dart';
 import '../../../core/utils/routes.dart';
 import '../../cart/controllers/cart_controller.dart';
-import 'cancel_order_controller.dart';
-import 'feedback_order_controller.dart';
 import 'package:linktsp_api/linktsp_api.dart';
 import '../../../core/utils/strings.dart';
 import '../../my_orders/controller/my_orders_controller.dart';
@@ -59,10 +57,6 @@ class OrderDetailsController extends GetxController
 
   Future<void> openCancelDialog(
       BuildContext context, OrderDetailsModel orderDetailsModel) async {
-    final cancelOrderController = Get.find<CancelOrderController>();
-    if (cancelOrderController.cancelReasonsMenu.isEmpty) {
-      await Get.delete<CancelOrderController>();
-    }
     await openCancelOrderSheet(context,
         isCheckoutCancel: isCheckoutCancel.value,
         orderDetailsModel: orderDetailsModel);
@@ -74,10 +68,6 @@ class OrderDetailsController extends GetxController
 
   Future<void> openFeedbackDialog(
       BuildContext context, OrderDetailsModel orderDetailsModel) async {
-    final cancelOrderController = Get.find<FeedbackOrderController>();
-    if (cancelOrderController.feedbackMenu.isEmpty) {
-      await Get.delete<FeedbackOrderController>();
-    }
     await openFeedbackOrderSheet(context, orderDetailsModel: orderDetailsModel);
   }
   void trackOrder(OrderModel orderModel) {
