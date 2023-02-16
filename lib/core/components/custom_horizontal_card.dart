@@ -261,14 +261,14 @@ class HorizontalProductCard extends StatelessWidget {
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
-                                if(count ==null || isCart!)
-                                isAvailable
-                                    ? CustomText(
-                                        Translate.inStock.tr,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.normal),
-                                      )
-                                    : CustomText(Translate.outOfStock.tr),
+                                if (count == null || isCart!)
+                                  isAvailable
+                                      ? CustomText(
+                                          Translate.inStock.tr,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.normal),
+                                        )
+                                      : CustomText(Translate.outOfStock.tr),
                                 SizedBox(height: (rate != null) ? 10 : 0),
                               ],
                             ),
@@ -337,7 +337,7 @@ class HorizontalProductCard extends StatelessWidget {
                         ],
                       ),
                       if (rate != null)
-                        RatingBar.builder(
+                        RatingBar(
                           allowHalfRating: true,
                           initialRating: rate ?? 0,
                           ignoreGestures: true,
@@ -345,17 +345,11 @@ class HorizontalProductCard extends StatelessWidget {
                           onRatingUpdate: (double value) {},
                           glowColor: primaryColor,
                           unratedColor: primaryColor,
-                          itemBuilder: (BuildContext context, int index) {
-                            return (rate ?? 0) > index
-                                ? Icon(
-                                    Icons.star,
-                                    color: primaryColor,
-                                  )
-                                : Icon(
-                                    Icons.star_border_outlined,
-                                    color: primaryColor,
-                                  );
-                          },
+                          ratingWidget: RatingWidget(
+                            full:  Icon(Icons.star, color: primaryColor),
+                            half:  Icon(Icons.star_half, color: primaryColor),
+                            empty:  Icon(Icons.star_border, color: primaryColor),
+                          ),
                         ),
                       SizedBox(height: count == null ? 0 : 5),
                       SizedBox(height: (isCart == true) ? 10 : 0),

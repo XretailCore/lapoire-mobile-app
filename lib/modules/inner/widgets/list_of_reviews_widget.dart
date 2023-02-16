@@ -7,6 +7,7 @@ import '../../../core/components/custom_text.dart';
 
 class ListOfReviewsWidget extends StatelessWidget {
   final List<ItemReviewModel> reviews;
+
   const ListOfReviewsWidget({Key? key, required this.reviews})
       : super(key: key);
 
@@ -65,17 +66,27 @@ class ListOfReviewsWidget extends StatelessWidget {
                   const SizedBox(
                     height: 3,
                   ),
-                  RatingBar.builder(
+                  RatingBar(
                     glow: false,
                     initialRating: review.rating,
                     itemSize: 15,
                     ignoreGestures: true,
                     updateOnDrag: false,
-                    allowHalfRating: false,
+                    allowHalfRating: true,
                     itemCount: 5,
-                    itemBuilder: (context, _) => const Icon(
-                      Icons.star,
-                      color: AppColors.primaryColor,
+                    ratingWidget: RatingWidget(
+                      full: const Icon(
+                        Icons.star,
+                        color: AppColors.primaryColor,
+                      ),
+                      half: const Icon(
+                        Icons.star_half,
+                        color: AppColors.primaryColor,
+                      ),
+                      empty: const Icon(
+                        Icons.star_border,
+                        color: AppColors.primaryColor,
+                      ),
                     ),
                     onRatingUpdate: (double value) {},
                   ),

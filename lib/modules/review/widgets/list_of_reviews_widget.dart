@@ -63,17 +63,27 @@ class ListOfReviewsWidget extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 5),
-                      RatingBar.builder(
+                      RatingBar(
                         glow: false,
                         initialRating: reviews[index].rating ?? 0,
                         itemSize: 15,
                         ignoreGestures: true,
                         updateOnDrag: false,
-                        allowHalfRating: false,
+                        allowHalfRating: true,
                         itemCount: 5,
-                        itemBuilder: (context, _) => const Icon(
-                          Icons.star,
-                          color: AppColors.primaryColor,
+                        ratingWidget: RatingWidget(
+                          full: const Icon(
+                            Icons.star,
+                            color: AppColors.primaryColor,
+                          ),
+                          half: const Icon(
+                            Icons.star_half,
+                            color: AppColors.primaryColor,
+                          ),
+                          empty: const Icon(
+                            Icons.star_border,
+                            color: AppColors.primaryColor,
+                          ),
                         ),
                         onRatingUpdate: (double value) {},
                       ),

@@ -77,7 +77,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        RatingBar.builder(
+                        RatingBar(
                           allowHalfRating: true,
                           initialRating:
                               widget.selectdProduct?.averageRating ?? 0,
@@ -88,18 +88,11 @@ class _BodyWidgetState extends State<BodyWidget> {
                           },
                           glowColor: primaryColor,
                           unratedColor: primaryColor,
-                          itemBuilder: (BuildContext context, int index) {
-                            return (widget.selectdProduct?.averageRating ?? 0) >
-                                    index
-                                ? Icon(
-                                    Icons.star,
-                                    color: primaryColor,
-                                  )
-                                : Icon(
-                                    Icons.star_border_outlined,
-                                    color: primaryColor,
-                                  );
-                          },
+                          ratingWidget: RatingWidget(
+                            full:  Icon(Icons.star, color: primaryColor),
+                            half:  Icon(Icons.star_half, color: primaryColor),
+                            empty:  Icon(Icons.star_border, color: primaryColor),
+                          ),
                         ),
                         const SizedBox(width: 16),
                         GestureDetector(

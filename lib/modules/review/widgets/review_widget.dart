@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:linktsp_api/data/reviews/models/review_model.dart';
-
 import '../../../core/components/custom_text.dart';
-import '../../../core/utils/theme.dart';
+import '../../../core/utils/app_colors.dart';
 
 class ReviewWidget extends StatelessWidget {
   final ItemReview review;
@@ -49,17 +48,27 @@ class ReviewWidget extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 15),
-                    RatingBar.builder(
+                    RatingBar(
                       glow: false,
                       initialRating: review.rating ?? 0,
                       itemSize: 15,
                       ignoreGestures: true,
                       updateOnDrag: false,
-                      allowHalfRating: false,
+                      allowHalfRating: true,
                       itemCount: 5,
-                      itemBuilder: (context, _) => Icon(
-                        Icons.star,
-                        color: CustomThemes.appTheme.primaryColor,
+                      ratingWidget: RatingWidget(
+                        full: const Icon(
+                          Icons.star,
+                          color: AppColors.primaryColor,
+                        ),
+                        half: const Icon(
+                          Icons.star_half,
+                          color: AppColors.primaryColor,
+                        ),
+                        empty: const Icon(
+                          Icons.star_border,
+                          color: AppColors.primaryColor,
+                        ),
                       ),
                       onRatingUpdate: (double value) {},
                     ),

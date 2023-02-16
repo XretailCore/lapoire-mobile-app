@@ -70,25 +70,27 @@ class AddReviewWidget extends GetView<AddReviewController> {
                       fontSize: 13, color: AppColors.redColor),
                 ),
                 const SizedBox(height: 8),
-                RatingBar.builder(
+                RatingBar(
                   minRating: 1,
                   initialRating: controller.rate,
                   glowColor: primaryColor,
                   unratedColor: primaryColor,
                   itemSize: 20,
                   itemCount: 5,
-                  itemBuilder: (context, index) {
-                    return (controller.rate) >
-                        index
-                        ? Icon(
+                  ratingWidget: RatingWidget(
+                    full: const Icon(
                       Icons.star,
-                      color: primaryColor,
-                    )
-                        : Icon(
-                      Icons.star_border_outlined,
-                      color: primaryColor,
-                    );
-                  },
+                      color: AppColors.primaryColor,
+                    ),
+                    half: const Icon(
+                      Icons.star_half,
+                      color: AppColors.primaryColor,
+                    ),
+                    empty: const Icon(
+                      Icons.star_border,
+                      color: AppColors.primaryColor,
+                    ),
+                  ),
                   onRatingUpdate: (double value) =>
                       controller.onUpdateRate(value),
                 ),
