@@ -263,7 +263,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.time.name: 'الوقت',
       Translate.close.name: 'اغلاق',
       Translate.pleaseSelectSize.name: 'قم باختيار المقاس',
-      Translate.skuCode.name: 'Sku Code',
+      Translate.skuCode.name: 'كود المنتج',
       Translate.addressBook.name: 'العناوين',
       Translate.share.name: 'مشاركة',
       Translate.rateApp.name: 'تقييم التطبيق',
