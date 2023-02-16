@@ -207,24 +207,19 @@ class _BodyWidgetState extends State<BodyWidget> {
                 Translate.allPricesIncudeVatDetails.tr,
                 style: const TextStyle(fontSize: 10, color: Colors.grey),
               ),
-              Offstage(
-                offstage: widget.innerProductController.selectedProduct
-                        .selectedProductSku.quantityInStock ==
-                    0,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 4),
-                    CustomText(
-                      Translate.availabilityInStock.trParams(
-                        params: {
-                          'quantity':
-                              '${widget.innerProductController.selectedProduct.selectedProductSku.quantityInStock}',
-                        },
-                      ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 4),
+                  CustomText(
+                    Translate.availabilityInStock.trParams(
+                      params: {
+                        'quantity':
+                            '${widget.innerProductController.selectedProduct.selectedProductSku.quantityInStock}',
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               const SizedBox(height: 10),
               CustomText(
