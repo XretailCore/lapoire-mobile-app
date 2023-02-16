@@ -273,7 +273,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                 padding: const EdgeInsets.symmetric(horizontal: 15.0),
                 child: ReadMoreText(
                   widget.selectdProduct?.description ?? '',
-                  trimLines: 3,
+                  trimLines: 2,
                   trimMode: TrimMode.Line,
                   trimCollapsedText: ' ${Translate.showMore.tr}',
                   trimExpandedText: ' ${Translate.showLess.tr}',
