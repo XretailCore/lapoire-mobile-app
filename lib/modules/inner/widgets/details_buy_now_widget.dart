@@ -35,15 +35,15 @@ class DetailsBuyNowWidget extends StatelessWidget {
                           fontSize: 14, fontWeight: FontWeight.bold,color: AppColors.primaryColor,),
                       children: <InlineSpan>[
                         TextSpan(
-                          text: '  ${Translate.egp.tr}',
+                          text: '  ${details?.codFees.toString()}',
                           style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
                         ),
                         TextSpan(
-                          text: '  ${details?.codFees.toString()}',
+                          text: '  ${Translate.egp.tr}',
                           style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
-                        )
+                            fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
+                        ),
                       ])),
                   const SizedBox(height: 8),
                   Text.rich(TextSpan(
@@ -52,15 +52,15 @@ class DetailsBuyNowWidget extends StatelessWidget {
                           fontSize: 14, fontWeight: FontWeight.bold,color: AppColors.primaryColor,),
                       children: <InlineSpan>[
                         TextSpan(
-                          text: '  ${Translate.egp.tr}',
+                          text: '  ${details?.shipmentFees}',
                           style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
                         ),
                         TextSpan(
-                          text: '  ${details?.shipmentFees}',
+                          text: '  ${Translate.egp.tr}',
                           style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
-                        )
+                            fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
+                        ),
                       ])),
                   const SizedBox(height: 8),
                   Text.rich(TextSpan(
@@ -81,15 +81,15 @@ class DetailsBuyNowWidget extends StatelessWidget {
                           fontSize: 14, fontWeight: FontWeight.bold,color: AppColors.primaryColor,),
                       children: <InlineSpan>[
                         TextSpan(
-                          text: '  ${Translate.egp.tr}',
+                          text: '  ${details?.total}',
                           style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
                         ),
                         TextSpan(
-                          text: '  ${details?.total}',
+                          text: '  ${Translate.egp.tr}',
                           style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
-                        )
+                            fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
+                        ),
                       ])),
                   const SizedBox(height: 20),
                   Center(
