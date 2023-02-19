@@ -16,7 +16,7 @@ class MyAccountScreen extends GetView<MyAccountController> {
         const SizedBox(height: 20),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 0),
+            padding: const EdgeInsets.only(left: 25,right: 25, bottom: 40),
             child: Theme(
               data: Theme.of(context).copyWith(
                   colorScheme:

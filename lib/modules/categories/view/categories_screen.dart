@@ -14,40 +14,43 @@ class CategoriesScreen extends GetView<CategoriesController> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(color: Colors.white),
-      child: Column(
-        children: [
-          Expanded(
-            child: controller.obx(
-              (categories) => SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: categories?.length,
-                    physics: const ScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      final category = categories?[index];
-                      return CategoriesWidgets(
-                        image: category?.imgUrl ?? "",
-                        index: index,
-                        title: category?.name ?? "",
-                        onTap: () => controller.goToListingWithId(
-                          categoryName: category?.name,
-                          filterModel: category?.filterModel ?? FilterModel(),
-                        ),
-                      );
-                    },
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 40.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: controller.obx(
+                (categories) => SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: categories?.length,
+                      physics: const ScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        final category = categories?[index];
+                        return CategoriesWidgets(
+                          image: category?.imgUrl ?? "",
+                          index: index,
+                          title: category?.name ?? "",
+                          onTap: () => controller.goToListingWithId(
+                            categoryName: category?.name,
+                            filterModel: category?.filterModel ?? FilterModel(),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
-              ),
-              onLoading: const CustomLoadingWidget(),
-              onError: (e) => CustomErrorWidget(
-                errorText: e,
-                onReload: controller.init,
+                onLoading: const CustomLoadingWidget(),
+                onError: (e) => CustomErrorWidget(
+                  errorText: e,
+                  onReload: controller.init,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
