@@ -6,6 +6,7 @@ import 'package:linktsp_api/linktsp_api.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../../core/components/custom_loaders.dart';
+import '../../../core/localization/translate.dart';
 import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/firebase_auth.dart';
 import '../../../core/utils/helper_functions.dart';
@@ -49,7 +50,7 @@ class SigninController extends GetxController {
         Get.toNamed(Routes.verifyOtpScreen);
       } else {
         HelperFunctions.showSnackBar(
-            hasCloseBtn: true, message: e.message.toString(), context: context);
+            hasCloseBtn: true, message: e.message?? Translate.somethingWentWrong.tr, context: context);
       }
     } catch (e) {
       Get.back();

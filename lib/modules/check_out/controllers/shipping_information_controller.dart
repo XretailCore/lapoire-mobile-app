@@ -18,6 +18,7 @@ import 'payment_controller.dart';
 class ShippingInformationController extends GetxController
     with StateMixin<CheckoutReviewModel> {
   ShippingInformationController();
+
   final PaymentController _paymentController = Get.find<PaymentController>();
 
   final CustomerSummaryController _customerSummaryController =
@@ -29,6 +30,7 @@ class ShippingInformationController extends GetxController
   CheckoutReviewModel checkoutReviewModel = CheckoutReviewModel();
 
   String merchantGuid = '';
+
   @override
   void onReady() {
     super.onReady();
@@ -42,12 +44,12 @@ class ShippingInformationController extends GetxController
       if (_userSharedPrefrenceController.isUser) {
         checkoutReviewModel = await LinkTspApi.instance.checkOut.checkoutReview(
           paymentOptionId: _paymentController.paymentOptionId,
-          addressId: Locations.locationId??0,
+          addressId: Locations.locationId ?? 0,
           loyaltyPoints:
               int.tryParse(_customerSummaryController.pointTEC.text) ?? 0,
           pickStoreID: Locations.storeId,
           customerId: _userSharedPrefrenceController.getUserId!,
-          shipmentMethods: _deliveryController.selectedShipmentMethods??"",
+          shipmentMethods: _deliveryController.selectedShipmentMethods ?? "",
           version: 3,
         );
         amount = checkoutReviewModel.total ?? 0;
@@ -74,7 +76,7 @@ class ShippingInformationController extends GetxController
             finalAmount: amount,
             storeId: Locations.storeId ?? 0,
             customerId: _userSharedPrefrenceController.getUserId!,
-            shipmentMethods: _deliveryController.selectedShipmentMethods??"",
+            shipmentMethods: _deliveryController.selectedShipmentMethods ?? "",
             zoneID: _userSharedPrefrenceController.getCurrentZone?.id,
           );
           final confirmationController =
@@ -104,16 +106,16 @@ class ShippingInformationController extends GetxController
       try {
         openLoadingDialog(context);
         final PaymentFrameModel paymentFrameModel =
-        await LinkTspApi.instance.checkOut.confirmOrder(
+            await LinkTspApi.instance.checkOut.confirmOrder(
           paymentOptionId: paymentMethodId,
           addressId: Locations.locationId ?? 0,
           zoneID: _userSharedPrefrenceController.getCurrentZone?.id,
           loyaltyPoints:
-          int.tryParse(_customerSummaryController.pointTEC.text) ?? 0,
+              int.tryParse(_customerSummaryController.pointTEC.text) ?? 0,
           finalAmount: amount,
           storeId: Locations.storeId ?? 0,
           customerId: _userSharedPrefrenceController.getUserId!,
-          shipmentMethods: _deliveryController.selectedShipmentMethods??"",
+          shipmentMethods: _deliveryController.selectedShipmentMethods ?? "",
         );
         Get.back();
 
@@ -124,7 +126,9 @@ class ShippingInformationController extends GetxController
         Get.back();
         ScaffoldMessenger.of(context).showSnackBar(
             HelperFunctions.customSnackBar(
-                message: e.message, backgroundColor: Colors.red));
+                message: e.message ?? Translate.somethingWentWrong.tr,
+                backgroundColor: Colors.red,
+                textColor: Colors.white));
       } catch (e) {
         Get.back();
         ScaffoldMessenger.of(context).showSnackBar(

@@ -70,7 +70,7 @@ class CardAddressBookWidget extends StatelessWidget {
                   Translate.shippingInformation.tr,
                   style:  TextStyle(
                     color: primary,
-                    fontSize: 13,
+                    fontSize: 15,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -80,7 +80,7 @@ class CardAddressBookWidget extends StatelessWidget {
                   address ?? '',
                   style:  TextStyle(
                     color: primary,
-                    fontSize: 10,
+                    fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),
                   maxLines: 2,
@@ -91,7 +91,7 @@ class CardAddressBookWidget extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style:  TextStyle(
-                    fontSize: 9,
+                    fontSize: 12,
                     color: primary,
                     fontWeight: FontWeight.w500,
                   ),
@@ -101,7 +101,7 @@ class CardAddressBookWidget extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    fontSize: 9,
+                    fontSize: 12,
                     color: primary,
                     fontWeight: FontWeight.w500,
                   ),
@@ -110,7 +110,7 @@ class CardAddressBookWidget extends StatelessWidget {
                   mobileNumer ?? '',
                   style: TextStyle(
                     color: primary,
-                    fontSize: 9,
+                    fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),
                   maxLines: 1,

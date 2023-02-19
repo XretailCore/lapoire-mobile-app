@@ -64,6 +64,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.allReviews.name: "All Reviews",
       Translate.successed.name: "Successed",
       Translate.error.name: "error",
+      Translate.somethingWentWrong.name: "Something Went Wrong",
       Translate.pleaseAgreeOnTheTermsAndConditionsOfTheApp.name:
           "Please Agree On The Terms And Conditions Of The App",
       Translate.changePassword.name: "Change Password",

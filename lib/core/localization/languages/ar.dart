@@ -65,6 +65,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.allReviews.name: "كل التقييمات",
       Translate.successed.name: "تم",
       Translate.error.name: "حدث خطأ",
+      Translate.somethingWentWrong.name: "حدث خطأ ما",
       Translate.pleaseAgreeOnTheTermsAndConditionsOfTheApp.name:
           "يرجى الموافقة على شروط وأحكام التطبيق",
       Translate.changePassword.name: "تغيير كلمة السر",

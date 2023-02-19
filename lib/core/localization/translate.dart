@@ -62,6 +62,7 @@ enum Translate {
   allReviews,
   successed,
   error,
+  somethingWentWrong,
   pleaseAgreeOnTheTermsAndConditionsOfTheApp,
   changePassword,
   currentPassword,

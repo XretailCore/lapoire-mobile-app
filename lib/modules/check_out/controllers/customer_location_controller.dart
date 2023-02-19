@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/modules/check_out/controllers/payment_controller.dart';
 import 'package:linktsp_api/data/exception_api.dart';
+import '../../../core/components/custom_loaders.dart';
 import '../../../core/utils/helper_functions.dart';
 import '../../../core/utils/strings.dart';
 import 'package:linktsp_api/linktsp_api.dart';
@@ -102,6 +104,19 @@ RxInt toggleValue=0.obs;
           message: e.toString(), context: Get.context!);
     } catch (e) {
       change(null, status: RxStatus.error());
+    }
+  }
+
+  Future<void> pickAndCollectAction(String route) async {
+    var permissionGranted = await HelperFunctions().checkLocationPermission();
+    if (permissionGranted) {
+      openLoadingDialog(Get.context!);
+      final userSharedPref = Get.find<UserSharedPrefrenceController>();
+      final position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.best);
+      userSharedPref.setCurrentLocation = position;
+      Get.back();
+      Get.toNamed(route);
     }
   }
 }

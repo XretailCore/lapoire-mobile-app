@@ -24,7 +24,7 @@ class _CustomSharedPrefrenece {
 
   int? get getUserId => _getStorage.read<int>(_userId);
   set setUserId(int? v) => _getStorage.write(_userId, v);
-
+  set setcurrentLocation(Position? v) => _getStorage.write(_currentLocation, v);
   bool get getIsActive => _getStorage.read<bool>(_isActive) ?? false;
   set setIsActive(bool? v) => _getStorage.write(_isActive, v);
 
@@ -146,6 +146,10 @@ class UserSharedPrefrenceController extends GetxController {
 
   final Rx<CityModel?> _currentZone = Rx<CityModel?>(null);
 
+  set setCurrentLocation(Position? v) {
+    _customSharedPrefrenece.setcurrentLocation = v;
+    _currentLocation.value = v;
+  }
   set setUserId(int? v) {
     _customSharedPrefrenece.setUserId = v;
     _userId.value = v;

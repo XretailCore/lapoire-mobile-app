@@ -1,24 +1,19 @@
-// ignore_for_file: avoid_print
-
 import 'package:dio/dio.dart';
 import 'package:fcm_config/fcm_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:imtnan/core/utils/theme.dart';
 import 'package:linktsp_api/data/exception_api.dart';
-
+import 'package:location/location.dart';
 import '../components/custom_loaders.dart';
 import '../components/custom_text.dart';
-import 'theme.dart';
+import '../localization/translate.dart';
+import 'package:permission_handler/permission_handler.dart'
+as permissionHandler;
 
 class HelperFunctions {
-  static Future<Position> getCurrentLocation() async {
-    await Geolocator.requestPermission();
-    return await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-  }
 
   static SnackBar customSnackBar(
       {String? message,
@@ -125,6 +120,44 @@ class HelperFunctions {
       return;
     }
   }
+  Location location = Location();
+  bool? _serviceEnabled;
+  PermissionStatus? _permissionGranted;
+
+  Future<bool> checkGPSEnabled() async {
+    _serviceEnabled = await location.serviceEnabled();
+    if (!(_serviceEnabled ?? false)) {
+      _serviceEnabled = await location.requestService();
+      if (!(_serviceEnabled ?? false)) {
+        HelperFunctions.showSnackBar(
+            message: Translate.turnOnGps.tr, context: Get.context!);
+        return false;
+      }
+      return false;
+    } else {
+      return true;
+    }
+  }
+  Future<bool> checkLocationPermission() async {
+    var gpsEnabled = await checkGPSEnabled();
+    if (gpsEnabled) {
+      _permissionGranted = await location.hasPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        _permissionGranted = await location.requestPermission();
+        if (_permissionGranted == PermissionStatus.granted) {
+          return true;
+        } else {
+          permissionHandler.openAppSettings();
+          return false;
+        }
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  }
+
 
   static Future<T?> errorRequestsHandler<T>(
       {required Future<T> Function() loadingFunction,

@@ -31,9 +31,9 @@ class CheckoutOptionsScreen extends GetView<CustomerLocationController> {
           const CustomStepperWidget(currentIndex: 0),
           const SizedBox(height: 24),
           ListTile(
-              onTap: (){
+              onTap: ()async{
                 deliveryController.selectedShipmentMethods = ShipmentMethods.pickAtStore;
-                Get.toNamed(Routes.storesLocationScreen);
+                await controller.pickAndCollectAction(Routes.storesLocationScreen);
               },
             title: CustomText(Translate.collectFromStore.tr),
             subtitle: CustomText(

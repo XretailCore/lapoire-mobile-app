@@ -73,7 +73,7 @@ class ShoppingInformationScreen extends GetView<ShippingInformationController> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    if (shippingInfo?.address != null)
+                    if (shippingInfo?.address?.id != 0)
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: OrderDetailsAddressWidget(
