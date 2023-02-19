@@ -45,7 +45,7 @@ class RowCheckOutSummaryInformationWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CustomText(
-                      double.parse(value).toStringAsFixed(
+                      !value.contains(RegExp(r'[0-9]'))?value:double.parse(value).toStringAsFixed(
                           double.parse(value).truncateToDouble() ==
                                   double.parse(value)
                               ? 0

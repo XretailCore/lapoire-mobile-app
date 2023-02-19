@@ -125,7 +125,14 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
                     ),
                   ),
                 ),
-                onLoading: const SizedBox.shrink(),
+                onLoading: Container(
+                  height: 200,
+                  color: Colors.white,
+                  alignment: Alignment.topCenter,
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
+                  ),
+                ),
               ),
             ),
           ),

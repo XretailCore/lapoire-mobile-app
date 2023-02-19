@@ -5,7 +5,6 @@ import 'package:linktsp_api/data/exception_api.dart';
 import '../../../core/utils/helper_functions.dart';
 import '../../../core/utils/strings.dart';
 import 'package:linktsp_api/linktsp_api.dart';
-import '../../../core/components/custom_loaders.dart';
 import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/routes.dart';
 import 'customer_summary_controller.dart';
@@ -70,14 +69,14 @@ RxInt toggleValue=0.obs;
   }
 
   void onSelectAddress(BuildContext context, AddressModel address) async {
-    openLoadingDialog(context);
+   // openLoadingDialog(context);
     Locations.locationId = address.id;
     selectedZoneId = address.zoneId;
     final CustomerSummaryController _customerSummaryController =
         Get.find<CustomerSummaryController>();
     await _customerSummaryController.getSummaryData();
     update();
-    Get.back();
+   // Get.back();
   }
 
   Future<void> onEditSelect(AddressModel address) async {
