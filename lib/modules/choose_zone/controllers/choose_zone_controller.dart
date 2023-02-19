@@ -33,12 +33,11 @@ class ZoneController extends GetxController with StateMixin<List<CityModel>> {
           feedbackMenu
               .add(CityModel(id: zonesList[i].id, name: zonesList[i].name));
         }
+        //var zone=feedbackMenu.firstWhere((element) => element.id==prefs.getCurrentZone!.id);
         selectedZone.value = prefs.getCurrentZone ?? const CityModel();
         selectedZone.value = feedbackMenu
             .firstWhere((element) => element.id == selectedZone.value.id);
-        selectedZoneName.value = prefs.getCurrentZone?.name == null
-            ? selectedZone.value.name ?? ''
-            : prefs.getCurrentZone?.name ?? "";
+        selectedZoneName.value = selectedZone.value.name??"";
         change(zonesList, status: RxStatus.success());
       }
     } catch (e) {

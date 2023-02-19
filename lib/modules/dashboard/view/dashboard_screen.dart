@@ -30,15 +30,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
   final UserSharedPrefrenceController userSharedPrefrenceController =
       Get.find<UserSharedPrefrenceController>();
   int pageIndex = 2;
-  final labelList = <String>[
-    Translate.menu.tr,
-    Translate.wishlist.tr,
-    Translate.home.tr,
-    Translate.myCart.tr,
-    Translate.account.tr,
-  ];
+
   @override
   Widget build(BuildContext context) {
+    final labelList = <String>[
+      Translate.menu.tr,
+      Translate.wishlist.tr,
+      Translate.home.tr,
+      Translate.myCart.tr,
+      Translate.account.tr,
+    ];
     var body = CustomConnectivityAlertWidget(
       onlineWidget: Stack(
         alignment: Alignment.bottomCenter,
