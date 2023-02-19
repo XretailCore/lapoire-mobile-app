@@ -54,6 +54,12 @@ class MyAccountScreen extends GetView<MyAccountController> {
                   ),
                   const SizedBox(height: 4),
                   MenuItemWidget(
+                    icon: FontAwesomeIcons.store,
+                    title: Translate.stores.tr,
+                    onTap: controller.goToBranches,
+                  ),
+                  const SizedBox(height: 4),
+                  MenuItemWidget(
                     icon: FontAwesomeIcons.phone,
                     title: Translate.contactUs.tr,
                     onTap: controller.goToContactUs,
