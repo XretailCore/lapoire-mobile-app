@@ -2,8 +2,10 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:imtnan/core/localization/lanaguages_enum.dart';
 import 'package:imtnan/core/utils/strings.dart';
+import 'package:imtnan/modules/cart/controllers/cart_controller.dart';
 import 'package:imtnan/modules/home/controllers/home_controller.dart';
 import 'package:imtnan/modules/map/controllers/map_controller.dart';
+import 'package:imtnan/modules/wishlist/controllers/wishlist_controller.dart';
 import 'package:linktsp_api/linktsp_api.dart';
 import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/routes.dart';
@@ -62,6 +64,8 @@ class ZoneController extends GetxController with StateMixin<List<CityModel>> {
   Future<void> onSubmitNewZone({Function()? afterSubmitZoneAction}) async {
     final prefs = Get.find<UserSharedPrefrenceController>();
     final mapController = Get.find<MapController>();
+    final cartController = Get.find<CartController>();
+    final wishListController = Get.find<WishlistController>();
     final homeController = Get.find<HomeController>();
     var languageId = prefs.getLanguage == Languages.en.name ? 1 : 2;
     prefs.setCurrentZone = selectedZone.value;
@@ -71,6 +75,8 @@ class ZoneController extends GetxController with StateMixin<List<CityModel>> {
         zoneid: prefs.getCurrentZone?.id,
         lang: languageId);
     await homeController.getPageBlock();
+    await cartController.getCart();
+    await wishListController.setWishList();
     selectedZoneName.value = selectedZone.value.name ?? "";
     mapController.selectedAddress.value = selectedZone.value.name ?? "";
     if (afterSubmitZoneAction != null) afterSubmitZoneAction();
