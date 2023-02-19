@@ -43,8 +43,8 @@ class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
                             title: summary.title ?? '',
                             isLastIndex:
                                 checkoutSummary.summary?.length == index + 1,
-                            value:
-                                '${summary.value ?? ""} ${summary.currencySymbol ?? ''}',
+                            value: summary.value ?? "",
+                            currencySymbol: summary.currencySymbol ?? '',
                           ),
                         )
                         .toList() ??

@@ -4,13 +4,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:linktsp_api/linktsp_api.dart';
-import '../../modules/inner/controllers/inner_product_controller.dart';
 import '../../modules/inner/widgets/favoriate_button_widget.dart';
 import '../../modules/wishlist/controllers/wishlist_controller.dart';
 import '../localization/translate.dart';
 import '../utils/app_colors.dart';
-import '../utils/routes.dart';
-import '../utils/strings.dart';
 import '../utils/theme.dart';
 import 'custom_counter.dart';
 import 'custom_text.dart';
@@ -183,7 +180,7 @@ class VerticalProductCard extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CustomText(
-                                    "$price ${Translate.egp.name.tr}",
+                                    "${price!.toStringAsFixed(price!.truncateToDouble() == price ? 0 : 1)} ${Translate.egp.name.tr}",
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 13,
@@ -198,7 +195,7 @@ class VerticalProductCard extends StatelessWidget {
                                           width: 10,
                                         ),
                                         CustomText(
-                                          "$oldPrice ${Translate.egp.name.tr}",
+                                          "${oldPrice!.toStringAsFixed(oldPrice!.truncateToDouble() == oldPrice ? 0 : 1)} ${Translate.egp.name.tr}",
                                           maxLines: 1,
                                           style: const TextStyle(
                                             fontSize: 12,

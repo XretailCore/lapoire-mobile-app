@@ -10,9 +10,10 @@ class RowCheckOutSummaryInformationWidget extends StatelessWidget {
     this.title = '',
     this.value = '',
     this.isLastIndex = false,
+    this.currencySymbol = '',
   }) : super(key: key);
   final bool isEnableBottomDivider;
-  final String title, value;
+  final String title, value, currencySymbol;
   final bool isLastIndex;
 
   @override
@@ -23,7 +24,7 @@ class RowCheckOutSummaryInformationWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           isLastIndex
-              ? const Divider(color: AppColors.primaryColor,thickness: 1.5)
+              ? const Divider(color: AppColors.primaryColor, thickness: 1.5)
               : const SizedBox.shrink(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,16 +41,39 @@ class RowCheckOutSummaryInformationWidget extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: CustomText(
-                  value,
-                  softWrap: true,
-                  textAlign: TextAlign.end,
-                  style: TextStyle(
-                    fontSize: isLastIndex ? 14 : 12,
-                    color:
-                        isLastIndex ? AppColors.redColor : AppColors.primaryColor,
-                    fontWeight: FontWeight.w700,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    CustomText(
+                      double.parse(value).toStringAsFixed(
+                          double.parse(value).truncateToDouble() ==
+                                  double.parse(value)
+                              ? 0
+                              : 1),
+                      softWrap: true,
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                        fontSize: isLastIndex ? 14 : 12,
+                        color: isLastIndex
+                            ? AppColors.redColor
+                            : AppColors.primaryColor,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(width: 4.0),
+                    CustomText(
+                      currencySymbol,
+                      softWrap: true,
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                        fontSize: isLastIndex ? 14 : 12,
+                        color: isLastIndex
+                            ? AppColors.redColor
+                            : AppColors.primaryColor,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

@@ -107,7 +107,7 @@ class CartScreen extends GetView<CartController> {
                                     "${data.items!.length} ${Translate.items.tr}"),
                                 const SizedBox(height: 4.0),
                                 CustomText(
-                                    "${Translate.total.tr} ${controller.total.value} ${Translate.egp.tr}"),
+                                    "${Translate.total.tr} ${controller.total.value.toStringAsFixed(controller.total.value.truncateToDouble() == controller.total.value ? 0 : 1)} ${Translate.egp.tr}"),
                               ],
                             ),
                             const SizedBox(width: 8.0),

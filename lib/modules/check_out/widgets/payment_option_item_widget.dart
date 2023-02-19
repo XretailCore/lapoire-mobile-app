@@ -111,7 +111,7 @@ class PaymentOptionWidget extends StatelessWidget {
                     Offstage(
                       offstage: payment.additionalFees == null,
                       child: CustomText(
-                        '${Translate.additionalFees.tr}: ${payment.additionalFees?.toString() ?? ''}',
+                        '${Translate.additionalFees.tr}: ${payment.additionalFees?.toStringAsFixed(payment.additionalFees!.truncateToDouble() == payment.additionalFees ? 0 : 1) ?? ''}',
                         style: const TextStyle(
                             fontSize: 8, fontWeight: FontWeight.w400),
                       ),

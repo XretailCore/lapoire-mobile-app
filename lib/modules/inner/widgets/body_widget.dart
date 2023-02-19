@@ -174,7 +174,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                   Column(
                     children: [
                       CustomText(
-                        '${widget.selectdProduct?.selectedProductSku.finalPrice} ${Translate.egp.tr}',
+                        '${widget.selectdProduct?.selectedProductSku.finalPrice.toStringAsFixed(widget.selectdProduct?.selectedProductSku.finalPrice.truncateToDouble() == widget.selectdProduct?.selectedProductSku.finalPrice ? 0 : 1)} ${Translate.egp.tr}',
                         style: const TextStyle(
                             fontSize: 20, color: AppColors.redColor),
                       ),

@@ -50,7 +50,8 @@ class FinalCheckoutSummaryWidget
                         isLastIndex: checkoutSummary?.summary?.length ==
                             (checkoutSummary?.summary?.indexOf(summary))! + 1,
                         value:
-                            '${summary.additionalInfo != null ? '${summary.additionalInfo} ' : ''} ${summary.value} ${summary.currencySymbol ?? ''}',
+                            '${summary.value}',
+                          currencySymbol:summary.currencySymbol ?? '',
                       ),
                     )
                     .toList()

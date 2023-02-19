@@ -221,7 +221,7 @@ class HorizontalProductCard extends StatelessWidget {
                                         children: [
                                           Expanded(
                                             child: CustomText(
-                                              "$price ${Translate.egp.name.tr}",
+                                              "${price!.toStringAsFixed(price!.truncateToDouble() == price ? 0 : 1)} ${Translate.egp.name.tr}",
                                               style: TextStyle(
                                                 fontSize: !isCart! ? 14 : 13,
                                                 fontWeight: FontWeight.w600,
@@ -234,7 +234,7 @@ class HorizontalProductCard extends StatelessWidget {
                                             child: Offstage(
                                               offstage: !(hasOffer ?? false),
                                               child: CustomText(
-                                                "$oldPrice ${Translate.egp.name.tr}",
+                                                "${oldPrice!.toStringAsFixed(oldPrice!.truncateToDouble() == oldPrice ? 0 : 1)} ${Translate.egp.name.tr}",
                                                 maxLines: 1,
                                                 style: const TextStyle(
                                                   fontSize: 12,
