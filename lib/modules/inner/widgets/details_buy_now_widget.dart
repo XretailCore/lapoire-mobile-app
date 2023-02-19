@@ -35,7 +35,7 @@ class DetailsBuyNowWidget extends StatelessWidget {
                           fontSize: 14, fontWeight: FontWeight.bold,color: AppColors.primaryColor,),
                       children: <InlineSpan>[
                         TextSpan(
-                          text: '  ${details?.codFees.toString()}',
+                          text: '  ${details?.codFees!.toStringAsFixed(details?.codFees!.truncateToDouble() == details?.codFees ? 0 : 1)}',
                           style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
                         ),
@@ -52,7 +52,7 @@ class DetailsBuyNowWidget extends StatelessWidget {
                           fontSize: 14, fontWeight: FontWeight.bold,color: AppColors.primaryColor,),
                       children: <InlineSpan>[
                         TextSpan(
-                          text: '  ${details?.shipmentFees}',
+                          text: '  ${details?.shipmentFees!.toStringAsFixed(details?.shipmentFees!.truncateToDouble() == details?.shipmentFees ? 0 : 1)}',
                           style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
                         ),
@@ -81,7 +81,7 @@ class DetailsBuyNowWidget extends StatelessWidget {
                           fontSize: 14, fontWeight: FontWeight.bold,color: AppColors.primaryColor,),
                       children: <InlineSpan>[
                         TextSpan(
-                          text: '  ${details?.total}',
+                          text: '  ${details?.total!.toStringAsFixed(details?.total!.truncateToDouble() == details?.total ? 0 : 1)}',
                           style: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
                         ),
