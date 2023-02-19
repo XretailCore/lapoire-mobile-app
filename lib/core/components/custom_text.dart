@@ -12,6 +12,7 @@ class CustomText extends StatelessWidget {
   final Color? color;
   final double? fontSize;
   final TextAlign? textAlign;
+  final double? textHeight;
   final FontWeight? fontWeight;
   final TextOverflow? overflow;
   final int? maxLines;
@@ -37,7 +38,7 @@ class CustomText extends StatelessWidget {
       @Deprecated('use style property instead') this.decorationColor,
       this.style,
       this.softWrap = false,
-      this.forceStrutHeight = true});
+      this.forceStrutHeight = true, this.textHeight});
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +61,7 @@ class CustomText extends StatelessWidget {
             fontWeight: fontWeight ?? FontWeight.w700,
             decoration: decoration,
             decorationColor: decorationColor,
+            height: textHeight,
             fontFamily: getLanguage(language),
           ),
       strutStyle: StrutStyle(

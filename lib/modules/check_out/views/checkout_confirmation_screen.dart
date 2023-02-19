@@ -3,8 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/core/components/custom_button.dart';
 import '../../../core/components/custom_text.dart';
+import '../../../core/localization/lanaguages_enum.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../controllers/checkout_confirmation_controller.dart';
 
 class CheckoutConfirmationScreen
@@ -13,6 +15,7 @@ class CheckoutConfirmationScreen
 
   @override
   Widget build(BuildContext context) {
+    final language = Get.find<UserSharedPrefrenceController>().getLanguage;
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       backgroundColor: AppColors.highlighter,
@@ -21,36 +24,43 @@ class CheckoutConfirmationScreen
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SvgPicture.asset('assets/images/confirm-image.svg',color: AppColors.redColor),
+            SvgPicture.asset('assets/images/confirm-image.svg',
+                color: AppColors.redColor),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                CustomText(
+                Text(
                   Translate.yourOrderHasBeenPlaced.tr,
                   textAlign: TextAlign.center,
                   softWrap: true,
                   style: TextStyle(
                     fontSize: 20,
                     color: primaryColor,
+                    height: 1.25,
+                    fontFamily: language == Languages.ar.name ? 'Cairo' : "Gilroy",
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 const SizedBox(height: 24),
                 CustomText(
                   '${Translate.orderCode.tr} : ${controller.orderCode}',
                   textAlign: TextAlign.center,
-                  style: const TextStyle(color: AppColors.redColor, fontSize: 12,fontWeight: FontWeight.w400),
+                  style: const TextStyle(
+                      color: AppColors.redColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400),
                 ),
                 const SizedBox(height: 16),
-                CustomText(
+                Text(
                   Translate
                       .weAreGettingYourOrderReadyToBeShippedWeWillNotifyYouWithDeliveryDate
                       .tr,
-                  textAlign: TextAlign.center,
                   softWrap: true,
                   style: TextStyle(
-                    fontSize: 11,
+                    fontSize: 15,
                     fontWeight: FontWeight.w400,
                     color: primaryColor,
+                    height: 1.5
                   ),
                 ),
               ],
