@@ -101,6 +101,7 @@ class CartScreen extends GetView<CartController> {
                           children: [
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 CustomText(
                                     "${data.items!.length} ${Translate.items.tr}"),
