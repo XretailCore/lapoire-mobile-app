@@ -29,7 +29,9 @@ class ShoppingInformationScreen extends GetView<ShippingInformationController> {
               const SizedBox(height: 10),
               const CustomStepperWidget(currentIndex: 2),
               const SizedBox(height: 10),
-              CheckOutTitleDividerWidget(title: "${shippingInfo?.items?.length.toString()} ${Translate.items.tr}"),
+              CheckOutTitleDividerWidget(
+                  title:
+                      "${shippingInfo?.items?.length.toString()} ${Translate.items.tr}"),
               const SizedBox(height: 10),
               Expanded(
                 child: ListView(
@@ -86,9 +88,14 @@ class ShoppingInformationScreen extends GetView<ShippingInformationController> {
               Column(
                 children: [
                   const SizedBox(height: 4),
-                  CustomText("${Translate.payment.tr}: ${shippingInfo?.paymentOption?.title ??''}",style: const TextStyle(color: AppColors.redColor),),
+                  CustomText(
+                    "${Translate.payment.tr}: ${shippingInfo?.paymentOption?.title ?? ''}",
+                    style: const TextStyle(color: AppColors.redColor),
+                  ),
                   const SizedBox(height: 8),
-                   Padding(
+                  if (shippingInfo?.configDeliveryPeriod?.max != 0 &&
+                      shippingInfo?.configDeliveryPeriod?.min != 0)
+                    Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Container(
                         padding: const EdgeInsets.all(8.0),
@@ -100,13 +107,21 @@ class ShoppingInformationScreen extends GetView<ShippingInformationController> {
                           children: [
                             Expanded(
                               child: CustomText(
-                                Translate.deliveredWithinMinMaxBusinessDays.trParams(
+                                Translate.deliveredWithinMinMaxBusinessDays
+                                    .trParams(
                                   params: {
-                                    'Min':
-                                    shippingInfo?.configDeliveryPeriod?.min.toString()??"",
-                                    'Max':
-                                    shippingInfo?.configDeliveryPeriod?.max.toString()??"",
-                                    'PeriodName': (shippingInfo?.configDeliveryPeriod?.periodName??"")
+                                    'Min': shippingInfo
+                                            ?.configDeliveryPeriod?.min
+                                            .toString() ??
+                                        "",
+                                    'Max': shippingInfo
+                                            ?.configDeliveryPeriod?.max
+                                            .toString() ??
+                                        "",
+                                    'PeriodName': (shippingInfo
+                                            ?.configDeliveryPeriod
+                                            ?.periodName ??
+                                        "")
                                   },
                                 ),
                                 textAlign: TextAlign.center,
@@ -121,7 +136,7 @@ class ShoppingInformationScreen extends GetView<ShippingInformationController> {
                           ],
                         ),
                       ),
-                  ),
+                    ),
                   const SizedBox(height: 8),
                   FinalCheckoutSummaryWidget(
                     summary: shippingInfo?.summary ?? [],
