@@ -36,9 +36,13 @@ class CheckoutOptionsScreen extends GetView<CustomerLocationController> {
                 await controller.pickAndCollectAction(Routes.storesLocationScreen);
               },
             title: CustomText(Translate.collectFromStore.tr),
-            subtitle: CustomText(
-              Translate.collectFromStoreMessage.tr,
-              style: const TextStyle(fontWeight: FontWeight.w400),
+            subtitle: Padding(
+              padding: const EdgeInsets.only(top: 4.0),
+              child: CustomText(
+                Translate.collectFromStoreMessage.tr,
+                softWrap: true,
+                style: const TextStyle(fontWeight: FontWeight.w400),
+              ),
             ),
             trailing: Icon(
               Icons.chevron_right,
@@ -53,9 +57,13 @@ class CheckoutOptionsScreen extends GetView<CustomerLocationController> {
               Get.toNamed(Routes.customerLocationsScreen);
             },
             title: CustomText(Translate.homeDelivery.tr),
-            subtitle: CustomText(
-              Translate.homeDeliveryMessage.tr,
-              style: const TextStyle(fontWeight: FontWeight.w400),
+            subtitle: Padding(
+              padding: const EdgeInsets.only(top: 4.0),
+              child: CustomText(
+                Translate.homeDeliveryMessage.tr,
+                softWrap: true,
+                style: const TextStyle(fontWeight: FontWeight.w400),
+              ),
             ),
             trailing: Icon(
               Icons.chevron_right,
