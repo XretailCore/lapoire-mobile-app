@@ -37,7 +37,7 @@ class MyAccountScreen extends GetView<MyAccountController> {
                       ],
                     ),
                 )
-                : CustomText(Translate.hello.tr)),
+                : Center(child: CustomText(Translate.hello.tr))),
 
           Expanded(
             child: Padding(
