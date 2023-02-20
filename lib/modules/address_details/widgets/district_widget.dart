@@ -6,7 +6,6 @@ import 'package:linktsp_api/linktsp_api.dart';
 
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
-import '../../../core/utils/theme.dart';
 import '../controllers/address_details_controller.dart';
 
 class DistrictWidget extends GetView<AddressDetailsController> {
@@ -56,6 +55,10 @@ class DistrictWidget extends GetView<AddressDetailsController> {
               borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: primaryColor),
             ),
+            disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide: BorderSide(color: primaryColor),
+            ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20),
               borderSide: BorderSide(color: primaryColor),
@@ -96,6 +99,7 @@ class DistrictWidget extends GetView<AddressDetailsController> {
           onChanged: (newValue) async {
             controller.selectedDistrict.value = newValue;
           },
+          enabled: controller.selectedZone.value?.id!=null,
           items: controller.districtMenu,
         ),
       ),
