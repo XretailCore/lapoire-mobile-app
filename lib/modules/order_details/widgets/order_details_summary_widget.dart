@@ -16,6 +16,9 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
   @override
   Widget build(BuildContext context) {
     final primary = CustomThemes.appTheme.primaryColor;
+    var percentage = (orderDetailsModel.personalDiscountAmount! /
+        orderDetailsModel.total!.toDouble() *
+        100);
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: const BoxDecoration(
@@ -28,23 +31,67 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SummaryInfoWidget(
+          if (orderDetailsModel.codFee != 0.0)
+            SummaryInfoWidget(
+              title: "${Translate.cashOnDeliveryFees.name.tr} :",
+              textColor: primary,
+              subTitle: orderDetailsModel.codFee!.toStringAsFixed(
+                  orderDetailsModel.codFee!.truncateToDouble() ==
+                          orderDetailsModel.codFee
+                      ? 0
+                      : 1),
+            ),
+          if (orderDetailsModel.subTotal != 0.0)
+            SummaryInfoWidget(
               title:
-                  "${Translate.subtotal.name.tr} (${orderDetailsModel.productsCount} ${Translate.items.tr})",
+                  "${Translate.subtotal.name.tr} (${orderDetailsModel.productsCount} ${Translate.items.tr}) :",
               textColor: primary,
-              subTitle: orderDetailsModel.subTotal.toString()),
-          const SizedBox(height: 8),
-          SummaryInfoWidget(
-              title: "${Translate.profileBasedDiscount.name.tr} ",
+              subTitle: orderDetailsModel.subTotal!.toStringAsFixed(
+                  orderDetailsModel.subTotal!.truncateToDouble() ==
+                          orderDetailsModel.subTotal!
+                      ? 0
+                      : 1),
+            ),
+          if (orderDetailsModel.personalDiscountAmount != 0.0)
+            SummaryInfoWidget(
+                title: "${Translate.personalDiscountAmount.tr} ",
+                textColor: primary,
+                subTitle:
+                    "${percentage.toStringAsFixed(percentage.truncateToDouble() == percentage ? 0 : 1)} %   ${orderDetailsModel.personalDiscountAmount!.toStringAsFixed(orderDetailsModel.personalDiscountAmount!.truncateToDouble() == orderDetailsModel.personalDiscountAmount ? 0 : 1)}"),
+          if (orderDetailsModel.shipmentCost != 0.0)
+            SummaryInfoWidget(
+              title: "${Translate.cashOnDeliveryFees.name.tr} :",
               textColor: primary,
-              subTitle:
-                  "${orderDetailsModel.personalDiscountAmount!=null ||orderDetailsModel.personalDiscountAmount==0.0?(orderDetailsModel.personalDiscountAmount! / orderDetailsModel.total!.toDouble() * 100).toStringAsFixed(2):"0"} %   ${orderDetailsModel.personalDiscountAmount.toString()}"),
-          const SizedBox(height: 8),
-          SummaryInfoWidget(
-              title: "${Translate.cashOnDeliveryFees.name.tr} ",
+              subTitle: orderDetailsModel.shipmentCost!.toStringAsFixed(
+                  orderDetailsModel.shipmentCost!.truncateToDouble() ==
+                          orderDetailsModel.shipmentCost
+                      ? 0
+                      : 1),
+            ),
+          if (orderDetailsModel.triggeredCartAmountDiscountAmount != 0.0)
+            SummaryInfoWidget(
+              title: "${Translate.cartDiscountAmount.tr} :",
               textColor: primary,
-              subTitle: orderDetailsModel.codFee.toString()),
-          const SizedBox(height: 8),
+              subTitle: orderDetailsModel.triggeredCartAmountDiscountAmount!
+                  .toStringAsFixed(orderDetailsModel
+                              .triggeredCartAmountDiscountAmount!
+                              .truncateToDouble() ==
+                          orderDetailsModel.triggeredCartAmountDiscountAmount
+                      ? 0
+                      : 1),
+            ),
+          if (orderDetailsModel.triggeredProfileBasedDiscountAmount != 0.0)
+            SummaryInfoWidget(
+              title: "${Translate.profileDiscountAmount.tr} :",
+              textColor: primary,
+              subTitle: orderDetailsModel.triggeredProfileBasedDiscountAmount!
+                  .toStringAsFixed(orderDetailsModel
+                              .triggeredProfileBasedDiscountAmount!
+                              .truncateToDouble() ==
+                          orderDetailsModel.triggeredProfileBasedDiscountAmount
+                      ? 0
+                      : 1),
+            ),
           Divider(color: primary),
           Row(
             children: [
@@ -61,14 +108,15 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
               const SizedBox(
                 width: 10,
               ),
-              CustomText(
-                "${orderDetailsModel.total.toString()} ${Translate.egp.tr}",
-                textAlign: TextAlign.start,
-                style: const TextStyle(
-                  color: AppColors.redColor,
-                  fontSize: 18.0,
+              if (orderDetailsModel.total != 0.0)
+                CustomText(
+                  "${orderDetailsModel.total!.toStringAsFixed(orderDetailsModel.total!.truncateToDouble() == orderDetailsModel.total ? 0 : 1)} ${Translate.egp.tr}",
+                  textAlign: TextAlign.start,
+                  style: const TextStyle(
+                    color: AppColors.redColor,
+                    fontSize: 18.0,
+                  ),
                 ),
-              ),
             ],
           ),
         ],
@@ -123,29 +171,32 @@ class SummaryInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: CustomText(
-            title,
-            softWrap: true,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: CustomText(
+              title,
+              softWrap: true,
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                color: textColor ?? Colors.grey,
+              ),
+            ),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          CustomText(
+            "$subTitle  ${Translate.egp.tr}",
+            textAlign: TextAlign.start,
             style: TextStyle(
-              fontWeight: FontWeight.w500,
               color: textColor ?? Colors.grey,
             ),
           ),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        CustomText(
-          "$subTitle  ${Translate.egp.tr}",
-          textAlign: TextAlign.start,
-          style: TextStyle(
-            color: textColor ?? Colors.grey,
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

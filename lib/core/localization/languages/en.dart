@@ -30,6 +30,9 @@ Map<String, String> getEnglishTranslation() => {
       Translate.aboutUs.name: "About Us",
       Translate.contactUs.name: "Contact Us",
       Translate.showLess.name: 'Show less',
+      Translate.cartDiscountAmount.name: 'Cart Discount Amount',
+      Translate.personalDiscountAmount.name: 'Personal Discount Amount',
+      Translate.profileDiscountAmount.name: 'Profile Discount Amount',
       Translate.iconsRedemptionSuccessfullyApplied.name:
       'Icons redemption successfully applied!',
       Translate.showMore.name: 'Show more',
