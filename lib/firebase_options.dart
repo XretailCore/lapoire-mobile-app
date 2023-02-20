@@ -50,16 +50,16 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyD-WRa__gFTgu9BVfGazP2QtsMi1S65srk',
     appId: '1:77400348289:android:7037d14d1e60056b865f80',
     messagingSenderId: '77400348289',
-    projectId: 'imtenan-app',
-    storageBucket: 'imtenan-app.appspot.com',
+    projectId: 'lapoire-app',
+    storageBucket: 'lapoire-app.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAl1S0LK8Ynuj2moa0nWAPose9Y6U2znR4',
     appId: '1:77400348289:ios:0f8e217a45a43f43865f80',
     messagingSenderId: '77400348289',
-    projectId: 'imtenan-app',
-    storageBucket: 'imtenan-app.appspot.com',
+    projectId: 'lapoire-app',
+    storageBucket: 'lapoire-app.appspot.com',
     androidClientId:
         '77400348289-1f2mr6fglhu73k0pm0aidf2ebo3mu9ru.apps.googleusercontent.com',
     iosClientId:
@@ -71,8 +71,8 @@ class DefaultFirebaseOptions {
     apiKey: 'AIzaSyAl1S0LK8Ynuj2moa0nWAPose9Y6U2znR4',
     appId: '1:77400348289:ios:0f8e217a45a43f43865f80',
     messagingSenderId: '77400348289',
-    projectId: 'imtenan-app',
-    storageBucket: 'imtenan-app.appspot.com',
+    projectId: 'lapoire-app',
+    storageBucket: 'lapoire-app.appspot.com',
     androidClientId:
         '77400348289-1f2mr6fglhu73k0pm0aidf2ebo3mu9ru.apps.googleusercontent.com',
     iosClientId:

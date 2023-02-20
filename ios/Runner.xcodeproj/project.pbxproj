@@ -566,7 +566,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Linktsp.Lapoire;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ImtenanProfile10-10-2022";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "lapoireProfile10-10-2022";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

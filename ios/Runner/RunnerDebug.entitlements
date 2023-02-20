@@ -10,8 +10,8 @@
 	</array>
     <key>com.apple.developer.associated-domains</key>
     <array>
-        <string>applinks:www.imtenan.com</string>
-        <string>applinks:imtenan.page.link</string>
+        <string>applinks:http://193.42.121.138:5002</string>
+        <string>applinks:lapoire.page.link</string>
     </array>
 </dict>
 </plist>

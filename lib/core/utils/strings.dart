@@ -6,8 +6,8 @@ import 'package:linktsp_api/core/models/admin_model.dart';
 const String currency = 'EGP',
     appIdAndroid = 'com.Linktsp.Lapoire',
     appIdIOs = '6443763789',
-    websiteUrl = 'https://www.imtenan.com',
-    appUrl = "https://imtenan.page.link/start",
+    websiteUrl = 'http://193.42.121.138:5002',
+    appUrl = "https://lapoire.page.link/start",
     appUrlIOs = "itms-apps://itunes.apple.com/app/id$appIdIOs";
 // Live Domain
 const String liveDomain = "http://193.42.121.138:5002";

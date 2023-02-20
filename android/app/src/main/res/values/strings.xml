@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Imtenan</string>
+    <string name="app_name">Lapoire</string>
     <string name="facebook_app_id">216387303853895</string>
     <string name="facebook_client_token">7acece4126b50e70339622949cac343c</string>
     <string name="fb_login_protocol_scheme">fb216387303853895</string>

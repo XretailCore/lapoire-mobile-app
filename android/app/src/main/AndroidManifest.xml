@@ -35,7 +35,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" android:host="imtenan.page.link" />
+                <data android:scheme="http" android:host="lapoire.page.link" />
                 <data android:scheme="https" />
             </intent-filter>
 
@@ -44,7 +44,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:scheme="http"/>
-                <data android:scheme="https" android:host="www.imtenan.com" />
+                <data android:scheme="https" android:host="http://193.42.121.138:5002" />
             </intent-filter>
 
             <meta-data android:name="io.flutter.embedding.android.NormalTheme" android:resource="@style/NormalTheme" />

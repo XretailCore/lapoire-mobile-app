@@ -10,7 +10,7 @@ import '../../firebase_options.dart';
 class FirebaseNotification {
   static Future<void> init() async {
     await Firebase.initializeApp(
-      name: 'imtenan-app',
+      name: 'lapoire-app',
       options: DefaultFirebaseOptions.currentPlatform,
     );
 
