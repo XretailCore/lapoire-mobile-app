@@ -41,6 +41,7 @@ class BodyWidget extends StatefulWidget {
 class _BodyWidgetState extends State<BodyWidget> {
   int indexImage = 0;
   int quantity = 1;
+  int initialQuantity = 1;
   bool isSaving = false;
 
   void changeQuantity(int newQuantity) async {
@@ -53,7 +54,12 @@ class _BodyWidgetState extends State<BodyWidget> {
       widget.innerProductController.quantity = quantity;
     });
   }
-
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initialQuantity=widget.innerProductController.quantity;
+  }
   @override
   Widget build(BuildContext context) {
     final primaryColor = CustomThemes.appTheme.primaryColor;
@@ -172,8 +178,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                                   color: primaryColor,
                                   onPressed: (isSaving ||
                                           quantity <=
-                                              widget.innerProductController
-                                                  .quantity)
+                                              initialQuantity)
                                       ? null
                                       : () => changeQuantity(quantity - 1),
                                   icon: const Icon(
