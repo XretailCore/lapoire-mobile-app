@@ -384,7 +384,10 @@ class InnerProductController extends GetxController
             final checkoutConfirmationController =
                 Get.find<CheckoutConfirmationController>();
             checkoutConfirmationController.orderCode = orderCode;
-            Get.offAndToNamed(Routes.checkoutConfirmationScreen);
+            Get.offAndToNamed(Routes.checkoutConfirmationScreen,arguments: {
+              Arguments.orderNo:orderCode,
+              Arguments.orderNo:orderCode,
+            });
           } on ExceptionApi catch (e) {
             Get.back();
             ScaffoldMessenger.of(context).showSnackBar(

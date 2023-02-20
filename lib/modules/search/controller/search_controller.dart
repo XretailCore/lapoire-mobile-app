@@ -7,6 +7,7 @@ import 'package:linktsp_api/data/list/models/new_list_model.dart' as new_model;
 import '../../../core/components/custom_loaders.dart';
 import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../../../core/utils/routes.dart';
+import '../../cart/controllers/cart_controller.dart';
 import '../../dashboard/controller/dashboard_controller.dart';
 import '../../settings/controller/language_controller.dart';
 
@@ -24,7 +25,21 @@ class SearchController extends GetxController
     super.onInit();
     change(null, status: RxStatus.empty());
   }
-
+  Future<void> onTapAddToCard({
+    required BuildContext context,
+    required int skuId,
+    required int quantity,
+    required double price,
+    required bool isPreOrder,
+  }) async {
+    final cartController = Get.find<CartController>();
+    await cartController.onTapAddToCard(
+        isPreOrder: isPreOrder,
+        context: context,
+        price: price,
+        skuId: skuId,
+        quantity: quantity);
+  }
   Future<void> getListWithSearch(
       {bool showLoader = false, bool isRefresh = false}) async {
     final userSharedPrefrenceController =

@@ -5,6 +5,7 @@ import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/routes.dart';
+import '../../listing_items/widgets/categories_filter_widget.dart';
 import '../controllers/customer_summary_controller.dart';
 import '../controllers/payment_controller.dart';
 import '../widgets/checkout_summary_widget.dart';
@@ -31,6 +32,7 @@ class PaymentScreen extends GetView<PaymentController> {
             const CustomStepperWidget(currentIndex: 1),
             const SizedBox(height: 8),
             const SizedBox(height: 8),
+            TitleWithDivider(title: Translate.selectAPaymentMethod.tr,color: AppColors.primaryColor,),
             Expanded(
               child: controller.obx(
                 (payments) => PaymentOptionItemWidget(

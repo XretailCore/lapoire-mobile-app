@@ -84,9 +84,7 @@ class HorizontalProductCard extends StatelessWidget {
         Stack(
           children: [
             Row(
-              crossAxisAlignment: !isCart!
-                  ? CrossAxisAlignment.center
-                  : CrossAxisAlignment.center,
+              crossAxisAlignment: !isCart! ? CrossAxisAlignment.center : CrossAxisAlignment.center,
               children: [
                 Stack(
                   clipBehavior: Clip.none,
@@ -119,17 +117,14 @@ class HorizontalProductCard extends StatelessWidget {
                       child: Offstage(
                         offstage: !(isBogo && bogoText.isNotEmpty),
                         child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 5, vertical: 5),
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 5, horizontal: 5),
+                          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                          margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: Colors.red,
                               width: .5,
                             ),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(30)),
+                            borderRadius: const BorderRadius.all(Radius.circular(30)),
                             color: AppColors.highlighter,
                           ),
                           child: CustomText(
@@ -174,8 +169,7 @@ class HorizontalProductCard extends StatelessWidget {
                 ),
                 Expanded(
                     child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -211,13 +205,11 @@ class HorizontalProductCard extends StatelessWidget {
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 13,
-                                          color: CustomThemes
-                                              .appTheme.primaryColor,
+                                          color: CustomThemes.appTheme.primaryColor,
                                         ),
                                       )
                                     : Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           Expanded(
                                             child: CustomText(
@@ -241,10 +233,8 @@ class HorizontalProductCard extends StatelessWidget {
                                                   color: Colors.grey,
                                                   fontWeight: FontWeight.w600,
                                                   decorationColor: Colors.red,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  decoration: TextDecoration
-                                                      .lineThrough,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  decoration: TextDecoration.lineThrough,
                                                 ),
                                               ),
                                             ),
@@ -267,8 +257,7 @@ class HorizontalProductCard extends StatelessWidget {
                                   isAvailable
                                       ? CustomText(
                                           Translate.inStock.tr,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.normal),
+                                          style: const TextStyle(fontWeight: FontWeight.normal),
                                         )
                                       : CustomText(Translate.outOfStock.tr),
                                 SizedBox(height: (rate != null) ? 10 : 0),
@@ -278,9 +267,7 @@ class HorizontalProductCard extends StatelessWidget {
                           Column(
                             children: [
                               Offstage(
-                                offstage: !(onDelete != null ||
-                                    isBogo ||
-                                    showFavorite!),
+                                offstage: !(onDelete != null || isBogo || showFavorite!),
                                 child: DottedBorder(
                                   borderType: BorderType.Circle,
                                   color: AppColors.redColor,
@@ -291,15 +278,12 @@ class HorizontalProductCard extends StatelessWidget {
                                             id: productId,
                                             finalPrice: price,
                                           );
-                                          final wishlistController =
-                                              Get.find<WishlistController>();
-                                          wishlistController.onChangeFavorite(
-                                              context, false, listingItem);
+                                          final wishlistController = Get.find<WishlistController>();
+                                          wishlistController.onChangeFavorite(context, false, listingItem);
                                         },
                                     child: const Padding(
                                       padding: EdgeInsets.all(3.0),
-                                      child: Icon(Icons.clear,
-                                          size: 16, color: AppColors.redColor),
+                                      child: Icon(Icons.clear, size: 16, color: AppColors.redColor),
                                     ),
                                   ),
                                 ),
@@ -311,20 +295,19 @@ class HorizontalProductCard extends StatelessWidget {
                                   borderRadius: const BorderRadius.all(
                                     Radius.circular(20),
                                   ),
-                                  onTap: onAddToCart,
+                                  onTap: !isAvailable ? null : onAddToCart,
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: CustomThemes.appTheme.primaryColor,
+                                      color: !isAvailable ? Colors.grey :CustomThemes.appTheme.primaryColor,
                                       border: Border.all(
-                                        color:
-                                            CustomThemes.appTheme.primaryColor,
+                                        color:!isAvailable ? Colors.grey : CustomThemes.appTheme.primaryColor,
                                       ),
                                       borderRadius: const BorderRadius.all(
                                         Radius.circular(20),
                                       ),
                                     ),
                                     child: const Padding(
-                                      padding: EdgeInsets.all(5.0),
+                                      padding:  EdgeInsets.all(5.0),
                                       child: Icon(
                                         Icons.shopping_cart,
                                         size: 16,
@@ -366,11 +349,8 @@ class HorizontalProductCard extends StatelessWidget {
                                     child: CounterWidget(
                                       count: count ?? 1,
                                       increment: onIncrement!,
-                                      decrement: count == null || count == 1
-                                          ? () {}
-                                          : ondecrement!,
-                                      maxCount:
-                                          price == 0 ? count ?? 1 : maxCount,
+                                      decrement: count == null || count == 1 ? () {} : ondecrement!,
+                                      maxCount: price == 0 ? count ?? 1 : maxCount,
                                     ),
                                   ),
                                 ],

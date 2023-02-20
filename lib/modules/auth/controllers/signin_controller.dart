@@ -76,7 +76,7 @@ class SigninController extends GetxController {
     final cartController = Get.find<CartController>();
     await cartController.getCart();
     final dashboardController = Get.find<DashboardController>();
-    dashboardController.updateIndex(0);
+    dashboardController.updateIndex(2);
     Get.back();
   }
 

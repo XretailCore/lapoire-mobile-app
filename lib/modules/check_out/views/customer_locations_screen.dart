@@ -16,8 +16,7 @@ import '../widgets/customer_locations.dart';
 
 class CustomerLocationsScreen extends GetView<CustomerLocationController> {
   CustomerLocationsScreen({Key? key}) : super(key: key);
-  final CustomerSummaryController customerSummaryController =
-      Get.find<CustomerSummaryController>();
+  final CustomerSummaryController customerSummaryController = Get.find<CustomerSummaryController>();
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +44,14 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.toNamed(Routes.selectLocationFromMapScreen,
-                            arguments: {
-                              Arguments.isCheckoutAddress: true,
-                            });
+                        Get.toNamed(Routes.selectLocationFromMapScreen, arguments: {
+                          Arguments.isCheckoutAddress: true,
+                        });
                       },
                       child: CustomText(
                         Translate.addNewAddress.tr,
                         style: const TextStyle(
-                            fontSize: 13,
-                            color: AppColors.redColor,
-                            decoration: TextDecoration.underline),
+                            fontSize: 13, color: AppColors.redColor, decoration: TextDecoration.underline),
                       ),
                     ),
                   ],
@@ -86,7 +82,7 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
           ),
           Obx(
             () => Offstage(
-              offstage: controller.isAddressEmpty,
+              offstage: controller.isAddressEmpty.value,
               child: customerSummaryController.obx(
                 (summary) => Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -102,14 +98,12 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
                           child: CustomText(
                             Translate.deliveredWithinMinMaxBusinessDays.trParams(
                               params: {
-                                'Min':
-                                summary?.configDeliveryPeriod?.min.toString()??"",
-                                'Max':
-                                summary?.configDeliveryPeriod?.max.toString()??"",
-                                'PeriodName': (summary?.configDeliveryPeriod?.periodName??"")
+                                'Min': summary?.configDeliveryPeriod?.min.toString() ?? "",
+                                'Max': summary?.configDeliveryPeriod?.max.toString() ?? "",
+                                'PeriodName': (summary?.configDeliveryPeriod?.periodName ?? "")
                               },
                             ),
-                           // " ${Translate.deliveredWithin.tr} ${summary?.configDeliveryPeriod?.min}-${summary?.configDeliveryPeriod?.max} ${Translate.minutes.tr}",
+                            // " ${Translate.deliveredWithin.tr} ${summary?.configDeliveryPeriod?.min}-${summary?.configDeliveryPeriod?.max} ${Translate.minutes.tr}",
                             // summary?.configDeliveryPeriod?.deliveryNote
                             //     ?.toUpperCase(),
                             textAlign: TextAlign.center,
@@ -137,13 +131,18 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
             ),
           ),
           const SizedBox(height: 10),
-          CheckoutSummaryWidget(
-            onTapNext: (isPreOrder) {
-              final _paymentController = Get.find<PaymentController>();
-              _paymentController.isPreOrder = isPreOrder;
-              _paymentController.onInit();
-              controller.nextAction();
-            },
+          Obx(
+            () => CheckoutSummaryWidget(
+              buttonColor: controller.isAddressEmpty.value ? Colors.grey : AppColors.redColor,
+              onTapNext: controller.isAddressEmpty.value
+                  ? (isPreOrder) {}
+                  : (isPreOrder) {
+                      final _paymentController = Get.find<PaymentController>();
+                      _paymentController.isPreOrder = isPreOrder;
+                      _paymentController.onInit();
+                      controller.nextAction();
+                    },
+            ),
           ),
         ],
       ),

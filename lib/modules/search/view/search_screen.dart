@@ -87,6 +87,13 @@ class SearchScreen extends GetView<SearchController> {
                         brandName: product.brandName ?? "",
                         productName: product.title ?? "",
                         isAvailable: !(product.isOutOfStock ?? false),
+                        onAddToCart: () => controller.onTapAddToCard(
+                          context: context,
+                          skuId: product.id!,
+                          price: product.finalPrice ?? 0,
+                          quantity: 1,
+                          isPreOrder: product.preOrder ?? false,
+                        ),
                         hasOffer:
                             product.productDiscountList?.isNotEmpty ?? false,
                         offerPercentage: product.productDiscountList!.isEmpty

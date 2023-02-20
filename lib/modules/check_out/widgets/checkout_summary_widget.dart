@@ -12,8 +12,10 @@ class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
   /// Default name is Translate.next.tr
   final String? buttonName;
 
+  final Color? buttonColor;
+
   const CheckoutSummaryWidget(
-      {Key? key, this.color, required this.onTapNext, this.buttonName})
+      {Key? key, this.color, required this.onTapNext, this.buttonName,this.buttonColor})
       : super(key: key);
   final void Function(bool isPreOrder) onTapNext;
 
@@ -56,7 +58,7 @@ class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: CustomBorderButton(
-                  color: AppColors.redColor,
+                  color: buttonColor??AppColors.redColor,
                   radius: 20.0,
                   title: buttonName ?? Translate.next.tr,
                   onTap: () {

@@ -101,23 +101,14 @@ class _BodyWidgetState extends State<BodyWidget> {
                                   widget.selectdProduct?.selectedProductSku
                                       .skuCode,
                                   context),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  width: 1,
-                                  color: AppColors.redColor,
-                                ),
-                              ),
-                            ),
-                            child: CustomText(
-                              Translate.addReview.tr,
-                              textAlign: TextAlign.start,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                color: AppColors.redColor,
-                                fontWeight: FontWeight.w700,
-                              ),
+                          child: CustomText(
+                            Translate.addReview.tr,
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: AppColors.redColor,
+                              decoration: TextDecoration.underline,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                         ),
@@ -144,6 +135,7 @@ class _BodyWidgetState extends State<BodyWidget> {
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   DottedBorder(
                     dashPattern: const [4, 4],

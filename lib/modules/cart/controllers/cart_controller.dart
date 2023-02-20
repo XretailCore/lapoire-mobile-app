@@ -56,12 +56,13 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
           }
           HelperFunctions.showSnackBar(
               message: alertMessage, context: Get.context!);
-        } else {
+        }
+       else {
           final CustomerSummaryController _customerSummaryController =
               Get.find<CustomerSummaryController>();
           _customerSummaryController.getSummaryData();
           Get.toNamed(Routes.checkOutOptionsScreen);
-        }
+       }
       } on ExceptionApi catch (e) {
         HelperFunctions.showSnackBar(
             message: e.toString(), context: Get.context!);

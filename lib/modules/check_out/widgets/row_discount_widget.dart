@@ -25,13 +25,14 @@ class RowDiscountWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: primaryColor),
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(30.0),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
+            flex: 3,
             child: TextFormField(
               enabled: isApply,
               controller: textEditingController,
@@ -60,12 +61,15 @@ class RowDiscountWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 10),
-          CustomBorderButton(
-            textColor: Colors.white,
-            radius: 20.0,
-            color: isApply ? Theme.of(context).primaryColor : Colors.grey[700]!,
-            title: isApply ? Translate.apply.tr : Translate.clear.tr,
-            onTap: isApply ? onTapApply : onTapClear,
+          Expanded(
+            flex: 1,
+            child: CustomBorderButton(
+              textColor: Colors.white,
+              radius: 30.0,
+              color: isApply ? Theme.of(context).primaryColor : Colors.grey[700]!,
+              title: isApply ? Translate.apply.tr : Translate.clear.tr,
+              onTap: isApply ? onTapApply : onTapClear,
+            ),
           )
         ],
       ),

@@ -17,9 +17,8 @@ class CustomerLocationController extends GetxController
     with StateMixin<List<AddressModel>> {
   CustomerLocationController();
 
-  final Rx<bool> _isAddressEmpty = Rx<bool>(true);
+  Rx<bool> isAddressEmpty = Rx<bool>(true);
 RxInt toggleValue=0.obs;
-  bool get isAddressEmpty => _isAddressEmpty.value;
   int? selectedZoneId = 0;
 
   @override
@@ -42,7 +41,7 @@ RxInt toggleValue=0.obs;
         final addresses = await LinkTspApi.instance.address
             .getShipmentAddresses(customId: customerId!);
         _setDefaultLocation(addresses: addresses);
-        _isAddressEmpty.value = addresses.isEmpty;
+        isAddressEmpty.value = addresses.isEmpty;
         change(addresses, status: RxStatus.success());
       } else {
         change(null, status: RxStatus.error());
@@ -71,14 +70,12 @@ RxInt toggleValue=0.obs;
   }
 
   void onSelectAddress(BuildContext context, AddressModel address) async {
-   // openLoadingDialog(context);
     Locations.locationId = address.id;
     selectedZoneId = address.zoneId;
     final CustomerSummaryController _customerSummaryController =
         Get.find<CustomerSummaryController>();
     await _customerSummaryController.getSummaryData();
     update();
-   // Get.back();
   }
 
   Future<void> onEditSelect(AddressModel address) async {
@@ -87,11 +84,6 @@ RxInt toggleValue=0.obs;
     });
   }
 
-  @override
-  void onClose() {
-    _isAddressEmpty.close();
-    super.onClose();
-  }
 
   void nextAction() async {
     try {

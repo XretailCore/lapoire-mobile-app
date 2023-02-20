@@ -170,6 +170,7 @@ class ProfileScreen extends GetView<ProfileController> {
                           const SizedBox(height: 10),
                           InkWell(
                             onTap: () async {
+                              FocusScope.of(context).unfocus();
                               controller.chooseDate(context);
                             },
                             child: Container(

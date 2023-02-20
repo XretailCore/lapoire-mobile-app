@@ -78,6 +78,7 @@ class Signupwidget extends GetView<SignupController> {
             const SizedBox(height: 15),
             InkWell(
               onTap: () async {
+                FocusScope.of(context).unfocus();
                 controller.selectedDate.value = await showDatePicker(
                   context: context,
                   initialDate: DateTime.now(),

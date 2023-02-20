@@ -111,23 +111,21 @@ class LocationPlaceWidget extends StatelessWidget {
               ),
             ),
             isEnableEdit
-                ? Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      IconButton(
-                        padding: const EdgeInsets.all(0),
-                        alignment: AlignmentDirectional.topEnd,
-                        onPressed: onEdit,
-                        icon: const FaIcon(
+                ? InkWell(
+              onTap: onEdit,
+                  child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const FaIcon(
                           FontAwesomeIcons.penToSquare,
                           color: AppColors.primaryColor,
-                          size: 20,
+                          size: 22,
                         ),
-                      ),
-                      const SizedBox(width: 4.0),
-                      CustomText(Translate.edit.tr)
-                    ],
-                  )
+                        const SizedBox(width: 4.0),
+                        CustomText(Translate.edit.tr,style: const TextStyle(fontSize: 16.0))
+                      ],
+                    ),
+                )
                 : const SizedBox(),
           ],
         ),

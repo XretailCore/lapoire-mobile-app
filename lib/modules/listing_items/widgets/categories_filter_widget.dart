@@ -124,8 +124,8 @@ class SubCategoriesWidgetFilter extends GetView<FilterController> {
 
 class TitleWithDivider extends StatelessWidget {
   final String title;
-
-  const TitleWithDivider({Key? key, required this.title}) : super(key: key);
+final Color? color;
+  const TitleWithDivider({Key? key, required this.title, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -137,14 +137,14 @@ class TitleWithDivider extends StatelessWidget {
           CustomText(
             title,
             textAlign: TextAlign.start,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: AppColors.redColor,
+              color: color??AppColors.redColor,
             ),
           ),
           const SizedBox(height: 2.0),
-          const Divider(color: AppColors.redColor, thickness: 1)
+          Divider(color: color??AppColors.redColor, thickness: 1)
         ],
       ),
     );
