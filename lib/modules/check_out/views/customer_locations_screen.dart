@@ -60,10 +60,9 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
               ],
             ),
           ),
-          const SizedBox(height: 16),
           Expanded(
             child: Container(
-              margin: const EdgeInsets.all(8.0),
+              margin: const EdgeInsets.symmetric(horizontal: 8.0),
               child: controller.obx(
                 (addresses) => CustomerLocationsWidget(
                   isEnableEdit: true,

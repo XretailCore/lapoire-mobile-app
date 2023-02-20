@@ -145,7 +145,6 @@ class PaymentSummaryWidget extends GetView<OrderDetailsController> {
             subTitle: orderDetailsModel.paymentType ?? "",
             textColor: AppColors.redColor,
           ),
-          const SizedBox(height: 8),
           PaymentSummaryInfoWidget(
             title: "${Translate.status.name.tr} :",
             subTitle: orderDetailsModel.orderStatus ?? "",
@@ -225,7 +224,7 @@ class PaymentSummaryInfoWidget extends StatelessWidget {
             fontSize: 13,
           ),
         ),
-        const SizedBox(width: 10),
+        const SizedBox(width: 2),
         CustomText(
           subTitle,
           textAlign: TextAlign.start,
