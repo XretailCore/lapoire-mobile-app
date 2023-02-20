@@ -209,8 +209,19 @@ class UserSharedPrefrenceController extends GetxController {
     _currentLocation.value = _customSharedPrefrenece.getcurrentLocation;
     return _currentLocation.value;
   }
-  String get getUserFirstName =>
-      _userFirstName.value = _customSharedPrefrenece.getFirstName;
+  String? get getUserFirstName {
+    _userFirstName.value = _customSharedPrefrenece.getFirstName;
+    return _userFirstName.value ?? '';
+  }
+  String? get getUserEmail {
+    _userEmail.value = _customSharedPrefrenece.getUserEmail;
+    return _userEmail.value;
+  }
+
+  set setUserEmail(String? v) {
+    _customSharedPrefrenece.setUserEmail = v;
+    _userEmail.value = v;
+  }
   set setUserFirstName(String? v) {
     _customSharedPrefrenece.setFirstName = v;
     _userFirstName.value = v;
@@ -223,15 +234,7 @@ class UserSharedPrefrenceController extends GetxController {
     _userLastName.value = v;
   }
 
-  String? get getUserEmail {
-    _userEmail.value = _customSharedPrefrenece.getUserEmail;
-    return _userEmail.value;
-  }
 
-  set setUserEmail(String? v) {
-    _customSharedPrefrenece.setUserEmail = v;
-    _userEmail.value = v;
-  }
 
   // int? get getAppLanguage => _customSharedPrefrenece.getAppLanguage;
   // set setAppLanguage(int? v) {

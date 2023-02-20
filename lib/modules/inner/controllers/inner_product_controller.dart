@@ -381,13 +381,13 @@ class InnerProductController extends GetxController
               addressId: details?.addressId,
             );
             Get.back();
-            final checkoutConfirmationController =
-                Get.find<CheckoutConfirmationController>();
-            checkoutConfirmationController.orderCode = orderCode;
+
             Get.offAndToNamed(Routes.checkoutConfirmationScreen,arguments: {
               Arguments.orderNo:orderCode,
-              Arguments.orderNo:orderCode,
             });
+            final checkoutConfirmationController =
+            Get.find<CheckoutConfirmationController>();
+            checkoutConfirmationController.orderCode = orderCode;
           } on ExceptionApi catch (e) {
             Get.back();
             ScaffoldMessenger.of(context).showSnackBar(

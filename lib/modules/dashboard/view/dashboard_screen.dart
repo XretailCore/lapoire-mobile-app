@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/core/components/custom_bottom_navigation_bar.dart';
-import 'package:imtnan/core/components/custom_text.dart';
-import 'package:imtnan/core/utils/app_colors.dart';
 import '../../../core/components/custom_appbar.dart';
 import '../../../core/components/no_internet_widget.dart';
 import '../../../core/localization/translate.dart';
@@ -87,24 +85,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
             extendBody: true,
             body: body,
           )
-        : Scaffold(
-            resizeToAvoidBottomInset: false,
-            extendBody: true,
-            appBar: CustomAppBar(
-              bottom: pageIndex == 4
-                  ? CustomText(
-                      userSharedPrefrenceController.getUserEmail,
-                      style: const TextStyle(
-                        color: AppColors.redColor,
-                      ),
-                    )
-                  : const SizedBox(),
-              title: pageIndex == 4
-                  ? "${Translate.hello.tr} ${userSharedPrefrenceController.getUserFirstName}"
-                  : labelList[pageIndex],
-              showAction: pageIndex == 4 ? false : true,
-            ),
-            body: body,
-          );
+        : pageIndex == 4
+            ? Scaffold(
+                resizeToAvoidBottomInset: false,
+                extendBody: true,
+                body: body
+              )
+            : Scaffold(
+                resizeToAvoidBottomInset: false,
+                extendBody: true,
+                appBar: CustomAppBar(
+                  title: labelList[pageIndex],
+                  showAction: true,
+                ),
+                body: body,
+              );
   }
 }
