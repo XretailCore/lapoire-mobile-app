@@ -42,6 +42,7 @@ class _BodyWidgetState extends State<BodyWidget> {
   int indexImage = 0;
   int quantity = 1;
   bool isSaving = false;
+
   void changeQuantity(int newQuantity) async {
     setState(() {
       isSaving = true;
@@ -52,6 +53,7 @@ class _BodyWidgetState extends State<BodyWidget> {
       widget.innerProductController.quantity = quantity;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     final primaryColor = CustomThemes.appTheme.primaryColor;
@@ -168,12 +170,15 @@ class _BodyWidgetState extends State<BodyWidget> {
                                 child: IconButton(
                                   padding: const EdgeInsets.all(0),
                                   color: primaryColor,
-                                  onPressed: (isSaving || quantity <= widget.innerProductController.quantity)
+                                  onPressed: (isSaving ||
+                                          quantity <=
+                                              widget.innerProductController
+                                                  .quantity)
                                       ? null
                                       : () => changeQuantity(quantity - 1),
-                                  icon:  Icon(
+                                  icon: const Icon(
                                     Icons.remove,
-                                    color: primaryColor,
+                                    color: AppColors.redColor,
                                   ),
                                 ),
                               ),
@@ -183,7 +188,8 @@ class _BodyWidgetState extends State<BodyWidget> {
                                 child: CustomText(
                                   quantity == 0 ? "1" : quantity.toString(),
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle(color: AppColors.redColor),
+                                  style: const TextStyle(
+                                      color: AppColors.redColor),
                                 ),
                               ),
                               const SizedBox(width: 8),
@@ -193,11 +199,17 @@ class _BodyWidgetState extends State<BodyWidget> {
                                 child: IconButton(
                                   padding: const EdgeInsets.all(0),
                                   color: primaryColor,
-                                  onPressed: (isSaving || quantity >= widget.selectdProduct!.selectedProductSku.maxQuantity)
+                                  onPressed: (isSaving ||
+                                          quantity >=
+                                              widget
+                                                  .selectdProduct!
+                                                  .selectedProductSku
+                                                  .maxQuantity)
                                       ? null
                                       : () => changeQuantity(quantity + 1),
                                   icon: const Icon(
                                     Icons.add,
+                                    color: AppColors.redColor,
                                   ),
                                 ),
                               ),

@@ -19,7 +19,7 @@ const String domain = (kDebugMode || kProfileMode) ? testDomain : liveDomain;
 final AdminModel admin = AdminModel(
     email: '69A4788C-2E32-4CB5-A00A-477DD3B3FC72',
     password: 'C19BCDBD-1A8E-4F8F-B30E-B721582E64EC');
-const int aboutUsId = 5;
+const int aboutUsId = 4;
 const int privacyPolicyId = 6;
 const int deliveryPolicyId = 9;
 const int termsAndConditionId = 4;
