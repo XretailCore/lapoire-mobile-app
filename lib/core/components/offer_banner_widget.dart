@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:imtnan/core/components/star_widget.dart';
-import 'package:imtnan/core/utils/app_colors.dart';
-import '../utils/theme.dart';
 import 'custom_text.dart';
 
 class OfferBannerWidget extends StatelessWidget {

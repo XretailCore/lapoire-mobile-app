@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:imtnan/core/components/no_internet_widget.dart';
-import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:imtnan/modules/splash/views/progres_bar.dart';
 
 import '../../../core/components/custom_text.dart';

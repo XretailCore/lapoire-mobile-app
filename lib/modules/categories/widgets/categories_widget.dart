@@ -1,11 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import '../../../core/components/custom_text.dart';
-import '../../../core/shimmer_loader/images_shimmer.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/theme.dart';
 import '../controllers/categories_controller.dart';

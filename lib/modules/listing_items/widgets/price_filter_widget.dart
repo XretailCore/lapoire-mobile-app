@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
-import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/theme.dart';
 import '../controllers/filter_controller.dart';
 import 'categories_filter_widget.dart';
