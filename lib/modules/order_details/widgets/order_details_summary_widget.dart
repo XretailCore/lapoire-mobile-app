@@ -33,7 +33,7 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
         children: [
           if (orderDetailsModel.codFee != 0.0)
             SummaryInfoWidget(
-              title: "${Translate.cashOnDeliveryFees.name.tr} :",
+              title: Translate.cashOnDeliveryFees.name.tr,
               textColor: primary,
               subTitle: orderDetailsModel.codFee!.toStringAsFixed(
                   orderDetailsModel.codFee!.truncateToDouble() ==
@@ -44,7 +44,7 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
           if (orderDetailsModel.subTotal != 0.0)
             SummaryInfoWidget(
               title:
-                  "${Translate.subtotal.name.tr} (${orderDetailsModel.productsCount} ${Translate.items.tr}) :",
+                  "${Translate.subtotal.name.tr} (${orderDetailsModel.productsCount} ${Translate.items.tr})",
               textColor: primary,
               subTitle: orderDetailsModel.subTotal!.toStringAsFixed(
                   orderDetailsModel.subTotal!.truncateToDouble() ==
@@ -54,13 +54,13 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
             ),
           if (orderDetailsModel.personalDiscountAmount != 0.0)
             SummaryInfoWidget(
-                title: "${Translate.personalDiscountAmount.tr} ",
+                title: Translate.personalDiscountAmount.tr,
                 textColor: primary,
                 subTitle:
                     "${percentage.toStringAsFixed(percentage.truncateToDouble() == percentage ? 0 : 1)} %   ${orderDetailsModel.personalDiscountAmount!.toStringAsFixed(orderDetailsModel.personalDiscountAmount!.truncateToDouble() == orderDetailsModel.personalDiscountAmount ? 0 : 1)}"),
           if (orderDetailsModel.shipmentCost != 0.0)
             SummaryInfoWidget(
-              title: "${Translate.cashOnDeliveryFees.name.tr} :",
+              title: Translate.shipmentfees.name.tr,
               textColor: primary,
               subTitle: orderDetailsModel.shipmentCost!.toStringAsFixed(
                   orderDetailsModel.shipmentCost!.truncateToDouble() ==
@@ -70,7 +70,7 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
             ),
           if (orderDetailsModel.triggeredCartAmountDiscountAmount != 0.0)
             SummaryInfoWidget(
-              title: "${Translate.cartDiscountAmount.tr} :",
+              title: Translate.cartDiscountAmount.tr,
               textColor: primary,
               subTitle: orderDetailsModel.triggeredCartAmountDiscountAmount!
                   .toStringAsFixed(orderDetailsModel
@@ -80,9 +80,22 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
                       ? 0
                       : 1),
             ),
+
+          if (orderDetailsModel.couponDiscount != 0.0)
+            SummaryInfoWidget(
+              title: Translate.couponDiscountAmount.tr,
+              textColor: primary,
+              subTitle: orderDetailsModel.couponDiscount!
+                  .toStringAsFixed(orderDetailsModel
+                  .couponDiscount!
+                  .truncateToDouble() ==
+                  orderDetailsModel.couponDiscount
+                  ? 0
+                  : 1),
+            ),
           if (orderDetailsModel.triggeredProfileBasedDiscountAmount != 0.0)
             SummaryInfoWidget(
-              title: "${Translate.profileDiscountAmount.tr} :",
+              title: Translate.profileDiscountAmount.tr,
               textColor: primary,
               subTitle: orderDetailsModel.triggeredProfileBasedDiscountAmount!
                   .toStringAsFixed(orderDetailsModel

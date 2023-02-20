@@ -31,6 +31,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.contactUs.name: "Contact Us",
       Translate.showLess.name: 'Show less',
       Translate.cartDiscountAmount.name: 'Cart Discount Amount',
+      Translate.couponDiscountAmount.name: 'Coupon Discount Amount',
       Translate.personalDiscountAmount.name: 'Personal Discount Amount',
       Translate.profileDiscountAmount.name: 'Profile Discount Amount',
       Translate.iconsRedemptionSuccessfullyApplied.name:

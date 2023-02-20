@@ -13,6 +13,7 @@ enum Translate {
   showMore,
   showLess,
   cartDiscountAmount,
+  couponDiscountAmount,
   personalDiscountAmount,
   profileDiscountAmount,
   iconsRedemptionSuccessfullyApplied,

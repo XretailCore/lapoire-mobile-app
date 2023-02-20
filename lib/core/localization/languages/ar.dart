@@ -16,6 +16,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.viewMap.name: "إعرض الموقع",
       Translate.showLess.name: 'عرض أقل',
       Translate.cartDiscountAmount.name: 'مبلغ الخصم على سلة التسوق',
+      Translate.couponDiscountAmount.name: 'مبلغ الخصم على القسيمة',
       Translate.personalDiscountAmount.name: 'مبلغ الخصم الشخصي',
       Translate.profileDiscountAmount.name: 'مبلغ الخصم على الحساب',
       Translate.iconsRedemptionSuccessfullyApplied.name:
