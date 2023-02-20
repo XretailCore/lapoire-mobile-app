@@ -8,7 +8,6 @@ import 'package:linktsp_api/linktsp_api.dart' hide Size;
 import 'package:readmore/readmore.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/components/expansion_tile_widget.dart';
-import '../../../core/components/quantity_widget.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/app_colors.dart';
 import '../controllers/inner_product_controller.dart';
@@ -41,7 +40,18 @@ class BodyWidget extends StatefulWidget {
 
 class _BodyWidgetState extends State<BodyWidget> {
   int indexImage = 0;
-
+  int quantity = 1;
+  bool isSaving = false;
+  void changeQuantity(int newQuantity) async {
+    setState(() {
+      isSaving = true;
+    });
+    setState(() {
+      quantity = newQuantity;
+      isSaving = false;
+      widget.innerProductController.quantity = quantity;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     final primaryColor = CustomThemes.appTheme.primaryColor;
@@ -89,9 +99,9 @@ class _BodyWidgetState extends State<BodyWidget> {
                           glowColor: primaryColor,
                           unratedColor: primaryColor,
                           ratingWidget: RatingWidget(
-                            full:  Icon(Icons.star, color: primaryColor),
-                            half:  Icon(Icons.star_half, color: primaryColor),
-                            empty:  Icon(Icons.star_border, color: primaryColor),
+                            full: Icon(Icons.star, color: primaryColor),
+                            half: Icon(Icons.star_half, color: primaryColor),
+                            empty: Icon(Icons.star_border, color: primaryColor),
                           ),
                         ),
                         const SizedBox(width: 16),
@@ -147,19 +157,53 @@ class _BodyWidgetState extends State<BodyWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        QuantityButton(
-                          key: UniqueKey(),
-                          initialQuantity:
-                              widget.innerProductController.quantity,
-                          maxQuantity: widget.selectdProduct?.selectedProductSku
-                                  .maxQuantity ??
-                              0,
+                        SizedBox(
                           height: 40,
-                          onQuantityChange: (v) {
-                            widget.innerProductController.quantity = v;
-                            return null;
-                          },
-                        ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(
+                                width: 30,
+                                height: 30,
+                                child: IconButton(
+                                  padding: const EdgeInsets.all(0),
+                                  color: primaryColor,
+                                  onPressed: (isSaving || quantity <= widget.innerProductController.quantity)
+                                      ? null
+                                      : () => changeQuantity(quantity - 1),
+                                  icon:  Icon(
+                                    Icons.remove,
+                                    color: primaryColor,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              SizedBox(
+                                width: 20,
+                                child: CustomText(
+                                  quantity == 0 ? "1" : quantity.toString(),
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(color: AppColors.redColor),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              SizedBox(
+                                width: 30,
+                                height: 30,
+                                child: IconButton(
+                                  padding: const EdgeInsets.all(0),
+                                  color: primaryColor,
+                                  onPressed: (isSaving || quantity >= widget.selectdProduct!.selectedProductSku.maxQuantity)
+                                      ? null
+                                      : () => changeQuantity(quantity + 1),
+                                  icon: const Icon(
+                                    Icons.add,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   ),
