@@ -12,6 +12,7 @@ enum Translate {
   viewMap,
   showMore,
   showLess,
+  iconsRedemptionSuccessfullyApplied,
   openingHours,
   menu,
   wishlist,

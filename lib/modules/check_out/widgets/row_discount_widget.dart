@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:imtnan/core/components/custom_button.dart';
-
 import '../../../core/localization/translate.dart';
 
 class RowDiscountWidget extends StatelessWidget {
@@ -11,68 +10,67 @@ class RowDiscountWidget extends StatelessWidget {
     this.isApply = true,
     this.onTapApply,
     this.onTapClear,
-    this.validator,
+    this.validator, this.textInputType,
   }) : super(key: key);
   final String hintText;
   final TextEditingController? textEditingController;
   final bool isApply;
+  final TextInputType? textInputType;
   final VoidCallback? onTapApply, onTapClear;
   final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: primaryColor),
-        borderRadius: BorderRadius.circular(30.0),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 3,
-            child: TextFormField(
-              enabled: isApply,
-              controller: textEditingController,
-              textInputAction: TextInputAction.done,
-              style: TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.w700,
-                color: primaryColor,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          child: TextFormField(
+            keyboardType: textInputType,
+            enabled: isApply,
+            controller: textEditingController,
+            textInputAction: TextInputAction.done,
+            style: const TextStyle(fontSize: 14),
+            maxLines: 1,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide(color: primaryColor),
               ),
-              maxLines: 1,
-              decoration: InputDecoration(
-                hintStyle: TextStyle(
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w400,
-                  color: primaryColor,
-                ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-                border: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                hintText: hintText,
-                enabledBorder: InputBorder.none,
-                focusedErrorBorder: InputBorder.none,
-                errorBorder: InputBorder.none,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide(color: primaryColor),
               ),
-              validator: validator,
+              hintText: hintText,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide(color: primaryColor),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide(color: primaryColor),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: const BorderSide(color: Colors.red),
+              ),
             ),
+            validator: validator,
           ),
-          const SizedBox(width: 10),
-          Expanded(
-            flex: 1,
-            child: CustomBorderButton(
-              textColor: Colors.white,
-              radius: 30.0,
-              color: isApply ? Theme.of(context).primaryColor : Colors.grey[700]!,
-              title: isApply ? Translate.apply.tr : Translate.clear.tr,
-              onTap: isApply ? onTapApply : onTapClear,
-            ),
-          )
-        ],
-      ),
+        ),
+        const SizedBox(width: 10),
+        CustomBorderButton(
+          radius: 30,
+          textColor: Colors.white,
+          color:
+          isApply ? Theme.of(context).primaryColor : Colors.grey[700]!,
+          title: isApply ? Translate.apply.tr : Translate.clear.tr,
+          onTap: isApply ? onTapApply : onTapClear,
+        )
+      ],
     );
   }
 }

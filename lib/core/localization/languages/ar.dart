@@ -15,6 +15,8 @@ Map<String, String> getArabicTranslation() => {
       Translate.openingHours.name: "ساعات العمل",
       Translate.viewMap.name: "إعرض الموقع",
       Translate.showLess.name: 'عرض أقل',
+      Translate.iconsRedemptionSuccessfullyApplied.name:
+      'استخدام الايقونز تم بنجاح!',
       Translate.showMore.name: 'عرض المزيد',
       Translate.pleaseSelectStore.name: 'الرجاء تحديد المتجر',
       Translate.wishlist.name: "المفضلة",
