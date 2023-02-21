@@ -16,9 +16,9 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
   @override
   Widget build(BuildContext context) {
     final primary = CustomThemes.appTheme.primaryColor;
-    var percentage = (orderDetailsModel.personalDiscountAmount! /
+    var percentage = orderDetailsModel.personalDiscountAmount !=null && orderDetailsModel.personalDiscountAmount !=0.0?(orderDetailsModel.personalDiscountAmount! /
         orderDetailsModel.total!.toDouble() *
-        100);
+        100):0;
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: const BoxDecoration(
@@ -31,7 +31,7 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (orderDetailsModel.codFee != 0.0)
+          if (orderDetailsModel.codFee != 0.0&& orderDetailsModel.codFee!=null)
             SummaryInfoWidget(
               title: Translate.cashOnDeliveryFees.name.tr,
               textColor: primary,
@@ -41,7 +41,7 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
                       ? 0
                       : 1),
             ),
-          if (orderDetailsModel.subTotal != 0.0)
+          if (orderDetailsModel.subTotal != 0.0 && orderDetailsModel.subTotal!=null)
             SummaryInfoWidget(
               title:
                   "${Translate.subtotal.name.tr} (${orderDetailsModel.productsCount} ${Translate.items.tr})",
@@ -52,7 +52,7 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
                       ? 0
                       : 1),
             ),
-          if (orderDetailsModel.personalDiscountAmount != 0.0)
+          if (orderDetailsModel.personalDiscountAmount != 0.0 && orderDetailsModel.personalDiscountAmount!=null)
             SummaryInfoWidget(
                 title: Translate.personalDiscountAmount.tr,
                 textColor: primary,
@@ -68,7 +68,7 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
                       ? 0
                       : 1),
             ),
-          if (orderDetailsModel.triggeredCartAmountDiscountAmount != 0.0)
+          if (orderDetailsModel.triggeredCartAmountDiscountAmount != 0.0 && orderDetailsModel.triggeredCartAmountDiscountAmount !=null)
             SummaryInfoWidget(
               title: Translate.cartDiscountAmount.tr,
               textColor: primary,
@@ -81,7 +81,7 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
                       : 1),
             ),
 
-          if (orderDetailsModel.couponDiscount != 0.0)
+          if (orderDetailsModel.couponDiscount != 0.0 && orderDetailsModel.couponDiscount !=null)
             SummaryInfoWidget(
               title: Translate.couponDiscountAmount.tr,
               textColor: primary,
@@ -93,7 +93,7 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
                   ? 0
                   : 1),
             ),
-          if (orderDetailsModel.triggeredProfileBasedDiscountAmount != 0.0)
+          if (orderDetailsModel.triggeredProfileBasedDiscountAmount != 0.0 && orderDetailsModel.triggeredProfileBasedDiscountAmount!=null)
             SummaryInfoWidget(
               title: Translate.profileDiscountAmount.tr,
               textColor: primary,
