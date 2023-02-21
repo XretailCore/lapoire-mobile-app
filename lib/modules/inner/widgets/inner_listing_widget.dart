@@ -53,6 +53,7 @@ class InnerListingWidget extends GetView<InnerProductController> {
                   productId: item.id!,
                   isPreOrder: item.preOrder,
                   elevation: 0,
+                  promoText: item.promoText,
                   imageHeight: .3.sw,
                   productName: item.name,
                   image: item.imageUrl,
