@@ -9,6 +9,7 @@ enum Translate {
   collectFromStoreMessage,
   collectFromStore,
   homeDeliveryMessage,
+  passwordHasBeenChangedSuccessfully,
   viewMap,
   showMore,
   showLess,

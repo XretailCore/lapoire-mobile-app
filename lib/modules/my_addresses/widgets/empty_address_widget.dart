@@ -1,10 +1,9 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:imtnan/core/utils/app_colors.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
-import '../../../core/utils/theme.dart';
 import '../controller/my_addresses_controller.dart';
 
 class EmptyAddressesWidget extends GetView<MyAddressesController> {
@@ -21,11 +20,11 @@ class EmptyAddressesWidget extends GetView<MyAddressesController> {
               onPressed: controller.addNewAddressAction,
               style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all(
-                      CustomThemes.appTheme.primaryColor)),
+                      AppColors.redColor)),
               icon: const Icon(Icons.add_circle_outline),
               label: CustomText(
                 Translate.newAddress.tr,
-                style: const TextStyle(fontSize: 13),
+                style: const TextStyle(fontSize: 13,color: AppColors.redColor),
               ),
             ),
           ],
@@ -34,7 +33,7 @@ class EmptyAddressesWidget extends GetView<MyAddressesController> {
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 10),
           child: DottedBorder(
-            color: CustomThemes.appTheme.primaryColor,
+            color: AppColors.redColor,
             child: Container(
               height: 100,
               alignment: Alignment.center,
@@ -44,7 +43,7 @@ class EmptyAddressesWidget extends GetView<MyAddressesController> {
                   CustomText(
                     Translate.addNewAddress.tr,
                     style: const TextStyle(
-                      color: Colors.grey,
+                      color: AppColors.redColor
                     ),
                   ),
                 ],
@@ -55,9 +54,9 @@ class EmptyAddressesWidget extends GetView<MyAddressesController> {
         const Spacer(),
         Container(
           padding: const EdgeInsets.all(15),
-          decoration: BoxDecoration(
-            color: CustomThemes.appTheme.primaryColor,
-            borderRadius: const BorderRadius.only(
+          decoration: const BoxDecoration(
+            color: AppColors.redColor,
+            borderRadius:  BorderRadius.only(
               topRight: Radius.circular(5),
               topLeft: Radius.circular(5),
             ),
@@ -67,6 +66,7 @@ class EmptyAddressesWidget extends GetView<MyAddressesController> {
               Expanded(
                 child: CustomText(
                   Translate.emptyAddresssesMessage.tr,
+                  softWrap: true,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,

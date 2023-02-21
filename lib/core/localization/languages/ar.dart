@@ -10,6 +10,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.thisOrderWillBeDeliveredTomorrow.name:
           'سيتم تسليم هذا الطلب غدا',
       Translate.menu.name: "القائمة",
+      Translate.passwordHasBeenChangedSuccessfully.name: "تم تعديل كلمة المرور بنجاح",
       Translate.homeDeliveryMessage.name:
           "يتم تسليم الطلبات من 1 إلى 3 ساعات عمل",
       Translate.openingHours.name: "ساعات العمل",

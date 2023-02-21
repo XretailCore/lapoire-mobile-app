@@ -63,6 +63,7 @@ class VerifyOtpController extends GetxController {
       activationCodeModel = ActivationCodeModel(
           email: userSharedPrefrenceController.getUserEmail);
     }
+userSharedPrefrenceController.getUserId;
 
     await HelperFunctions.errorRequestsSnakBarHandler<bool?>(
       context,
