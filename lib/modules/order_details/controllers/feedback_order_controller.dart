@@ -10,6 +10,7 @@ class FeedbackOrderController extends GetxController {
   final feedbackTextController = TextEditingController(text: '');
   final selectedFeedback = Rx<ComplaintLookupModel?>(null);
   final feedbackMenu = <ComplaintLookupModel>[].obs;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void onReady() {
