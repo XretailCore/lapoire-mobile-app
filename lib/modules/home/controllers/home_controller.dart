@@ -28,6 +28,7 @@ class HomeController extends GetxController with StateMixin {
       categories = DataItem(),
       bestSellers = DataItem(),
       newArrivals = DataItem(),
+      dealOfTheDay = DataItem(),
       offers = DataItem(),
       firstAd = DataItem(),
       secondAd = DataItem(),
@@ -68,6 +69,7 @@ class HomeController extends GetxController with StateMixin {
     categories = _getItem("Category banner");
     bestSellers = _getItem("best seller");
     newArrivals = _getItem('new arrival');
+    dealOfTheDay = _getItem('deal of the day');
     offers = _getItem('offers');
     firstAd = _getItem("Poster 1");
     secondAd = _getItem("Poster 2");

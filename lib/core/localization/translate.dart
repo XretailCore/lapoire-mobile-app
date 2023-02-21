@@ -3,6 +3,7 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 enum Translate {
   appName,
   pleaseSelectStore,
+  dealOfTheDay,
   home,
   thisOrderWillBeDeliveredTomorrow,
   call,

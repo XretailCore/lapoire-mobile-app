@@ -20,6 +20,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.couponDiscountAmount.name: 'مبلغ الخصم على القسيمة',
       Translate.personalDiscountAmount.name: 'مبلغ الخصم الشخصي',
       Translate.profileDiscountAmount.name: 'مبلغ الخصم على الحساب',
+      Translate.dealOfTheDay.name: 'صفقة اليوم',
       Translate.iconsRedemptionSuccessfullyApplied.name:
       'استخدام الايقونز تم بنجاح!',
       Translate.showMore.name: 'عرض المزيد',

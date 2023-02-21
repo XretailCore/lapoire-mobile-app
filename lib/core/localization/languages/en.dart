@@ -4,6 +4,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.appName.name: "Lapoire",
       Translate.home.name: "Home",
       Translate.pleaseSelectStore.name: 'Please select a store',
+      Translate.dealOfTheDay.name: 'Deal Of The Day',
       Translate.call.name: "Call",
       Translate.thisOrderWillBeDeliveredTomorrow.name:
           'This Order Will Be Delivered Tomorrow',
