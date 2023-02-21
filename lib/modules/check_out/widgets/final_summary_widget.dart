@@ -47,6 +47,7 @@ class FinalCheckoutSummaryWidget
                     .map(
                       (summary) => RowCheckOutSummaryInformationWidget(
                         title: summary.title ?? '',
+                        additionalInfo: summary.additionalInfo,
                         isLastIndex: checkoutSummary?.summary?.length ==
                             (checkoutSummary?.summary?.indexOf(summary))! + 1,
                         value:

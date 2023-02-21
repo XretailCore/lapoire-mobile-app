@@ -8,6 +8,7 @@ class RowCheckOutSummaryInformationWidget extends StatelessWidget {
     Key? key,
     this.isEnableBottomDivider = true,
     this.title = '',
+    this.additionalInfo,
     this.value = '',
     this.isLastIndex = false,
     this.currencySymbol = '',
@@ -15,6 +16,7 @@ class RowCheckOutSummaryInformationWidget extends StatelessWidget {
   final bool isEnableBottomDivider;
   final String title, value, currencySymbol;
   final bool isLastIndex;
+  final String? additionalInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +47,13 @@ class RowCheckOutSummaryInformationWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CustomText(
-                      !value.contains(RegExp(r'[0-9]'))?value:double.parse(value).toStringAsFixed(
-                          double.parse(value).truncateToDouble() ==
-                                  double.parse(value)
-                              ? 0
-                              : 1),
+                     "${additionalInfo!=null? "(${additionalInfo}) ":""}${!value.contains(RegExp(r'[0-9]'))
+                          ? value
+                          : double.parse(value).toStringAsFixed(
+                              double.parse(value).truncateToDouble() ==
+                                      double.parse(value)
+                                  ? 0
+                                  : 1)}",
                       softWrap: true,
                       textAlign: TextAlign.end,
                       style: TextStyle(
@@ -60,7 +64,7 @@ class RowCheckOutSummaryInformationWidget extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const SizedBox(width: 4.0),
+                    SizedBox(width:!value.contains(RegExp(r'[0-9]'))?0.0:4.0),
                     CustomText(
                       currencySymbol,
                       softWrap: true,
