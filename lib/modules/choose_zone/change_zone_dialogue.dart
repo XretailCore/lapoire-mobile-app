@@ -198,7 +198,7 @@ class ChangeZoneWidget extends GetView<ZoneController> {
                 Obx(()=> Column(
                   children: [
                     CustomBorderButton(
-                        title: Translate.submit.tr,
+                        title: Translate.confirm.tr,
                         color:controller.selectedZone.value.id == null?Colors.grey: AppColors.primaryColor,
                         radius: 30.0,
                         onTap: controller.selectedZone.value.id == null
