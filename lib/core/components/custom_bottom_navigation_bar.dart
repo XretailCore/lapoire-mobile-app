@@ -124,8 +124,7 @@ class BottomAppBarItemsData {
             ),
           ),
         ),
-        badgeAnimation: const badges.BadgeAnimation.scale(
-            toAnimate: true, animationDuration: Duration(seconds: 1)),
+        badgeAnimation: const badges.BadgeAnimation.size(toAnimate: false,),
         child: const Icon(
           Icons.shopping_cart,
           color: Colors.white,
