@@ -13,7 +13,7 @@ Map<String, String> getEnglishTranslation() => {
           "Collect From Store You can collect your order in 2 hours (when stores are open)",
       Translate.menu.name: "Menu",
       Translate.homeDeliveryMessage.name:
-          "Orders are delivered in 1 to 3 working hours",
+          "Orders are delivered in 30 to 120 mins",
       Translate.openingHours.name: "Opening Hours",
       Translate.passwordHasBeenChangedSuccessfully.name: "Password has been changed successfully",
       Translate.viewMap.name: "View Map",

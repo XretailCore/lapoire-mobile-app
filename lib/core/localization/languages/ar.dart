@@ -12,7 +12,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.menu.name: "القائمة",
       Translate.passwordHasBeenChangedSuccessfully.name: "تم تعديل كلمة المرور بنجاح",
       Translate.homeDeliveryMessage.name:
-          "يتم تسليم الطلبات من 1 إلى 3 ساعات عمل",
+          "يتم تسليم الطلبات من 30 إلى 120 دقيقة",
       Translate.openingHours.name: "ساعات العمل",
       Translate.viewMap.name: "إعرض الموقع",
       Translate.showLess.name: 'عرض أقل',
