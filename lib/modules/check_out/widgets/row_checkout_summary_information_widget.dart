@@ -36,7 +36,7 @@ class RowCheckOutSummaryInformationWidget extends StatelessWidget {
                   '$title: ',
                   softWrap: true,
                   style: const TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     color: AppColors.primaryColor,
                     fontWeight: FontWeight.w600,
                   ),
@@ -57,7 +57,7 @@ class RowCheckOutSummaryInformationWidget extends StatelessWidget {
                       softWrap: true,
                       textAlign: TextAlign.end,
                       style: TextStyle(
-                        fontSize: isLastIndex ? 14 : 12,
+                        fontSize: isLastIndex ? 16 : 14,
                         color: isLastIndex
                             ? AppColors.redColor
                             : AppColors.primaryColor,
@@ -70,7 +70,7 @@ class RowCheckOutSummaryInformationWidget extends StatelessWidget {
                       softWrap: true,
                       textAlign: TextAlign.end,
                       style: TextStyle(
-                        fontSize: isLastIndex ? 14 : 12,
+                        fontSize: isLastIndex ? 16 : 14,
                         color: isLastIndex
                             ? AppColors.redColor
                             : AppColors.primaryColor,
