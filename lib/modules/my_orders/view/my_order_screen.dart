@@ -16,7 +16,7 @@ class MyOrdersScreen extends GetView<MyOrdersController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: Translate.myOrders.name.tr,showBackButton: true),
+      appBar: CustomAppBar(title: Translate.myOrders.name.tr,showBackButton: true,showAction: false),
       body: controller.obx(
         (data) {
           final orders = data ?? [];
