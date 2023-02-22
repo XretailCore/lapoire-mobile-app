@@ -44,7 +44,7 @@ class InnerProductScreen extends GetView<InnerProductController> {
                     child: PanelWidget(selectdProduct: product),
                   ),
                 ),
-                minHeight: MediaQuery.of(context).size.height * 0.4,
+                minHeight: MediaQuery.of(context).size.height * 0.35,
                 maxHeight: MediaQuery.of(context).size.height * 0.8,
                 padding: const EdgeInsets.all(0),
                 margin: const EdgeInsets.all(0),
@@ -57,6 +57,7 @@ class InnerProductScreen extends GetView<InnerProductController> {
                   color: AppColors.highlighter,
                   padding: const EdgeInsets.all(8),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const SizedBox(height: 32.0),
                       Padding(
