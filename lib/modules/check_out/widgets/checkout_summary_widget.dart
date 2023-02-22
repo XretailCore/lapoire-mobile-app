@@ -15,13 +15,16 @@ class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
   final Color? buttonColor;
 
   const CheckoutSummaryWidget(
-      {Key? key, this.color, required this.onTapNext, this.buttonName,this.buttonColor})
+      {Key? key,
+      this.color,
+      required this.onTapNext,
+      this.buttonName,
+      this.buttonColor})
       : super(key: key);
   final void Function(bool isPreOrder) onTapNext;
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
     return controller.obx(
       (checkoutSummary) => Container(
         decoration: BoxDecoration(
@@ -43,6 +46,9 @@ class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
                           (summary, index) =>
                               RowCheckOutSummaryInformationWidget(
                             title: summary.title ?? '',
+                            additionalInfo: summary.additionalInfo == "COD"
+                                ? null
+                                : summary.additionalInfo,
                             isLastIndex:
                                 checkoutSummary.summary?.length == index + 1,
                             value: summary.value ?? "",
@@ -58,7 +64,7 @@ class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: CustomBorderButton(
-                  color: buttonColor??AppColors.redColor,
+                  color: buttonColor ?? AppColors.redColor,
                   radius: 20.0,
                   title: buttonName ?? Translate.next.tr,
                   onTap: () {

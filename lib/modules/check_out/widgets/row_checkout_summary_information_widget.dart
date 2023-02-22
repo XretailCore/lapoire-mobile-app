@@ -38,7 +38,7 @@ class RowCheckOutSummaryInformationWidget extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 12,
                     color: AppColors.primaryColor,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
