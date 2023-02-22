@@ -16,6 +16,7 @@ Future<void> openFeedbackOrderSheet(BuildContext context,
     String? productNo,
     required OrderDetailsModel orderDetailsModel}) async {
   return await showDialog<void>(
+    barrierDismissible: true,
     context: context,
     builder: (BuildContext context) {
       return FeedBackWidget(
@@ -41,116 +42,116 @@ class FeedBackWidget extends GetView<FeedbackOrderController> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16.0, 32.0, 16.0, 0.0),
-        child: Material(
-          color: AppColors.highlighter,
-          borderRadius: BorderRadius.circular(30),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Form(
-              key: controller.formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+    return AlertDialog(
+      alignment: Alignment.topCenter,
+      insetPadding: const EdgeInsets.only(top: 16.0,left: 16.0,right: 16.0),
+      backgroundColor: AppColors.highlighter,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(30.0),
+        ),
+      ),
+      content: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Form(
+          key: controller.formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomText(
-                        Translate.feedback.name.tr,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                          color: CustomThemes.appTheme.primaryColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Divider(
-                    thickness: 1.5,
-                    color: CustomThemes.appTheme.primaryColor,
-                  ),
-                  const SizedBox(height: 25),
-                  Obx(
-                    () => Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: CustomThemes.appTheme.primaryColor,
-                        ),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20)),
-                      ),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton<ComplaintLookupModel?>(
-                          borderRadius: BorderRadius.circular(5),
-                          isExpanded: true,
-                          dropdownColor: const Color.fromRGBO(241, 241, 241, 1),
-                          style: TextStyle(
-                            color: CustomThemes.appTheme.primaryColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: 0,
-                          ),
-                          icon: FaIcon(
-                            FontAwesomeIcons.angleDown,
-                            size: 16,
-                            color: CustomThemes.appTheme.primaryColor,
-                          ),
-                          onChanged: (newValue) {
-                            controller.selectedFeedback.value = newValue;
-                          },
-                          value: controller.selectedFeedback.value,
-                          items: [
-                            for (var data in controller.feedbackMenu)
-                              DropdownMenuItem(
-                                child: CustomText(
-                                  data.name ?? '',
-                                ),
-                                value: data,
-                              )
-                          ],
-                        ),
-                      ),
+                  CustomText(
+                    Translate.feedback.name.tr,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                      color: CustomThemes.appTheme.primaryColor,
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  CustomTextField(
-                    labelText: Translate.message.name.tr,
-                    controller: controller.feedbackTextController,
-                    validator: (val) {
-                      if (val == null || val.isEmpty) {
-                        return Translate.required.tr;
-                      }
-                      return null;
-                    },
-                    borderColor: CustomThemes.appTheme.primaryColor,
-                    maxLines: 5,
-                    labelColor: CustomThemes.appTheme.primaryColor,
-                  ),
-                  const SizedBox(height: 10),
-                  CustomBorderButton(
-                      title: Translate.send.name.tr,
-                      color: AppColors.redColor,
-                      radius: 20.0,
-                      onTap: () {
-                        var formState = controller.formKey.currentState;
-                        if (formState == null) return;
-                        if (!formState.validate()) {
-                          return;
-                        }
-                        if (formState.validate()) {
-                          controller.addOrderFeedbackAction(
-                            orderId: orderDetailsModel.id,
-                            context: context,
-                          );
-                        }
-                      }),
                 ],
               ),
-            ),
+              Divider(
+                thickness: 1.5,
+                color: CustomThemes.appTheme.primaryColor,
+              ),
+              const SizedBox(height: 25),
+              Obx(
+                () => Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: CustomThemes.appTheme.primaryColor,
+                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<ComplaintLookupModel?>(
+                      borderRadius: BorderRadius.circular(5),
+                      isExpanded: true,
+                      dropdownColor: const Color.fromRGBO(241, 241, 241, 1),
+                      style: TextStyle(
+                        color: CustomThemes.appTheme.primaryColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                        letterSpacing: 0,
+                      ),
+                      icon: FaIcon(
+                        FontAwesomeIcons.angleDown,
+                        size: 16,
+                        color: CustomThemes.appTheme.primaryColor,
+                      ),
+                      onChanged: (newValue) {
+                        controller.selectedFeedback.value = newValue;
+                      },
+                      value: controller.selectedFeedback.value,
+                      items: [
+                        for (var data in controller.feedbackMenu)
+                          DropdownMenuItem(
+                            child: CustomText(
+                              data.name ?? '',
+                            ),
+                            value: data,
+                          )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              CustomTextField(
+                labelText: Translate.message.name.tr,
+                controller: controller.feedbackTextController,
+                validator: (val) {
+                  if (val == null || val.isEmpty) {
+                    return Translate.required.tr;
+                  }
+                  return null;
+                },
+                borderColor: CustomThemes.appTheme.primaryColor,
+                maxLines: 5,
+                labelColor: CustomThemes.appTheme.primaryColor,
+              ),
+              const SizedBox(height: 10),
+              CustomBorderButton(
+                  title: Translate.send.name.tr,
+                  color: AppColors.redColor,
+                  radius: 20.0,
+                  onTap: () {
+                    var formState = controller.formKey.currentState;
+                    if (formState == null) return;
+                    if (!formState.validate()) {
+                      return;
+                    }
+                    if (formState.validate()) {
+                      controller.addOrderFeedbackAction(
+                        orderId: orderDetailsModel.id,
+                        context: context,
+                      );
+                    }
+                  }),
+            ],
           ),
         ),
       ),

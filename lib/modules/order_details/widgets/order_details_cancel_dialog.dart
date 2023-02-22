@@ -18,6 +18,7 @@ Future<void> openCancelOrderSheet(
 }) async {
   return await showDialog<void>(
     context: context,
+    barrierDismissible: true,
     builder: (BuildContext context) {
       return CancelDialogWidget(
         isCheckoutCancel: isCheckoutCancel,
@@ -38,96 +39,97 @@ class CancelDialogWidget extends GetView<CancelOrderController> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child:  Padding(
-        padding: const EdgeInsets.fromLTRB(16.0, 32.0,16.0,0.0),
-        child: Material(
-          color: AppColors.highlighter,
-          borderRadius: BorderRadius.circular(30),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
+    return AlertDialog(
+      alignment: Alignment.topCenter,
+      insetPadding: const EdgeInsets.only(top: 16.0,left: 16.0,right: 16.0),
+      backgroundColor: AppColors.highlighter,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(30.0),
+        ),
+      ),
+      content: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomText(
-                      Translate.cancelOrder.name.tr,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                        color: CustomThemes.appTheme.primaryColor,
-                      ),
-                    ),
-                  ],
-                ),
-                const Divider(color: AppColors.primaryColor,thickness: 1.5),
-                const SizedBox(height: 20),
-                Obx(() => Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: CustomThemes.appTheme.primaryColor,
-                        ),
-                        borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      ),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton<CancelReasonLookupModel?>(
-                          isExpanded: true,
-                          dropdownColor: Colors.white,
-                          icon: FaIcon(FontAwesomeIcons.angleDown,size: 16,color: CustomThemes.appTheme.primaryColor,),
-                          style: TextStyle(
-                            color: CustomThemes.appTheme.primaryColor,
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                            letterSpacing: 0,
-                          ),
-                          onChanged: (newValue) {
-                            controller.selectedReason.value =
-                                newValue as CancelReasonLookupModel;
-                          },
-                          value: controller.selectedReason.value,
-                          items: controller.cancelReasonsMenu
-                              .map(
-                                (element) =>
-                                    DropdownMenuItem<CancelReasonLookupModel>(
-                                  child: CustomText(
-                                    element.name ?? '',
-                                  ),
-                                  value: element,
-                                ),
-                              )
-                              .toList(),
-                        ),
-                      ),
-                    )),
-                const SizedBox(height: 20),
-                CustomTextField(
-                  labelText: Translate.message.name.tr,
-                  controller: controller.cancelReasonTextController,
-                  validator: (val) {
-                    return null;
-                  },
-                  borderColor: CustomThemes.appTheme.primaryColor,
-                  maxLines: 5,
-                  labelColor: CustomThemes.appTheme.primaryColor,
-                ),
-                const SizedBox(height: 10),
-                CustomBorderButton(
-                  title: Translate.submit.name.tr,
-                  color: AppColors.redColor,
-                  radius: 30.0,
-                  onTap: () => controller.cancelOrderAction(
-                    context: context,
-                    orderDetailsModel: orderDetailsModel,
-                    isCheckout: isCheckoutCancel,
+                CustomText(
+                  Translate.cancelOrder.name.tr,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                    color: CustomThemes.appTheme.primaryColor,
                   ),
                 ),
               ],
             ),
-          ),
+            const Divider(color: AppColors.primaryColor,thickness: 1.5),
+            const SizedBox(height: 20),
+            Obx(() => Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: CustomThemes.appTheme.primaryColor,
+                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<CancelReasonLookupModel?>(
+                      isExpanded: true,
+                      dropdownColor: Colors.white,
+                      icon: FaIcon(FontAwesomeIcons.angleDown,size: 16,color: CustomThemes.appTheme.primaryColor,),
+                      style: TextStyle(
+                        color: CustomThemes.appTheme.primaryColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                        letterSpacing: 0,
+                      ),
+                      onChanged: (newValue) {
+                        controller.selectedReason.value =
+                            newValue as CancelReasonLookupModel;
+                      },
+                      value: controller.selectedReason.value,
+                      items: controller.cancelReasonsMenu
+                          .map(
+                            (element) =>
+                                DropdownMenuItem<CancelReasonLookupModel>(
+                              child: CustomText(
+                                element.name ?? '',
+                              ),
+                              value: element,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                )),
+            const SizedBox(height: 20),
+            CustomTextField(
+              labelText: Translate.message.name.tr,
+              controller: controller.cancelReasonTextController,
+              validator: (val) {
+                return null;
+              },
+              borderColor: CustomThemes.appTheme.primaryColor,
+              maxLines: 5,
+              labelColor: CustomThemes.appTheme.primaryColor,
+            ),
+            const SizedBox(height: 10),
+            CustomBorderButton(
+              title: Translate.submit.name.tr,
+              color: AppColors.redColor,
+              radius: 30.0,
+              onTap: () => controller.cancelOrderAction(
+                context: context,
+                orderDetailsModel: orderDetailsModel,
+                isCheckout: isCheckoutCancel,
+              ),
+            ),
+          ],
         ),
       ),
     );
