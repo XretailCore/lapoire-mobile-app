@@ -19,7 +19,7 @@ class SignupController extends GetxController {
       mobileTEC = TextEditingController(text: ''),
       confirmPasswordTEC = TextEditingController(text: ''),
       passwordTEC = TextEditingController(text: '');
-  Rx<DateTime?> selectedDate = DateTime.now().obs;
+  Rxn<DateTime> selectedDate = Rxn<DateTime>() ;
   bool _isAcceptedPrivacy = false;
 
   bool get _isNotAcceptedPrivacy => !_isAcceptedPrivacy;
