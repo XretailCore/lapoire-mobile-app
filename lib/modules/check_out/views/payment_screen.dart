@@ -29,86 +29,88 @@ class PaymentScreen extends GetView<PaymentController> {
         showBackButton: true,
         showAction: false,
       ),
-      body: Form(
-        key: controller.formKey,
-        child: Column(
-          children: [
-            const SizedBox(height: 8),
-            const CustomStepperWidget(currentIndex: 1),
-            const SizedBox(height: 8),
-            const SizedBox(height: 8),
-            TitleWithDivider(
-              title: Translate.selectAPaymentMethod.tr,
-              color: AppColors.primaryColor,
-            ),
-            SizedBox(
-              height: 0.15.sh,
-              child: controller.obx(
-                (payments) => PaymentOptionItemWidget(
-                  payments: payments ?? [],
-                ),
-                onLoading: Center(
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
-                  ),
-                ),
+      body: SingleChildScrollView(
+        child: Form(
+          key: controller.formKey,
+          child: Column(
+            children: [
+              const SizedBox(height: 8),
+              const CustomStepperWidget(currentIndex: 1),
+              const SizedBox(height: 8),
+              const SizedBox(height: 8),
+              TitleWithDivider(
+                title: Translate.selectAPaymentMethod.tr,
+                color: AppColors.primaryColor,
               ),
-            ),
-            Column(
-              children: [
-                const SizedBox(height: 10),
-                const DiscountMethodsWidget(),
-                const SizedBox(height: 10),
-                customerSummaryController.obx(
-                  (summary) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Container(
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.redColor,
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: CustomText(
-                              Translate.deliveredWithinMinMaxBusinessDays
-                                  .trParams(
-                                params: {
-                                  'Min': summary?.configDeliveryPeriod?.min
-                                          .toString() ??
-                                      "",
-                                  'Max': summary?.configDeliveryPeriod?.max
-                                          .toString() ??
-                                      "",
-                                  'PeriodName': (summary
-                                          ?.configDeliveryPeriod?.periodName ??
-                                      "")
-                                },
-                              ),
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14,
-                                color: Colors.white,
-                              ),
-                              softWrap: true,
-                            ),
-                          ),
-                        ],
-                      ),
+              SizedBox(
+                height: 0.15.sh,
+                child: controller.obx(
+                  (payments) => PaymentOptionItemWidget(
+                    payments: payments ?? [],
+                  ),
+                  onLoading: Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
-                CheckoutSummaryWidget(
-                  onTapNext: (isPreOrder) {
-                    Get.toNamed(Routes.summaryScreen);
-                  },
-                ),
-              ],
-            ),
-          ],
+              ),
+              Column(
+                children: [
+                  const SizedBox(height: 10),
+                  const DiscountMethodsWidget(),
+                  const SizedBox(height: 10),
+                  customerSummaryController.obx(
+                    (summary) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: AppColors.redColor,
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: CustomText(
+                                Translate.deliveredWithinMinMaxBusinessDays
+                                    .trParams(
+                                  params: {
+                                    'Min': summary?.configDeliveryPeriod?.min
+                                            .toString() ??
+                                        "",
+                                    'Max': summary?.configDeliveryPeriod?.max
+                                            .toString() ??
+                                        "",
+                                    'PeriodName': (summary
+                                            ?.configDeliveryPeriod?.periodName ??
+                                        "")
+                                  },
+                                ),
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                ),
+                                softWrap: true,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  CheckoutSummaryWidget(
+                    onTapNext: (isPreOrder) {
+                      Get.toNamed(Routes.summaryScreen);
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
