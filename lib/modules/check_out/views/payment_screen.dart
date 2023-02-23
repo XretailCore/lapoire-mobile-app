@@ -24,7 +24,11 @@ class PaymentScreen extends GetView<PaymentController> {
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: CustomAppBar(title: Translate.checkout.tr, showBackButton: true,showAction: false,),
+      appBar: CustomAppBar(
+        title: Translate.checkout.tr,
+        showBackButton: true,
+        showAction: false,
+      ),
       body: Form(
         key: controller.formKey,
         child: Column(
@@ -33,7 +37,10 @@ class PaymentScreen extends GetView<PaymentController> {
             const CustomStepperWidget(currentIndex: 1),
             const SizedBox(height: 8),
             const SizedBox(height: 8),
-            TitleWithDivider(title: Translate.selectAPaymentMethod.tr,color: AppColors.primaryColor,),
+            TitleWithDivider(
+              title: Translate.selectAPaymentMethod.tr,
+              color: AppColors.primaryColor,
+            ),
             SizedBox(
               height: 0.15.sh,
               child: controller.obx(

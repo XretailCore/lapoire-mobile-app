@@ -1,8 +1,10 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:imtnan/core/components/custom_appbar.dart';
 import '../../../core/components/custom_text.dart';
+import '../../../core/localization/lanaguages_enum.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/custom_shared_prefrenece.dart';
 import '../controllers/contact_us_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -14,6 +16,7 @@ class ContactUsScreen extends GetView<ContactUsController> {
 
   @override
   Widget build(BuildContext context) {
+    final language = Get.find<UserSharedPrefrenceController>().getLanguage;
     return Scaffold(
       appBar: CustomAppBar(
         title: Translate.contactUs.tr,
@@ -124,8 +127,10 @@ class ContactUsScreen extends GetView<ContactUsController> {
                 ),
                 const SizedBox(height: 16.0),
                 CustomText(
-                  workingHours?.substring(13, workingHours.length) ?? "",
-                  style: const TextStyle(fontSize: 14),
+                  workingHours?.substring(language == Languages.ar.name?12:13, workingHours.length) ?? "",
+                  softWrap: true,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 14,color: AppColors.primaryColor),
                 ),
                 const SizedBox(height: 16.0),
               ],
