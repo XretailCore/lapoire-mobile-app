@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../core/components/custom_appbar.dart';
+import '../../../core/components/custom_error_widget.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/app_colors.dart';
@@ -53,6 +54,10 @@ class PaymentScreen extends GetView<PaymentController> {
                       valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
                     ),
                   ),
+                  onError: (e) => CustomErrorWidget(
+                    errorText: e,
+                    onReload: controller.onInit,
+                  ),
                 ),
               ),
               Column(
@@ -82,8 +87,8 @@ class PaymentScreen extends GetView<PaymentController> {
                                     'Max': summary?.configDeliveryPeriod?.max
                                             .toString() ??
                                         "",
-                                    'PeriodName': (summary
-                                            ?.configDeliveryPeriod?.periodName ??
+                                    'PeriodName': (summary?.configDeliveryPeriod
+                                            ?.periodName ??
                                         "")
                                   },
                                 ),
@@ -99,6 +104,10 @@ class PaymentScreen extends GetView<PaymentController> {
                           ],
                         ),
                       ),
+                    ),
+                    onError: (e) => CustomErrorWidget(
+                      errorText: e,
+                      onReload: controller.onInit,
                     ),
                   ),
                   const SizedBox(height: 10),

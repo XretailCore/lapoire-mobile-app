@@ -126,6 +126,10 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
                     valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
                   ),
                 ),
+                onError: (e) => CustomErrorWidget(
+                  errorText: e,
+                  onReload: controller.onInit,
+                ),
               ),
             ),
           ),

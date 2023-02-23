@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:imtnan/core/components/custom_button.dart';
+import '../../../core/components/custom_error_widget.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/app_colors.dart';
 import '../controllers/customer_summary_controller.dart';
@@ -82,6 +83,10 @@ class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
         ),
       ),
       onLoading: Container(),
+      onError: (e) => CustomErrorWidget(
+        errorText: e,
+        onReload: controller.onInit,
+      ),
     );
   }
 }
