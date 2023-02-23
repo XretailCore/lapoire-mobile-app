@@ -10,6 +10,7 @@ import '../../../core/utils/shipment_methods.dart';
 import '../controllers/customer_location_controller.dart';
 import '../controllers/customer_summary_controller.dart';
 import '../controllers/delivery_controller.dart';
+import '../controllers/locations.dart';
 import '../widgets/custom_stepper_widget.dart';
 
 class CheckoutOptionsScreen extends GetView<CustomerLocationController> {
@@ -52,8 +53,10 @@ class CheckoutOptionsScreen extends GetView<CustomerLocationController> {
           ),
           const DottedLine(dashColor: AppColors.redColor),
           ListTile(
-            onTap: (){
+            onTap: ()async{
               deliveryController.selectedShipmentMethods = ShipmentMethods.homeDelivery;
+              await controller.init();
+              Locations.storeId=0;
               Get.toNamed(Routes.customerLocationsScreen);
             },
             title: CustomText(Translate.homeDelivery.tr),
