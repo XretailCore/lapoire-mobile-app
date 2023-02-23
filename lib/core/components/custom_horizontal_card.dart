@@ -249,8 +249,8 @@ class HorizontalProductCard extends StatelessWidget {
                                     style: const TextStyle(
                                       fontSize: 14,
                                       overflow: TextOverflow.ellipsis,
-                                      color: Colors.grey,
-                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.primaryColor,
+                                      fontWeight: FontWeight.w400,
                                     ),
                                   ),
                                 if ((count == null || isCart!) && !isReview!)
