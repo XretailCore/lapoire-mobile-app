@@ -20,7 +20,7 @@ class ShoppingInformationScreen extends GetView<ShippingInformationController> {
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
-      appBar: CustomAppBar(title: Translate.checkout.tr, showBackButton: true),
+      appBar: CustomAppBar(title: Translate.checkout.tr, showBackButton: true,showAction: false,),
       body: controller.obx(
         (shippingInfo) {
           final products = shippingInfo?.items ?? [];

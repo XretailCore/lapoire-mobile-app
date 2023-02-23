@@ -22,7 +22,7 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
-      appBar: CustomAppBar(title: Translate.checkout.tr, showBackButton: true),
+      appBar: CustomAppBar(title: Translate.checkout.tr, showBackButton: true,showAction: false,),
       body: Column(
         children: [
           const SizedBox(height: 10),

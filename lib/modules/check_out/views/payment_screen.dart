@@ -24,7 +24,7 @@ class PaymentScreen extends GetView<PaymentController> {
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: CustomAppBar(title: Translate.checkout.tr, showBackButton: true),
+      appBar: CustomAppBar(title: Translate.checkout.tr, showBackButton: true,showAction: false,),
       body: Form(
         key: controller.formKey,
         child: Column(
