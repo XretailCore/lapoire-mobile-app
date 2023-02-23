@@ -1,3 +1,4 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
@@ -22,87 +23,97 @@ class ListOfReviewsWidget extends StatelessWidget {
       },
       itemBuilder: (buildContext, index) {
         final review = reviews.elementAt(index);
-        return Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        return Column(
           children: [
-            Center(
-              child: Image.asset(
-                'assets/images/user_review_icon.png',
-                height: 35,
-                width: 35,
-              ),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Image.asset(
+                    'assets/images/user_review_icon.png',
+                    height: 35,
+                    width: 35,
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: CustomText(
-                          review.customerName,
-                          style: const TextStyle(
-                            color: Color(0xff2E2E2E),
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CustomText(
+                              review.customerName,
+                              style: const TextStyle(
+                                color: Color(0xff2E2E2E),
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              softWrap: true,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
-                          softWrap: true,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                          CustomText(
+                            review.date.toString(),
+                            style: const TextStyle(
+                              color: Color(0xff808080),
+                              fontSize: 8,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
                       ),
+                      const SizedBox(
+                        height: 3,
+                      ),
+                      RatingBar(
+                        glow: false,
+                        initialRating: review.rating,
+                        itemSize: 15,
+                        ignoreGestures: true,
+                        updateOnDrag: false,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        ratingWidget: RatingWidget(
+                          full: const Icon(
+                            Icons.star,
+                            color: AppColors.primaryColor,
+                          ),
+                          half: const Icon(
+                            Icons.star_half,
+                            color: AppColors.primaryColor,
+                          ),
+                          empty: const Icon(
+                            Icons.star_border,
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                        onRatingUpdate: (double value) {},
+                      ),
+                      const SizedBox(height: 10),
                       CustomText(
-                        review.date.toString(),
+                        review.description,
                         style: const TextStyle(
-                          color: Color(0xff808080),
-                          fontSize: 8,
+                          color: Color(0xff414141),
+                          fontSize: 12,
                           fontWeight: FontWeight.normal,
                         ),
+                        softWrap: true,
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 3,
-                  ),
-                  RatingBar(
-                    glow: false,
-                    initialRating: review.rating,
-                    itemSize: 15,
-                    ignoreGestures: true,
-                    updateOnDrag: false,
-                    allowHalfRating: true,
-                    itemCount: 5,
-                    ratingWidget: RatingWidget(
-                      full: const Icon(
-                        Icons.star,
-                        color: AppColors.primaryColor,
-                      ),
-                      half: const Icon(
-                        Icons.star_half,
-                        color: AppColors.primaryColor,
-                      ),
-                      empty: const Icon(
-                        Icons.star_border,
-                        color: AppColors.primaryColor,
-                      ),
-                    ),
-                    onRatingUpdate: (double value) {},
-                  ),
-                  const SizedBox(height: 10),
-                  CustomText(
-                    review.description,
-                    style: const TextStyle(
-                      color: Color(0xff414141),
-                      fontSize: 12,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    softWrap: true,
-                  ),
-                ],
-              ),
-            )
+                )
+              ],
+            ),
+            index != reviews.length - 1
+                ? const Padding(
+                    padding: EdgeInsets.only(top: 8.0),
+                    child: DottedLine(dashColor: AppColors.redColor),
+                  )
+                : const SizedBox.shrink()
           ],
         );
       },
