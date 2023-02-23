@@ -257,9 +257,9 @@ class HorizontalProductCard extends StatelessWidget {
                                   isAvailable
                                       ? CustomText(
                                           Translate.inStock.tr,
-                                          style: const TextStyle(fontWeight: FontWeight.normal),
+                                          style: const TextStyle(color: AppColors.primaryColor),
                                         )
-                                      : CustomText(Translate.outOfStock.tr),
+                                      : CustomText(Translate.outOfStock.tr, style: const TextStyle(color: Colors.grey),),
                                 SizedBox(height: (rate != null) ? 10 : 0),
                               ],
                             ),
