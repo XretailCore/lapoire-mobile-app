@@ -108,6 +108,7 @@ class HomeScreen extends GetView<HomeController> {
                       child: Column(
                         children: [
                           HomeAd(items: controller.homeTopBanner.items ?? []),
+                          const SizedBox(height: 10),
                           const HomeCategoriesWidget(),
                           const SizedBox(height: 10),
                           HomeListingWidget(

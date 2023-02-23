@@ -204,7 +204,7 @@ class ChangeZoneWidget extends GetView<ZoneController> {
                         onTap: controller.selectedZone.value.id == null
                             ? null
                             : () => controller.onSubmitNewZone(
-                                afterSubmitZoneAction: afterSubmitZoneAction),
+                                afterSubmitZoneAction: afterSubmitZoneAction,context: context),
                       ),
                   ],
                 ),

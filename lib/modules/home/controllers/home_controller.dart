@@ -23,7 +23,7 @@ class HomeController extends GetxController with StateMixin {
 
   final RxBool? hideButtons = false.obs;
   NewPageBlockModel? homeModel;
-  final sliderPageIndex = 0.obs;
+  RxInt sliderPageIndex = 0.obs;
   var homeTopBanner = DataItem(),
       categories = DataItem(),
       bestSellers = DataItem(),
@@ -89,7 +89,6 @@ class HomeController extends GetxController with StateMixin {
 
   void onSliderPageChange(int pageIndex) {
     sliderPageIndex.value = pageIndex;
-    // update();
   }
 
   void goToListingWithId({required FilterModel filterModel, String? name}) {
