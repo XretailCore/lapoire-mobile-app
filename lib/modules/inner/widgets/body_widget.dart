@@ -182,9 +182,9 @@ class _BodyWidgetState extends State<BodyWidget> {
                                       (isSaving || quantity <= initialQuantity)
                                           ? null
                                           : () => changeQuantity(quantity - 1),
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.remove,
-                                    color: AppColors.redColor,
+                                    color: (isSaving || quantity <= initialQuantity)? Colors.grey:AppColors.redColor,
                                   ),
                                 ),
                               ),
@@ -213,9 +213,14 @@ class _BodyWidgetState extends State<BodyWidget> {
                                                   .maxQuantity)
                                       ? null
                                       : () => changeQuantity(quantity + 1),
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.add,
-                                    color: AppColors.redColor,
+                                    color: (isSaving ||
+                                        quantity >=
+                                            widget
+                                                .selectdProduct!
+                                                .selectedProductSku
+                                                .maxQuantity)?Colors.grey:AppColors.redColor,
                                   ),
                                 ),
                               ),
