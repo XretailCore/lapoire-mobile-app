@@ -110,7 +110,7 @@ class StoresScreen extends GetView<StoresController> {
                               color: AppColors.highlighter,
                               border: Border.all(
                                   color: CustomThemes.appTheme.primaryColor),
-                              borderRadius: BorderRadius.circular(20.0),
+                              borderRadius: BorderRadius.circular(30.0),
                             ),
                             child: Padding(
                               padding:
@@ -118,7 +118,7 @@ class StoresScreen extends GetView<StoresController> {
                               child: Obx(
                                 () => DropdownButtonHideUnderline(
                                   child: DropdownButton<CityModel?>(
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(30),
                                     icon: FaIcon(FontAwesomeIcons.angleDown,
                                         size: 16.0,
                                         color:
