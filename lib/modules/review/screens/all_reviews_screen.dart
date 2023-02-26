@@ -8,6 +8,8 @@ import '../../../core/components/custom_text.dart';
 import '../../../core/components/imtnan_loading_widget.dart';
 import '../../../core/localization/translate.dart';
 import '../../../core/utils/app_colors.dart';
+import '../../../core/utils/routes.dart';
+import '../../../core/utils/strings.dart';
 import '../controllers/all_reviews_controller.dart';
 import '../widgets/add_review_widget.dart';
 import '../widgets/list_of_reviews_widget.dart';
@@ -35,6 +37,15 @@ class AllReviwesScreen extends GetView<AllReviewsController> {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: ProductCardWidget(
+                          onCardTap: (){
+                            Get.toNamed(
+                              Routes.innerScreen,
+                              arguments: {
+                                Arguments.skuId: controller
+                                    .productDetailsModel!.selectedProductSku.id!,
+                              },
+                            );
+                          },
                           elevation: 0,
                           isReview:true,
                           productId: controller
