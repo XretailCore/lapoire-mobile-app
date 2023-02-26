@@ -289,16 +289,64 @@ class HorizontalProductCard extends StatelessWidget {
                                   borderType: BorderType.Circle,
                                   color: AppColors.redColor,
                                   child: InkWell(
-                                    onTap: onDelete ??
-                                        () {
-                                          var listingItem = ListingItem(
-                                            id: productId,
-                                            finalPrice: price,
+                                    onTap:
+                                        () async{
+                                          Get.defaultDialog(
+                                            barrierDismissible: false,
+                                            contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+                                            titlePadding: const EdgeInsets.only(top: 20),
+                                            title: Translate.deleteItem.tr.capitalizeFirst ?? '',
+                                            titleStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                            middleText: Translate.areYouWantToDeleteThisItem.tr,
+                                            middleTextStyle:
+                                            const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+                                            actions: [
+                                              OutlinedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor: Colors.white,
+                                                  shape:
+                                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                                                  side: BorderSide(
+                                                      color: CustomThemes.appTheme.primaryColor, width: 1.5),
+                                                  elevation: 1,
+                                                ),
+                                                onPressed: () =>
+                                                    Navigator.of(Get.context!, rootNavigator: true).pop(),
+                                                child: CustomText(
+                                                  Translate.no.name.tr.toUpperCase(),
+                                                  style: TextStyle(
+                                                    color: CustomThemes.appTheme.primaryColor,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                              OutlinedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  backgroundColor: CustomThemes.appTheme.primaryColor,
+                                                  shape:
+                                                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                                                  elevation: 1,
+                                                ),
+                                                onPressed: onDelete ??(){
+                                                  var listingItem = ListingItem(
+                                                    id: productId,
+                                                    finalPrice: price,
+                                                  );
+                                                  final wishlistController =
+                                                  Get.find<WishlistController>();
+                                                  wishlistController.onChangeFavorite(
+                                                      context, false, listingItem);
+                                                  Navigator.of(Get.context!, rootNavigator: true).pop();
+                                                },
+                                                child: Text(
+                                                  Translate.yes.tr.toUpperCase(),
+                                                  style: const TextStyle(
+                                                      fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white),
+                                                ),
+                                              ),
+                                            ],
                                           );
-                                          final wishlistController =
-                                              Get.find<WishlistController>();
-                                          wishlistController.onChangeFavorite(
-                                              context, false, listingItem);
                                         },
                                     child: const Padding(
                                       padding: EdgeInsets.all(3.0),

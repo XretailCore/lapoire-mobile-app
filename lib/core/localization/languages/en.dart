@@ -358,6 +358,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.fawryId.name: 'Fawry Code',
       Translate.selectCity.name: 'Select City',
       Translate.deleteAccount.name: 'Delete account',
+      Translate.deleteItem.name: 'Delete Item',
       Translate.deactivateAccount.name: 'Deactivate account',
       Translate.accountDeletedSuccessfully.name:
           'Account has been deleted successfully',
@@ -365,6 +366,8 @@ Map<String, String> getEnglishTranslation() => {
           'Account has been deactivated successfully',
       Translate.areYouWantToDeleteYourAccount.name:
           'Are you want to delete your account?',
+      Translate.areYouWantToDeleteThisItem.name:
+          'Are you want to delete this item?',
       Translate.areYouWantToDeactivateYourAccount.name:
           'Are you want to deactivate your account?',
       Translate.update.name: 'Update',

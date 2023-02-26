@@ -212,6 +212,7 @@ class CartController extends GetxController with StateMixin<CartSummaryModel?> {
   }
 
   Future<void> deleteFromCart(int skuid) async {
+    Navigator.of(Get.context!, rootNavigator: true).pop();
     int? userId = Get.find<UserSharedPrefrenceController>().getUserId;
     openLoadingDialog(Get.context!);
     try {

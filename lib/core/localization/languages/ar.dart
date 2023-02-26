@@ -343,10 +343,12 @@ Map<String, String> getArabicTranslation() => {
       Translate.fawryId.name: 'كود فورى',
       Translate.selectCity.name: 'أختار مدينة',
       Translate.deleteAccount.name: 'حذف الحساب',
+      Translate.deleteAccount.name: 'حذف العنصر',
       Translate.deactivateAccount.name: 'تعطيل الحساب',
       Translate.accountDeletedSuccessfully.name: 'تم مسح الحساب بنجاح',
       Translate.accountDeactivatedSuccessfully.name: 'تم تعطيل الحساب',
       Translate.areYouWantToDeleteYourAccount.name: 'هل تريد مسح حسابك ؟',
+      Translate.areYouWantToDeleteThisItem.name: 'هل تريد مسح هذا العنصر ؟',
       Translate.areYouWantToDeactivateYourAccount.name:
           'هل تريد تعطيل الحساب ؟',
       Translate.thereAreNoStoresHere.name: 'لا توجد متاجر في موقعك الحالي',
