@@ -147,7 +147,10 @@ class OrderDetailsAppBar extends GetView<OrderDetailsController>
         visible: Navigator.of(context).canPop(),
         replacement: IconButton(
           onPressed: () => controller.goToHomeAction(),
-          icon: const Icon(Icons.home, color: AppColors.primaryColor),
+          icon: const Padding(
+            padding:  EdgeInsets.only(top:14.0),
+            child:  Icon(Icons.home, color: AppColors.primaryColor),
+          ),
         ),
         child: const CustomBackButton(),
       ),
