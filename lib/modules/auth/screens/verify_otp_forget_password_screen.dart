@@ -101,7 +101,7 @@ class VerifyOtpForgetPasswordScreen
                   Offstage(
                     offstage: controller.isCounterEqualZero,
                     child: CustomText(
-                      controller.counter.toString(),
+                      '${(Duration(seconds: controller.counter))}'.split('.')[0].padLeft(8, '0'),
                       style: const TextStyle(
                         fontSize: 13,
                         color: Colors.grey,

@@ -17,7 +17,7 @@ class VerifyOtpScreen extends GetView<VerifyOtpController> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
-          title: Translate.verifyYourPhoneNumber.tr,
+          title: Translate.verifyYourAccount.tr,
           showAction: false,
           showBackButton: true),
       body: Form(
@@ -100,7 +100,7 @@ class VerifyOtpScreen extends GetView<VerifyOtpController> {
                   Offstage(
                     offstage: controller.isCounterEqualZero,
                     child: CustomText(
-                      controller.counter.toString(),
+                      '${(Duration(seconds: controller.counter))}'.split('.')[0].padLeft(8, '0'),
                       style: const TextStyle(
                         fontSize: 13,
                         color: Colors.grey,

@@ -100,6 +100,7 @@ enum Translate {
   donotHaveAccount,
   termsOfService,
   verifyYourPhoneNumber,
+  verifyYourAccount,
   verifyOTP,
   enterYourOTPCodeHere,
   verify,

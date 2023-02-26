@@ -13,7 +13,7 @@ class VerifyOtpController extends GetxController {
   final formKey = GlobalKey<FormState>();
   final otpTEC = TextEditingController(text: '');
 
-  static const _waitingTomeToResendSms = 120;
+  static const _waitingTomeToResendSms = 60;
   final _counter = Rx<int>(_waitingTomeToResendSms);
 
   ActivationCodeModel activationCodeModel = ActivationCodeModel();

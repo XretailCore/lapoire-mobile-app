@@ -13,7 +13,7 @@ class VerifyOtpForgetPasswordController extends GetxController {
   final otpTEC = TextEditingController(text: '');
 
   int? userId;
-  static const _waitingTomeToResendSms = 120;
+  static const _waitingTomeToResendSms = 60;
   final _counter = Rx<int>(_waitingTomeToResendSms);
   set counter(int timeOnSecond) => _counter.value = timeOnSecond;
   int get counter => _counter.value;
