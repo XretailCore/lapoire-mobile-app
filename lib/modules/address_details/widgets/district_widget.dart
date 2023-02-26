@@ -83,16 +83,22 @@ class DistrictWidget extends GetView<AddressDetailsController> {
           },
           dropdownBuilder: (context, item) {
             if (controller.selectedDistrict.value?.name?.isEmpty ?? true) {
-              return CustomText(
-                Translate.district.tr,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 13, color: primaryColor),
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: CustomText(
+                  Translate.district.tr,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 13, color: primaryColor),
+                ),
               );
             } else {
-              return CustomText(
-                item?.name ?? "",
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 13, color: primaryColor),
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: CustomText(
+                  item?.name ?? "",
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 13, color: primaryColor),
+                ),
               );
             }
           },

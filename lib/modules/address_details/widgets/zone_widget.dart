@@ -80,16 +80,22 @@ class ZoneWidget extends GetView<AddressDetailsController> {
           },
           dropdownBuilder: (context, item) {
             if (controller.selectedZone.value?.name?.isEmpty ?? true) {
-              return CustomText(
-                Translate.selectCity.tr,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 13, color: primaryColor),
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: CustomText(
+                  Translate.selectCity.tr,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 13, color: primaryColor),
+                ),
               );
             } else {
-              return CustomText(
-                item?.name ?? "",
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 13, color: primaryColor),
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12.0),
+                child: CustomText(
+                  item?.name ?? "",
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 13, color: primaryColor),
+                ),
               );
             }
           },
