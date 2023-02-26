@@ -85,7 +85,6 @@ class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
       onLoading: Container(),
       onError: (e) => CustomErrorWidget(
         errorText: e,
-        onReload: controller.onInit,
       ),
     );
   }

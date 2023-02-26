@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/components/custom_error_widget.dart';
 import '../../../core/components/custom_text.dart';
 import '../../../core/localization/translate.dart';
 import '../controllers/customer_summary_controller.dart';
@@ -112,10 +111,7 @@ class DiscountMethodsWidget extends GetView<CustomerSummaryController> {
           ),
         ],
       ),
-      onError: (e) => CustomErrorWidget(
-        errorText: e,
-        onReload: controller.onInit,
-      ),
+      onError: (e) => const SizedBox.shrink(),
     );
   }
 }

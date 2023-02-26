@@ -56,7 +56,6 @@ class PaymentScreen extends GetView<PaymentController> {
                   ),
                   onError: (e) => CustomErrorWidget(
                     errorText: e,
-                    onReload: controller.onInit,
                   ),
                 ),
               ),
@@ -105,10 +104,7 @@ class PaymentScreen extends GetView<PaymentController> {
                         ),
                       ),
                     ),
-                    onError: (e) => CustomErrorWidget(
-                      errorText: e,
-                      onReload: controller.onInit,
-                    ),
+                    onError: (e) => const SizedBox.shrink(),
                   ),
                   const SizedBox(height: 10),
                   CheckoutSummaryWidget(
