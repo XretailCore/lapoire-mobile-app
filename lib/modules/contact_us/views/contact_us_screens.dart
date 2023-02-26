@@ -1,3 +1,4 @@
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:imtnan/core/components/custom_appbar.dart';
 import '../../../core/components/custom_text.dart';
@@ -65,10 +66,15 @@ class ContactUsScreen extends GetView<ContactUsController> {
                     ],
                   ),
                 ),
-                CustomText(
-                  "${Translate.call.tr} $phone",
-                  style: const TextStyle(
-                    fontSize: 30,
+                InkWell(
+                  onTap: () async {
+                    FlutterPhoneDirectCaller.callNumber(phone ?? '');
+                  },
+                  child: CustomText(
+                    "${Translate.call.tr} $phone",
+                    style: const TextStyle(
+                      fontSize: 30,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16.0),
@@ -112,12 +118,18 @@ class ContactUsScreen extends GetView<ContactUsController> {
                   ],
                 ),
                 const SizedBox(height: 16.0),
-                CustomText(
-                  email,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: AppColors.redColor,
-                    decoration: TextDecoration.underline,
+                InkWell(
+                  onTap: () async {
+                    controller.launchUrl(
+                        url: "mailto:$email"??"", context: context);
+                  },
+                  child: CustomText(
+                    email,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: AppColors.redColor,
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16.0),
