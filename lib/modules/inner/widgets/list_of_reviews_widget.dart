@@ -16,7 +16,7 @@ class ListOfReviewsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
-      itemCount: reviews.length,
+      itemCount: 2,
       physics: const BouncingScrollPhysics(),
       separatorBuilder: (BuildContext context, int index) {
         return const Divider();
@@ -108,7 +108,7 @@ class ListOfReviewsWidget extends StatelessWidget {
                 )
               ],
             ),
-            index != reviews.length - 1
+            index == 0
                 ? const Padding(
                     padding: EdgeInsets.only(top: 8.0),
                     child: DottedLine(dashColor: AppColors.redColor),

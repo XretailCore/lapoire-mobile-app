@@ -54,12 +54,14 @@ class _BodyWidgetState extends State<BodyWidget> {
       widget.innerProductController.quantity = quantity;
     });
   }
-@override
+
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    initialQuantity=widget.innerProductController.quantity;
+    initialQuantity = widget.innerProductController.quantity;
   }
+
   @override
   Widget build(BuildContext context) {
     final primaryColor = CustomThemes.appTheme.primaryColor;
@@ -176,11 +178,10 @@ class _BodyWidgetState extends State<BodyWidget> {
                                 child: IconButton(
                                   padding: const EdgeInsets.all(0),
                                   color: primaryColor,
-                                  onPressed: (isSaving ||
-                                          quantity <=
-                                              initialQuantity)
-                                      ? null
-                                      : () => changeQuantity(quantity - 1),
+                                  onPressed:
+                                      (isSaving || quantity <= initialQuantity)
+                                          ? null
+                                          : () => changeQuantity(quantity - 1),
                                   icon: const Icon(
                                     Icons.remove,
                                     color: AppColors.redColor,
@@ -362,58 +363,15 @@ class _BodyWidgetState extends State<BodyWidget> {
                 ),
               ),
               const SizedBox(height: 16.0),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                child: ExpansionTileWidget(
-                  key: Key(ExpansionTileStatus.ingredientsAndHowToUse.name),
-                  initiallyExpanded:
-                      widget.innerProductController.expansionTileStatus ==
-                          ExpansionTileStatus.ingredientsAndHowToUse,
-                  onExpansionChanged: (isExpanded) {
-                    if (!isExpanded) {
-                      widget.innerProductController.expansionTileStatus = null;
-                      return;
-                    }
-                    widget.innerProductController.expansionTileStatus =
-                        ExpansionTileStatus.ingredientsAndHowToUse;
-                  },
-                  title: Translate.featuresAndBenefits.tr,
-                  children: [
-                    ReadMoreText(
-                      widget.selectdProduct?.details ?? '',
-                      trimLines: 4,
-                      trimMode: TrimMode.Line,
-                      trimCollapsedText: ' ${Translate.showMore.tr}',
-                      trimExpandedText: ' ${Translate.showLess.tr}',
-                      moreStyle: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.redColor,
-                      ),
-                      lessStyle: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.redColor,
-                      ),
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                        color: primaryColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               Offstage(
-                offstage: !(widget.selectdProduct?.isEnableAddReview ?? false),
+                offstage: (widget.selectdProduct?.details != null),
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                   child: ExpansionTileWidget(
-                    key: Key(ExpansionTileStatus.reviews.name),
+                    key: Key(ExpansionTileStatus.ingredientsAndHowToUse.name),
                     initiallyExpanded:
                         widget.innerProductController.expansionTileStatus ==
-                            ExpansionTileStatus.reviews,
+                            ExpansionTileStatus.ingredientsAndHowToUse,
                     onExpansionChanged: (isExpanded) {
                       if (!isExpanded) {
                         widget.innerProductController.expansionTileStatus =
@@ -421,31 +379,82 @@ class _BodyWidgetState extends State<BodyWidget> {
                         return;
                       }
                       widget.innerProductController.expansionTileStatus =
-                          ExpansionTileStatus.reviews;
+                          ExpansionTileStatus.ingredientsAndHowToUse;
                     },
-                    title: Translate.reviews.tr,
+                    title: Translate.featuresAndBenefits.tr,
                     children: [
-                      ListOfReviewsWidget(
-                        reviews: widget.selectdProduct?.reviews ?? [],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      InkWell(
-                        onTap: () => widget.innerProductController
-                            .onTapAllReviews(widget.selectdProduct),
-                        child: CustomText(
-                          Translate.allReviews.tr,
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: primaryColor,
-                          ),
+                      ReadMoreText(
+                        widget.selectdProduct?.details ?? '',
+                        trimLines: 4,
+                        trimMode: TrimMode.Line,
+                        trimCollapsedText: ' ${Translate.showMore.tr}',
+                        trimExpandedText: ' ${Translate.showLess.tr}',
+                        moreStyle: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.redColor,
+                        ),
+                        lessStyle: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.redColor,
+                        ),
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                          color: primaryColor,
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
+              widget.selectdProduct?.reviews != null &&
+                      widget.selectdProduct!.reviews.length >= 2
+                  ? Offstage(
+                      offstage:
+                          !(widget.selectdProduct?.isEnableAddReview ?? false),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: ExpansionTileWidget(
+                          key: Key(ExpansionTileStatus.reviews.name),
+                          initiallyExpanded: widget
+                                  .innerProductController.expansionTileStatus ==
+                              ExpansionTileStatus.reviews,
+                          onExpansionChanged: (isExpanded) {
+                            if (!isExpanded) {
+                              widget.innerProductController
+                                  .expansionTileStatus = null;
+                              return;
+                            }
+                            widget.innerProductController.expansionTileStatus =
+                                ExpansionTileStatus.reviews;
+                          },
+                          title: Translate.reviews.tr,
+                          children: [
+                            ListOfReviewsWidget(
+                              reviews: widget.selectdProduct?.reviews ?? [],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            InkWell(
+                              onTap: () => widget.innerProductController
+                                  .onTapAllReviews(widget.selectdProduct),
+                              child: CustomText(
+                                Translate.allReviews.tr,
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  color: primaryColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  : const SizedBox(),
               const SizedBox(height: 15),
               InnerListingWidget(
                 items:
