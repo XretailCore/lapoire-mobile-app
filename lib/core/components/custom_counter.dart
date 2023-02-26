@@ -44,7 +44,7 @@ class CounterWidget extends StatelessWidget {
     return StatefulBuilder(
       builder: (context, setState) => DottedBorder(
         padding: const EdgeInsets.symmetric(horizontal: 7),
-        radius: const Radius.circular(20.0),
+        radius: const Radius.circular(30.0),
         borderType: BorderType.RRect,
         color: AppColors.redColor,
         child: Row(

@@ -67,7 +67,7 @@ class ListItemsScreen extends GetView<ListItemsController> {
                                                       .appTheme.primaryColor,
                                                   borderRadius:
                                                       const BorderRadius.all(
-                                                          Radius.circular(20))),
+                                                          Radius.circular(30))),
                                               child: Row(
                                                 children: [
                                                   CustomText(

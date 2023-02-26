@@ -31,7 +31,7 @@ class CategoriesWidgets extends GetView<CategoriesController> {
               border: Border.all(
                 color: AppColors.highlighter,
               ),
-              borderRadius: const BorderRadius.all(Radius.circular(20))),
+              borderRadius: const BorderRadius.all(Radius.circular(30))),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(

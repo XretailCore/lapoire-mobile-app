@@ -88,7 +88,7 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
                   child: Container(
                     padding: const EdgeInsets.all(8.0),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(30),
                       color: AppColors.redColor,
                     ),
                     child: Row(

@@ -20,7 +20,7 @@ class NotificationWidget extends GetView<SettingsController> {
         width: double.infinity,
         child: Card(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(30.0),
             side: BorderSide(color: primaryColor, width: 1.5),
           ),
           elevation: 0,

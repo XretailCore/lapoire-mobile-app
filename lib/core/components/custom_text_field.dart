@@ -67,22 +67,22 @@ class CustomTextField extends StatelessWidget {
           letterSpacing: 0,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(30.0),
           borderSide:
               BorderSide(color: borderColor ?? Colors.transparent, width: 1.0),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(30.0),
           borderSide: BorderSide(
               color: errorBorderColor ?? AppColors.redColor, width: 1.0),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(30.0),
           borderSide: BorderSide(
               color: errorBorderColor ?? AppColors.redColor, width: 1.0),
         ),
         enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(30.0),
             borderSide:
                 BorderSide(color: borderColor ?? Colors.transparent, width: 1)),
         prefixIconConstraints:

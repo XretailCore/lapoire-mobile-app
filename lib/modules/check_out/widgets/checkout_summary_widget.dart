@@ -30,7 +30,7 @@ class CheckoutSummaryWidget extends GetView<CustomerSummaryController> {
       (checkoutSummary) => Container(
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+              topRight: Radius.circular(30), topLeft: Radius.circular(30)),
           color: color ?? AppColors.highlighter,
         ),
         child: Column(

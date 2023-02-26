@@ -55,7 +55,7 @@ class CardAddressBookWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           border: Border.all(color: CustomThemes.appTheme.primaryColor),
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(30.0),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,

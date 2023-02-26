@@ -84,7 +84,7 @@ class FeedBackWidget extends GetView<FeedbackOrderController> {
                     border: Border.all(
                       color: CustomThemes.appTheme.primaryColor,
                     ),
-                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    borderRadius: const BorderRadius.all(Radius.circular(30)),
                   ),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<ComplaintLookupModel?>(

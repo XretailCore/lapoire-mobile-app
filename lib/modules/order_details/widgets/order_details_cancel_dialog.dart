@@ -75,7 +75,7 @@ class CancelDialogWidget extends GetView<CancelOrderController> {
                     border: Border.all(
                       color: CustomThemes.appTheme.primaryColor,
                     ),
-                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    borderRadius: const BorderRadius.all(Radius.circular(30)),
                   ),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<CancelReasonLookupModel?>(

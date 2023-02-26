@@ -33,15 +33,15 @@ class _DropDownWidgetState<T> extends State<DropDownWidget<T>> {
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(horizontal: 8),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(color: primaryColor),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(color: primaryColor),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(30),
               borderSide: BorderSide(color: primaryColor),
             ),
           ),

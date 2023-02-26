@@ -29,7 +29,7 @@ class SortWidget extends GetView<FilterController> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         decoration: const BoxDecoration(
             color: AppColors.redColor,
-            borderRadius: BorderRadius.all(Radius.circular(20))),
+            borderRadius: BorderRadius.all(Radius.circular(30))),
         child: Row(
           children: [
             CustomText(
