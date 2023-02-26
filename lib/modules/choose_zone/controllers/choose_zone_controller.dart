@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:imtnan/core/components/custom_loaders.dart';
 import 'package:imtnan/core/localization/lanaguages_enum.dart';
 import 'package:imtnan/core/utils/strings.dart';
 import 'package:imtnan/modules/cart/controllers/cart_controller.dart';
@@ -64,7 +63,7 @@ class ZoneController extends GetxController with StateMixin<List<CityModel>> {
   }
 
   Future<void> onSubmitNewZone({Function()? afterSubmitZoneAction,required BuildContext context}) async {
-    openLoadingDialog(context);
+    Get.back();
     final prefs = Get.find<UserSharedPrefrenceController>();
     final mapController = Get.find<MapController>();
     final cartController = Get.find<CartController>();
@@ -83,7 +82,6 @@ class ZoneController extends GetxController with StateMixin<List<CityModel>> {
     selectedZoneName.value = selectedZone.value.name ?? "";
     mapController.selectedAddress.value = selectedZone.value.name ?? "";
     if (afterSubmitZoneAction != null) afterSubmitZoneAction();
-    Get.back();
     Get.back();
   }
 }
