@@ -49,7 +49,7 @@ class NewPasswordScreen extends GetView<NewPasswordController> {
               Align(
                 child: CustomBorderButton(
                   padding: const EdgeInsets.all(12),
-                  radius: 20,
+                  radius: 30,
                   title: Translate.submit.tr,
                   color: AppColors.redColor,
                   onTap: () async => controller.onTapChange(context),

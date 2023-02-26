@@ -62,7 +62,7 @@ class MyAddressesScreen extends GetView<MyAddressesController> {
                       padding: const EdgeInsets.all(15),
                       child: CustomBorderButton(
                         enabled: true,
-                        radius: 20,
+                        radius: 30,
                         color: AppColors.redColor,
                         onTap: controller.addNewAddressAction,
                         textColor: Colors.white,

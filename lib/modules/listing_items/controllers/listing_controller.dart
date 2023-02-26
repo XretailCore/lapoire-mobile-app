@@ -21,7 +21,7 @@ class ListItemsController extends GetxController
   final refreshController = RefreshController(initialRefresh: false);
   final searchController = TextEditingController(text: '');
   final CarouselController categoriesScrollController = CarouselController();
-  RxString categoryName="".obs;
+  RxString categoryName = "".obs;
   final products = <new_model.ListingItem>[];
   int pageIndex = 1;
   FilterModel filterModel = FilterModel();
@@ -56,7 +56,7 @@ class ListItemsController extends GetxController
     final languageId = _languageController.getLanguageIdByName();
     if (showLoader) change(null, status: RxStatus.loading());
     try {
-      if(fromCategories) openLoadingDialog(Get.context!);
+      if (fromCategories) openLoadingDialog(Get.context!);
       final filterController = Get.find<FilterController>();
       final userSharedPrefrenceController =
           Get.find<UserSharedPrefrenceController>();
@@ -83,14 +83,16 @@ class ListItemsController extends GetxController
               ? null
               : searchController.text.trim(),
           minPrice:
-              int.parse(filterController.minPriceController.value.text) == 0 || fromCategories
+              int.parse(filterController.minPriceController.value.text) == 0 ||
+                      fromCategories
                   ? null
                   : int.parse(filterController.minPriceController.value.text),
-          maxPrice:
-              int.tryParse(filterController.maxPriceController.value.text) == 0 || fromCategories
-                  ? null
-                  : int.tryParse(
-                      filterController.maxPriceController.value.text),
+          maxPrice: int.tryParse(
+                          filterController.maxPriceController.value.text) ==
+                      0 ||
+                  fromCategories
+              ? null
+              : int.tryParse(filterController.maxPriceController.value.text),
           categoryIDs: filterController.allSelectedCategories,
           sortProp: filterController.sortProp.value == ""
               ? null
@@ -106,10 +108,10 @@ class ListItemsController extends GetxController
       products.addAll(listingDataModel.items!);
       if (products.isNotEmpty) {
         change(listingDataModel, status: RxStatus.success());
-        if(fromCategories)Get.back();
+        if (fromCategories) Get.back();
       } else {
         change(listingDataModel, status: RxStatus.empty());
-        if(fromCategories)Get.back();
+        if (fromCategories) Get.back();
       }
     } catch (e) {
       change(null, status: RxStatus.error(e.toString()));
@@ -153,7 +155,7 @@ class ListItemsController extends GetxController
 
   void continueShoppingAction() {
     final dashboardController = Get.find<DashboardController>();
-    dashboardController.updateIndex(0);
+    dashboardController.updateIndex(2);
     Get.offAllNamed(Routes.dashboard);
   }
 

@@ -80,7 +80,7 @@ class SignInWidget extends GetView<SigninController> {
           const SizedBox(height: 20),
           Center(
             child: CustomBorderButton(
-              radius: 20,
+              radius: 30,
               color: AppColors.redColor,
               title: Translate.login.tr,
               onTap: () => controller.onTapSignIn(context),
@@ -105,7 +105,10 @@ class SignInWidget extends GetView<SigninController> {
                     children: [
                       TextSpan(
                         text: Translate.register.tr,
-                        style: const TextStyle(fontSize: 14,decoration: TextDecoration.underline,color: AppColors.redColor),
+                        style: const TextStyle(
+                            fontSize: 14,
+                            decoration: TextDecoration.underline,
+                            color: AppColors.redColor),
                       ),
                     ],
                   ),

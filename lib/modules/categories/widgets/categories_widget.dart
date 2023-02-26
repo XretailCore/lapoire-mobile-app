@@ -31,13 +31,12 @@ class CategoriesWidgets extends GetView<CategoriesController> {
               border: Border.all(
                 color: AppColors.highlighter,
               ),
-              borderRadius: const BorderRadius.all(Radius.circular(20))
-          ),
+              borderRadius: const BorderRadius.all(Radius.circular(20))),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-               const SizedBox(width: 24.0),
+                const SizedBox(width: 24.0),
                 image.isNotEmpty
                     ? ExtendedImage.network(
                         image,
@@ -45,7 +44,7 @@ class CategoriesWidgets extends GetView<CategoriesController> {
                         width: 70,
                         cacheHeight: 800,
                         enableMemoryCache: false,
-                        fit: BoxFit.fitWidth,
+                        fit: BoxFit.fitHeight,
                         filterQuality: FilterQuality.high,
                         clearMemoryCacheWhenDispose: true,
                         enableLoadState: false,
@@ -62,7 +61,7 @@ class CategoriesWidgets extends GetView<CategoriesController> {
                   child: CustomText(
                     title,
                     textAlign: TextAlign.start,
-                    style:  TextStyle(
+                    style: TextStyle(
                       color: CustomThemes.appTheme.primaryColor,
                     ),
                     maxLines: 2,

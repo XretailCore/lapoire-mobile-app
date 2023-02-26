@@ -54,7 +54,8 @@ class _GenderRadioGroupWidgetState extends State<GenderRadioGroupWidget> {
               ),
               CustomText(
                 child,
-                style: TextStyle(color: CustomThemes.appTheme.primaryColor,fontWeight: FontWeight.w400),
+                style: TextStyle(
+                    color: CustomThemes.appTheme.primaryColor, fontSize: 13),
               ),
             ],
           );

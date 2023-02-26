@@ -51,7 +51,9 @@ class DashboardController extends GetxController with StateMixin<SettingModel> {
   }
 
   void updateIndex(int newIndex) {
-    navigationBarController.jumpToPage(newIndex);
+    if (navigationBarController.hasClients) {
+      navigationBarController.jumpToPage(newIndex);
+    }
   }
 
   void setNotificationsSubscribe() {

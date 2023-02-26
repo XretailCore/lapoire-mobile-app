@@ -74,7 +74,7 @@ class StoresScreen extends GetView<StoresController> {
                         ),
                         CustomBorderButton(
                           color: AppColors.redColor,
-                          radius: 20,
+                          radius: 30,
                           title: Translate.searchByCurrentLocation.tr,
                           onTap: controller.selectedDistance != null
                               ? () => controller.searchByLocationAction(
@@ -86,7 +86,9 @@ class StoresScreen extends GetView<StoresController> {
                       ],
                     ),
                     const SizedBox(height: 16),
-                    Divider(color: CustomThemes.appTheme.primaryColor,thickness: 1.5),
+                    Divider(
+                        color: CustomThemes.appTheme.primaryColor,
+                        thickness: 1.5),
                     const SizedBox(height: 16),
                     Column(
                       children: [
@@ -106,7 +108,8 @@ class StoresScreen extends GetView<StoresController> {
                           child: Container(
                             decoration: BoxDecoration(
                               color: AppColors.highlighter,
-                             border: Border.all(color:CustomThemes.appTheme.primaryColor),
+                              border: Border.all(
+                                  color: CustomThemes.appTheme.primaryColor),
                               borderRadius: BorderRadius.circular(20.0),
                             ),
                             child: Padding(
@@ -153,7 +156,7 @@ class StoresScreen extends GetView<StoresController> {
                         CustomBorderButton(
                           color: AppColors.redColor,
                           textColor: Colors.white,
-                          radius: 20,
+                          radius: 30,
                           title: Translate.searchByCity.tr,
                           onTap: () async => controller.searchByCityAction(
                               context, controller.selectedCity),

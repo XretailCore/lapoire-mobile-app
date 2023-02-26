@@ -62,7 +62,7 @@ class AddressMapBottomWidget extends GetView<SelectLocationFromMapController> {
           CustomBorderButton(
             title: Translate.deliverHere.name.tr,
             color: AppColors.redColor,
-            radius: 20,
+            radius: 30,
             onTap: onTap,
           )
         ],

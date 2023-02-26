@@ -51,11 +51,10 @@ class ChangePasswordScreen extends GetView<ChangePasswordController> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CustomBorderButton(
-                      radius: 20,
+                      radius: 30,
                       color: AppColors.redColor,
                       title: Translate.savePassword.tr,
-                      onTap: () async => controller.onTapChange(context)
-                  ),
+                      onTap: () async => controller.onTapChange(context)),
                 ),
               ],
             ),

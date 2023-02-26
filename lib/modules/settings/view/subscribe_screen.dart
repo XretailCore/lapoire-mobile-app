@@ -39,9 +39,8 @@ class SubscribeScreen extends GetView<SubscribeController> {
                 child: CustomBorderButton(
                   color: AppColors.redColor,
                   title: Translate.subscribe.tr,
-                  radius: 20,
-                  onTap: () async =>
-                      await controller.onTapSubscribe(context),
+                  radius: 30,
+                  onTap: () async => await controller.onTapSubscribe(context),
                 ),
               )
             ],

@@ -104,7 +104,7 @@ class AddressDetailsForm extends GetView<AddressDetailsController> {
               padding: const EdgeInsets.fromLTRB(5.0, 0, 5, 0),
               child: CustomBorderButton(
                 color: AppColors.redColor,
-                radius: 20,
+                radius: 30,
                 onTap: () => controller.editAddress(context: context),
                 textColor: Colors.white,
                 title: Translate.save.tr,

@@ -36,10 +36,10 @@ class ForgetPasswordScreen extends GetView<ForgetPasswordController> {
               ),
               const SizedBox(height: 64),
               CustomBorderButton(
-                radius: 20,
+                radius: 30,
                 color: AppColors.redColor,
                 title: Translate.send.tr,
-                onTap:  () async => controller.onTapSendSms(context),
+                onTap: () async => controller.onTapSendSms(context),
               ),
             ],
           ),

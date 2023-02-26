@@ -24,14 +24,14 @@ class ButtonsRowWidget extends StatelessWidget {
       children: [
         CustomBorderButton(
           onTap: orderDetailsAction,
-          radius: 20,
+          radius: 30,
           color: AppColors.redColor,
           title: Translate.details.name.tr,
         ),
         const SizedBox(height: 8),
         CustomBorderButton(
           onTap: trackOrderAction,
-          radius: 20,
+          radius: 30,
           color: AppColors.redColor,
           title: Translate.track.name.tr,
         ),

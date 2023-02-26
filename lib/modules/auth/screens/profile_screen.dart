@@ -24,7 +24,7 @@ class ProfileScreen extends GetView<ProfileController> {
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       appBar: CustomAppBar(
-        title: Translate.hello.tr,
+        title: Translate.profile.tr,
         showBackButton: true,
         showAction: false,
       ),
@@ -123,20 +123,20 @@ class ProfileScreen extends GetView<ProfileController> {
                                   contentPadding: const EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 6),
                                   enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(30),
                                     borderSide: BorderSide(color: primaryColor),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(30),
                                     borderSide: BorderSide(color: primaryColor),
                                   ),
                                   errorBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(30),
                                     borderSide:
                                         const BorderSide(color: Colors.red),
                                   ),
                                   focusedErrorBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(30),
                                     borderSide:
                                         const BorderSide(color: Colors.red),
                                   ),
@@ -175,10 +175,10 @@ class ProfileScreen extends GetView<ProfileController> {
                             },
                             child: Container(
                               padding: const EdgeInsets.symmetric(
-                                  vertical: 8.0, horizontal: 16.0),
+                                  vertical: 11.0, horizontal: 16.0),
                               decoration: BoxDecoration(
                                 border: Border.all(color: primaryColor),
-                                borderRadius: BorderRadius.circular(20.0),
+                                borderRadius: BorderRadius.circular(30.0),
                               ),
                               child: Row(
                                 mainAxisAlignment:
@@ -188,8 +188,7 @@ class ProfileScreen extends GetView<ProfileController> {
                                     "${controller.selectedDate.value.day}/${controller.selectedDate.value.month}/${controller.selectedDate.value.year}",
                                     style: TextStyle(
                                       color: primaryColor,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
+                                      fontSize: 13,
                                     ),
                                   ),
                                   FaIcon(
@@ -212,7 +211,7 @@ class ProfileScreen extends GetView<ProfileController> {
                           const SizedBox(height: 10),
                           Center(
                             child: CustomBorderButton(
-                              radius: 20,
+                              radius: 30,
                               color: AppColors.redColor,
                               title: Translate.save.tr,
                               onTap: () => controller.onTapSave(context),

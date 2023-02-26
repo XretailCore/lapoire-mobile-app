@@ -25,6 +25,7 @@ class SearchController extends GetxController
     super.onInit();
     change(null, status: RxStatus.empty());
   }
+
   Future<void> onTapAddToCard({
     required BuildContext context,
     required int skuId,
@@ -40,6 +41,7 @@ class SearchController extends GetxController
         skuId: skuId,
         quantity: quantity);
   }
+
   Future<void> getListWithSearch(
       {bool showLoader = false, bool isRefresh = false}) async {
     final userSharedPrefrenceController =

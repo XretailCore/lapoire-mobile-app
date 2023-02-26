@@ -37,7 +37,8 @@ class CheckoutConfirmationScreen
                     fontSize: 20,
                     color: primaryColor,
                     height: 1.25,
-                    fontFamily: language == Languages.ar.name ? 'Cairo' : "Gilroy",
+                    fontFamily:
+                        language == Languages.ar.name ? 'Cairo' : "Gilroy",
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -55,13 +56,13 @@ class CheckoutConfirmationScreen
                   Translate
                       .weAreGettingYourOrderReadyToBeShippedWeWillNotifyYouWithDeliveryDate
                       .tr,
+                  textAlign: TextAlign.center,
                   softWrap: true,
                   style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
-                    color: primaryColor,
-                    height: 1.5
-                  ),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                      color: primaryColor,
+                      height: 1.5),
                 ),
               ],
             ),
@@ -74,7 +75,7 @@ class CheckoutConfirmationScreen
                   children: [
                     CustomBorderButton(
                       color: AppColors.redColor,
-                      radius: 20,
+                      radius: 30,
                       title: Translate.continueShopping.tr,
                       onTap: controller.onTapContinueShopping,
                     ),
@@ -84,7 +85,7 @@ class CheckoutConfirmationScreen
                       title: Translate.trackYourOrder.tr,
                       borderColor: primaryColor,
                       textColor: primaryColor,
-                      radius: 20,
+                      radius: 30,
                       onTap: () async => await controller.goToTrackOrder(),
                     ),
                   ],

@@ -49,7 +49,7 @@ class ListingFilterOptionwidget extends GetView<ListItemsController> {
                 showTitleAndButton: false,
                 showIndicator: false,
                 autoPlay: false,
-                viewportFraction: 0.31,
+                viewportFraction: 0.4,
                 height: 40,
                 controller: controller.categoriesScrollController,
                 sliderImages: [

@@ -61,12 +61,12 @@ class PreBookingPolicyWidget extends GetView<PreBookingPolicyController> {
             Center(
               child: Obx(
                 () => CustomBorderButton(
-                  padding: const EdgeInsets.symmetric(horizontal: 90,vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 90, vertical: 8),
                   color: controller.isAgree ? AppColors.redColor : Colors.grey,
-                  radius: 20,
+                  radius: 30,
                   title: Translate.agree.tr,
-                  onTap: () async =>
-                      controller.onTapAgree(controller.isAgree),
+                  onTap: () async => controller.onTapAgree(controller.isAgree),
                 ),
               ),
             ),
