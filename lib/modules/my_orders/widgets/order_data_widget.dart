@@ -68,7 +68,7 @@ class OrderDataWidget extends StatelessWidget {
                   child: CustomBorderButton(
                     title: Translate.orderDetails.tr,
                     color: AppColors.redColor,
-                    radius: 20.0,
+                    radius: 30.0,
                     padding: const EdgeInsets.symmetric(
                         vertical: 10.0, horizontal: 16.0),
                     onTap: orderDetailsAction,
@@ -81,7 +81,7 @@ class OrderDataWidget extends StatelessWidget {
                     title: Translate.trackOrder.tr,
                     color: Colors.white,
                     borderColor: CustomThemes.appTheme.primaryColor,
-                    radius: 20.0,
+                    radius: 30.0,
                     padding: const EdgeInsets.symmetric(
                         vertical: 10.0, horizontal: 16.0),
                     onTap: trackOrderAction,

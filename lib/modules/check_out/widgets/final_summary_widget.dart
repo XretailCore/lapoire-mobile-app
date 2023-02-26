@@ -64,7 +64,7 @@ class FinalCheckoutSummaryWidget
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: CustomBorderButton(
                   color: AppColors.redColor,
-                  radius: 20.0,
+                  radius: 30.0,
                   title: buttonName ?? Translate.next.tr,
                   onTap: () {
                     final isPreOrder =

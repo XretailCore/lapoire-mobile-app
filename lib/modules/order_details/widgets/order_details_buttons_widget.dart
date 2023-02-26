@@ -21,7 +21,7 @@ class OrderDetailsButtonsWidget extends GetView<OrderDetailsController> {
       child: Column(
         children: [
           CustomBorderButton(
-            radius: 20.0,
+            radius: 30.0,
             title: Translate.trackOrder.name.tr,
             color: AppColors.redColor,
             padding:
@@ -35,7 +35,7 @@ class OrderDetailsButtonsWidget extends GetView<OrderDetailsController> {
           ),
           const SizedBox(height: 8),
           CustomBorderButton(
-            radius: 20.0,
+            radius: 30.0,
             title: Translate.addFeedback.name.tr,
             borderColor: CustomThemes.appTheme.primaryColor,
             color: Colors.transparent,
@@ -56,7 +56,7 @@ class OrderDetailsButtonsWidget extends GetView<OrderDetailsController> {
                       orderDetailsModel.orderStatus == "في المخزن"),
                   child: CustomBorderButton(
                     title: Translate.cancel.name.tr,
-                    radius: 20.0,
+                    radius: 30.0,
                     color: CustomThemes.appTheme.primaryColor,
                     textColor: Colors.white,
                     padding: const EdgeInsets.symmetric(

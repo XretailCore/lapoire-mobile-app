@@ -81,7 +81,7 @@ class CustomBorderButton extends StatelessWidget {
     this.enabled,
     this.iconSize = 24,
     this.fontSize = 16,
-    this.radius = 5,
+    this.radius = 30,
     this.isFixed = true,
     this.borderColor,
     this.padding = const EdgeInsets.all(16.0),

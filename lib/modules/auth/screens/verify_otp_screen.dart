@@ -48,6 +48,7 @@ class VerifyOtpScreen extends GetView<VerifyOtpController> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: CustomBorderButton(
+                  radius: 30,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   title: Translate.submit.tr,

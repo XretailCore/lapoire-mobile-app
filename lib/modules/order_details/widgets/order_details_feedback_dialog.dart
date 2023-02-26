@@ -137,7 +137,7 @@ class FeedBackWidget extends GetView<FeedbackOrderController> {
               CustomBorderButton(
                   title: Translate.send.name.tr,
                   color: AppColors.redColor,
-                  radius: 20.0,
+                  radius: 30.0,
                   onTap: () {
                     var formState = controller.formKey.currentState;
                     if (formState == null) return;

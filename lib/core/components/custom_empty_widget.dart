@@ -35,7 +35,7 @@ class CustomEmptyWidget extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width / 2,
                 child: CustomBorderButton(
-                  radius: 40,
+                  radius: 30,
                   color: AppColors.redColor,
                   title: buttonLabel ?? Translate.continueShopping.tr,
                   onTap: emptyBtnAction ?? () {},

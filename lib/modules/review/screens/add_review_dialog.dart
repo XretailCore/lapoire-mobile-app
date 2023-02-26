@@ -131,7 +131,7 @@ class AddReviewWidget extends GetView<AddReviewController> {
                   child: CustomBorderButton(
                     title: Translate.post.tr,
                     color: AppColors.redColor,
-                    radius: 20.0,
+                    radius: 30.0,
                     onTap: () => controller.postReviewAction(context),
                   ),
                 ),
