@@ -20,9 +20,12 @@ class DetailsBuyNowWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Material(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(30),
           child: Container(
-            color: AppColors.highlighter,
+            decoration: BoxDecoration(
+              color: AppColors.highlighter,
+              borderRadius: BorderRadius.circular(30),
+            ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Column(
