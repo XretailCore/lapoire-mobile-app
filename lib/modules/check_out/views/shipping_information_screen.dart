@@ -88,7 +88,7 @@ class ShoppingInformationScreen extends GetView<ShippingInformationController> {
               Column(
                 children: [
                   const SizedBox(height: 4),
-                  CustomText(
+                 if(shippingInfo?.paymentOption !=null) CustomText(
                     "${Translate.payment.tr}: ${shippingInfo?.paymentOption?.title ?? ''}",
                     style: const TextStyle(color: AppColors.redColor),
                   ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../core/components/appbar_widget.dart';
+import 'package:imtnan/core/components/custom_appbar.dart';
 import '../../../core/localization/translate.dart';
 import '../controllers/credit_card_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -12,8 +12,10 @@ class CreditCardScreen extends GetView<CreditCardController> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBarWidget(
+      appBar: CustomAppBar(
         title: Translate.creditCard.tr,
+        showAction: false,
+        showBackButton: true,
       ),
       body: WebView(
         navigationDelegate: (NavigationRequest request) {
