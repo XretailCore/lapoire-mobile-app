@@ -26,28 +26,40 @@ class PriceWidgetFilter extends GetView<FilterController> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomText(
-                    Translate.from.tr,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  Column(
+                    children: [
+                      CustomText(
+                        Translate.from.tr,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 16.0),
+                      PriceFiled(
+                        controller: controller.minPriceController.value,
+                        onChanged: (min) {},
+                      ),
+                    ],
                   ),
-                  PriceFiled(
-                    controller: controller.minPriceController.value,
-                    onChanged: (min) {},
+
+                  Column(
+                    children: [
+                      CustomText(
+                        Translate.to.tr,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 16.0),
+                      PriceFiled(
+                        controller: controller.maxPriceController.value,
+                        onChanged: (max) {},
+                      ),
+                    ],
                   ),
-                  CustomText(
-                    Translate.to.tr,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  PriceFiled(
-                    controller: controller.maxPriceController.value,
-                    onChanged: (max) {},
-                  ),
+
                 ],
               ),
             ),
