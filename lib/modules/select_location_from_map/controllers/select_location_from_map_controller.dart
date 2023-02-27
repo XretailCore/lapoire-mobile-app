@@ -89,7 +89,7 @@ class SelectLocationFromMapController extends GetxController {
 
   Future<void> onCameraIdle() async {
     await _onLocationChanged(
-        latitude: addressModel.latitude!, longitude: addressModel.longitude!);
+        latitude: addressModel.latitude??30.0444, longitude: addressModel.longitude??31.2357);
   }
 
   Future<void> _onLocationChanged(
