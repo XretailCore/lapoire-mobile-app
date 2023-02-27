@@ -121,7 +121,7 @@ class ContactUsScreen extends GetView<ContactUsController> {
                 InkWell(
                   onTap: () async {
                     controller.launchUrl(
-                        url: "mailto:$email"??"", context: context);
+                        url: "mailto:${email??""}", context: context);
                   },
                   child: CustomText(
                     email,
