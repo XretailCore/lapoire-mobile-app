@@ -10,6 +10,7 @@ class DataColumnWidget extends StatelessWidget {
   final String? orderDate;
   final double? totalAmount;
   final String? orderStatus;
+
   const DataColumnWidget({
     Key? key,
     this.orderNumber,
@@ -43,7 +44,11 @@ class DataColumnWidget extends StatelessWidget {
         ),
         OrdersInfoWidget(
           title: '${Translate.totalAmount.name.tr} :',
-          subTitle: totalAmount.toString() + ' ' + Translate.egp.tr,
+          subTitle: totalAmount != null
+              ? totalAmount!.toStringAsFixed(
+                      totalAmount!.truncateToDouble() == totalAmount ? 0 : 1) +
+                  Translate.egp.tr
+              : "0 ${Translate.egp.tr}",
         ),
       ],
     );
@@ -54,6 +59,7 @@ class OrdersInfoWidget extends StatelessWidget {
   final String title;
   final String subTitle;
   final Color? textColor;
+
   const OrdersInfoWidget({
     Key? key,
     required this.title,
