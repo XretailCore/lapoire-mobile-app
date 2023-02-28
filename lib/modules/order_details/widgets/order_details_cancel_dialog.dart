@@ -41,7 +41,7 @@ class CancelDialogWidget extends GetView<CancelOrderController> {
   Widget build(BuildContext context) {
     return AlertDialog(
       alignment: Alignment.topCenter,
-      insetPadding: const EdgeInsets.only(top: 16.0,left: 16.0,right: 16.0),
+      insetPadding: const EdgeInsets.only(top: 70.0,left: 16.0,right: 16.0),
       backgroundColor: AppColors.highlighter,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
