@@ -415,8 +415,8 @@ class _BodyWidgetState extends State<BodyWidget> {
                   ),
                 ),
               ),
-              widget.selectdProduct?.reviews != null &&
-                      widget.selectdProduct!.reviews.length >= 2
+              widget.selectdProduct?.reviews == null ||
+                      widget.selectdProduct!.reviews.isEmpty
                   ? Offstage(
                       offstage:
                           !(widget.selectdProduct?.isEnableAddReview ?? false),
