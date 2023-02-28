@@ -103,6 +103,7 @@ class ZoneWidget extends GetView<AddressDetailsController> {
             if (!controller.isCheckoutAddress) {
               controller.selectedZone.value = city as CityModel;
               controller.selectedZoneName.value = city.name ?? '';
+              controller.selectedDistrict.value=null;
               controller.getDistrict(city.id!);
             }
           },
