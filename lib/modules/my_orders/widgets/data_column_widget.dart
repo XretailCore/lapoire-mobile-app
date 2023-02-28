@@ -44,10 +44,9 @@ class DataColumnWidget extends StatelessWidget {
         ),
         OrdersInfoWidget(
           title: '${Translate.totalAmount.name.tr} :',
-          subTitle: totalAmount != null
-              ? totalAmount!.toStringAsFixed(
-                      totalAmount!.truncateToDouble() == totalAmount ? 0 : 1) +
-                  Translate.egp.tr
+          subTitle: totalAmount != null? "${
+              totalAmount!.toStringAsFixed(
+                      totalAmount!.truncateToDouble() == totalAmount ? 0 : 1)} ${Translate.egp.tr}"
               : "0 ${Translate.egp.tr}",
         ),
       ],
