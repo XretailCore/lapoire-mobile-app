@@ -116,7 +116,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.allProducts.name: "All Products",
       Translate.adTitle.name: "Every Day Deserve a moment of joy",
       Translate.back.name: "Back",
-      Translate.qty.name: "qty",
+      Translate.qty.name: "QTY",
       Translate.required.name: "Required",
       Translate.invalidEmail.name: "Invalid Email",
       Translate.invalidMobile.name: "Invalid Mobile",
