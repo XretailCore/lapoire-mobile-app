@@ -184,7 +184,10 @@ class _BodyWidgetState extends State<BodyWidget> {
                                           : () => changeQuantity(quantity - 1),
                                   icon: Icon(
                                     Icons.remove,
-                                    color: (isSaving || quantity <= initialQuantity)? Colors.grey:AppColors.redColor,
+                                    color: (isSaving ||
+                                            quantity <= initialQuantity)
+                                        ? Colors.grey
+                                        : AppColors.redColor,
                                   ),
                                 ),
                               ),
@@ -216,11 +219,13 @@ class _BodyWidgetState extends State<BodyWidget> {
                                   icon: Icon(
                                     Icons.add,
                                     color: (isSaving ||
-                                        quantity >=
-                                            widget
-                                                .selectdProduct!
-                                                .selectedProductSku
-                                                .maxQuantity)?Colors.grey:AppColors.redColor,
+                                            quantity >=
+                                                widget
+                                                    .selectdProduct!
+                                                    .selectedProductSku
+                                                    .maxQuantity)
+                                        ? Colors.grey
+                                        : AppColors.redColor,
                                   ),
                                 ),
                               ),
@@ -416,8 +421,9 @@ class _BodyWidgetState extends State<BodyWidget> {
                 ),
               ),
               widget.selectdProduct?.reviews == null ||
-                      widget.selectdProduct!.reviews.isEmpty
-                  ? Offstage(
+                      widget.selectdProduct!.reviews.isEmpty || widget.selectdProduct!.reviews.length <2
+                  ? const SizedBox()
+                  : Offstage(
                       offstage:
                           !(widget.selectdProduct?.isEnableAddReview ?? false),
                       child: Padding(
@@ -458,8 +464,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                           ],
                         ),
                       ),
-                    )
-                  : const SizedBox(),
+                    ),
               const SizedBox(height: 15),
               InnerListingWidget(
                 items:

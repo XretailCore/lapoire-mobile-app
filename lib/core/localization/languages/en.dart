@@ -17,7 +17,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.openingHours.name: "Opening Hours",
       Translate.passwordHasBeenChangedSuccessfully.name: "Password has been changed successfully",
       Translate.viewMap.name: "View Map",
-      Translate.wishlist.name: "WishList",
+      Translate.wishlist.name: "Wishlist",
       Translate.subtotal.name: "Subtotal",
       Translate.shopNow.name: "Shop Now",
       Translate.categories.name: "Categories",
