@@ -184,7 +184,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                                           : () => changeQuantity(quantity - 1),
                                   icon: Icon(
                                     Icons.remove,
-                                    color: (isSaving ||
+                                    color: (isSaving || !widget.selectdProduct!.selectedProductSku.isAvaliable ||
                                             quantity <= initialQuantity)
                                         ? Colors.grey
                                         : AppColors.redColor,
