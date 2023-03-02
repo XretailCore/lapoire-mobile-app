@@ -25,83 +25,87 @@ class FilterScreen extends GetView<FilterController> {
         (data) => Container(
           color: AppColors.highlighter,
           padding: const EdgeInsets.only(top: 50, right: 20.0, left: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: DottedBorder(
-                  padding: const EdgeInsets.all(4),
-                  borderType: BorderType.Circle,
-                  color: primary,
-                  child: InkWell(
-                    onTap: () => controller.closeFilter(),
-                    child: Icon(
-                      Icons.clear,
-                      color: primary,
-                      size: 18,
+          child: Scaffold(
+            resizeToAvoidBottomInset: true,
+            backgroundColor: Colors.transparent,
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: DottedBorder(
+                    padding: const EdgeInsets.all(4),
+                    borderType: BorderType.Circle,
+                    color: primary,
+                    child: InkWell(
+                      onTap: () => controller.closeFilter(),
+                      child: Icon(
+                        Icons.clear,
+                        color: primary,
+                        size: 18,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 24),
-              Expanded(
-                child: SingleChildScrollView(
+                const SizedBox(height: 24),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: const [
+                        CategoriesWidgetFilter(),
+                        SizedBox(height: 15),
+                        SizesWidgetFilter(),
+                        SizedBox(height: 15),
+                        PriceWidgetFilter(),
+                        SizedBox(height: 15),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24.0),
                   child: Column(
-                    children: const [
-                      CategoriesWidgetFilter(),
-                      SizedBox(height: 15),
-                      SizesWidgetFilter(),
-                      SizedBox(height: 15),
-                      PriceWidgetFilter(),
-                      SizedBox(height: 15),
+                    children: [
+                      CustomBorderButton(
+                        color: AppColors.redColor,
+                        title: Translate.apply.name.tr,
+                        radius: 30,
+                        onTap: () {
+                          FocusScope.of(context).unfocus();
+                          if (int.parse(
+                                      controller.minPriceController.value.text) >
+                                  int.parse(
+                                      controller.maxPriceController.value.text) ||
+                              (int.parse(controller
+                                          .minPriceController.value.text) <
+                                      controller
+                                          .filterParameters.priceRange!.minPrice!
+                                          .toInt() ||
+                                  int.parse(controller
+                                          .maxPriceController.value.text) >
+                                      controller
+                                          .filterParameters.priceRange!.maxPrice!
+                                          .toInt())) {
+                            controller.clearFilter(getBack: false);
+                            showSnackBarAsBottomSheet(context);
+                          } else {
+                            controller.applyFilter(context: context);
+                            Get.back();
+                          }
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                      CustomBorderButton(
+                        radius: 30,
+                        color: CustomThemes.appTheme.primaryColor,
+                        title: Translate.clearAll.name.tr,
+                        onTap: controller.clearFilter,
+                      ),
                     ],
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24.0),
-                child: Column(
-                  children: [
-                    CustomBorderButton(
-                      color: AppColors.redColor,
-                      title: Translate.apply.name.tr,
-                      radius: 30,
-                      onTap: () {
-                        FocusScope.of(context).unfocus();
-                        if (int.parse(
-                                    controller.minPriceController.value.text) >
-                                int.parse(
-                                    controller.maxPriceController.value.text) ||
-                            (int.parse(controller
-                                        .minPriceController.value.text) <
-                                    controller
-                                        .filterParameters.priceRange!.minPrice!
-                                        .toInt() ||
-                                int.parse(controller
-                                        .maxPriceController.value.text) >
-                                    controller
-                                        .filterParameters.priceRange!.maxPrice!
-                                        .toInt())) {
-                          controller.clearFilter(getBack: false);
-                          showSnackBarAsBottomSheet(context);
-                        } else {
-                          controller.applyFilter(context: context);
-                          Get.back();
-                        }
-                      },
-                    ),
-                    const SizedBox(height: 10),
-                    CustomBorderButton(
-                      radius: 30,
-                      color: CustomThemes.appTheme.primaryColor,
-                      title: Translate.clearAll.name.tr,
-                      onTap: controller.clearFilter,
-                    ),
-                  ],
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
         onError: (e) => CustomErrorWidget(
