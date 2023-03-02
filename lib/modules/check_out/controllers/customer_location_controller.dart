@@ -70,12 +70,14 @@ RxInt toggleValue=0.obs;
   }
 
   void onSelectAddress(BuildContext context, AddressModel address) async {
+    openLoadingDialog(context);
     Locations.locationId = address.id;
     selectedZoneId = address.zoneId;
     final CustomerSummaryController _customerSummaryController =
         Get.find<CustomerSummaryController>();
     await _customerSummaryController.getSummaryData();
     update();
+    Get.back();
   }
 
   Future<void> onEditSelect(AddressModel address) async {

@@ -16,13 +16,18 @@ import '../widgets/customer_locations.dart';
 
 class CustomerLocationsScreen extends GetView<CustomerLocationController> {
   CustomerLocationsScreen({Key? key}) : super(key: key);
-  final CustomerSummaryController customerSummaryController = Get.find<CustomerSummaryController>();
+  final CustomerSummaryController customerSummaryController =
+      Get.find<CustomerSummaryController>();
 
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
-      appBar: CustomAppBar(title: Translate.checkout.tr, showBackButton: true,showAction: false,),
+      appBar: CustomAppBar(
+        title: Translate.checkout.tr,
+        showBackButton: true,
+        showAction: false,
+      ),
       body: Column(
         children: [
           const SizedBox(height: 10),
@@ -44,14 +49,17 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.toNamed(Routes.selectLocationFromMapScreen, arguments: {
-                          Arguments.isCheckoutAddress: true,
-                        });
+                        Get.toNamed(Routes.selectLocationFromMapScreen,
+                            arguments: {
+                              Arguments.isCheckoutAddress: true,
+                            });
                       },
                       child: CustomText(
                         Translate.addNewAddress.tr,
                         style: const TextStyle(
-                            fontSize: 13, color: AppColors.redColor, decoration: TextDecoration.underline),
+                            fontSize: 13,
+                            color: AppColors.redColor,
+                            decoration: TextDecoration.underline),
                       ),
                     ),
                   ],
@@ -68,11 +76,7 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
                   isEnableEdit: true,
                   addresses: addresses ?? [],
                 ),
-                onLoading: Center(
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
-                  ),
-                ),
+                onLoading: const SizedBox.shrink(),
                 onError: (e) => CustomErrorWidget(
                   errorText: e,
                 ),
@@ -95,11 +99,18 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
                       children: [
                         Expanded(
                           child: CustomText(
-                            Translate.deliveredWithinMinMaxBusinessDays.trParams(
+                            Translate.deliveredWithinMinMaxBusinessDays
+                                .trParams(
                               params: {
-                                'Min': summary?.configDeliveryPeriod?.min.toString() ?? "",
-                                'Max': summary?.configDeliveryPeriod?.max.toString() ?? "",
-                                'PeriodName': (summary?.configDeliveryPeriod?.periodName ?? "")
+                                'Min': summary?.configDeliveryPeriod?.min
+                                        .toString() ??
+                                    "",
+                                'Max': summary?.configDeliveryPeriod?.max
+                                        .toString() ??
+                                    "",
+                                'PeriodName': (summary
+                                        ?.configDeliveryPeriod?.periodName ??
+                                    "")
                               },
                             ),
                             // " ${Translate.deliveredWithin.tr} ${summary?.configDeliveryPeriod?.min}-${summary?.configDeliveryPeriod?.max} ${Translate.minutes.tr}",
@@ -136,7 +147,9 @@ class CustomerLocationsScreen extends GetView<CustomerLocationController> {
           const SizedBox(height: 10),
           Obx(
             () => CheckoutSummaryWidget(
-              buttonColor: controller.isAddressEmpty.value ? Colors.grey : AppColors.redColor,
+              buttonColor: controller.isAddressEmpty.value
+                  ? Colors.grey
+                  : AppColors.redColor,
               onTapNext: controller.isAddressEmpty.value
                   ? (isPreOrder) {}
                   : (isPreOrder) {
