@@ -9,7 +9,6 @@ import '../../../core/components/custom_error_widget.dart';
 import '../../../core/components/imtnan_loading_widget.dart';
 import '../../../core/components/no_internet_widget.dart';
 import '../../../core/localization/translate.dart';
-import '../../../core/utils/theme.dart';
 import '../controllers/cart_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +24,7 @@ class CartScreen extends GetView<CartController> {
         (data) => Column(
           children: [
             Expanded(
-              flex: 4,
+              flex: 7,
               child: ListView.builder(
                 controller: controller.scrollController,
                 padding: const EdgeInsets.all(10),
@@ -76,25 +75,15 @@ class CartScreen extends GetView<CartController> {
               ),
             ),
             Expanded(
-              flex: 1,
+              flex: 2,
               child: Padding(
                 padding:
-                    const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 40),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border(
-                      top: BorderSide(
-                        color: CustomThemes.appTheme.primaryColor,
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                  child: Obx(
-                    () => Center(
-                      child: SizedBox(
-                        height: 50,
+                    const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 48),
+                child: Column(
+                  children: [
+                   const Divider(color: AppColors.primaryColor,thickness: 2.0),
+                    Obx(
+                      () => Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,7 +102,6 @@ class CartScreen extends GetView<CartController> {
                             const SizedBox(width: 8.0),
                             Expanded(
                               child: CustomBorderButton(
-                                mdh: 40,
                                 radius: 50,
                                 color: AppColors.redColor,
                                 title: Translate.buyNow.tr,
@@ -125,7 +113,7 @@ class CartScreen extends GetView<CartController> {
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ),
