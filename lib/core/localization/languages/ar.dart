@@ -51,6 +51,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.selectLocation.name: "اختار الموقع",
       Translate.seeAll.name: "مشاهدة الكل",
       Translate.newArrivals.name: "المضاف حديثا",
+      Translate.youMightLoveThis.name: "اشياء قد تعجبك",
       Translate.orderNow.name: "اطلب الان",
       Translate.bestSeller.name: "الأكثر مبيعا",
       Translate.searchHere.name: "ابحث هنا...",

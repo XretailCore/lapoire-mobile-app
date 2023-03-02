@@ -47,6 +47,7 @@ enum Translate {
   selectLocation,
   seeAll,
   newArrivals,
+  youMightLoveThis,
   orderNow,
   bestSeller,
   searchHere,

@@ -51,6 +51,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.selectLocation.name: "Select Location",
       Translate.seeAll.name: "See All",
       Translate.newArrivals.name: "New Arrivals",
+      Translate.youMightLoveThis.name: "You Might Love This",
       Translate.orderNow.name: "Order Now",
       Translate.bestSeller.name: "Best Seller",
       Translate.searchHere.name: "Search Here...",

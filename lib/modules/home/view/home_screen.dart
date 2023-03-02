@@ -152,11 +152,11 @@ class HomeScreen extends GetView<HomeController> {
                             onAllProductsPressed: () =>
                                 controller.goToListingWithId(
                                     filterModel: model.FilterModel(listType: 4),
-                                    name: Translate.newArrivals.tr),
+                                    name: Translate.youMightLoveThis.tr),
                             isYellow: true,
                             key: UniqueKey(),
                             items: controller.newArrivals.items ?? [],
-                            title: Translate.newArrivals.tr,
+                            title: Translate.youMightLoveThis.tr,
                           ),
                           const SizedBox(height: 14),
                           HomeListingWidget(
