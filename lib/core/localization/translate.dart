@@ -190,6 +190,7 @@ enum Translate {
   shippingInformation,
   yourOrderWillBeDeliveredWithinMinMaxBusinessDays,
   deliveredWithinMinMaxBusinessDays,
+  buyThisItemToGetDiscount,
   yourAddress,
   itemsFound,
   price,

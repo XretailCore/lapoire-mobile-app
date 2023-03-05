@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imtnan/core/components/custom_button.dart';
+import 'package:imtnan/core/components/custom_text.dart';
 import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:linktsp_api/linktsp_api.dart';
 import '../../../core/localization/translate.dart';
@@ -78,22 +79,36 @@ class DetailsBuyNowWidget extends StatelessWidget {
                         )
                       ])),
                   const SizedBox(height: 8),
+                if(details?.cartDiscountValue !=null) Row(
+                  children: [
+                    Image.asset("assets/images/gift.png",color: AppColors.primaryColor),
+                    const SizedBox(width: 4.0),
+                    CustomText(Translate.buyThisItemToGetDiscount.trParams(
+                       params: {
+                         'value': details?.cartDiscountValue!.toStringAsFixed(details?.cartDiscountValue!.truncateToDouble() == details?.cartDiscountValue ? 0 : 1) ??
+                             "",
+                       },
+                     ),softWrap: true,style: const TextStyle(color: AppColors.redColor),),
+                  ],
+                ),
+                  const SizedBox(height: 8),
                   Text.rich(TextSpan(
                       text: Translate.buyNowTotal.tr,
                       style: const TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.bold,color: AppColors.primaryColor,),
+                        fontSize: 14, fontWeight: FontWeight.bold,color: AppColors.primaryColor,),
                       children: <InlineSpan>[
                         TextSpan(
                           text: '  ${details?.total!.toStringAsFixed(details?.total!.truncateToDouble() == details?.total ? 0 : 1)}',
                           style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
+                            fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
                         ),
                         TextSpan(
                           text: '  ${Translate.egp.tr}',
                           style: const TextStyle(
                             fontSize: 14, fontWeight: FontWeight.normal,color: AppColors.primaryColor,),
                         ),
-                      ])),
+                      ]),
+                  ),
                   const SizedBox(height: 20),
                   Center(
                       child: SizedBox(

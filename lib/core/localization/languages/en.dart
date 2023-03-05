@@ -209,6 +209,8 @@ Map<String, String> getEnglishTranslation() => {
           'Your Order Will Be Delivered Within @Min-@Max Business Days',
       Translate.deliveredWithinMinMaxBusinessDays.name:
           'Delivered Within @Min-@Max @PeriodName',
+      Translate.buyThisItemToGetDiscount.name:
+      'Buy this item to get @value% discount',
       Translate.yourAddress.name: 'Your Address',
       Translate.itemsFound.name: 'Item(s) Found',
       Translate.price.name: 'Price',

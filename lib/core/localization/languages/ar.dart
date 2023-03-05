@@ -207,6 +207,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.deliveredWithinMinMaxBusinessDays.name:
           'توصيل @Min-@Max @PeriodName كحد أقصى',
       Translate.yourAddress.name: 'موقعك الحالي',
+      Translate.buyThisItemToGetDiscount.name: 'اشتري هذا المنتج لتحصل علي @value% تخفيض',
       Translate.itemsFound.name: 'تم العثور على',
       Translate.price.name: 'السعر',
       Translate.sortBy.name: 'الترتيب',
