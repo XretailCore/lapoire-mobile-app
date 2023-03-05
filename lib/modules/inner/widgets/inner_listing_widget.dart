@@ -25,8 +25,8 @@ class InnerListingWidget extends GetView<InnerProductController> {
   @override
   Widget build(BuildContext context) {
   final language=  Get.find<UserSharedPrefrenceController>().getLanguage;
-    return Offstage(
-        offstage: items == null || items!.length<3,
+    return Visibility(
+        visible: items != null && items!.length>=3,
       child: Column(
         children: [
           Padding(
