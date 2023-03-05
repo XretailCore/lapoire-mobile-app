@@ -36,7 +36,7 @@ class HomeCategoriesWidget extends GetView<HomeController> {
                         color: AppColors.redColor,
                         fontWeight: FontWeight.w400,
                         fontSize: 32,
-                        fontFamily: language == Languages.ar.name ?'Cairo':"Bayshore"),
+                        fontFamily: language == Languages.ar.name ?'Azad':"Bayshore"),
                   ),
                 ],
               ),
