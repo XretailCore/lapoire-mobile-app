@@ -34,11 +34,13 @@ class LocationWidget extends GetView<ZoneController> {
               width: controller.selectedZoneName.value.isNotEmpty ?? false
                   ? 0.25.sw
                   : 0.0,
-              child: CustomText(
-                controller.selectedZoneName.value,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: Color.fromRGBO(112, 112, 112, 1),
+              child: Obx(
+                () => CustomText(
+                  controller.selectedZoneName.value,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    color: Color.fromRGBO(112, 112, 112, 1),
+                  ),
                 ),
               ),
             ),
