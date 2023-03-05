@@ -374,7 +374,7 @@ class _BodyWidgetState extends State<BodyWidget> {
               ),
               const SizedBox(height: 16.0),
               Offstage(
-                offstage: (widget.selectdProduct?.details != null),
+                offstage: (widget.selectdProduct?.details == null),
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                   child: ExpansionTileWidget(
