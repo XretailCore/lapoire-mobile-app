@@ -16,9 +16,6 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
   @override
   Widget build(BuildContext context) {
     final primary = CustomThemes.appTheme.primaryColor;
-    var percentage = orderDetailsModel.personalDiscountAmount !=null && orderDetailsModel.personalDiscountAmount !=0.0?(orderDetailsModel.personalDiscountAmount! /
-        orderDetailsModel.total!.toDouble() *
-        100):0;
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: const BoxDecoration(
@@ -57,7 +54,7 @@ class OrderDetailsSummaryWidget extends GetView<OrderDetailsController> {
                 title: Translate.personalDiscountAmount.tr,
                 textColor: primary,
                 subTitle:
-                    "${percentage.toStringAsFixed(percentage.truncateToDouble() == percentage ? 0 : 1)} %   ${orderDetailsModel.personalDiscountAmount!.toStringAsFixed(orderDetailsModel.personalDiscountAmount!.truncateToDouble() == orderDetailsModel.personalDiscountAmount ? 0 : 1)}"),
+                    orderDetailsModel.personalDiscountAmount!.toStringAsFixed(orderDetailsModel.personalDiscountAmount!.truncateToDouble() == orderDetailsModel.personalDiscountAmount ? 0 : 1)),
           if (orderDetailsModel.shipmentCost != 0.0)
             SummaryInfoWidget(
               title: Translate.shipmentfees.name.tr,
