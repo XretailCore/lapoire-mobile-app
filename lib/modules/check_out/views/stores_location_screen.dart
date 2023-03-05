@@ -19,7 +19,10 @@ class StoresLocationScreen extends GetView<StoreLocationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: Translate.checkout.tr, showBackButton: true,showAction: false,),
+      appBar: CustomAppBar(title: Translate.checkout.tr, showBackButton: true,showAction: false,onTap: (){
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        Get.back();
+      }),
       body: ContainerWidget(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

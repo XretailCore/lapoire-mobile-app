@@ -167,11 +167,13 @@ class CustomAppBar extends GetView<CartController>
   final bool showAction;
   final bool showBottom;
   final Widget? bottom;
+  final void Function()? onTap;
 
-  const CustomAppBar({
+  const CustomAppBar( {
     Key? key,
     this.title = "",
     this.bottom,
+    this.onTap,
     this.showBackButton = false,
     this.showAction = true,
     this.showCart = true,
@@ -205,7 +207,7 @@ class CustomAppBar extends GetView<CartController>
         ),
       ),
       centerTitle: true,
-      leading: showBackButton ? const CustomBackButton() : const SizedBox(),
+      leading: showBackButton ?  CustomBackButton(onTap:onTap) : const SizedBox(),
       actions: showAction
           ? [
               InkWell(

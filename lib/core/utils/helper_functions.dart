@@ -19,6 +19,7 @@ class HelperFunctions {
       {String? message,
       Color? backgroundColor,
       Color textColor = Colors.white,
+        Color? btnCloseColor,
       SnackBarBehavior? snackBarBehavior,
       Duration duration = const Duration(seconds: 3),
       bool hasCloseBtn = false}) {
@@ -40,7 +41,7 @@ class HelperFunctions {
           hasCloseBtn
               ? IconButton(
                   iconSize: 18,
-                  color: Colors.white,
+                  color: btnCloseColor??Colors.white,
                   onPressed: () {
                     ScaffoldMessenger.of(Get.context!).hideCurrentSnackBar();
                   },
@@ -58,13 +59,16 @@ class HelperFunctions {
       {required String message,
       required BuildContext context,
       Color color = Colors.red,
+        Color? textColor,
+        Color? btnCloseColor,
         Duration duration = const Duration(seconds: 3),
       bool hasCloseBtn = false}) {
     final snackBar = HelperFunctions.customSnackBar(
         message: message,
         duration: duration,
-        textColor: Colors.white,
+        textColor: textColor??Colors.white,
         backgroundColor: color,
+        btnCloseColor: btnCloseColor??Colors.white,
         hasCloseBtn: hasCloseBtn);
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }

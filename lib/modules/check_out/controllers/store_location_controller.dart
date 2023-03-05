@@ -1,3 +1,4 @@
+import 'package:imtnan/core/utils/app_colors.dart';
 import 'package:imtnan/modules/check_out/controllers/payment_controller.dart';
 
 import '../../../core/components/custom_loaders.dart';
@@ -35,6 +36,10 @@ class StoreLocationController extends GetxController
       HelperFunctions.showSnackBar(
           message: Translate.pleaseSelectStore.tr,
           context: Get.context!,
+          hasCloseBtn: true,
+          btnCloseColor: AppColors.primaryColor,
+          textColor: AppColors.primaryColor,
+          color: AppColors.highlighter,
           duration: const Duration(seconds: 6));
     });
   }
