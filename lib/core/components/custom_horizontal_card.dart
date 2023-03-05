@@ -231,21 +231,18 @@ class HorizontalProductCard extends StatelessWidget {
                                           ),
                                           // const SizedBox(width: 20),
                                           Expanded(
-                                            child: Offstage(
-                                              offstage: !(hasOffer ?? false),
-                                              child: CustomText(
-                                                "${oldPrice!.toStringAsFixed(oldPrice!.truncateToDouble() == oldPrice ? 0 : 1)} ${Translate.egp.name.tr}",
-                                                maxLines: 1,
-                                                style: const TextStyle(
-                                                  fontSize: 12,
-                                                  color: Colors.grey,
-                                                  fontWeight: FontWeight.w600,
-                                                  decorationColor: Colors.red,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  decoration: TextDecoration
-                                                      .lineThrough,
-                                                ),
+                                            child: CustomText(
+                                              "${oldPrice!.toStringAsFixed(oldPrice!.truncateToDouble() == oldPrice ? 0 : 1)} ${Translate.egp.name.tr}",
+                                              maxLines: 1,
+                                              style: const TextStyle(
+                                                fontSize: 12,
+                                                color: Colors.grey,
+                                                fontWeight: FontWeight.w600,
+                                                decorationColor: Colors.red,
+                                                overflow:
+                                                    TextOverflow.ellipsis,
+                                                decoration: TextDecoration
+                                                    .lineThrough,
                                               ),
                                             ),
                                           ),
