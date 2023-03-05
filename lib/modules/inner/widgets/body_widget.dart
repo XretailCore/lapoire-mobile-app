@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:get/get.dart';
 import 'package:imtnan/core/utils/theme.dart';
 import 'package:linktsp_api/linktsp_api.dart' hide Size;
 import 'package:readmore/readmore.dart';
@@ -298,14 +297,13 @@ class _BodyWidgetState extends State<BodyWidget> {
             ],
           ),
         ),
-        const SizedBox(height: 10),
-        Obx(
-          () => Column(
+         SizedBox(height: widget.selectdProduct?.description !=null && widget.selectdProduct?.description !="null" && widget.selectdProduct!.description!.isNotEmpty?10:0),
+         Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              widget.selectdProduct!.description!.isNotEmpty
-                  ? Padding(
+          widget.selectdProduct?.description !=null && widget.selectdProduct?.description !="null" && widget.selectdProduct!.description!.isNotEmpty?
+                   Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: CustomText(
                         Translate.ingredients.tr.toUpperCase(),
@@ -373,51 +371,48 @@ class _BodyWidgetState extends State<BodyWidget> {
                 ),
               ),
               const SizedBox(height: 16.0),
-              Offstage(
-                offstage: (widget.selectdProduct?.details == null),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                  child: ExpansionTileWidget(
-                    key: Key(ExpansionTileStatus.ingredientsAndHowToUse.name),
-                    initiallyExpanded:
-                        widget.innerProductController.expansionTileStatus ==
-                            ExpansionTileStatus.ingredientsAndHowToUse,
-                    onExpansionChanged: (isExpanded) {
-                      if (!isExpanded) {
-                        widget.innerProductController.expansionTileStatus =
-                            null;
-                        return;
-                      }
+             if(widget.selectdProduct?.details != null && widget.selectdProduct?.details!="null" &&widget.selectdProduct!.details!.isNotEmpty) Padding(
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                child: ExpansionTileWidget(
+                  key: Key(ExpansionTileStatus.ingredientsAndHowToUse.name),
+                  initiallyExpanded:
+                      widget.innerProductController.expansionTileStatus ==
+                          ExpansionTileStatus.ingredientsAndHowToUse,
+                  onExpansionChanged: (isExpanded) {
+                    if (!isExpanded) {
                       widget.innerProductController.expansionTileStatus =
-                          ExpansionTileStatus.ingredientsAndHowToUse;
-                    },
-                    title: Translate.featuresAndBenefits.tr,
-                    children: [
-                      ReadMoreText(
-                        widget.selectdProduct?.details ?? '',
-                        trimLines: 4,
-                        trimMode: TrimMode.Line,
-                        trimCollapsedText: ' ${Translate.showMore.tr}',
-                        trimExpandedText: ' ${Translate.showLess.tr}',
-                        moreStyle: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.redColor,
-                        ),
-                        lessStyle: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.redColor,
-                        ),
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500,
-                          color: primaryColor,
-                        ),
+                          null;
+                      return;
+                    }
+                    widget.innerProductController.expansionTileStatus =
+                        ExpansionTileStatus.ingredientsAndHowToUse;
+                  },
+                  title: Translate.featuresAndBenefits.tr,
+                  children: [
+                    ReadMoreText(
+                      widget.selectdProduct?.details ?? '',
+                      trimLines: 4,
+                      trimMode: TrimMode.Line,
+                      trimCollapsedText: ' ${Translate.showMore.tr}',
+                      trimExpandedText: ' ${Translate.showLess.tr}',
+                      moreStyle: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.redColor,
                       ),
-                    ],
-                  ),
+                      lessStyle: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.redColor,
+                      ),
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: primaryColor,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               widget.selectdProduct?.reviews == null ||
@@ -492,7 +487,6 @@ class _BodyWidgetState extends State<BodyWidget> {
               ),
             ],
           ),
-        ),
         SizedBox(height: Platform.isAndroid ? 50 : 80),
       ],
     );
