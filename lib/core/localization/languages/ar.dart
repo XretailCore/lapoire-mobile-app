@@ -361,6 +361,7 @@ Map<String, String> getArabicTranslation() => {
       Translate.errorOccurred.name: "حدث خطأ ما",
       Translate.district.name: "الحي",
       Translate.whoBoughtProducts.name: 'العملاء اشتروا أيضا',
+      Translate.youMaybeInterestedIn.name: 'منتجات قد تعجبك',
       Translate.whoViewedProduct.name: 'العملاء شاهدوا أيضا',
       Translate.zone.name: 'المنطقة',
       Translate.offers.name: 'العروض',

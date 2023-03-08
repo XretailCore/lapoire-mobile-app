@@ -333,6 +333,7 @@ enum Translate {
   errorOccurred,
   district,
   whoBoughtProducts,
+  youMaybeInterestedIn,
   whoViewedProduct,
   zone,
   offers,

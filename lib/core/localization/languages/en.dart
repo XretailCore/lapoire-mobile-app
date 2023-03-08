@@ -381,6 +381,7 @@ Map<String, String> getEnglishTranslation() => {
       Translate.errorOccurred.name: "An Error Has Occurred",
       Translate.district.name: "District",
       Translate.whoBoughtProducts.name: 'Customers also bought',
+      Translate.youMaybeInterestedIn.name: 'You may be interested in',
       Translate.whoViewedProduct.name: 'Customers also viewed',
       Translate.zone.name: 'Zone',
       Translate.offers.name: 'Offers',

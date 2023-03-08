@@ -483,7 +483,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                 items: widget.innerProductController.product
                         ?.whoBoughtThisBoughtThat ??
                     [],
-                title: Translate.whoBoughtProducts.tr,
+                title: Translate.youMaybeInterestedIn.tr,
               ),
             ],
           ),
