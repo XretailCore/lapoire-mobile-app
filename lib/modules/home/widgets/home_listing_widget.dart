@@ -50,7 +50,7 @@ class HomeListingWidget extends GetView<HomeController> {
                   fontSize: 32,
                   overflow: TextOverflow.ellipsis,
                   fontFamily:
-                      language == Languages.ar.name ? 'Azad' : "Bayshore"),
+                      language == Languages.ar.name ? 'Motken' : "Bayshore"),
             ),
             const SizedBox(height: 25),
             CarouselSlider.builder(

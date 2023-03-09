@@ -40,7 +40,7 @@ class InnerListingWidget extends GetView<InnerProductController> {
                       color: CustomThemes.appTheme.primaryColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 28,
-                      fontFamily: language == Languages.ar.name ?'Azad':"Bayshore"),
+                      fontFamily: language == Languages.ar.name ?'Motken':"Bayshore"),
                 ),
               ],
             ),

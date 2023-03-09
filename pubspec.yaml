@@ -93,9 +93,9 @@ flutter:
     - family: Bayshore
       fonts:
         - asset: assets/fonts/Bayshore.ttf
-    - family: Azad
+    - family: Motken
       fonts:
-        - asset: assets/fonts/A Gam_Azad Regular.ttf
+        - asset: assets/fonts/Motken K Kamran.ttf
     - family: Gilroy
       fonts:
         - asset: assets/fonts/Gilroy-Bold.otf
