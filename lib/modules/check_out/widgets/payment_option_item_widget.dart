@@ -36,7 +36,7 @@ class _PaymentOptionItemWidgetState extends State<PaymentOptionItemWidget> {
               children: [
                 PaymentOptionWidget(
                   payment: payment,
-                  isSelected: selectedIndex == payment.id!-1 || widget.payments.length==1,
+                  isSelected: selectedIndex == index,
                   showRadioButton: true,
                   onTap: () {
                     setState(() {
