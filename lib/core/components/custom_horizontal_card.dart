@@ -254,10 +254,10 @@ class HorizontalProductCard extends StatelessWidget {
                                     "${Translate.qty.tr}: $count",
                                     maxLines: 1,
                                     style: const TextStyle(
-                                      fontSize: 14,
+                                      fontSize: 16,
                                       overflow: TextOverflow.ellipsis,
-                                      color: AppColors.primaryColor,
-                                      fontWeight: FontWeight.w400,
+                                      color: AppColors.redColor,
+                                      fontWeight: FontWeight.w700,
                                     ),
                                   ),
                                 if ((count == null || isCart!) && !isReview!)
