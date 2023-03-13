@@ -292,9 +292,9 @@ class HorizontalProductCard extends StatelessWidget {
                                             barrierDismissible: false,
                                             contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
                                             titlePadding: const EdgeInsets.only(top: 20),
-                                            title: Translate.deleteItem.tr.capitalizeFirst ?? '',
+                                            title: Translate.removeItem.tr.capitalizeFirst ?? '',
                                             titleStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                                            middleText: Translate.areYouWantToDeleteThisItem.tr,
+                                            middleText: Translate.areYouWantToRemoveThisItem.tr,
                                             middleTextStyle:
                                             const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
                                             actions: [
